@@ -1,0 +1,62 @@
+import { PATH } from '@/constant/path';
+import { Link } from 'react-router-dom';
+
+const Header = () => {
+  return (
+    <header className="header">
+      <nav className="header__menu">
+        <Link to={PATH.HOME} className="header__menu-logo">
+          <img
+            src="/public/logo-homie.png"
+            alt="Homie Logo"
+            className="header__img"
+          />
+        </Link>
+        <ul className="header__menu-list">
+          <li className="header__menu-item">
+            <Link to={PATH.HOME} className="header__menu-link">
+              Trang chủ
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link to={PATH.ABOUT} className="header__menu-link">
+              Về Homie
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link to={PATH.SERVICE} className="header__menu-link">
+              Dịch vụ
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link to={PATH.NEWS} className="header__menu-link">
+              Tin tức
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link to={PATH.COMMITMENT} className="header__menu-link">
+              Cam kết
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link to={PATH.PAYMENT} className="header__menu-link">
+              Thanh toán
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link to={PATH.PARTNER} className="header__menu-link">
+              Trở thành đối tác
+            </Link>
+          </li>
+        </ul>
+        <div className="header__menu-actions">
+          <button className="header__menu-button">
+            <span>Đăng nhập</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default Header;

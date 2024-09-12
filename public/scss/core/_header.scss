@@ -1,0 +1,12 @@
+.header {
+  height: 165px;
+  padding: 40px 110px;
+  &__menu {
+    height: 100%;
+    @include mid(flex);
+    justify-content: space-between;
+    &-list {
+      @include mid(flex);
+    }
+  }
+}
