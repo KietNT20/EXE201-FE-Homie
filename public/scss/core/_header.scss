@@ -1,12 +1,45 @@
 .header {
   height: 165px;
-  padding: 40px 110px;
+  padding: 40px 30px;
   &__menu {
     height: 100%;
+    width: 100%;
     @include mid(flex);
     justify-content: space-between;
+    &-logo {
+      @include mid(flex);
+      .header__img {
+        @include midImg;
+      }
+    }
     &-list {
       @include mid(flex);
+      gap: 10px;
+      .header__menu-item {
+        @include mid(flex);
+        @include text(vnRegular, 19px, normal, var(--black-cl));
+        word-wrap: break-word;
+        height: 43px;
+        width: fit-content;
+        background-color: transparent;
+        @include transition(var(--duration));
+        &:hover {
+          background-color: var(--blue-light);
+          border-radius: 12px;
+          color: var(--white-cl);
+        }
+        .header__link {
+          color: var(--black-cl);
+          padding: 22px 20px;
+          @include transition(var(--duration));
+          &:hover {
+            color: var(--white-cl);
+          }
+        }
+      }
+    }
+    &-actions{
+      
     }
   }
 }
