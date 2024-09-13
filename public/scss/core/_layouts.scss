@@ -6,7 +6,7 @@ body {
   max-width: var(--max-width-page);
   margin: auto;
   scroll-behavior: smooth;
-  font-family: pr;
+  font-family: vnRegular;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   &.--disable-scroll {
@@ -33,6 +33,7 @@ body {
   }
   .main {
     position: relative;
+    margin-top: var(--height-header);
     section {
       padding: var(--pd-section) 0;
     }

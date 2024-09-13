@@ -26,9 +26,8 @@ const Footer = () => {
                 <a href="#">Giới thiệu Homie</a>
               </li>
               <li>
-                <a href="#">
-                  Tuyển dụng <span className="footer-news">Mới</span>
-                </a>
+                <a href="#">Tuyển dụng</a>
+                <span className="footer-news">Mới</span>
               </li>
               <li>
                 <a href="#">Chi nhánh</a>
