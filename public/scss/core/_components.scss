@@ -27,3 +27,13 @@
   background: #f2f4f7;
   margin-left: 8px;
 }
+
+.--active-menu {
+  background-color: var(--blue-light);
+  height: 43px;
+  border-radius: 12px;
+  @include mid(flex);
+  color: var(--white-cl) !important;
+  @include transition(var(--duration));
+}
+

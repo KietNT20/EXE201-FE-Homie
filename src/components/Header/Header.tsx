@@ -1,12 +1,12 @@
-import { PATH } from '@/constant/path';
-import { Link } from 'react-router-dom';
+import { PATH } from "@/constant/path";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header className="header">
       <div className="container">
         <nav className="header__menu">
-          <Link to={PATH.HOME} className="header__menu-logo ">
+          <Link to={PATH.HOME} className="header__menu-logo">
             <img
               src="/logo-homie.png"
               alt="Homie Logo"
@@ -15,7 +15,7 @@ const Header = () => {
           </Link>
           <ul className="header__menu-list">
             <li className="header__menu-item">
-              <Link to={PATH.HOME} className="header__link">
+              <Link to={PATH.HOME} className="header__link --active-menu">
                 Trang chủ
               </Link>
             </li>
