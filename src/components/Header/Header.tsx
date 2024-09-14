@@ -1,5 +1,5 @@
-import { PATH } from "@/constant/path";
-import { Link } from "react-router-dom";
+import { PATH } from '@/constant/path';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
           </Link>
           <ul className="header__menu-list">
             <li className="header__menu-item">
-              <Link to={PATH.HOME} className="header__link --active-menu">
+              <Link to={PATH.HOME} className="header__link">
                 Trang chủ
               </Link>
             </li>
