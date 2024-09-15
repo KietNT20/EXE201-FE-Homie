@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'vn-bold';
+  font-family: 'vnBold';
   src:
     url('BeVietnamPro-Bold.woff2') format('woff2'),
     url('BeVietnamPro-Bold.woff') format('woff');
@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: 'vn-italic';
+  font-family: 'vnItalic';
   src:
     url('BeVietnamPro-Italic.woff2') format('woff2'),
     url('BeVietnamPro-Italic.woff') format('woff');
@@ -19,7 +19,7 @@
 }
 
 @font-face {
-  font-family: 'vn-medium';
+  font-family: 'vnMedium';
   src:
     url('BeVietnamPro-Medium.woff2') format('woff2'),
     url('BeVietnamPro-Medium.woff') format('woff');
@@ -29,7 +29,7 @@
 }
 
 @font-face {
-  font-family: 'vn-semibold';
+  font-family: 'vnSemibold';
   src:
     url('BeVietnamPro-SemiBold.woff2') format('woff2'),
     url('BeVietnamPro-SemiBold.woff') format('woff');
@@ -39,7 +39,7 @@
 }
 
 @font-face {
-  font-family: 'vn-regular';
+  font-family: 'vnRegular';
   src:
     url('BeVietnamPro-Regular.woff2') format('woff2'),
     url('BeVietnamPro-Regular.woff') format('woff');
@@ -49,7 +49,7 @@
 }
 
 @font-face {
-  font-family: 'vn-thin';
+  font-family: 'vnThin';
   src:
     url('BeVietnamPro-Thin.woff2') format('woff2'),
     url('BeVietnamPro-Thin.woff') format('woff');

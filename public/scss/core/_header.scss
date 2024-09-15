@@ -1,12 +1,68 @@
 .header {
-  height: 165px;
-  padding: 40px 110px;
+  height: var(--height-header);
+  padding: 40px 0px;
+  width: 100%;
+  position: fixed;
+  @include transition(var(--duration));
+  background: none;
+  top: 0;
+  z-index: 700;
+  .container {
+    height: 100%;
+  }
   &__menu {
     height: 100%;
     @include mid(flex);
     justify-content: space-between;
+    &-logo {
+      @include mid(flex);
+      max-width: 77px;
+      max-width: 124px;
+      .header__img {
+        @include midImg;
+      }
+    }
     &-list {
       @include mid(flex);
+      gap: 10px;
+      .header__menu-item {
+        @include mid(flex);
+        @include text(vnRegular, 16px, normal, var(--black-cl));
+        word-wrap: break-word;
+        height: 43px;
+        width: fit-content;
+        .header__link {
+          @include mid(flex);
+          color: var(--black-cl);
+          height: 100%;
+          border-radius: 12px;
+          padding: 22px 20px;
+          @include transition(var(--duration));
+          &:hover {
+            color: var(--white-cl);
+            background-color: var(--blue-light);
+            height: 100%;
+          }
+        }
+      }
+    }
+    &-actions {
+      .header__btn {
+        @include mid(flex);
+        @include text(vnRegular, 16px, normal, var(--black-cl));
+        height: 32px;
+        padding: 0 18px;
+        border-radius: 43px;
+        border: 1px solid #000;
+        background-color: none;
+        border-radius: 12px;
+        @include transition(var(--duration));
+        &:hover {
+          background-color: var(--blue-light);
+          color: var(--white-cl);
+          border: 1px solid var(--blue-light);
+        }
+      }
     }
   }
 }
