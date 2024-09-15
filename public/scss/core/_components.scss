@@ -28,12 +28,11 @@
   margin-left: 8px;
 }
 
-.--active-menu {
+.active {
   background-color: var(--blue-light);
-  height: 43px;
-  border-radius: 12px;
+  width: 100%;
+  height: 100%;
   @include mid(flex);
   color: var(--white-cl) !important;
   @include transition(var(--duration));
 }
-

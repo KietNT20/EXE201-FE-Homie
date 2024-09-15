@@ -31,18 +31,17 @@
         word-wrap: break-word;
         height: 43px;
         width: fit-content;
-        background-color: transparent;
-        border-radius: 12px;
-        @include transition(var(--duration));
-        &:hover {
-          background-color: var(--blue-light);
-        }
         .header__link {
+          @include mid(flex);
           color: var(--black-cl);
+          height: 100%;
+          border-radius: 12px;
           padding: 22px 20px;
           @include transition(var(--duration));
           &:hover {
             color: var(--white-cl);
+            background-color: var(--blue-light);
+            height: 100%;
           }
         }
       }

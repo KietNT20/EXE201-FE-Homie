@@ -1,5 +1,5 @@
-import { PATH } from '@/constant/path';
-import { Link } from 'react-router-dom';
+import { PATH } from "@/constant/path";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -15,39 +15,39 @@ const Header = () => {
           </Link>
           <ul className="header__menu-list">
             <li className="header__menu-item">
-              <Link to={PATH.HOME} className="header__link">
+              <NavLink to={PATH.HOME} className="header__link">
                 Trang chủ
-              </Link>
+              </NavLink>
             </li>
             <li className="header__menu-item">
-              <Link to={PATH.ABOUT} className="header__link">
+              <NavLink to={PATH.ABOUT} className="header__link">
                 Về Homie
-              </Link>
+              </NavLink>
             </li>
             <li className="header__menu-item">
-              <Link to={PATH.SERVICE} className="header__link">
+              <NavLink to={PATH.SERVICE} className="header__link">
                 Dịch vụ
-              </Link>
+              </NavLink>
             </li>
             <li className="header__menu-item">
-              <Link to={PATH.NEWS} className="header__link">
+              <NavLink to={PATH.NEWS} className="header__link">
                 Tin tức
-              </Link>
+              </NavLink>
             </li>
             <li className="header__menu-item">
-              <Link to={PATH.COMMITMENT} className="header__link">
+              <NavLink to={PATH.COMMITMENT} className="header__link">
                 Cam kết
-              </Link>
+              </NavLink>
             </li>
             <li className="header__menu-item">
-              <Link to={PATH.PAYMENT} className="header__link">
+              <NavLink to={PATH.PAYMENT} className="header__link">
                 Thanh toán
-              </Link>
+              </NavLink>
             </li>
             <li className="header__menu-item">
-              <Link to={PATH.PARTNER} className="header__link">
+              <NavLink to={PATH.PARTNER} className="header__link">
                 Trở thành đối tác
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <div className="header__menu-actions">
