@@ -1,14 +1,14 @@
 // import video from "../../assets/4906-181288859_tiny.mp4";
-import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/457622299_833117712264485_7563656726501441209_n.png";
-import { FaUserShield } from "react-icons/fa";
-import { BsFillShieldLockFill } from "react-icons/bs";
-import { AiOutlineSwapRight } from "react-icons/ai";
-import { MdMarkEmailRead } from "react-icons/md";
-import imgLogo from "../../assets/620hgallerysubmarinehead-16977765755311772821520.jpg";
-import "../../../public/scss/pages/register.scss";
+import { PATH } from '@/constant/path';
+import { AiOutlineSwapRight } from 'react-icons/ai';
+import { BsFillShieldLockFill } from 'react-icons/bs';
+import { FaUserShield } from 'react-icons/fa';
+import { MdMarkEmailRead } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import logo from '../../../public/logo-homie.png';
+import imgLogo from '../../../public/submarine.jpg';
 
-const Register = () => {
+const RegisterPage = () => {
   return (
     <div className="registerPage flex">
       <div className="container flex">
@@ -17,7 +17,7 @@ const Register = () => {
 
           <div className="footerDiv flex">
             <span className="text"> Have an account</span>
-            <Link to={"/"}>
+            <Link to={PATH.LOGIN}>
               <button className="btn">Login</button>
             </Link>
           </div>
@@ -64,14 +64,14 @@ const Register = () => {
             </button>
 
             <span className="forgotPassword">
-              Forgot your password? <a href="">Click Here</a>
+              Forgot your password? <a href="#">Click Here</a>
             </span>
           </form>
         </div>
       </div>
-      //{" "}
+      //{' '}
     </div>
   );
 };
 
-export default Register;
+export default RegisterPage;

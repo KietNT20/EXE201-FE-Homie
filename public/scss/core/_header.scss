@@ -6,7 +6,7 @@
   @include transition(var(--duration));
   background: none;
   top: 0;
-  z-index: 700;
+  z-index: 400;
   .container {
     height: 100%;
   }
@@ -63,6 +63,14 @@
           border: 1px solid var(--blue-light);
         }
       }
+      .active {
+        background-color: var(--blue-light);
+        color: var(--white-cl);
+        border: 1px solid var(--blue-light);
+      }
     }
+  }
+  &.--bg-dark {
+    background-color: #d1e9f6;
   }
 }

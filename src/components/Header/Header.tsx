@@ -1,5 +1,5 @@
-import { PATH } from "@/constant/path";
-import { Link, NavLink } from "react-router-dom";
+import { PATH } from '@/constant/path';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -51,9 +51,9 @@ const Header = () => {
             </li>
           </ul>
           <div className="header__menu-actions">
-            <button className="header__btn">
-              <span>Đăng nhập</span>
-            </button>
+            <NavLink to={PATH.LOGIN} className="header__btn">
+              Dang nhap
+            </NavLink>
           </div>
         </nav>
       </div>
