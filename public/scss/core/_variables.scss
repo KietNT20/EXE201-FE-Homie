@@ -2,7 +2,7 @@
   /* MaxWidth Of Page, Container-Fluid, Container, Gutter*/
   --max-width-page: 2560px;
   --max-width-container-fluid: 1920px;
-  --max-width-container: calc(1200px + calc(var(--gap) * 2));
+  --max-width-container: calc(1220px + calc(var(--gap) * 2));
 
   --gap: 30px;
 
@@ -15,7 +15,7 @@
   --white-cl: #fff;
   --gray-cl: #4c4c4d;
   --body-cl: #e8e9eb;
-  // Fontsize - Lineheight Variable Demo
+  // Fontsize - Lineheight Variable
   --fs-h1: 9rem;
   --lh1-h1: 10rem;
 
@@ -29,7 +29,7 @@
   --height-button: 42px;
   --pd-section: 120px;
 
-  // Timing Transition Variable Demo
+  // Timing Transition Variable
   --duration: 0.4s;
   --cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
 
@@ -39,22 +39,5 @@
   }
   @include sm {
     --container-max-width: 960px;
-  }
-  @include xs {
-    --container-max-width: 720px;
-    --gap: 16px;
-
-    // DEMO
-    --fs-h1: 6rem;
-    --lh1-h1: 6.8rem;
-
-    --fs-h2: 5.5rem;
-    --lh1-h2: 6.2rem;
-
-    --fs-body: 1.7rem;
-    --lh-body: 1.9rem;
-  }
-  @include xxs {
-    --container-max-width: 100%;
   }
 }
