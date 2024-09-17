@@ -17,7 +17,7 @@
   --body-cl: #e8e9eb;
   --login-primary: hsl(94, 55%, 56%);
   --login-blue: hsl(200, 81%, 63%);
-  // Fontsize - Lineheight Variable Demo
+  // Fontsize - Lineheight Variable
   --fs-h1: 9rem;
   --lh1-h1: 10rem;
 
@@ -31,32 +31,15 @@
   --height-button: 42px;
   --pd-section: 120px;
 
-  // Timing Transition Variable Demo
+  // Timing Transition Variable
   --duration: 0.4s;
   --cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
 
   // Responsive
-  @include md {
+  @include xl {
     --container-max-width: 1140px;
   }
-  @include sm {
+  @include lg {
     --container-max-width: 960px;
-  }
-  @include xs {
-    --container-max-width: 720px;
-    --gap: 16px;
-
-    // DEMO
-    --fs-h1: 6rem;
-    --lh1-h1: 6.8rem;
-
-    --fs-h2: 5.5rem;
-    --lh1-h2: 6.2rem;
-
-    --fs-body: 1.7rem;
-    --lh-body: 1.9rem;
-  }
-  @include xxs {
-    --container-max-width: 100%;
   }
 }

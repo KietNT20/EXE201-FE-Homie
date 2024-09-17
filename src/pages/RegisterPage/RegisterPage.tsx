@@ -1,4 +1,3 @@
-// import video from "../../assets/4906-181288859_tiny.mp4";
 import { PATH } from '@/constant/path';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 import { BsFillShieldLockFill } from 'react-icons/bs';
