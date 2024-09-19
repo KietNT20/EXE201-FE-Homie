@@ -1,10 +1,10 @@
-import { PATH } from '@/constant/path';
-import MainLayout from '@/layout/MainLayout';
-import AboutPage from '@/pages/AboutPage/AboutPage';
-import HomePage from '@/pages/HomePage/HomePage';
-import LoginPage from '@/pages/LoginPage/LoginPage';
-import RegisterPage from '@/pages/RegisterPage/RegisterPage';
-import { Route, Routes } from 'react-router-dom';
+import { PATH } from "@/constant/path";
+import MainLayout from "@/layout/MainLayout";
+import AboutPage from "@/pages/AboutPage/AboutPage";
+import HomePage from "@/pages/HomePage/HomePage";
+import LoginPage from "@/pages/LoginPage/LoginPage";
+import RegisterPage from "@/pages/RegisterPage/RegisterPage";
+import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
   return (
