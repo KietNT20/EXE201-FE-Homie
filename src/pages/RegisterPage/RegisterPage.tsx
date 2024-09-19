@@ -1,12 +1,8 @@
 import { PATH } from "@/constant/path";
-import { AiOutlineSwapRight } from "react-icons/ai";
-// import { BsFillShieldLockFill } from "react-icons/bs";
-// import { FaUserShield } from "react-icons/fa";
-// import { MdMarkEmailRead } from "react-icons/md";
-import { Link } from "react-router-dom";
-import logo from "../../../public/logo-homie.png";
-import imgLogo from "../../../public/submarine.jpg";
 import TextField from "@mui/material/TextField";
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo-homie.png";
+import imgLogo from "../../assets/submarine.jpg";
 
 const RegisterPage = () => {
   return (
@@ -91,7 +87,6 @@ const RegisterPage = () => {
 
             <button type="submit" className="btn_2 flex">
               <span>Register</span>
-              <AiOutlineSwapRight className="icon" />
             </button>
 
             <span className="forgotPassword_2">

@@ -1,63 +1,56 @@
-// import video from "../../assets/4906-181288859_tiny.mp4";
-import { AiOutlineSwapRight } from "react-icons/ai";
+import InputText from "@/components/InputText/InputText";
+import { PATH } from "@/constant/path";
+import { Person } from "@mui/icons-material";
+import { Card, CardContent, Grid2, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import logo from "../../../public/logo-homie.png";
-import imgLogo from "../../../public/submarine.jpg";
-import TextField from "@mui/material/TextField";
+import imgLogo from "../../assets/submarine.jpg";
 
 const LoginPage = () => {
   return (
-    <div className="loginPage_1 flex">
-      <div className="container_1 flex">
-        <div className="imgDiv_1">
-          <img src={imgLogo}></img>
-
-          <div className="footerDiv_1 flex">
-            <span className="text">Don't have an account?</span>
-            <Link to={"/register"}>
-              <button className="btn_1 ">Sign up</button>
-            </Link>
+    <div className="container py-32">
+      <div className="loginForm">
+        <div className="login-wrap">
+          <div className="loginForm__left">
+            <figure className="loginForm__left-img">
+              <img src={imgLogo} alt="" />
+            </figure>
+            <div className="loginForm__left-bottom">
+              <span className="text">Don't have an account?</span>{" "}
+              <Link to={PATH.REGISTER}>
+                <button className="btn_signup ">Sign up</button>
+              </Link>
+            </div>
           </div>
-        </div>
-
-        <div className="formDiv_1  flex">
-          <div className="headerDiv_1 ">
-            <img src={logo} alt="Logo Image" />
-            <h3>Welcome Back!</h3>
-          </div>
-
-          <form action="" className="form_1  grid">
-            <TextField
-              helperText=""
-              id="demo-helper-text-misaligned"
-              label="Email or phone number"
-            />
-            <TextField
-              id="demo-helper-text-misaligned-no-helper"
-              label="Password"
-              type="password"
-            />
-            {/* <div className="inputDiv">
-              <label htmlFor="password">Password</label>
-              <div className="input flex">
-                <BsFillShieldLockFill className="icon" />
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Enter password"
-                />
+          <Card className="loginForm__right">
+            <CardContent>
+              <div className="loginForm__right-content">
+                <Typography variant="h3">SIGN IN</Typography>
               </div>
-            </div> */}
-
-            <button type="submit" className="btn_1  flex">
-              <span>Login</span>
-              <AiOutlineSwapRight className="icon" />
-            </button>
-
-            <span className="forgotPassword_1">
-              Forgot your password? <a href="">Click Here</a>
-            </span>
-          </form>
+              <form action="" className="loginForm__right-form">
+                <Grid2 container spacing={1}>
+                  <Grid2 size={12}>
+                    <InputText
+                      label="Email"
+                      type="text"
+                      placeholder="Please enter your email"
+                      size="medium"
+                    />
+                  </Grid2>
+                  <Grid2 size={12}>
+                    <InputText label={"Password"} type="password" />
+                  </Grid2>
+                  <Grid2 size={12}>
+                    <button type="submit" className="btn-login">
+                      <span>Login</span>
+                    </button>
+                    <span className="forgotPassword">
+                      Forgot your password? <a href="#">Click Here</a>
+                    </span>
+                  </Grid2>
+                </Grid2>
+              </form>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
