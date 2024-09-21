@@ -1,17 +1,14 @@
 import { PATH } from "@/constant/path";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/logo-homie.png";
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="container">
+      <div className="container-fluid">
         <nav className="header__menu">
           <Link to={PATH.HOME} className="header__menu-logo">
-            <img
-              src="/logo-homie.png"
-              alt="Homie Logo"
-              className="header__img"
-            />
+            <img src={logo} alt="Homie Logo" className="header__img" />
           </Link>
           <ul className="header__menu-list">
             <li className="header__menu-item">
@@ -51,9 +48,9 @@ const Header = () => {
             </li>
           </ul>
           <div className="header__menu-actions">
-            <button className="header__btn">
-              <span>Đăng nhập</span>
-            </button>
+            <NavLink to={PATH.LOGIN} className="header__btn">
+              Dang nhap
+            </NavLink>
           </div>
         </nav>
       </div>

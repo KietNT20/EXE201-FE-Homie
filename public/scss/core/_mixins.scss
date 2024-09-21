@@ -1,22 +1,27 @@
+@mixin xxl {
+  @media screen and (min-width: 1536px) {
+    @content;
+  }
+}
+
 @mixin xl {
   @media screen and (min-width: 1280px) {
     @content;
   }
 }
 
-// Laptop lớn, screen => 1024px
 @mixin lg {
   @media screen and (min-width: 1024px) {
     @content;
   }
 }
-// Laptop nhỏ hoặc tablet lớn, screen => 768px
+
 @mixin md {
   @media screen and (min-width: 768px) {
     @content;
   }
 }
-// Tablets vừa, screen => 640px
+
 @mixin sm {
   @media screen and (min-width: 640px) {
     @content;

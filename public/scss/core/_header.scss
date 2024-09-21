@@ -1,15 +1,12 @@
 .header {
   height: var(--height-header);
-  padding: 40px 0px;
   width: 100%;
   position: fixed;
   @include transition(var(--duration));
+  @include mid(flex);
   background: none;
   top: 0;
-  z-index: 700;
-  .container {
-    height: 100%;
-  }
+  z-index: 400;
   &__menu {
     height: 100%;
     @include mid(flex);
@@ -63,6 +60,14 @@
           border: 1px solid var(--blue-light);
         }
       }
+      .active {
+        background-color: var(--blue-light);
+        color: var(--white-cl);
+        border: 1px solid var(--blue-light);
+      }
     }
+  }
+  &.--bg-dark {
+    background-color: #d1e9f6;
   }
 }

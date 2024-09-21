@@ -15,7 +15,7 @@ import { MouseEvent, useState } from "react";
 import { Link } from "react-router-dom";
 import imgLogo from "../../assets/submarine.jpg";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [showPwd, setShowPwd] = useState(false);
 
   const handleClickShowPassword = () => {
@@ -24,6 +24,7 @@ const LoginPage = () => {
 
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    event.stopPropagation();
   };
 
   return (
@@ -39,7 +40,7 @@ const LoginPage = () => {
             <CardContent>
               <div className="loginForm__right-content mb-8">
                 <Typography variant="h3" className="text-center">
-                  ĐĂNG NHẬP
+                  ĐĂNG KÝ
                 </Typography>
               </div>
               <form action="#" className="loginForm__right-form">
@@ -47,7 +48,23 @@ const LoginPage = () => {
                   <Grid2 size={12}>
                     <InputText
                       type="text"
-                      placeholder="Email đăng nhập"
+                      placeholder="Họ và tên"
+                      size="medium"
+                      sx={styles.inputStyles}
+                    />
+                  </Grid2>
+                  <Grid2 size={12}>
+                    <InputText
+                      type="text"
+                      placeholder="Số điện thoại"
+                      size="medium"
+                      sx={styles.inputStyles}
+                    />
+                  </Grid2>
+                  <Grid2 size={12}>
+                    <InputText
+                      type="text"
+                      placeholder="Email cá nhân"
                       size="medium"
                       sx={styles.inputStyles}
                     />
@@ -84,7 +101,7 @@ const LoginPage = () => {
                       className="btn"
                       fullWidth
                     >
-                      Đăng nhập
+                      Đăng ký
                     </ButtonComp>
                   </Grid2>
                   <div className="or-wrap">
@@ -98,7 +115,7 @@ const LoginPage = () => {
                       className={"btn-google"}
                       fullWidth
                     >
-                      <span className="text">Đăng nhập bằng Google</span>{" "}
+                      <span className="text">Google</span>{" "}
                       <i className="icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -128,16 +145,23 @@ const LoginPage = () => {
                   </Grid2>
                 </Grid2>
               </form>
-              <div className="text-bottom mt-8 text-center">
-                <div className="text-signup mb-4">
-                  <span className="text">Chưa đăng ký tài khoản?</span>{" "}
-                  <Link to={PATH.REGISTER} className="link-regis">
-                    Đăng ký
-                  </Link>
+              <div className="text-bottom mt-11 text-center">
+                <div className="policy-content mb-10">
+                  <p className="text">
+                    Bằng việc đăng kí, bạn đã đồng ý với Homie về{" "}
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      Điều khoản dịch vụ
+                    </a>{" "}
+                    &{" "}
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      Chính sách bảo mật
+                    </a>
+                  </p>
                 </div>
-                <span className="forgotPassword">
-                  Quên mật khẩu? <a href="#">Nhấn vào đây</a>
-                </span>
+                <span className="text">Đã có tài khoản?</span>{" "}
+                <Link to={PATH.LOGIN} className="link-regis">
+                  Đăng nhập
+                </Link>
               </div>
             </CardContent>
           </Card>
@@ -147,7 +171,7 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
 
 export const styles = {
   inputStyles: {
