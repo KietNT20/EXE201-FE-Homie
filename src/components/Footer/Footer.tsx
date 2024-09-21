@@ -1,4 +1,5 @@
 import { SocialIcon } from "react-social-icons";
+import logoFooter from "../../assets/logo-footer.png";
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
           <div className="footer__top-content">
             <figure className="footer__thumb">
               <img
-                src="/public/logo-footer.png"
+                src={logoFooter}
                 alt="Homie logo"
                 className="footer__thumb-img"
               />
