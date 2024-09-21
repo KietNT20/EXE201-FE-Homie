@@ -1,58 +1,58 @@
 @font-face {
-  font-family: 'vnBold';
+  font-family: "vnBold";
   src:
-    url('BeVietnamPro-Bold.woff2') format('woff2'),
-    url('BeVietnamPro-Bold.woff') format('woff');
+    url("../fonts/BeVietnamPro-Bold.woff2") format("woff2"),
+    url("../fonts/BeVietnamPro-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vnItalic';
+  font-family: "vnItalic";
   src:
-    url('BeVietnamPro-Italic.woff2') format('woff2'),
-    url('BeVietnamPro-Italic.woff') format('woff');
+    url("../fonts/BeVietnamPro-Italic.woff2") format("woff2"),
+    url("../fonts/BeVietnamPro-Italic.woff") format("woff");
   font-weight: normal;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vnMedium';
+  font-family: "vnMedium";
   src:
-    url('BeVietnamPro-Medium.woff2') format('woff2'),
-    url('BeVietnamPro-Medium.woff') format('woff');
+    url("../fonts/BeVietnamPro-Medium.woff2") format("woff2"),
+    url("../fonts/BeVietnamPro-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vnSemibold';
+  font-family: "vnSemibold";
   src:
-    url('BeVietnamPro-SemiBold.woff2') format('woff2'),
-    url('BeVietnamPro-SemiBold.woff') format('woff');
+    url("../fonts/BeVietnamPro-SemiBold.woff2") format("woff2"),
+    url("../fonts/BeVietnamPro-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vnRegular';
+  font-family: "vnRegular";
   src:
-    url('BeVietnamPro-Regular.woff2') format('woff2'),
-    url('BeVietnamPro-Regular.woff') format('woff');
+    url("../fonts/BeVietnamPro-Regular.woff2") format("woff2"),
+    url("../fonts/BeVietnamPro-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'vnThin';
+  font-family: "vnThin";
   src:
-    url('BeVietnamPro-Thin.woff2') format('woff2'),
-    url('BeVietnamPro-Thin.woff') format('woff');
+    url("../fonts/BeVietnamPro-Thin.woff2") format("woff2"),
+    url("../fonts/BeVietnamPro-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
