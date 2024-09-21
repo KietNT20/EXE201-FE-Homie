@@ -2,18 +2,22 @@
   /* MaxWidth Of Page, Container-Fluid, Container, Gutter*/
   --max-width-page: 2560px;
   --max-width-container-fluid: 1920px;
-  --max-width-container: calc(1200px + calc(var(--gap) * 2));
+  --max-width-container: calc(1220px + calc(var(--gap) * 2));
 
   --gap: 30px;
 
-  /* Colors Variable Demo*/
+  /* Colors Variable*/
   --main-cl: #42ada5;
-  --yellow-cl: #f9f6ee;
-  --white-cl: #ffffff;
-  --black-cl: #141414;
-  --gray-cl: #888;
-
-  // Fontsize - Lineheight Variable Demo
+  --blue-dark: #001642;
+  --blue-light: #268bc7;
+  --dark-cl: #262626;
+  --black-cl: #000;
+  --white-cl: #fff;
+  --gray-cl: #4c4c4d;
+  --body-cl: #e8e9eb;
+  --login-primary: hsl(94, 55%, 56%);
+  --login-blue: hsl(200, 81%, 63%);
+  // Fontsize - Lineheight Variable
   --fs-h1: 9rem;
   --lh1-h1: 10rem;
 
@@ -23,8 +27,7 @@
   --fs-body: 1.8rem;
   --lh-body: 2rem;
 
-  // General Variable Demo
-  --height-header: 88px;
+  --height-header: 120px;
   --height-button: 42px;
   --pd-section: 120px;
 
@@ -33,27 +36,10 @@
   --cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
 
   // Responsive
-  @include md {
+  @include xl {
     --container-max-width: 1140px;
   }
-  @include sm {
+  @include lg {
     --container-max-width: 960px;
-  }
-  @include xs {
-    --container-max-width: 720px;
-    --gap: 16px;
-
-    // DEMO
-    --fs-h1: 6rem;
-    --lh1-h1: 6.8rem;
-
-    --fs-h2: 5.5rem;
-    --lh1-h2: 6.2rem;
-
-    --fs-body: 1.7rem;
-    --lh-body: 1.9rem;
-  }
-  @include xxs {
-    --container-max-width: 100%;
   }
 }
