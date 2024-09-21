@@ -1,15 +1,12 @@
 .header {
   height: var(--height-header);
-  padding: 40px 0px;
   width: 100%;
   position: fixed;
   @include transition(var(--duration));
+  @include mid(flex);
   background: none;
   top: 0;
   z-index: 400;
-  .container {
-    height: 100%;
-  }
   &__menu {
     height: 100%;
     @include mid(flex);

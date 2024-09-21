@@ -1,17 +1,14 @@
-import { PATH } from '@/constant/path';
-import { Link, NavLink } from 'react-router-dom';
+import { PATH } from "@/constant/path";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/logo-homie.png";
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="container">
+      <div className="container-fluid">
         <nav className="header__menu">
           <Link to={PATH.HOME} className="header__menu-logo">
-            <img
-              src="/logo-homie.png"
-              alt="Homie Logo"
-              className="header__img"
-            />
+            <img src={logo} alt="Homie Logo" className="header__img" />
           </Link>
           <ul className="header__menu-list">
             <li className="header__menu-item">
