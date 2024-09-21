@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FaListUl, FaChevronDown, FaChevronUp} from 'react-icons/fa';
+import React, { useState } from "react";
+import { FaListUl, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const initialCategories = [
   "Dọn dẹp nhà cửa",
@@ -31,22 +31,25 @@ const CategoryList: React.FC = () => {
 
   return (
     <div className="category-list">
-      <h3 style={{ display: 'flex', alignItems: 'center' }}>
-        <FaListUl style={{ marginRight: '8px' }} /> Danh Mục
+      <h3 style={{ display: "flex", alignItems: "center" }}>
+        <FaListUl style={{ marginRight: "8px" }} /> Danh Mục
       </h3>
       <ul>
         {categories.map((category, index) => (
-          <li 
+          <li
             key={index}
             onClick={() => setSelectedCategory(category)}
-            className={selectedCategory === category ? 'selected' : ''}
+            className={selectedCategory === category ? "selected" : ""}
           >
-            {selectedCategory === category && <span className="play-icon">▶</span>}      
+            {selectedCategory === category && (
+              <span className="play-icon">▶</span>
+            )}
             {category}
           </li>
         ))}
         <li className="more" onClick={toggleExpand}>
-          {expanded ? 'Thu gọn' : 'Thêm'} {expanded ? <FaChevronUp /> : <FaChevronDown />}
+          {expanded ? "Thu gọn" : "Thêm"}{" "}
+          {expanded ? <FaChevronUp /> : <FaChevronDown />}
         </li>
       </ul>
     </div>
