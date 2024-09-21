@@ -1,10 +1,17 @@
 import React, { useState, useMemo } from 'react';
-import { FaUserCircle, FaStar, FaMoneyBillWave, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
-import { AiOutlineFilter } from 'react-icons/ai';
+import { 
+  Star, 
+  AttachMoney, 
+  AccessTime, 
+  LocationOn,
+  FilterList
+} from '@mui/icons-material';
 import bannerImage from "../../../public/submarine.jpg";
 import CategoryList from './CategoryList';
+import ServiceCard from './ServiceCard';
+import ServiceDetails from './ServiceDetails.tsx';
 
-interface ServiceCard {
+interface ServiceCardData {
   name: string;
   job: string;
   price: string;
@@ -21,15 +28,50 @@ const ServicePage: React.FC = () => {
   const [newAddress, setNewAddress] = useState('');
   const [additionalAddresses, setAdditionalAddresses] = useState<string[]>([]);
   const [showAddAddress, setShowAddAddress] = useState(false);
-  const [ratingFilter, setRatingFilter] = useState(5);
+  const [ratingFilter, setRatingFilter] = useState(0);
+  const [selectedService, setSelectedService] = useState<ServiceCardData | null>(null);
 
   const cardsPerPage = 12;
 
-  const serviceCards: ServiceCard[] = useMemo(() => [
+  const serviceCards: ServiceCardData[] = useMemo(() => [
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
+      rating: 1,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 2,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 3,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "40,000 đ/h",
+      rating: 4,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
       avatar: "https://example.com/john-doe-avatar.jpg"
@@ -38,7 +80,7 @@ const ServicePage: React.FC = () => {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
-      rating: 5,
+      rating: 1,
       reviewCount: 45,
       avatar: "https://example.com/john-doe-avatar.jpg"
     },
@@ -46,7 +88,42 @@ const ServicePage: React.FC = () => {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
+      rating: 2,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 3,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "40,000 đ/h",
+      rating: 4,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "50,000 đ/h",
       rating: 5,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 1,
       reviewCount: 45,
       avatar: "https://example.com/john-doe-avatar.jpg"
     },
@@ -54,7 +131,42 @@ const ServicePage: React.FC = () => {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
+      rating: 2,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 3,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "40,000 đ/h",
+      rating: 4,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "50,000 đ/h",
       rating: 5,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 1,
       reviewCount: 45,
       avatar: "https://example.com/john-doe-avatar.jpg"
     },
@@ -62,463 +174,54 @@ const ServicePage: React.FC = () => {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
-      rating: 5,
+      rating: 2,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "60,000 đ/h",
+      rating: 3,
+      reviewCount: 45,
+      avatar: "https://example.com/john-doe-avatar.jpg"
+    },
+
+    {
+      name: "John Doe",
+      job: "Massage Therapist",
+      price: "40,000 đ/h",
+      rating: 4,
       reviewCount: 45,
       avatar: "https://example.com/john-doe-avatar.jpg"
     },
     {
       name: "John Doe",
       job: "Massage Therapist",
-      price: "60,000 đ/h",
+      price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
       avatar: "https://example.com/john-doe-avatar.jpg"
     },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
-    },
-    
+
+
+
+
   ], []);
 
-  const totalCards = serviceCards.length;
+  const filteredCards = useMemo(() => {
+    return serviceCards.filter(card => card.rating >= ratingFilter);
+  }, [serviceCards, ratingFilter]);
+
+  const totalCards = filteredCards.length;
   const totalPages = Math.ceil(totalCards / cardsPerPage);
 
   const currentCards = useMemo(() => {
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-    return serviceCards.slice(indexOfFirstCard, indexOfLastCard);
-  }, [currentPage, serviceCards, cardsPerPage]);
+    return filteredCards.slice(indexOfFirstCard, indexOfLastCard);
+  }, [currentPage, filteredCards, cardsPerPage]);
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -548,6 +251,10 @@ const ServicePage: React.FC = () => {
     }
   };
 
+  const handleCardClick = (card: ServiceCardData) => {
+    setSelectedService(card);
+  };
+
   return (
     <div className="service-page">
       <div className="banner">
@@ -559,137 +266,138 @@ const ServicePage: React.FC = () => {
       </div>
 
       <div className="main-container">
-        <aside className="filter-section">
-          <div className="filter-header">
-            <AiOutlineFilter className="filter-icon" />
-            <h3>Bộ lọc</h3>
-          </div>
-          <div className="filter"></div>
-            <div className="filter">  
-            <span><FaMoneyBillWave className="filter-icon" />LỌC THEO GIÁ</span>
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              value={priceFilter}
-              onChange={(e) => setPriceFilter(Number(e.target.value))}
-            />
-            <span>{priceFilter}   Giá: 0đ - 90.000đ</span>
+        {selectedService ? (
+          <ServiceDetails service={selectedService} onClose={() => setSelectedService(null)} />
+        ) : (
+          <>
+            <aside className="filter-section">
+              <div className="filter-header">
+                <FilterList className="filter-icon" />
+                <h3>Bộ lọc</h3>
+              </div>
+              <div className="filter">  
+                <span><AttachMoney className="filter-icon" />LỌC THEO GIÁ</span>
+                <input 
+                  type="range" 
+                  min="0" 
+                  max="100" 
+                  value={priceFilter}
+                  onChange={(e) => setPriceFilter(Number(e.target.value))}
+                />
+                <span>{priceFilter}   Giá: 0đ - 90.000đ</span>
+              </div>
+              <div className="filter">
+                <div className="filter-icon-container">
+                  <span><AccessTime className="filter-icon" />LỌC THEO THỜI GIAN</span>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="12" 
+                    value={timeFilter}
+                    onChange={(e) => setTimeFilter(Number(e.target.value))}
+                  />
+                  <span>{timeFilter}   Thời gian: 1h - 12h</span>
+                </div>
+              </div>
+              <CategoryList />
+              <div className="filter">
+                <h3><LocationOn className="filter-icon" />Vị trí</h3>
+              </div>
+              <div>
+                <input type="checkbox" id="userAddress" />
+                <label htmlFor="userAddress">Địa chỉ của bạn: {userAddress}</label>
+              </div>
+              {additionalAddresses.map((address, index) => (
+                <div key={index}>
+                  <input type="checkbox" id={`address-${index}`} />
+                  <label htmlFor={`address-${index}`}>{address}</label>
+                </div>
+              ))}
+              {showAddAddress ? (
+                <div>
+                  <input
+                    type="text"
+                    value={newAddress}
+                    onChange={(e) => setNewAddress(e.target.value)}
+                    placeholder="Nhập địa chỉ mới"
+                  />
+                  <button onClick={handleAddAddress}>Thêm</button>
+                </div>
+              ) : (
+                <button onClick={() => setShowAddAddress(true)}>Thêm địa chỉ</button>
+              )}
+              <div className="filter">
+                <h3><Star className="filter-icon" /> Đánh giá</h3>
+                <div className="star-rating" style={{ display: 'flex', alignItems: 'center' }}>
+                  {[...Array(5)].map((_, index) => {
+                    const star = index + 1;
+                    return (
+                      <Star
+                        key={star}
+                        sx={{ 
+                          color: star <= ratingFilter ? "gold" : "gray",
+                          cursor: 'pointer', 
+                          marginRight: '5px'
+                        }}
+                        onClick={() => setRatingFilter(star)}
+                      />
+                    );
+                  })}
+                  <span style={{ marginLeft: '10px' }}>
+                    {ratingFilter === 0 ? "All ratings" : `${ratingFilter} sao trở lên`}
+                  </span>
+                </div>
+              </div>
+            </aside>
+
+            <div className="service-cards">
+              {currentCards.map((card, index) => (
+                <ServiceCard
+                  key={index}
+                  name={card.name}
+                  job={card.job}
+                  price={card.price}
+                  rating={card.rating}
+                  reviewCount={card.reviewCount}
+                  onClick={() => handleCardClick(card)}
+                />
+              ))}
             </div>
-          <div className="filter">
-            <div className="filter-icon-container">
-              <span><FaClock className="filter-icon" />LỌC THEO THỜI GIAN</span>
-              <input 
-                type="range" 
-                min="0" 
-                max="12" 
-                value={timeFilter}
-                onChange={(e) => setTimeFilter(Number(e.target.value))}
-              />
-              <span>{timeFilter}   Thời gian: 1h - 12h</span>
-              <span></span>
-            </div>
-          </div>
-          <CategoryList />
-            <div className="filter">
-            
-            <h3><FaMapMarkerAlt className="filter-icon" />Vị trí</h3>
-            </div>
-          <div>
-            <input type="checkbox" id="userAddress" />
-            <label htmlFor="userAddress">Địa chỉ của bạn: {userAddress}</label>
-          </div>
-          {additionalAddresses.map((address, index) => (
-            <div key={index}>
-              <input type="checkbox" id={`address-${index}`} />
-              <label htmlFor={`address-${index}`}>{address}</label>
-            </div>
-          ))}
-          {showAddAddress ? (
-            <div>
-              <input
-                type="text"
-                value={newAddress}
-                onChange={(e) => setNewAddress(e.target.value)}
-                placeholder="Nhập địa chỉ mới"
-              />
-              <button onClick={handleAddAddress}>Thêm</button>
-            </div>
-          ) : (
-            <button onClick={() => setShowAddAddress(true)}>Thêm địa chỉ</button>
+          </>
+        )}
+      </div>
+
+      {!selectedService && (
+        <div className="pagination">
+          <button onClick={() => paginate(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
+            &lt; Prev
+          </button>
+          {currentPage > Math.floor(maxVisiblePages / 2) + 1 && (
+            <>
+              <span onClick={() => paginate(1)}>1</span>
+              {currentPage > Math.floor(maxVisiblePages / 2) + 2 && <span className="ellipsis">...</span>}
+            </>
           )}
-        <div className="filter">
-            <h3><FaStar className="filter-icon" /> Đánh giá</h3>
-          <div className="star-rating" style={{ display: 'flex', alignItems: 'center' }}>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FaStar
-          key={star}
-          color={star <= ratingFilter ? "gold" : "gray"}
-          onClick={() => setRatingFilter(star)}
-          style={{ cursor: 'pointer', marginRight: '5px' }}
-              />
-            ))}
-            <span style={{ marginLeft: '10px' }}>{ratingFilter} sao trở lên</span>
-          </div>
-        </div>
-
-        </aside>
-
-        <div className="service-cards">
-          {currentCards.map((card, index) => (
-            <div className="card" key={index}>
-              <div className="card-header">
-                <FaUserCircle size={60} color="white" />
-                <div className="price-tag">{card.price}</div>
-              </div>
-              <div className="card-body">
-                <div className="name-container">
-                  <h4>{card.name}</h4>
-                  <label className="toggle">
-                    <input type="checkbox" />
-                    <span className="slider round"></span>
-                  </label>
-                </div>
-                <p>{card.job}</p>
-                <div className="rating">
-                  <FaStar color="gold" />
-                  <span>{card.rating} ({card.reviewCount})</span>
-                </div>
-              </div>
-            </div>
+          {getPageNumbers().map((number) => (
+            <span
+              key={number}
+              onClick={() => paginate(number)}
+              className={number === currentPage ? 'active' : ''}
+            >
+              {number}
+            </span>
           ))}
+          {currentPage < totalPages - Math.floor(maxVisiblePages / 2) && (
+            <>
+              {currentPage < totalPages - Math.floor(maxVisiblePages / 2) - 1 && <span className="ellipsis">...</span>}
+              <span onClick={() => paginate(totalPages)}>{totalPages}</span>
+            </>
+          )}
+          <button onClick={() => paginate(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages}>
+            Next &gt;
+          </button>
         </div>
-      </div>
-
-      <div className="pagination">
-        <button onClick={() => paginate(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
-          &lt; Prev
-        </button>
-        {currentPage > Math.floor(maxVisiblePages / 2) + 1 && (
-          <>
-            <span onClick={() => paginate(1)}>1</span>
-            {currentPage > Math.floor(maxVisiblePages / 2) + 2 && <span className="ellipsis">...</span>}
-          </>
-        )}
-        {getPageNumbers().map((number) => (
-          <span
-            key={number}
-            onClick={() => paginate(number)}
-            className={number === currentPage ? 'active' : ''}
-          >
-            {number}
-          </span>
-        ))}
-        {currentPage < totalPages - Math.floor(maxVisiblePages / 2) && (
-          <>
-            {currentPage < totalPages - Math.floor(maxVisiblePages / 2) - 1 && <span className="ellipsis">...</span>}
-            <span onClick={() => paginate(totalPages)}>{totalPages}</span>
-          </>
-        )}
-        <button onClick={() => paginate(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages}>
-          Next &gt;
-        </button>
-      </div>
+      )}
     </div>
   );
 };

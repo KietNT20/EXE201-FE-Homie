@@ -40,6 +40,10 @@ const CategoryList: React.FC = () => {
             key={index}
             onClick={() => setSelectedCategory(category)}
             className={selectedCategory === category ? 'selected' : ''}
+            style={{
+              backgroundColor: selectedCategory === category ? '#3498db' : 'transparent',
+              color: selectedCategory === category ? 'white' : 'inherit'
+            }}
           >
             {selectedCategory === category && <span className="play-icon">▶</span>}      
             {category}
