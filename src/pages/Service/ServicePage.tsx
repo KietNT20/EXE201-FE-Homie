@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Star, 
   AttachMoney, 
@@ -9,7 +9,7 @@ import {
 import bannerImage from "../../../public/submarine.jpg";
 import CategoryList from './CategoryList';
 import ServiceCard from './ServiceCard';
-import { ServiceDetails } from './ServiceDetails.tsx';
+import { ServiceDetails } from './ServiceDetails';
 
 interface ServiceCardData {
   name: string;
@@ -19,229 +19,331 @@ interface ServiceCardData {
   reviewCount: number;
   avatar?: string;
   time: string;
+  userAddress: string;
+  categories: Array<
+    | "Dọn dẹp nhà cửa"
+    | "Giặt giũ, ủi đồ"
+    | "Nấu ăn"
+    | "Chăm sóc trẻ em"
+    | "Sửa chữa nhà cửa"
+    | "Chăm sóc thú cưng"
+    | "Dạy học"
+    | "Làm vườn"
+  >;
+  serviceDescription: string;
+  joinDate: string;
 }
 
 const ServicePage: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [priceFilter, setPriceFilter] = useState(50);
   const [timeFilter, setTimeFilter] = useState(6);
-  const [userAddress] = useState('123 Main St, City');
-  const [newAddress, setNewAddress] = useState('');
-  const [additionalAddresses, setAdditionalAddresses] = useState<string[]>([]);
-  const [showAddAddress, setShowAddAddress] = useState(false);
+  const [userAddresses, setUserAddresses] = useState<string[]>([]);
+  const [selectedAddresses, setSelectedAddresses] = useState<string[]>([]);
+  const [selectedAddress, setSelectedAddress] = useState<string>('');
   const [ratingFilter, setRatingFilter] = useState(0);
   const [selectedService, setSelectedService] = useState<ServiceCardData | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<ServiceCardData['categories'][number] | null>(null);
 
-  const cardsPerPage = 12;
+  const cardsPerPage = 9;
 
-  const serviceCards: ServiceCardData[] = useMemo(() => [
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "60,000 đ/h",
-      rating: 1,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "2h"
-    },
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "60,000 đ/h",
-      rating: 2,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "3h"
-    },
+  const serviceCards: ServiceCardData[] = useMemo(() => [{
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
+  {
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
+  {
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
+  {
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
+  {
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
+  {
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
+  {
+    name: "John Doe",
+    job: "Nấu ăn",
+    price: "60,000 đ/h",
+    rating: 4,
+    reviewCount: 45,
+    avatar: "https://example.com/john-doe-avatar.jpg",
+    time: "2h",
+    userAddress: "123 Main St, City",
+    categories: ["Nấu ăn"],
+    serviceDescription: "Chuyên nấu ăn tại gia, phục vụ các bữa ăn gia đình hoặc tiệc nhỏ.",
+    joinDate: "2022-01-15",
+  },
+  {
+    name: "Jane Smith",
+    job: "Dọn dẹp nhà cửa",
+    price: "55,000 đ/h",
+    rating: 5,
+    reviewCount: 60,
+    avatar: "https://example.com/jane-smith-avatar.jpg",
+    time: "3h",
+    userAddress: "456 Elm St, Town",
+    categories: ["Dọn dẹp nhà cửa"],
+    serviceDescription: "Dọn dẹp nhà cửa chuyên nghiệp, tận tâm và sạch sẽ.",
+    joinDate: "2021-12-10",
+  },
+  {
+    name: "Mike Johnson",
+    job: "Sửa chữa nhà cửa",
+    price: "75,000 đ/h",
+    rating: 4,
+    reviewCount: 30,
+    avatar: "https://example.com/mike-johnson-avatar.jpg",
+    time: "4h",
+    userAddress: "789 Oak St, Village",
+    categories: ["Sửa chữa nhà cửa"],
+    serviceDescription: "Chuyên sửa chữa nhà cửa, bảo trì hệ thống điện nước.",
+    joinDate: "2020-11-05",
+  },
   
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "60,000 đ/h",
-      rating: 3,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "4h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "40,000 đ/h",
-      rating: 4,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "5h"
-    },
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "50,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "6h"
-    },
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "60,000 đ/h",
-      rating: 1,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "7h"
-    },
-    {
-      name: "John Doe",
-      job: "Nấu ăn",
-      price: "60,000 đ/h",
-      rating: 2,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "8h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 3,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "9h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "40,000 đ/h",
-      rating: 4,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "10h"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "50,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "11h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 1,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "12h"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 2,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "1h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 3,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "2h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "40,000 đ/h",
-      rating: 4,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "3h"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "50,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "4h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 1,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "5h"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 2,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "6h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "60,000 đ/h",
-      rating: 3,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "7h"
-    },
-  
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "40,000 đ/h",
-      rating: 4,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "8h"
-    },
-    {
-      name: "John Doe",
-      job: "Massage Therapist",
-      price: "50,000 đ/h",
-      rating: 5,
-      reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg",
-      time: "9h"
-    },
   ], []);
+
+  useEffect(() => {
+    const uniqueAddresses = Array.from(new Set(serviceCards.map(card => card.userAddress)));
+    setUserAddresses(uniqueAddresses);
+  }, [serviceCards]);
 
   const filteredCards = useMemo(() => {
     return serviceCards.filter(card => {
-      // Convert price string to number for comparison
       const cardPrice = parseInt(card.price.replace(/[^0-9]/g, ''));
-      
-      // Convert time string to number for comparison
       const cardTime = parseInt(card.time);
-  
+      const addressMatch = selectedAddresses.length === 0 || selectedAddresses.includes(card.userAddress);
+      const categoryMatch = selectedCategory ? card.categories.includes(selectedCategory) : true;
+
       return (
         card.rating >= ratingFilter &&
-        cardPrice <= priceFilter * 900 && // Assuming priceFilter ranges from 0-100 and max price is 90,000
-        cardTime <= timeFilter
+        cardPrice <= priceFilter * 900 &&
+        cardTime <= timeFilter &&
+        addressMatch &&
+        categoryMatch
       );
     });
-  }, [serviceCards, ratingFilter, priceFilter, timeFilter]);
+  }, [serviceCards, ratingFilter, priceFilter, timeFilter, selectedAddresses, selectedCategory]);
 
   const totalCards = filteredCards.length;
   const totalPages = Math.ceil(totalCards / cardsPerPage);
@@ -270,14 +372,6 @@ const ServicePage: React.FC = () => {
     }
 
     return pageNumbers;
-  };
-
-  const handleAddAddress = () => {
-    if (newAddress.trim()) {
-      setAdditionalAddresses([...additionalAddresses, newAddress.trim()]);
-      setNewAddress('');
-      setShowAddAddress(false);
-    }
   };
 
   const handleCardClick = (card: ServiceCardData) => {
@@ -328,33 +422,52 @@ const ServicePage: React.FC = () => {
                   <span>{timeFilter}   Thời gian: 1h - 12h</span>
                 </div>
               </div>
-              <CategoryList />
+              <CategoryList onCategorySelect={(category) => setSelectedCategory(category as ServiceCardData['categories'][number] | null)} />
+
               <div className="filter">
                 <h3><LocationOn className="filter-icon" />Vị trí</h3>
               </div>
-              <div>
-                <input type="checkbox" id="userAddress" />
-                <label htmlFor="userAddress">Địa chỉ của bạn: {userAddress}</label>
-              </div>
-              {additionalAddresses.map((address, index) => (
+              {selectedAddresses.map((address, index) => (
                 <div key={index}>
-                  <input type="checkbox" id={`address-${index}`} />
+                  <input
+                    type="checkbox"
+                    id={`address-${index}`}
+                    checked={true}
+                    onChange={() => {
+                      setSelectedAddresses(selectedAddresses.filter(a => a !== address));
+                    }}
+                  />
                   <label htmlFor={`address-${index}`}>{address}</label>
                 </div>
               ))}
-              {showAddAddress ? (
-                <div>
-                  <input
-                    type="text"
-                    value={newAddress}
-                    onChange={(e) => setNewAddress(e.target.value)}
-                    placeholder="Nhập địa chỉ mới"
-                  />
-                  <button onClick={handleAddAddress}>Thêm</button>
-                </div>
-              ) : (
-                <button onClick={() => setShowAddAddress(true)}>Thêm địa chỉ</button>
-              )}
+              <div>
+              <select
+                className="address-select"
+                value={selectedAddress}
+                onChange={(e) => setSelectedAddress(e.target.value)}
+              >
+                <option value="">Chọn địa chỉ</option>
+                {userAddresses
+                  .filter(address => !selectedAddresses.includes(address))
+                  .map((address, index) => (
+                    <option key={index} value={address}>
+                      {address}
+                    </option>
+                  ))
+                }
+              </select>
+                <button 
+                  onClick={() => {
+                    if (selectedAddress && !selectedAddresses.includes(selectedAddress)) {
+                      setSelectedAddresses([...selectedAddresses, selectedAddress]);
+                      setSelectedAddress('');
+                    }
+                  }}
+                >
+                  Thêm
+                </button>
+              </div>
+
               <div className="filter">
                 <h3><Star className="filter-icon" /> Đánh giá</h3>
                 <div className="star-rating" style={{ display: 'flex', alignItems: 'center' }}>
@@ -373,7 +486,7 @@ const ServicePage: React.FC = () => {
                     );
                   })}
                   <span style={{ marginLeft: '10px' }}>
-                    {ratingFilter === 0 ? "All ratings" : `${ratingFilter} sao trở lên`}
+                    {ratingFilter === 0 ? "Tất cả sao" : `${ratingFilter} sao trở lên`}
                   </span>
                 </div>
               </div>
@@ -388,6 +501,10 @@ const ServicePage: React.FC = () => {
                   price={card.price}
                   rating={card.rating}
                   reviewCount={card.reviewCount}
+                  avatar={card.avatar}
+                  time={card.time}
+                  userAddress={card.userAddress}
+                  categories={card.categories}
                   onClick={() => handleCardClick(card)}
                 />
               ))}
