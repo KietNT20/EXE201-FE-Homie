@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { FaListUl, FaChevronDown, FaChevronUp} from 'react-icons/fa';
+import ListIcon from '@mui/icons-material/List';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const initialCategories = [
   "Dọn dẹp nhà cửa",
@@ -32,7 +34,7 @@ const CategoryList: React.FC = () => {
   return (
     <div className="category-list">
       <h3 style={{ display: 'flex', alignItems: 'center' }}>
-        <FaListUl style={{ marginRight: '8px' }} /> Danh Mục
+        <ListIcon style={{ marginRight: '8px' }} /> Danh Mục
       </h3>
       <ul>
         {categories.map((category, index) => (
@@ -50,7 +52,7 @@ const CategoryList: React.FC = () => {
           </li>
         ))}
         <li className="more" onClick={toggleExpand}>
-          {expanded ? 'Thu gọn' : 'Thêm'} {expanded ? <FaChevronUp /> : <FaChevronDown />}
+          {expanded ? 'Thu gọn' : 'Thêm'} {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </li>
       </ul>
     </div>

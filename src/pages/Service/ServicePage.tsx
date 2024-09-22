@@ -18,6 +18,7 @@ interface ServiceCardData {
   rating: number;
   reviewCount: number;
   avatar?: string;
+  time: string;
 }
 
 const ServicePage: React.FC = () => {
@@ -40,7 +41,8 @@ const ServicePage: React.FC = () => {
       price: "60,000 đ/h",
       rating: 1,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "2h"
     },
     {
       name: "John Doe",
@@ -48,25 +50,28 @@ const ServicePage: React.FC = () => {
       price: "60,000 đ/h",
       rating: 2,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "3h"
     },
-
+  
     {
       name: "John Doe",
       job: "Nấu ăn",
       price: "60,000 đ/h",
       rating: 3,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "4h"
     },
-
+  
     {
       name: "John Doe",
       job: "Nấu ăn",
       price: "40,000 đ/h",
       rating: 4,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "5h"
     },
     {
       name: "John Doe",
@@ -74,7 +79,8 @@ const ServicePage: React.FC = () => {
       price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "6h"
     },
     {
       name: "John Doe",
@@ -82,7 +88,8 @@ const ServicePage: React.FC = () => {
       price: "60,000 đ/h",
       rating: 1,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "7h"
     },
     {
       name: "John Doe",
@@ -90,25 +97,28 @@ const ServicePage: React.FC = () => {
       price: "60,000 đ/h",
       rating: 2,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "8h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
       rating: 3,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "9h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "40,000 đ/h",
       rating: 4,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "10h"
     },
     {
       name: "John Doe",
@@ -116,16 +126,18 @@ const ServicePage: React.FC = () => {
       price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "11h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
       rating: 1,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "12h"
     },
     {
       name: "John Doe",
@@ -133,25 +145,28 @@ const ServicePage: React.FC = () => {
       price: "60,000 đ/h",
       rating: 2,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "1h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
       rating: 3,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "2h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "40,000 đ/h",
       rating: 4,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "3h"
     },
     {
       name: "John Doe",
@@ -159,16 +174,18 @@ const ServicePage: React.FC = () => {
       price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "4h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
       rating: 1,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "5h"
     },
     {
       name: "John Doe",
@@ -176,25 +193,28 @@ const ServicePage: React.FC = () => {
       price: "60,000 đ/h",
       rating: 2,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "6h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "60,000 đ/h",
       rating: 3,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "7h"
     },
-
+  
     {
       name: "John Doe",
       job: "Massage Therapist",
       price: "40,000 đ/h",
       rating: 4,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "8h"
     },
     {
       name: "John Doe",
@@ -202,17 +222,26 @@ const ServicePage: React.FC = () => {
       price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
-      avatar: "https://example.com/john-doe-avatar.jpg"
+      avatar: "https://example.com/john-doe-avatar.jpg",
+      time: "9h"
     },
-
-
-
-
   ], []);
 
   const filteredCards = useMemo(() => {
-    return serviceCards.filter(card => card.rating >= ratingFilter);
-  }, [serviceCards, ratingFilter]);
+    return serviceCards.filter(card => {
+      // Convert price string to number for comparison
+      const cardPrice = parseInt(card.price.replace(/[^0-9]/g, ''));
+      
+      // Convert time string to number for comparison
+      const cardTime = parseInt(card.time);
+  
+      return (
+        card.rating >= ratingFilter &&
+        cardPrice <= priceFilter * 900 && // Assuming priceFilter ranges from 0-100 and max price is 90,000
+        cardTime <= timeFilter
+      );
+    });
+  }, [serviceCards, ratingFilter, priceFilter, timeFilter]);
 
   const totalCards = filteredCards.length;
   const totalPages = Math.ceil(totalCards / cardsPerPage);
