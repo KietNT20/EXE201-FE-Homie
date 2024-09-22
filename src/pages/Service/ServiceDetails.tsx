@@ -29,7 +29,7 @@ const additionalCategories = [
   "Làm vườn",
 ];
 
-const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose }) => {
+export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose }) => {
   const [expanded, setExpanded] = useState(false);
   const [categories, setCategories] = useState(initialCategories);
 
@@ -58,16 +58,29 @@ const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose }) => 
           )}
         </div>
         <div className="service-status">
-          <span className="status-indicator"></span>
-          {status}
+          {status === "Đang sẵn sàng" ? (
+            <div className="status-available">
+              <span className="status-indicator-available"></span>
+              <span className="status-text-available">{status}</span>
+            </div>
+          ) : (
+            <div className="status-unavailable">
+              <span className="status-indicator-unavailable"></span>
+              <span className="status-text-unavailable">Không sẵn sàng</span>
+            </div>
+          )}
         </div>
+        
         <p>Ngày tham gia: {joinDate}</p>
       </div>
       <div className="service-info">
         <h2>{service.name}</h2>
         <div className="service-stats">
-          <span>Đã được thuê {service.reviewCount} giờ</span>
-          <span>Tỷ lệ hoàn thành {completionRate}</span>
+        
+          <span>Đã được thuê:</span>
+          <span style={{ color: 'green' }}>{service.reviewCount} giờ</span>
+          <span>Tỷ lệ hoàn thành: </span>
+          <span style={{ color: 'green' }}>{completionRate}</span>
         </div>
         <div className="service-price">
           {service.price}

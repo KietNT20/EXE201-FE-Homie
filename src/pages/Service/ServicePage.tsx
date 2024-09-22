@@ -9,7 +9,7 @@ import {
 import bannerImage from "../../../public/submarine.jpg";
 import CategoryList from './CategoryList';
 import ServiceCard from './ServiceCard';
-import ServiceDetails from './ServiceDetails.tsx';
+import { ServiceDetails } from './ServiceDetails.tsx';
 
 interface ServiceCardData {
   name: string;
@@ -36,7 +36,7 @@ const ServicePage: React.FC = () => {
   const serviceCards: ServiceCardData[] = useMemo(() => [
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "60,000 đ/h",
       rating: 1,
       reviewCount: 45,
@@ -44,7 +44,7 @@ const ServicePage: React.FC = () => {
     },
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "60,000 đ/h",
       rating: 2,
       reviewCount: 45,
@@ -53,7 +53,7 @@ const ServicePage: React.FC = () => {
 
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "60,000 đ/h",
       rating: 3,
       reviewCount: 45,
@@ -62,7 +62,7 @@ const ServicePage: React.FC = () => {
 
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "40,000 đ/h",
       rating: 4,
       reviewCount: 45,
@@ -70,7 +70,7 @@ const ServicePage: React.FC = () => {
     },
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "50,000 đ/h",
       rating: 5,
       reviewCount: 45,
@@ -78,7 +78,7 @@ const ServicePage: React.FC = () => {
     },
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "60,000 đ/h",
       rating: 1,
       reviewCount: 45,
@@ -86,7 +86,7 @@ const ServicePage: React.FC = () => {
     },
     {
       name: "John Doe",
-      job: "Massage Therapist",
+      job: "Nấu ăn",
       price: "60,000 đ/h",
       rating: 2,
       reviewCount: 45,

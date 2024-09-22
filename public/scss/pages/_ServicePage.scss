@@ -44,7 +44,7 @@ body {
       }
 
       p {
-        margin: 0;
+        margin: 3;
         font-size: 0.9rem;
         opacity: 0.8;
       }
@@ -235,7 +235,7 @@ body {
 
     .price-tag {
       position: absolute;
-      top: 10px;
+      bottom:4px;
       right: 10px;
       background-color: #fff;
       color: #3498db;
@@ -247,17 +247,16 @@ body {
   }
 
   .card-body {
-    padding: 15px;
 
     .name-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
 
       h4 {
         margin: 0;
-        font-size: 1rem;
+        font-size: 2rem;
         font-weight: 600;
       }
 
@@ -267,10 +266,50 @@ body {
       }
     }
 
+    .service-status {
+      display: flex;
+      align-items: center;
+
+      .status-available,
+      .status-unavailable {
+        display: flex;
+        align-items: center;
+
+        .status-indicator-available {
+          width: 10px;
+          height: 10px;
+          background-color: #4CAF50; // green
+          border-radius: 50%;
+          margin-left: 12px;
+
+        }
+
+        .status-indicator-unavailable {
+          width: 10px;
+          height: 10px;
+          background-color: #E74C3C; // red
+          border-radius: 50%;
+          margin-left: 12px;
+        }
+
+        .status-text-available {
+          font-size: 14px;
+          color: #4CAF50;
+          visibility: hidden;
+        }
+
+        .status-text-unavailable {
+          font-size: 14px;
+          color: #E74C3C;
+          visibility: hidden;
+        }
+      }
+    }
+
     p {
-      margin: 5px 0;
+      margin: 2px;
       color: #666;
-      font-size: 0.9rem;
+      font-size: 14px;
     }
 
     .rating {
@@ -299,53 +338,103 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 
-  .service-avatar {
-    width: 200px;
-    height: 200px;
-    background-color: #3498db;
-    border-radius: 10px;
-    overflow: hidden;
+  .service-avatar-section {
+    flex: 0 0 180px;
+    margin-right: 24px;
+    text-align: center;
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .service-avatar {
+      width: 200px;
+      height: 200px;
+      background-color: #3498db;
+      border-radius: 10px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .service-status {
+      display: flex;
+      align-items: center;
+    
+      .status-available,
+      .status-unavailable {
+        display: flex;
+        align-items: center;
+    
+        .status-indicator-available {
+          width: 10px;
+          height: 10px;
+          background-color: #4CAF50; // green
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+    
+        .status-indicator-unavailable {
+          width: 10px;
+          height: 10px;
+          background-color: #E74C3C; // red
+          border-radius: 50%;
+          margin-right: 8px;
+        }
+    
+        .status-text-available{
+          font-size: 14px;
+          color: #4CAF50;
+        }
+        .status-text-unavailable {
+          font-size: 14px;
+          color: #E74C3C;
+        }
+      }
+    }
+    
+
+    p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
     }
   }
 
   .service-info {
-    flex-grow: 1;
+    flex: 1;
 
     h2 {
+      margin: 0 0 12px;
       font-size: 24px;
-      margin-bottom: 10px;
+      font-weight: 600;
     }
 
     .service-stats {
       display: flex;
-      justify-content: space-between;
-      color: #666;
+      gap: 16px;
+      margin-bottom: 12px;
       font-size: 14px;
-      margin-bottom: 10px;
+      color: #666;
     }
 
     .service-price {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
 
       .rating {
+        margin-left: 16px;
+        font-size: 16px;
+        font-weight: normal;
         display: flex;
         align-items: center;
-        font-size: 14px;
-        color: #666;
 
-        .MuiSvgIcon-root {
-          color: gold;
-          margin-right: 5px;
+        svg {
+          color: #FFC107;
+          margin-right: 4px;
         }
       }
     }
@@ -353,87 +442,77 @@ body {
     .service-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 15px;
+      gap: 8px;
+      margin-bottom: 24px;
 
       span {
         background-color: #f1c40f;
-        padding: 5px 10px;
-        border-radius: 15px;
-        font-size: 12px;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+        color: #333;
       }
-    }
 
-    .service-status {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 14px;
-
-      .status-indicator {
-        width: 10px;
-        height: 10px;
-        background-color: #2ecc71;
-        border-radius: 50%;
-        margin-right: 5px;
+      .more {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: #3498db;
       }
-    }
-
-    p {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 15px;
     }
 
     h3 {
       font-size: 18px;
-      margin-bottom: 10px;
+      font-weight: 600;
+      margin: 0 0 12px;
     }
 
     .service-description {
-      background-color: #f8f9fa;
-      padding: 15px;
-      border-radius: 5px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.5;
     }
 
     .service-actions {
       display: flex;
-      gap: 10px;
+      gap: 16px;
 
       button {
-        padding: 10px 20px;
+        padding: 12px 24px;
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
         cursor: pointer;
-        font-size: 14px;
-        font-weight: bold;
+        font-weight: 600;
+        font-size: 16px;
+        text-transform: uppercase;
       }
 
       .hire-button {
         background-color: #3498db;
         color: white;
+        flex: 1;
       }
 
       .chat-button {
-        background-color: #ecf0f1;
+        background-color: #f0f0f0;
         color: #333;
+        flex: 1;
       }
     }
   }
 
   .close-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 16px;
+    right: 16px;
     background: none;
     border: none;
-    font-size: 18px;
+    font-size: 24px;
     cursor: pointer;
-    color: #666;
+    color: #999;
   }
 }
-
 // Responsive adjustments
 @media (max-width: 1024px) {
   .service-page .service-cards {
