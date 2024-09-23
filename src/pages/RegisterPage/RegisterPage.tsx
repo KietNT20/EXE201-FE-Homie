@@ -1,11 +1,11 @@
-import { PATH } from '@/constant/path';
-import { AiOutlineSwapRight } from 'react-icons/ai';
-import { BsFillShieldLockFill } from 'react-icons/bs';
-import { FaUserShield } from 'react-icons/fa';
-import { MdMarkEmailRead } from 'react-icons/md';
-import { Link } from 'react-router-dom';
-import logo from '../../../public/logo-homie.png';
-import imgLogo from '../../../public/submarine.jpg';
+import { PATH } from "@/constant/path";
+import { AiOutlineSwapRight } from "react-icons/ai";
+import { BsFillShieldLockFill } from "react-icons/bs";
+import { FaUserShield } from "react-icons/fa";
+import { MdMarkEmailRead } from "react-icons/md";
+import { Link } from "react-router-dom";
+import logo from "../../../public/logo-homie.png";
+import imgLogo from "../../../public/submarine.jpg";
 
 const RegisterPage = () => {
   return (
@@ -68,7 +68,7 @@ const RegisterPage = () => {
           </form>
         </div>
       </div>
-      //{' '}
+      //{" "}
     </div>
   );
 };
