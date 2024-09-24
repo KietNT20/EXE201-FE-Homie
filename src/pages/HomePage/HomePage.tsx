@@ -1,8 +1,10 @@
+import { Container } from "@mui/material";
+
 const HomePage = () => {
   return (
-    <div>
+    <Container>
       <h1>HomePage</h1>
-    </div>
+    </Container>
   );
 };
 
