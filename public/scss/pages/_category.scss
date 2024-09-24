@@ -1,54 +1,50 @@
-.filter-section {
-  h3 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    gap: 10px;
+// Container styling for the address selection
+.address-container {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+// Styling the select dropdown
+select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  
+  &:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
 }
 
-  .category-list {
-    h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
+// Button styling
+button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
   
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-  
-      li {
-        font-size: 16px;
-        padding: 8px 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        
-        &.selected {
-          color: #3498db;
-          font-weight: bold;
-        }
-  
-        .play-icon {
-          color: #3498db;
-          margin-right: 10px;
-          font-size: 12px; // Adjust this to match the size in the image
-          display: flex;
-          align-items: center;
-        }
-  
-        &.more {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          color: #777;
-        }
-      }
-    }
+  &:hover {
+    background-color: #0056b3;
   }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+}
+
+// Hide/show button specific styling
+.add-address-button {
+  margin-top: 1rem;
+}
+
