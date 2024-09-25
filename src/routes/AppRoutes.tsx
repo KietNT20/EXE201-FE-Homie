@@ -5,6 +5,7 @@ import HomePage from "@/pages/HomePage/HomePage";
 import LoginPage from "@/pages/LoginPage/LoginPage";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
 import PaymentPage from "@/pages/PaymentPage/PaymentPage";
+import ServicePage from "@/pages/Service/ServicePage";
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
@@ -16,6 +17,7 @@ const AppRoutes = () => {
         <Route path={PATH.LOGIN} element={<LoginPage />} />
         <Route path={PATH.REGISTER} element={<RegisterPage />} />
         <Route path={PATH.PAYMENT} element={<PaymentPage />} />
+        <Route path={PATH.SERVICE} element={<ServicePage />} />
       </Route>
     </Routes>
   );
