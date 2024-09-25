@@ -2,7 +2,7 @@
   /* MaxWidth Of Page, Container-Fluid, Container, Gutter*/
   --max-width-page: 2560px;
   --max-width-container-fluid: 1920px;
-  --max-width-container: calc(1200px + calc(var(--gap) * 2));
+  --max-width-container: calc(1220px + calc(var(--gap) * 2));
 
   --gap: 30px;
 
@@ -31,7 +31,7 @@
   --height-button: 42px;
   --pd-section: 120px;
 
-  // Timing Transition Variable
+  // Timing Transition Variable Demo
   --duration: 0.4s;
   --cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
 

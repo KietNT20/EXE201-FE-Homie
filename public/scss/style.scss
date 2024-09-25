@@ -1,18 +1,19 @@
 /* Core variables and mixins*/
-@import 'core/reset';
-@import 'core/mixins';
-@import 'core/variables';
-@import 'core/layouts';
-@import 'core/components';
+@import "core/reset";
+@import "core/mixins";
+@import "core/variables";
+@import "core/layouts";
+@import "core/components";
 
 /* Navigation, header, footer*/
-@import 'core/header';
-@import 'core/nav';
-@import 'core/footer';
+@import "core/header";
+@import "core/nav";
+@import "core/footer";
 
 /* Pages*/
-@import 'pages/home';
-@import 'pages/loginpage';
+@import "pages/home";
+@import "pages/loginpage";
 @import 'pages/registerpage';
 @import 'pages/dashboard';
+@import "pages/paymentpage";
 @import 'pages/servicepage';

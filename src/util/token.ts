@@ -1,4 +1,4 @@
-import { STORAGE } from "@/constant/stogare";
+import { STORAGE } from "@/constant/storage";
 
 export const localToken = {
   get: () => JSON.parse(localStorage.getItem(STORAGE.token) || "{}"),
