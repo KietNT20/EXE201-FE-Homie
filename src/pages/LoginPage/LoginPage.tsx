@@ -1,10 +1,10 @@
 // import video from "../../assets/4906-181288859_tiny.mp4";
-import { AiOutlineSwapRight } from 'react-icons/ai';
-import { BsFillShieldLockFill } from 'react-icons/bs';
-import { FaUserShield } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import logo from '../../../public/logo-homie.png';
-import imgLogo from '../../../public/submarine.jpg';
+import { AiOutlineSwapRight } from "react-icons/ai";
+import { BsFillShieldLockFill } from "react-icons/bs";
+import { FaUserShield } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logo from "../../../public/logo-homie.png";
+import imgLogo from "../../../public/submarine.jpg";
 
 const LoginPage = () => {
   return (
@@ -15,7 +15,7 @@ const LoginPage = () => {
 
           <div className="footerDiv flex">
             <span className="text">Don't have an account</span>
-            <Link to={'/register'}>
+            <Link to={"/register"}>
               <button className="btn">Sign up</button>
             </Link>
           </div>
@@ -61,7 +61,7 @@ const LoginPage = () => {
           </form>
         </div>
       </div>
-      //{' '}
+      //{" "}
     </div>
   );
 };
