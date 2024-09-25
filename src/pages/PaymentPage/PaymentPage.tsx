@@ -1,6 +1,6 @@
-import logo from "../../assets/img/images.png";
-import logoMB from "../../assets/img/unnamed.png";
-import logoCash from "../../assets/img/money-cash-wealth-payment-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg";
+import logo from "@/assets/img/momo.png";
+import logoMB from "@/assets/img/mbbank.png";
+import logoCash from "@/assets/img/money-cash-wealth-payment-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button"; // MUI Button component for better styling
 

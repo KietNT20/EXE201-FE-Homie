@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-homie.png";
+import logo from "@/assets/img/logo-homie.png";
 import { PATH } from "@/constant/path";
 import { Close } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";

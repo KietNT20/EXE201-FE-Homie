@@ -1,12 +1,12 @@
-import React, { useState, useMemo, useEffect } from "react";
+import bannerImage from "@/assets/img/submarine.jpg";
 import {
-  Star,
-  AttachMoney,
   AccessTime,
-  LocationOn,
+  AttachMoney,
   FilterList,
+  LocationOn,
+  Star,
 } from "@mui/icons-material";
-import bannerImage from "../../../public/submarine.jpg";
+import React, { useEffect, useMemo, useState } from "react";
 import CategoryList from "./CategoryList";
 import ServiceCard from "./ServiceCard";
 import { ServiceDetails } from "./ServiceDetails";
