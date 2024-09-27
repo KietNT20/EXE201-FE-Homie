@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import ListIcon from "@mui/icons-material/List";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import React, { useState } from 'react';
+import ListIcon from '@mui/icons-material/List';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 interface CategoryListProps {
   onCategorySelect: (category: string | null) => void;
@@ -52,43 +52,34 @@ const CategoryList: React.FC<CategoryListProps> = ({ onCategorySelect }) => {
 
   return (
     <div className="category-list">
-      <h3 style={{ display: "flex", alignItems: "center" }}>
-        <ListIcon style={{ marginRight: "8px" }} /> Danh Mục
+      <h3 style={{ display: 'flex', alignItems: 'center' }}>
+        <ListIcon style={{ marginRight: '8px' }} /> Danh Mục
       </h3>
       <ul>
         {categories.map((category, index) => (
-          <li
+          <li 
             key={index}
             onClick={() => handleCategoryClick(category)}
-            className={selectedCategory === category ? "selected" : ""}
+            className={selectedCategory === category ? 'selected' : ''}
             style={{
-              backgroundColor:
-                selectedCategory === category ? "#3498db" : "transparent",
-              color: selectedCategory === category ? "white" : "inherit",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              backgroundColor: selectedCategory === category ? '#3498db' : 'transparent',
+              color: selectedCategory === category ? 'white' : 'inherit',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
             }}
           >
             <span>
-              {selectedCategory === category && (
-                <span className="play-icon">▶</span>
-              )}
+              {selectedCategory === category && <span className="play-icon">▶</span>}      
               {category}
             </span>
             {selectedCategory === category && (
-              <span
-                onClick={handleDeselect}
-                style={{ cursor: "pointer", marginLeft: "8px" }}
-              >
-                x
-              </span>
+              <span onClick={handleDeselect} style={{ cursor: 'pointer', marginLeft: '8px' }}>x</span>
             )}
           </li>
         ))}
         <li className="more" onClick={toggleExpand}>
-          {expanded ? "Thu gọn" : "Thêm"}{" "}
-          {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+          {expanded ? 'Thu gọn' : 'Thêm'} {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </li>
       </ul>
     </div>

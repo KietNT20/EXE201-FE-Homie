@@ -1,5 +1,5 @@
-import React from "react";
-import { AccountCircle, Star } from "@mui/icons-material";
+import React from 'react';
+import { AccountCircle, Star } from '@mui/icons-material';
 
 interface ServiceCardProps {
   name: string;
@@ -23,17 +23,17 @@ interface ServiceCardProps {
   onClick: () => void;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({
-  name,
-  job,
-  price,
-  rating,
-  reviewCount,
-  avatar,
-  time,
-  userAddress,
-  categories,
-  onClick,
+const ServiceCard: React.FC<ServiceCardProps> = ({ 
+  name, 
+  job, 
+  price, 
+  rating, 
+  reviewCount, 
+  avatar, 
+  time, 
+  userAddress, 
+  categories, 
+  onClick 
 }) => {
   const status = "Đang sẵn sàng";
   return (
@@ -66,14 +66,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <p>{job}</p>
         <div className="rating">
           <Star sx={{ color: "gold" }} />
-          <span>
-            {rating} ({reviewCount})
-          </span>
-          {/* </div>
+          <span>{rating} ({reviewCount})</span>
+        {/* </div>
         <p>Thời gian: {time}</p>
         <p>Địa chỉ: {userAddress}</p>
-        <div className="categories">}
-          {{categories.map((category, index) => (
+        <div className="categories"> */}
+          {/* {categories.map((category, index) => (
             <span key={index} className="category-tag">{category}</span>
           ))} */}
         </div>
