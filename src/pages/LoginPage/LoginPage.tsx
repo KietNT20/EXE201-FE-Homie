@@ -1,3 +1,4 @@
+import imgLogo from "@/assets/img/submarine.jpg";
 import ButtonComp from "@/components/ButtonComp/ButtonComp";
 import InputText from "@/components/InputText/InputText";
 import { PATH } from "@/constant/path";
@@ -13,7 +14,6 @@ import {
 } from "@mui/material";
 import { MouseEvent, useState } from "react";
 import { Link } from "react-router-dom";
-import imgLogo from "../../assets/submarine.jpg";
 
 const LoginPage = () => {
   const [showPwd, setShowPwd] = useState(false);
