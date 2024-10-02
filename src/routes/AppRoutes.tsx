@@ -6,6 +6,8 @@ import LoginPage from "@/pages/LoginPage/LoginPage";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
 import PaymentPage from "@/pages/PaymentPage/PaymentPage";
 import ServicePage from "@/pages/Service/ServicePage";
+import PartnerPage from "@/pages/partnerPage/PartnerPage";
+import CommitPage from "@/pages/CommitPage/CommitPage";
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
@@ -18,6 +20,8 @@ const AppRoutes = () => {
         <Route path={PATH.REGISTER} element={<RegisterPage />} />
         <Route path={PATH.PAYMENT} element={<PaymentPage />} />
         <Route path={PATH.SERVICE} element={<ServicePage />} />
+        <Route path={PATH.PARTNER} element={<PartnerPage />} />
+        <Route path={PATH.COMMITMENT} element={<CommitPage />} />
       </Route>
     </Routes>
   );
