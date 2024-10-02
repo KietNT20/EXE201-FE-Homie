@@ -4,9 +4,10 @@ import AboutPage from "@/pages/AboutPage/AboutPage";
 import HomePage from "@/pages/HomePage/HomePage";
 import LoginPage from "@/pages/LoginPage/LoginPage";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
+import ServicePage from "@/pages/ServicePage/ServicePage";
+import NewPage from "@/pages/NewsPage/NewsPage"; // Corrected path
 import PaymentPage from "@/pages/PaymentPage/PaymentPage";
-import ServicePage from "@/pages/Service/ServicePage";
-import PartnerPage from "@/pages/partnerPage/PartnerPage";
+import PartnerPage from "@/pages/PartnerPage/PartnerPage";
 import CommitPage from "@/pages/CommitPage/CommitPage";
 import { Route, Routes } from "react-router-dom";
 
@@ -22,6 +23,7 @@ const AppRoutes = () => {
         <Route path={PATH.SERVICE} element={<ServicePage />} />
         <Route path={PATH.PARTNER} element={<PartnerPage />} />
         <Route path={PATH.COMMITMENT} element={<CommitPage />} />
+        <Route path={PATH.NEWS} element={<NewPage />} />
       </Route>
     </Routes>
   );
