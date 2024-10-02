@@ -4,8 +4,9 @@ import AboutPage from "@/pages/AboutPage/AboutPage";
 import HomePage from "@/pages/HomePage/HomePage";
 import LoginPage from "@/pages/LoginPage/LoginPage";
 import RegisterPage from "@/pages/RegisterPage/RegisterPage";
+import ServicePage from "@/pages/ServicePage/ServicePage";
+import NewPage from "@/pages/NewsPage/NewsPage"; // Corrected path
 import PaymentPage from "@/pages/PaymentPage/PaymentPage";
-import ServicePage from "@/pages/Service/ServicePage";
 import { Route, Routes } from "react-router-dom";
 
 const AppRoutes = () => {
@@ -18,6 +19,7 @@ const AppRoutes = () => {
         <Route path={PATH.REGISTER} element={<RegisterPage />} />
         <Route path={PATH.PAYMENT} element={<PaymentPage />} />
         <Route path={PATH.SERVICE} element={<ServicePage />} />
+        <Route path={PATH.NEWS} element={<NewPage />} />
       </Route>
     </Routes>
   );

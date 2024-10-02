@@ -1,6 +1,6 @@
+import logo from "@/assets/logo-homie.png";
 import { PATH } from "@/constant/path";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo-homie.png";
 
 const Header = () => {
   return (

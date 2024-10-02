@@ -1,0 +1,5 @@
+update file:
+Aboutpage.tsx
+NewsPage.tsx
+_Aboutpage.scss
+_NewPagescss
