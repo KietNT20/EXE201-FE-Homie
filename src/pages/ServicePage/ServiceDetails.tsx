@@ -5,29 +5,7 @@ import {
   ExpandMore,
   ExpandLess,
 } from "@mui/icons-material";
-
-interface ServiceCardData {
-  name: string;
-  job: string;
-  price: string;
-  rating: number;
-  reviewCount: number;
-  avatar?: string;
-  time: string;
-  userAddress: string;
-  categories: Array<
-    | "Dọn dẹp nhà cửa"
-    | "Giặt giũ, ủi đồ"
-    | "Nấu ăn"
-    | "Chăm sóc trẻ em"
-    | "Sửa chữa nhà cửa"
-    | "Chăm sóc thú cưng"
-    | "Dạy học"
-    | "Làm vườn"
-  >;
-  serviceDescription: string;
-  joinDate: string;
-}
+import { ServiceCardData } from "types/types";
 
 interface ServiceDetailsProps {
   service: ServiceCardData;
@@ -48,7 +26,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
   };
 
   return (
-    <div className="service-details">
+    <section className="service-details">
       <div className="service-avatar-section">
         <div className="service-avatar">
           {service.avatar ? (
@@ -123,6 +101,6 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
       <button className="close-button" onClick={onClose}>
         X
       </button>
-    </div>
+    </section>
   );
 };

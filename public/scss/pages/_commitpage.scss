@@ -1,0 +1,59 @@
+.commit-container {
+  margin-left: 10%;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1; /* Light grey background */
+  padding: 20px;
+}
+
+.commit-image {
+  width: 100%;
+  max-width: 1200px; /* Adjust based on how wide you want the section */
+  height: 250px; /* Adjust this based on your needs */
+  background-image: url('/src/assets/img/submarine.png'); /* Use the path to your image here */
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.commit-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 40px;
+  color: white;
+}
+
+.commit-overlay h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.breadcrumb {
+  font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.commit-overlay {
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay for better text visibility */
+  border-radius: 20px;
+}
+
+.commit-1  {
+  margin-top: 20px;
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 20px;
+}
