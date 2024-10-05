@@ -29,6 +29,7 @@ export interface ServiceCardProps {
   reviewCount: number;
   avatar?: string;
   time: string;
+  status: string;
   userAddress: string;
   categories: Array<
     | "Dọn dẹp nhà cửa"

@@ -1,4 +1,4 @@
-import { ServiceCardData } from "./../../../types/types";
+import { ServiceCardData } from "../../types/types";
 import { useMemo } from "react";
 
 export const serviceCards: ServiceCardData[] = useMemo(

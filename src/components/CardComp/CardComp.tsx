@@ -1,20 +1,19 @@
-import React from "react";
+import { ServiceCardProps } from "@/types/types";
 import { AccountCircle, Star } from "@mui/icons-material";
-import { ServiceCardProps } from "types/types";
 
-const ServiceCard: React.FC<ServiceCardProps> = ({
+const CardComp = ({
   name,
   job,
   price,
   rating,
   reviewCount,
   avatar,
+  status,
   time,
   userAddress,
   categories,
   onClick,
-}) => {
-  const status = "Đang sẵn sàng";
+}: ServiceCardProps) => {
   return (
     <div className="card" onClick={onClick}>
       <div className="card-header">
@@ -49,16 +48,16 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             {rating} ({reviewCount})
           </span>
           {/* </div>
-        <p>Thời gian: {time}</p>
-        <p>Địa chỉ: {userAddress}</p>
-        <div className="categories"> */}
+            <p>Thời gian: {time}</p>
+            <p>Địa chỉ: {userAddress}</p>
+            <div className="categories"> */}
           {/* {categories.map((category, index) => (
-            <span key={index} className="category-tag">{category}</span>
-          ))} */}
+                <span key={index} className="category-tag">{category}</span>
+              ))} */}
         </div>
       </div>
     </div>
   );
 };
 
-export default ServiceCard;
+export default CardComp;

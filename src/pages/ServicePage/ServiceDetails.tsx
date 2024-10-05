@@ -5,7 +5,7 @@ import {
   ExpandMore,
   ExpandLess,
 } from "@mui/icons-material";
-import { ServiceCardData } from "types/types";
+import { ServiceCardData } from "@/types/types";
 
 interface ServiceDetailsProps {
   service: ServiceCardData;
