@@ -1,22 +1,25 @@
-import React from 'react';
+import React from "react";
 import homieLogoSrc from "../../assets/logo-homie.png";
 import bannerImageSrc from "../../assets/submarine.jpg";
 
 const HomePage: React.FC = () => {
   return (
     <div className="home-page">
-      <header className="banner" style={{ backgroundImage: `url(${bannerImageSrc})` }}>
+      <header
+        className="banner"
+        style={{ backgroundImage: `url(${bannerImageSrc})` }}
+      >
         <h1>Về Homie</h1>
         <p>Home / About</p>
       </header>
-      
+
       <main className="main-content">
         <div className="logo-section">
           <img src={homieLogoSrc} alt="Homie Logo" className="logo" />
-          
+
           <button className="cta-button">Nhận Voucher ngay</button>
         </div>
-        
+
         <div className="stats-grid">
           <div className="stat-card users">
             <h3>12000+</h3>
@@ -52,13 +55,19 @@ const HomePage: React.FC = () => {
             <div className="avatar"></div>
             <h3>Eugene Freeman</h3>
             <p className="job">Designer</p>
-            <p className="quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut velit ipsum. Proin varius suscipit mi.</p>
+            <p className="quote">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut
+              velit ipsum. Proin varius suscipit mi.
+            </p>
           </div>
           <div className="testimonial">
             <div className="avatar"></div>
             <h3>Eugene Freeman</h3>
             <p className="job">Lawyer</p>
-            <p className="quote">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut velit ipsum. Proin varius suscipit mi.</p>
+            <p className="quote">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut
+              velit ipsum. Proin varius suscipit mi.
+            </p>
           </div>
         </div>
         <div className="chat-icon"></div>

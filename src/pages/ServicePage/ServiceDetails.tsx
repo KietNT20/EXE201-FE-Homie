@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { Star, AccountCircle, ExpandMore, ExpandLess } from '@mui/icons-material';
+import React, { useState } from "react";
+import {
+  Star,
+  AccountCircle,
+  ExpandMore,
+  ExpandLess,
+} from "@mui/icons-material";
 
 interface ServiceCardData {
   name: string;
@@ -29,7 +34,10 @@ interface ServiceDetailsProps {
   onClose: () => void;
 }
 
-export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose }) => {
+export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
+  service,
+  onClose,
+}) => {
   const [expanded, setExpanded] = useState(false);
 
   const completionRate = "89.65%"; // This is still hardcoded as it's not in the ServiceCardData
@@ -62,16 +70,16 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose
             </div>
           )}
         </div>
-        
+
         <p>Ngày tham gia: {service.joinDate}</p>
       </div>
       <div className="service-info">
         <h2>{service.name}</h2>
         <div className="service-stats">
           <span>Đã được thuê:</span>
-          <span style={{ color: 'green' }}>{service.reviewCount} giờ</span>
+          <span style={{ color: "green" }}>{service.reviewCount} giờ</span>
           <span>Tỷ lệ hoàn thành: </span>
-          <span style={{ color: 'green' }}>{completionRate}</span>
+          <span style={{ color: "green" }}>{completionRate}</span>
         </div>
         <div className="service-price">
           {service.price}
@@ -81,15 +89,21 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose
           </span>
         </div>
         <div className="service-tags">
-            <span>Công việc: {service.job}</span>
-            
-            <span>Việc đang làm: {service.categories.slice(0, expanded ? undefined : 3).map((tag, index) => (
-            <span key={index}>{tag}</span> ))}</span>
+          <span>Công việc: {service.job}</span>
 
-            
+          <span>
+            Việc đang làm:{" "}
+            {service.categories
+              .slice(0, expanded ? undefined : 3)
+              .map((tag, index) => (
+                <span key={index}>{tag}</span>
+              ))}
+          </span>
+
           {service.categories.length > 3 && (
             <span className="more" onClick={toggleExpand}>
-              {expanded ? 'Thu gọn' : 'Thêm'} {expanded ? <ExpandLess /> : <ExpandMore />}
+              {expanded ? "Thu gọn" : "Thêm"}{" "}
+              {expanded ? <ExpandLess /> : <ExpandMore />}
             </span>
           )}
         </div>
@@ -106,7 +120,9 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({ service, onClose
           <button className="chat-button">CHAT</button>
         </div>
       </div>
-      <button className="close-button" onClick={onClose}>X</button>
+      <button className="close-button" onClick={onClose}>
+        X
+      </button>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 .home-page {
-    font-family: Arial, sans-serif;
-    max-width: 1200px;
+  font-family: 'Be Vietnam', sans-serif;
+    max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
@@ -12,10 +12,10 @@
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 30px;
-      height: 150px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      height: 200px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 30px;
   
       h1 {
         font-size: 2em;
@@ -32,7 +32,8 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 300px;
+      margin-top: 80px;
+      margin-bottom: 200px;
   
       .logo-section {
         flex: 1;
