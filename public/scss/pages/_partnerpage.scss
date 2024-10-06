@@ -1,4 +1,5 @@
 .Partner{
+  padding: 60px 0px;
   .partner-container {
     margin-left: 10%;
     justify-content: center;
@@ -54,7 +55,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    padding: 20px;
+    padding: 50px;
     gap: 30px;
     max-width: 900px;
     width: 100%;
@@ -64,6 +65,7 @@
   
   .form-section {
     width: 60%;
+    padding: 20px;
   }
   
   .form-group {
@@ -101,6 +103,7 @@
     background-color: #f0f0f0;
     padding: 20px;
     border-radius: 10px;
+    margin-top: 70px;
   }
   
   .contact-item {
@@ -110,7 +113,7 @@
   }
   
   .icon {
-    font-size: 24px;
+    font-size: 20px;
     margin-right: 10px;
   }
   
@@ -124,7 +127,21 @@
     text-decoration: underline;
   }
   .icon-partner .icon1{
-    font-size: 50px;
+    font-size: 40px;
+  }
+    .inputNamePay {
+      .MuiInputBase-formControl {
+          margin-top: 40px;
+          font-size: 15px;
+        }
+    }
+  .text-1 h3 {
+    font-weight: 800;
+    font-size: 20px;
+  }
+  .payment-button {
+    margin-top: 30px;
+    font-size: 15px;
   }
   
 }

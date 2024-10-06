@@ -1,14 +1,15 @@
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import { Button, TextField } from "@mui/material";
 
-const PartnerPage =() => {
+const PartnerPage = () => {
   return (
     <section className="Partner">
       <div className="partner-container">
         <div className="partner-image">
           <div className="partner-overlay">
-            <h1>Cam Kết Của Homie</h1>
+            <h1>Trở thành đối tác Của Homie</h1>
             <p className="breadcrumb">Trang chủ / Trở thành đối tác</p>
           </div>
         </div>
@@ -17,34 +18,56 @@ const PartnerPage =() => {
         {/* Left section (Form) */}
         <div className="form-section">
           <form className="form">
-            <div className="form-group">
-              <label htmlFor="name">Họ và Tên</label>
-              <input type="text" id="name" placeholder="Nhập tên" />
+            <div className="input-group">
+              <div className="text-1">
+                <h3>Đăng kí trở thành đối tác</h3>
+                <TextField
+                  className={"inputNamePay"}
+                  label="Họ và tên"
+                  fullWidth
+                  variant="outlined"
+                  placeholder="Nhập tên"
+                />
+              </div>
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="Nhập Email của bạn" />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="phone">Số Điện Thoại</label>
-              <input type="text" id="phone" placeholder="Nhập Số Điện Thoại" />
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="job">Công Việc Đăng Ký</label>
-              <input
-                type="text"
-                id="job"
-                placeholder="Nhập Công Việc Bạn Muốn Đăng Ký"
+            <div className="input-group">
+              <TextField
+                label="Email"
+                className={"inputNamePay"}
+                fullWidth
+                variant="outlined"
+                placeholder="Nhập email của bạn"
               />
             </div>
 
-            <button type="submit" className="submit-btn">
-              Gửi Tin Nhắn Của Bạn
-            </button>
+            <div className="input-group">
+              <TextField
+                label="Số điện thoại"
+                className={"inputNamePay"}
+                fullWidth
+                variant="outlined"
+                placeholder="Nhập số điện thoại"
+              />
+            </div>
+
+            <div className="input-group">
+              <TextField
+                label="Dịch vụ"
+                className={"inputNamePay"}
+                fullWidth
+                variant="outlined"
+                placeholder="Dịch vụ bạn muốn"
+              />
+            </div>
           </form>
+          <Button
+            variant="contained"
+            color="primary"
+            className="payment-button"
+          >
+            Thanh Toán
+          </Button>
         </div>
 
         {/* Right section (Contact Details) */}
@@ -75,6 +98,6 @@ const PartnerPage =() => {
       </div>
     </section>
   );
-}
+};
 
 export default PartnerPage;

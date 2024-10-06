@@ -3,6 +3,7 @@ import logoMB from "../../assets/img/unnamed.png";
 import logoCash from "../../assets/img/money-cash-wealth-payment-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button"; // MUI Button component for better styling
+import { FormControl, Input, InputLabel } from "@mui/material";
 
 const PaymentPage = () => {
   return (
@@ -53,15 +54,6 @@ const PaymentPage = () => {
             />
           </div>
 
-          <div className="input-group">
-            <h3>Voucher</h3>
-            <TextField
-              className={"inputNamePay"}
-              fullWidth
-              variant="outlined"
-              placeholder="Nhập voucher"
-            />
-          </div>
           <div className="payment-button1">
             <Button
               variant="contained"
