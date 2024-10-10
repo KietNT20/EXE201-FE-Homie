@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import bannerImage from "../../assets/submarine.jpg";
+import bannerImage from "@/assets/img/submarine.jpg";
+import { useEffect, useState } from "react";
 
 const NewsPage = () => {
   const newsItems = [
@@ -84,7 +84,7 @@ const NewsPage = () => {
     const pageNumbers = [];
     const startPage = Math.max(
       1,
-      currentPage - Math.floor(maxVisiblePages / 2),
+      currentPage - Math.floor(maxVisiblePages / 2)
     );
     const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
 
