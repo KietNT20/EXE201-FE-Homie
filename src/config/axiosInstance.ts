@@ -1,8 +1,6 @@
-import { API } from "@/api/apiUrl";
 import axios from "axios";
-import { TokenResponse } from "./../types/types";
-import { BASE_URL } from "./environment";
-import tokenMethod from "./token";
+import { BASE_URL } from "../util/environment";
+import tokenMethod from "../util/token";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -40,21 +38,21 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
       try {
         // Call API refresh token for new token
-        const res = await axiosInstance.get(`${API.REFRESH_TOKEN}`, {
-          headers: {
-            Authorization: `Bearer ${tokenMethod.get()?.refresh_token}`,
-          },
-        });
+        // const res = await axiosInstance.get(`${API.REFRESH_TOKEN}`, {
+        //   headers: {
+        //     Authorization: `Bearer ${tokenMethod.get()?.refresh_token}`,
+        //   },
+        // });
 
-        const { access_token, refresh_token } = (res as TokenResponse) || {};
-        // Save new token to localStorage
-        tokenMethod.set({
-          access_token,
-          refresh_token,
-        });
+        // const { access_token, refresh_token } = (res as TokenResponse) || {};
+        // // Save new token to localStorage
+        // tokenMethod.set({
+        //   access_token,
+        //   refresh_token,
+        // });
 
         // Change Authorization header
-        originalRequest.headers.Authorization = `Bearer ${access_token}`;
+        // originalRequest.headers.Authorization = `Bearer ${access_token}`;
 
         // Call API again with new token
         return axiosInstance(originalRequest);
