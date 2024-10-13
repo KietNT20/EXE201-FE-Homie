@@ -1,5 +1,8 @@
 import logo from "@/assets/img/logo-homie.png";
 import { PATH } from "@/constant/path";
+import { useAppSelector } from "@/hooks/reudxHook";
+import { RootState } from "@/store/store";
+import tokenMethod from "@/util/token";
 import { Close } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
@@ -16,13 +19,24 @@ import {
   Toolbar,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import UserProfileMenu from "./UserProfileMenu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { userProfile } = useAppSelector((state: RootState) => state.profile);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const _onLogout = () => {
+    toast.dismiss();
+    localStorage.clear();
+    toast.success("Đăng xuất thành công");
+    navigate(PATH.HOME);
   };
 
   const menuItems = [
@@ -60,15 +74,19 @@ const Header = () => {
               <img src={logo} alt="Homie Logo" />
             </Link>
           </Box>
-          <Button
-            component={NavLink}
-            to={PATH.LOGIN}
-            className="header__toolbar-btn"
-            variant="contained"
-            color="primary"
-          >
-            Đăng nhập
-          </Button>
+          {!tokenMethod.get()?.token ? (
+            <Button
+              component={NavLink}
+              to="/login"
+              className="header__toolbar-btn"
+              variant="contained"
+              color="primary"
+            >
+              Đăng nhập
+            </Button>
+          ) : (
+            <UserProfileMenu userProfile={userProfile} onLogout={_onLogout} />
+          )}
         </Toolbar>
         <Drawer anchor="left" open={isMenuOpen} onClose={toggleMenu}>
           <Box sx={{ width: 250 }} role="presentation">

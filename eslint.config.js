@@ -30,6 +30,16 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       "@tanstack/query/exhaustive-deps": "error",
+      "no-restricted-imports": "off",
+      "@typescript-eslint/no-restricted-imports": [
+        "warn",
+        {
+          name: "react-redux",
+          importNames: ["useSelector", "useDispatch"],
+          message:
+            "Use typed hooks `useAppDispatch` and `useAppSelector` instead.",
+        },
+      ],
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
@@ -37,5 +47,5 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
     },
-  }
+  },
 );

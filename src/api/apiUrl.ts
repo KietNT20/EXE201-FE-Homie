@@ -12,7 +12,7 @@ export const API = {
   },
   AUTH_API: {
     LOGIN: AUTH + "/login",
-    GET_USER_BY_TOKEN: AUTH + "/get-user-by-token/",
+    GET_USER_BY_TOKEN: AUTH + "/login/get-user-by-token/",
   },
   E_WALLET_API: {
     GET_BY_USER_ID: E_WALLET + "/GetWalletByUserID/",

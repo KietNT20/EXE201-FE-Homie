@@ -204,7 +204,7 @@
   overflow: hidden;
 }
 // Customize Scroll Bar
-@mixin customScroll($width: 5px, $bgTrack: #ddd, $bgThumb: #121212) {
+@mixin customScroll($width: 8px, $bgTrack: #ddd, $bgThumb: #2159c8) {
   &::-webkit-scrollbar {
     width: $width;
   }

@@ -14,7 +14,7 @@ const InputText = (
     sx,
     ...restProps
   }: InputProps,
-  ref: Ref<HTMLInputElement>
+  ref: Ref<HTMLInputElement>,
 ) => (
   <TextField
     fullWidth

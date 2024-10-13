@@ -11,4 +11,5 @@ export interface InputProps {
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   sx?: object;
+  [key: string]: any;
 }
