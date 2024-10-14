@@ -1,15 +1,12 @@
-import {
-  SET_USER_PROFILE,
-  UserProfileActionTypes,
-} from "../actions/userProfileAction";
+import { SET_USER_PROFILE } from "../actions/userProfileAction/userProfileAction";
 
-const initState = {
+const initState: UserProfileState = {
   userProfile: {},
 };
 
 const userProfileReducer = (
   state = initState,
-  { type, payload }: UserProfileActionTypes,
+  { type, payload }: UserProfileAction,
 ) => {
   switch (type) {
     case SET_USER_PROFILE:
