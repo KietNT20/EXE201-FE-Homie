@@ -9,6 +9,7 @@ body {
   font-family: vnRegular;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
+  @include customScroll;
   &.--disable-scroll {
     height: 100vh;
     overflow: hidden;

@@ -1,5 +1,5 @@
-import { SocialIcon } from "react-social-icons";
-import logoFooter from "@/assets/img/logo-footer.png";
+import { SocialIcon } from 'react-social-icons';
+import logoFooter from '@/assets/img/logo-footer.png';
 
 const Footer = () => {
   return (
@@ -42,7 +42,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer__top-socials">
-            {" "}
+            {' '}
             <h3 className="footer__title">Xã hội</h3>
             <ul className="footer__list">
               <li>
@@ -63,7 +63,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="footer__top-services">
-            {" "}
+            {' '}
             <h3 className="footer__title">Dịch vụ</h3>
             <ul className="footer__list">
               <li>

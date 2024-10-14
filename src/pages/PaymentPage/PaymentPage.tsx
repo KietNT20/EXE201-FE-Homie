@@ -1,9 +1,9 @@
-import logo from "@/assets/img/momo.png";
-import logoMB from "@/assets/img/mbbank.png";
-import logoCash from "@/assets/img/money-cash-wealth-payment-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button"; // MUI Button component for better styling
-import { FormControl, Input, InputLabel } from "@mui/material";
+import logo from '@/assets/img/momo.png';
+import logoMB from '@/assets/img/mbbank.png';
+import logoCash from '@/assets/img/money-cash-wealth-payment-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button'; // MUI Button component for better styling
+import { FormControl, Input, InputLabel } from '@mui/material';
 
 const PaymentPage = () => {
   return (
@@ -16,7 +16,7 @@ const PaymentPage = () => {
             <h3>Họ và tên</h3>
             <div className="text-1">
               <TextField
-                className={"inputNamePay"}
+                className={'inputNamePay'}
                 fullWidth
                 variant="outlined"
                 placeholder="Nhập tên"
@@ -27,7 +27,7 @@ const PaymentPage = () => {
           <div className="input-group">
             <h3>Email</h3>
             <TextField
-              className={"inputNamePay"}
+              className={'inputNamePay'}
               fullWidth
               variant="outlined"
               placeholder="Nhập email của bạn"
@@ -37,7 +37,7 @@ const PaymentPage = () => {
           <div className="input-group">
             <h3>Số điện thoại</h3>
             <TextField
-              className={"inputNamePay"}
+              className={'inputNamePay'}
               fullWidth
               variant="outlined"
               placeholder="Nhập số điện thoại"
@@ -47,7 +47,7 @@ const PaymentPage = () => {
           <div className="input-group">
             <h3>Dịch vụ</h3>
             <TextField
-              className={"inputNamePay"}
+              className={'inputNamePay'}
               fullWidth
               variant="outlined"
               placeholder="Dịch vụ bạn muốn"

@@ -1,9 +1,12 @@
-import imgLogo from "@/assets/img/submarine.jpg";
-import ButtonComp from "@/components/ButtonComp/ButtonComp";
-import InputText from "@/components/InputText/InputText";
-import { PATH } from "@/constant/path";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import imgLogo from '@/assets/img/submarine.jpg';
+import ButtonComp from '@/components/ButtonComp/ButtonComp';
+import InputText from '@/components/InputText/InputText';
+import { PATH } from '@/constant/path';
+import { useLogin } from '@/hooks/useAuth';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
+  Box,
   Card,
   CardContent,
   Container,
@@ -11,12 +14,33 @@ import {
   IconButton,
   InputAdornment,
   Typography,
-} from "@mui/material";
-import { MouseEvent, useState } from "react";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import { MouseEvent, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { loginSchema } from './schemas/schema';
+import { InputLoginTypes } from './schemas/type';
 
 const LoginPage = () => {
   const [showPwd, setShowPwd] = useState(false);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<InputLoginTypes>({
+    resolver: yupResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const { mutate: doLoginUser, isPending: loginLoading } = useLogin();
+
+  const _onSubmit = (data: InputLoginTypes) => {
+    const { email, password } = data;
+    doLoginUser({ email, password });
+  };
 
   const handleClickShowPassword = () => {
     setShowPwd(!showPwd);
@@ -42,39 +66,63 @@ const LoginPage = () => {
                   ĐĂNG NHẬP
                 </Typography>
               </div>
-              <form action="#" className="loginForm__right-form">
+              <Box
+                component={'form'}
+                className="loginForm__right-form"
+                onSubmit={handleSubmit(_onSubmit)}
+              >
                 <Grid2 container spacing={1} gap={4}>
                   <Grid2 size={12}>
-                    <InputText
-                      type="text"
-                      placeholder="Email đăng nhập"
-                      size="medium"
-                      sx={styles.inputStyles}
+                    <Controller
+                      name="email"
+                      control={control}
+                      render={({ field }) => (
+                        <InputText
+                          {...field}
+                          type="text"
+                          placeholder="Email đăng nhập"
+                          size="medium"
+                          sx={styles.inputStyles}
+                          error={errors.email}
+                          helperText={errors.email?.message}
+                          disabled={loginLoading}
+                        />
+                      )}
                     />
                   </Grid2>
                   <Grid2 size={12}>
-                    <InputText
-                      type={showPwd ? "text" : "password"}
-                      placeholder="Mật khẩu"
-                      size="medium"
-                      sx={styles.inputStyles}
-                      endIcon={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() => handleClickShowPassword()}
-                            onMouseDown={(event) =>
-                              handleMouseDownPassword(event)
-                            }
-                          >
-                            {showPwd ? (
-                              <Visibility sx={{ fontSize: "2rem" }} />
-                            ) : (
-                              <VisibilityOff sx={{ fontSize: "2rem" }} />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      }
+                    <Controller
+                      name="password"
+                      control={control}
+                      render={({ field }) => (
+                        <InputText
+                          {...field}
+                          type={showPwd ? 'text' : 'password'}
+                          placeholder="Mật khẩu"
+                          size="medium"
+                          sx={styles.inputStyles}
+                          error={errors.password}
+                          helperText={errors.password?.message}
+                          disabled={loginLoading}
+                          endIcon={
+                            <InputAdornment position="end">
+                              <IconButton
+                                aria-label="toggle password visibility"
+                                onClick={() => handleClickShowPassword()}
+                                onMouseDown={(event) =>
+                                  handleMouseDownPassword(event)
+                                }
+                              >
+                                {showPwd ? (
+                                  <Visibility sx={{ fontSize: '2rem' }} />
+                                ) : (
+                                  <VisibilityOff sx={{ fontSize: '2rem' }} />
+                                )}
+                              </IconButton>
+                            </InputAdornment>
+                          }
+                        />
+                      )}
                     />
                   </Grid2>
                   <Grid2 size={12}>
@@ -95,10 +143,10 @@ const LoginPage = () => {
                   <Grid2 size={12}>
                     <ButtonComp
                       variant="contained"
-                      className={"btn-google"}
+                      className={'btn-google'}
                       fullWidth
                     >
-                      <span className="text">Đăng nhập bằng Google</span>{" "}
+                      <span className="text">Đăng nhập bằng Google</span>{' '}
                       <i className="icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -127,10 +175,10 @@ const LoginPage = () => {
                     </ButtonComp>
                   </Grid2>
                 </Grid2>
-              </form>
+              </Box>
               <div className="text-bottom mt-8 text-center">
                 <div className="text-signup mb-4">
-                  <span className="text">Chưa đăng ký tài khoản?</span>{" "}
+                  <span className="text">Chưa đăng ký tài khoản?</span>{' '}
                   <Link to={PATH.REGISTER} className="link-regis">
                     Đăng ký
                   </Link>
@@ -151,15 +199,15 @@ export default LoginPage;
 
 export const styles = {
   inputStyles: {
-    "& .MuiInputBase-input": {
-      fontSize: "1.4rem",
+    '& .MuiInputBase-input': {
+      fontSize: '1.4rem',
     },
-    "& .MuiInputLabel-root": {
-      fontSize: "1.4rem",
+    '& .MuiInputLabel-root': {
+      fontSize: '1.4rem',
     },
-    "& .MuiFormHelperText-root": {
-      fontSize: "1.2rem",
-      marginTop: "8px",
+    '& .MuiFormHelperText-root': {
+      fontSize: '1.2rem',
+      marginTop: '8px',
       fontWeight: 500,
     },
   },

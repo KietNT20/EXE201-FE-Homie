@@ -1,7 +1,7 @@
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Button, TextField } from "@mui/material";
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Button, TextField } from '@mui/material';
 
 const PartnerPage = () => {
   return (
@@ -22,7 +22,7 @@ const PartnerPage = () => {
               <div className="text-1">
                 <h3>Đăng kí trở thành đối tác</h3>
                 <TextField
-                  className={"inputNamePay"}
+                  className={'inputNamePay'}
                   label="Họ và tên"
                   fullWidth
                   variant="outlined"
@@ -34,7 +34,7 @@ const PartnerPage = () => {
             <div className="input-group">
               <TextField
                 label="Email"
-                className={"inputNamePay"}
+                className={'inputNamePay'}
                 fullWidth
                 variant="outlined"
                 placeholder="Nhập email của bạn"
@@ -44,7 +44,7 @@ const PartnerPage = () => {
             <div className="input-group">
               <TextField
                 label="Số điện thoại"
-                className={"inputNamePay"}
+                className={'inputNamePay'}
                 fullWidth
                 variant="outlined"
                 placeholder="Nhập số điện thoại"
@@ -54,7 +54,7 @@ const PartnerPage = () => {
             <div className="input-group">
               <TextField
                 label="Dịch vụ"
-                className={"inputNamePay"}
+                className={'inputNamePay'}
                 fullWidth
                 variant="outlined"
                 placeholder="Dịch vụ bạn muốn"

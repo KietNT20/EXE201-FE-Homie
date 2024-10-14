@@ -1,5 +1,5 @@
-import logoCommit from "@/assets/z5887437884214_65e5a423e0ea91c635acb4c1c09fa113.png";
-import { Container } from "@mui/material";
+import logoCommit from '@/assets/z5887437884214_65e5a423e0ea91c635acb4c1c09fa113.png';
+import { Container } from '@mui/material';
 
 const CommitPage = () => {
   return (

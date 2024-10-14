@@ -1,7 +1,7 @@
-import { STORAGE } from "@/constant/storage";
+import { STORAGE } from '@/constant/storage';
 
 export const localToken = {
-  get: () => JSON.parse(localStorage.getItem(STORAGE.token) || "{}"),
+  get: () => JSON.parse(localStorage.getItem(STORAGE.token) || '{}'),
   set: (token?: unknown) =>
     localStorage.setItem(STORAGE.token, JSON.stringify(token)),
   remove: () => localStorage.removeItem(STORAGE.token),
@@ -11,7 +11,7 @@ const tokenMethod = {
     return localToken.get();
   },
   set: (token?: unknown) => {
-    // console.log('token', token);
+    console.log('token', token);
     localToken.set(token);
   },
   remove: () => {

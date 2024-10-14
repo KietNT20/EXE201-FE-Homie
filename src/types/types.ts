@@ -7,10 +7,11 @@ export interface InputProps {
   type?: string;
   disabled?: boolean;
   placeholder?: string;
-  size?: "small" | "medium";
+  size?: 'small' | 'medium';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   sx?: object;
+  [key: string]: any;
 }
 
 export interface ServiceCardData {
@@ -23,14 +24,14 @@ export interface ServiceCardData {
   time: string;
   userAddress: string;
   categories: Array<
-    | "Dọn dẹp nhà cửa"
-    | "Giặt giũ, ủi đồ"
-    | "Nấu ăn"
-    | "Chăm sóc trẻ em"
-    | "Sửa chữa nhà cửa"
-    | "Chăm sóc thú cưng"
-    | "Dạy học"
-    | "Làm vườn"
+    | 'Dọn dẹp nhà cửa'
+    | 'Giặt giũ, ủi đồ'
+    | 'Nấu ăn'
+    | 'Chăm sóc trẻ em'
+    | 'Sửa chữa nhà cửa'
+    | 'Chăm sóc thú cưng'
+    | 'Dạy học'
+    | 'Làm vườn'
   >;
   serviceDescription: string;
   joinDate: string;
@@ -47,14 +48,14 @@ export interface ServiceCardProps {
   status: string;
   userAddress: string;
   categories: Array<
-    | "Dọn dẹp nhà cửa"
-    | "Giặt giũ, ủi đồ"
-    | "Nấu ăn"
-    | "Chăm sóc trẻ em"
-    | "Sửa chữa nhà cửa"
-    | "Chăm sóc thú cưng"
-    | "Dạy học"
-    | "Làm vườn"
+    | 'Dọn dẹp nhà cửa'
+    | 'Giặt giũ, ủi đồ'
+    | 'Nấu ăn'
+    | 'Chăm sóc trẻ em'
+    | 'Sửa chữa nhà cửa'
+    | 'Chăm sóc thú cưng'
+    | 'Dạy học'
+    | 'Làm vườn'
   >;
   onClick: () => void;
 }
