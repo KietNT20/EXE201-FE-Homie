@@ -1,6 +1,6 @@
-import { InputProps } from "@/types/types";
-import { InputAdornment, TextField } from "@mui/material";
-import { forwardRef, Ref } from "react";
+import { InputProps } from '@/types/types';
+import { InputAdornment, TextField } from '@mui/material';
+import { forwardRef, Ref } from 'react';
 
 const InputText = (
   {

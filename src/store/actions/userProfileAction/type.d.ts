@@ -5,7 +5,7 @@ interface User {
   password?: string;
   phone?: string;
   dateOfBirth?: Date;
-  gender?: "male" | "female";
+  gender?: 'male' | 'female';
   roleId?: number;
 }
 

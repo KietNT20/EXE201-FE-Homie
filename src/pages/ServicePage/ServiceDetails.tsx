@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Star,
   AccountCircle,
   ExpandMore,
   ExpandLess,
-} from "@mui/icons-material";
+} from '@mui/icons-material';
 
 interface ServiceCardData {
   name: string;
@@ -16,14 +16,14 @@ interface ServiceCardData {
   time: string;
   userAddress: string;
   categories: Array<
-    | "Dọn dẹp nhà cửa"
-    | "Giặt giũ, ủi đồ"
-    | "Nấu ăn"
-    | "Chăm sóc trẻ em"
-    | "Sửa chữa nhà cửa"
-    | "Chăm sóc thú cưng"
-    | "Dạy học"
-    | "Làm vườn"
+    | 'Dọn dẹp nhà cửa'
+    | 'Giặt giũ, ủi đồ'
+    | 'Nấu ăn'
+    | 'Chăm sóc trẻ em'
+    | 'Sửa chữa nhà cửa'
+    | 'Chăm sóc thú cưng'
+    | 'Dạy học'
+    | 'Làm vườn'
   >;
   serviceDescription: string;
   joinDate: string;
@@ -40,8 +40,8 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
 }) => {
   const [expanded, setExpanded] = useState(false);
 
-  const completionRate = "89.65%"; // This is still hardcoded as it's not in the ServiceCardData
-  const status = "Đang sẵn sàng"; // This is still hardcoded as it's not in the ServiceCardData
+  const completionRate = '89.65%'; // This is still hardcoded as it's not in the ServiceCardData
+  const status = 'Đang sẵn sàng'; // This is still hardcoded as it's not in the ServiceCardData
 
   const toggleExpand = () => {
     setExpanded(!expanded);
@@ -54,11 +54,11 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
           {service.avatar ? (
             <img src={service.avatar} alt={service.name} />
           ) : (
-            <AccountCircle sx={{ fontSize: 200, color: "#3498db" }} />
+            <AccountCircle sx={{ fontSize: 200, color: '#3498db' }} />
           )}
         </div>
         <div className="service-status">
-          {status === "Đang sẵn sàng" ? (
+          {status === 'Đang sẵn sàng' ? (
             <div className="status-available">
               <span className="status-indicator-available"></span>
               <span className="status-text-available">{status}</span>
@@ -77,14 +77,14 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
         <h2>{service.name}</h2>
         <div className="service-stats">
           <span>Đã được thuê:</span>
-          <span style={{ color: "green" }}>{service.reviewCount} giờ</span>
+          <span style={{ color: 'green' }}>{service.reviewCount} giờ</span>
           <span>Tỷ lệ hoàn thành: </span>
-          <span style={{ color: "green" }}>{completionRate}</span>
+          <span style={{ color: 'green' }}>{completionRate}</span>
         </div>
         <div className="service-price">
           {service.price}
           <span className="rating">
-            <Star sx={{ color: "gold" }} />
+            <Star sx={{ color: 'gold' }} />
             {service.rating} sao
           </span>
         </div>
@@ -92,7 +92,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
           <span>Công việc: {service.job}</span>
 
           <span>
-            Việc đang làm:{" "}
+            Việc đang làm:{' '}
             {service.categories
               .slice(0, expanded ? undefined : 3)
               .map((tag, index) => (
@@ -102,7 +102,7 @@ export const ServiceDetails: React.FC<ServiceDetailsProps> = ({
 
           {service.categories.length > 3 && (
             <span className="more" onClick={toggleExpand}>
-              {expanded ? "Thu gọn" : "Thêm"}{" "}
+              {expanded ? 'Thu gọn' : 'Thêm'}{' '}
               {expanded ? <ExpandLess /> : <ExpandMore />}
             </span>
           )}

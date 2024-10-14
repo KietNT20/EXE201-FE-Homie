@@ -1,6 +1,6 @@
-import axios from "axios";
-import { BASE_URL } from "../config/environment";
-import tokenMethod from "./token";
+import axios from 'axios';
+import { BASE_URL } from '../config/environment';
+import tokenMethod from './token';
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,

@@ -1,6 +1,6 @@
-import { authService } from "@/services/authService";
+import { authService } from '@/services/authService';
 
-export const SET_USER_PROFILE = "SET_USER_PROFILE";
+export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const setUserProfile = (params: string) => {
   return async (dispatch: DispatchUserProfileType) => {

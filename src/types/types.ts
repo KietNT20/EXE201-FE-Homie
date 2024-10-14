@@ -7,7 +7,7 @@ export interface InputProps {
   type?: string;
   disabled?: boolean;
   placeholder?: string;
-  size?: "small" | "medium";
+  size?: 'small' | 'medium';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   sx?: object;

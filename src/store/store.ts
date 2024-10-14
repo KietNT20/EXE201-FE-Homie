@@ -1,10 +1,10 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import userProfileReducer from "./reducers/userProfileReducer";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import userProfileReducer from './reducers/userProfileReducer';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
 };
 

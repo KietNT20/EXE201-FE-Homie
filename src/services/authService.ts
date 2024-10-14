@@ -1,5 +1,5 @@
-import { API } from "@/api/apiUrl";
-import axiosInstance from "@/util/axiosInstance";
+import { API } from '@/api/apiUrl';
+import axiosInstance from '@/util/axiosInstance';
 
 export const authService = {
   login(payload: { email: string; password: string }) {

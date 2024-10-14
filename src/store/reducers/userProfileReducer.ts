@@ -1,4 +1,4 @@
-import { SET_USER_PROFILE } from "../actions/userProfileAction/userProfileAction";
+import { SET_USER_PROFILE } from '../actions/userProfileAction/userProfileAction';
 
 const initState: UserProfileState = {
   userProfile: {},

@@ -1,8 +1,8 @@
-import { PATH } from "@/constant/path";
-import { AccountCircle } from "@mui/icons-material";
-import { Button, IconButton, Menu, MenuItem, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { PATH } from '@/constant/path';
+import { AccountCircle } from '@mui/icons-material';
+import { Button, IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 interface UserProfileMenuProps {
   userProfile: any;
@@ -53,13 +53,13 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         id="menu-appbar"
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
+          vertical: 'bottom',
+          horizontal: 'right',
         }}
         keepMounted
         transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}

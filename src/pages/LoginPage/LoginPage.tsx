@@ -1,10 +1,10 @@
-import imgLogo from "@/assets/img/submarine.jpg";
-import ButtonComp from "@/components/ButtonComp/ButtonComp";
-import InputText from "@/components/InputText/InputText";
-import { PATH } from "@/constant/path";
-import { useLogin } from "@/hooks/useAuth";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import imgLogo from '@/assets/img/submarine.jpg';
+import ButtonComp from '@/components/ButtonComp/ButtonComp';
+import InputText from '@/components/InputText/InputText';
+import { PATH } from '@/constant/path';
+import { useLogin } from '@/hooks/useAuth';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Box,
   Card,
@@ -14,12 +14,12 @@ import {
   IconButton,
   InputAdornment,
   Typography,
-} from "@mui/material";
-import { MouseEvent, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { loginSchema } from "./schemas/schema";
-import { InputLoginTypes } from "./schemas/type";
+} from '@mui/material';
+import { MouseEvent, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { loginSchema } from './schemas/schema';
+import { InputLoginTypes } from './schemas/type';
 
 const LoginPage = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -30,8 +30,8 @@ const LoginPage = () => {
   } = useForm<InputLoginTypes>({
     resolver: yupResolver(loginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -67,7 +67,7 @@ const LoginPage = () => {
                 </Typography>
               </div>
               <Box
-                component={"form"}
+                component={'form'}
                 className="loginForm__right-form"
                 onSubmit={handleSubmit(_onSubmit)}
               >
@@ -97,7 +97,7 @@ const LoginPage = () => {
                       render={({ field }) => (
                         <InputText
                           {...field}
-                          type={showPwd ? "text" : "password"}
+                          type={showPwd ? 'text' : 'password'}
                           placeholder="Mật khẩu"
                           size="medium"
                           sx={styles.inputStyles}
@@ -114,9 +114,9 @@ const LoginPage = () => {
                                 }
                               >
                                 {showPwd ? (
-                                  <Visibility sx={{ fontSize: "2rem" }} />
+                                  <Visibility sx={{ fontSize: '2rem' }} />
                                 ) : (
-                                  <VisibilityOff sx={{ fontSize: "2rem" }} />
+                                  <VisibilityOff sx={{ fontSize: '2rem' }} />
                                 )}
                               </IconButton>
                             </InputAdornment>
@@ -143,10 +143,10 @@ const LoginPage = () => {
                   <Grid2 size={12}>
                     <ButtonComp
                       variant="contained"
-                      className={"btn-google"}
+                      className={'btn-google'}
                       fullWidth
                     >
-                      <span className="text">Đăng nhập bằng Google</span>{" "}
+                      <span className="text">Đăng nhập bằng Google</span>{' '}
                       <i className="icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +178,7 @@ const LoginPage = () => {
               </Box>
               <div className="text-bottom mt-8 text-center">
                 <div className="text-signup mb-4">
-                  <span className="text">Chưa đăng ký tài khoản?</span>{" "}
+                  <span className="text">Chưa đăng ký tài khoản?</span>{' '}
                   <Link to={PATH.REGISTER} className="link-regis">
                     Đăng ký
                   </Link>
@@ -199,15 +199,15 @@ export default LoginPage;
 
 export const styles = {
   inputStyles: {
-    "& .MuiInputBase-input": {
-      fontSize: "1.4rem",
+    '& .MuiInputBase-input': {
+      fontSize: '1.4rem',
     },
-    "& .MuiInputLabel-root": {
-      fontSize: "1.4rem",
+    '& .MuiInputLabel-root': {
+      fontSize: '1.4rem',
     },
-    "& .MuiFormHelperText-root": {
-      fontSize: "1.2rem",
-      marginTop: "8px",
+    '& .MuiFormHelperText-root': {
+      fontSize: '1.2rem',
+      marginTop: '8px',
       fontWeight: 500,
     },
   },
