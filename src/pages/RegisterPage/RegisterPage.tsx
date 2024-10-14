@@ -1,8 +1,8 @@
-import imgLogo from "@/assets/img/submarine.jpg";
-import ButtonComp from "@/components/ButtonComp/ButtonComp";
-import InputText from "@/components/InputText/InputText";
-import { PATH } from "@/constant/path";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import imgLogo from '@/assets/img/submarine.jpg';
+import ButtonComp from '@/components/ButtonComp/ButtonComp';
+import InputText from '@/components/InputText/InputText';
+import { PATH } from '@/constant/path';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
   Card,
   CardContent,
@@ -11,9 +11,9 @@ import {
   IconButton,
   InputAdornment,
   Typography,
-} from "@mui/material";
-import { MouseEvent, useState } from "react";
-import { Link } from "react-router-dom";
+} from '@mui/material';
+import { MouseEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -71,7 +71,7 @@ const RegisterPage = () => {
                   </Grid2>
                   <Grid2 size={12}>
                     <InputText
-                      type={showPwd ? "text" : "password"}
+                      type={showPwd ? 'text' : 'password'}
                       placeholder="Mật khẩu"
                       size="medium"
                       sx={styles.inputStyles}
@@ -85,9 +85,9 @@ const RegisterPage = () => {
                             }
                           >
                             {showPwd ? (
-                              <Visibility sx={{ fontSize: "2rem" }} />
+                              <Visibility sx={{ fontSize: '2rem' }} />
                             ) : (
-                              <VisibilityOff sx={{ fontSize: "2rem" }} />
+                              <VisibilityOff sx={{ fontSize: '2rem' }} />
                             )}
                           </IconButton>
                         </InputAdornment>
@@ -112,10 +112,10 @@ const RegisterPage = () => {
                   <Grid2 size={12}>
                     <ButtonComp
                       variant="contained"
-                      className={"btn-google"}
+                      className={'btn-google'}
                       fullWidth
                     >
-                      <span className="text">Google</span>{" "}
+                      <span className="text">Google</span>{' '}
                       <i className="icon">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -148,17 +148,17 @@ const RegisterPage = () => {
               <div className="text-bottom mt-11 text-center">
                 <div className="policy-content mb-10">
                   <p className="text">
-                    Bằng việc đăng kí, bạn đã đồng ý với Homie về{" "}
+                    Bằng việc đăng kí, bạn đã đồng ý với Homie về{' '}
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       Điều khoản dịch vụ
-                    </a>{" "}
-                    &{" "}
+                    </a>{' '}
+                    &{' '}
                     <a href="#" target="_blank" rel="noopener noreferrer">
                       Chính sách bảo mật
                     </a>
                   </p>
                 </div>
-                <span className="text">Đã có tài khoản?</span>{" "}
+                <span className="text">Đã có tài khoản?</span>{' '}
                 <Link to={PATH.LOGIN} className="link-regis">
                   Đăng nhập
                 </Link>
@@ -175,15 +175,15 @@ export default RegisterPage;
 
 export const styles = {
   inputStyles: {
-    "& .MuiInputBase-input": {
-      fontSize: "1.4rem",
+    '& .MuiInputBase-input': {
+      fontSize: '1.4rem',
     },
-    "& .MuiInputLabel-root": {
-      fontSize: "1.4rem",
+    '& .MuiInputLabel-root': {
+      fontSize: '1.4rem',
     },
-    "& .MuiFormHelperText-root": {
-      fontSize: "1.2rem",
-      marginTop: "8px",
+    '& .MuiFormHelperText-root': {
+      fontSize: '1.2rem',
+      marginTop: '8px',
       fontWeight: 500,
     },
   },

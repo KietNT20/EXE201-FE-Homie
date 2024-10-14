@@ -1,10 +1,10 @@
-import { Button } from "@mui/material";
+import { Button } from '@mui/material';
 
 interface Props {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: "contained" | "outlined" | "text";
-  type?: "button" | "submit" | "reset";
+  variant?: 'contained' | 'outlined' | 'text';
+  type?: 'button' | 'submit' | 'reset';
   [key: string]: any;
 }
 

@@ -1,7 +1,10 @@
-import logo from "@/assets/img/logo-homie.png";
-import { PATH } from "@/constant/path";
-import { Close } from "@mui/icons-material";
-import MenuIcon from "@mui/icons-material/Menu";
+import logo from '@/assets/img/logo-homie.png';
+import { PATH } from '@/constant/path';
+import { useAppSelector } from '@/hooks/reudxHook';
+import { RootState } from '@/store/store';
+import tokenMethod from '@/util/token';
+import { Close } from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
   AppBar,
   Box,
@@ -14,25 +17,36 @@ import {
   ListItemText,
   SvgIcon,
   Toolbar,
-} from "@mui/material";
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+} from '@mui/material';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import UserProfileMenu from './UserProfileMenu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { userProfile } = useAppSelector((state: RootState) => state.profile);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const _onLogout = () => {
+    toast.dismiss();
+    localStorage.clear();
+    toast.success('Đăng xuất thành công');
+    navigate(PATH.HOME);
+  };
+
   const menuItems = [
-    { path: PATH.HOME, label: "Trang chủ" },
-    { path: PATH.ABOUT, label: "Về Homie" },
-    { path: PATH.SERVICE, label: "Dịch vụ" },
-    { path: PATH.NEWS, label: "Tin tức" },
-    { path: PATH.COMMITMENT, label: "Cam kết" },
-    { path: PATH.PAYMENT, label: "Thanh toán" },
-    { path: PATH.PARTNER, label: "Trở thành đối tác" },
+    { path: PATH.HOME, label: 'Trang chủ' },
+    { path: PATH.ABOUT, label: 'Về Homie' },
+    { path: PATH.SERVICE, label: 'Dịch vụ' },
+    { path: PATH.NEWS, label: 'Tin tức' },
+    { path: PATH.COMMITMENT, label: 'Cam kết' },
+    { path: PATH.PAYMENT, label: 'Thanh toán' },
+    { path: PATH.PARTNER, label: 'Trở thành đối tác' },
   ];
 
   return (
@@ -60,15 +74,19 @@ const Header = () => {
               <img src={logo} alt="Homie Logo" />
             </Link>
           </Box>
-          <Button
-            component={NavLink}
-            to={PATH.LOGIN}
-            className="header__toolbar-btn"
-            variant="contained"
-            color="primary"
-          >
-            Đăng nhập
-          </Button>
+          {!tokenMethod.get()?.token ? (
+            <Button
+              component={NavLink}
+              to="/login"
+              className="header__toolbar-btn"
+              variant="contained"
+              color="primary"
+            >
+              Đăng nhập
+            </Button>
+          ) : (
+            <UserProfileMenu userProfile={userProfile} onLogout={_onLogout} />
+          )}
         </Toolbar>
         <Drawer anchor="left" open={isMenuOpen} onClose={toggleMenu}>
           <Box sx={{ width: 250 }} role="presentation">
@@ -110,25 +128,25 @@ export const styles = {
     padding: 0,
   },
   closeButtonContainer: {
-    justifyContent: "flex-end",
-    padding: "8px 8px 8px 0",
+    justifyContent: 'flex-end',
+    padding: '8px 8px 8px 0',
   },
   closeButton: {
-    padding: "8px",
-    transition: "all 0.3s",
+    padding: '8px',
+    transition: 'all 0.3s',
     path: {
-      transition: "all 0.3s",
+      transition: 'all 0.3s',
     },
-    "&:hover": {
-      backgroundColor: "rgba(237, 64, 64, 0.951)",
-      borderRadius: "50%",
+    '&:hover': {
+      backgroundColor: 'rgba(237, 64, 64, 0.951)',
+      borderRadius: '50%',
       path: {
-        fill: "white",
+        fill: 'white',
       },
     },
   },
   closeIcon: {
-    fontSize: "22px",
-    transition: "all 0.3s",
+    fontSize: '22px',
+    transition: 'all 0.3s',
   },
 };
