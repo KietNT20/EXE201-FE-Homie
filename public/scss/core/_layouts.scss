@@ -34,7 +34,7 @@ body {
     position: relative;
     margin-top: var(--height-header);
     section {
-      .--paddingy {
+      &.--pd-y {
         padding: var(--pd-section) 0;
       }
     }
