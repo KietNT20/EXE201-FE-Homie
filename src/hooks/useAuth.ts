@@ -1,7 +1,7 @@
 import { PATH } from '@/constant/path';
 import { InputLoginTypes } from '@/pages/LoginPage/schemas/type';
 import { authService } from '@/services/authService';
-import { setUserProfile } from '@/store/actions/userProfileAction/userProfileAction';
+import { setUserProfile } from '@/store/actions/userProfileAction';
 import tokenMethod from '@/util/token';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -20,7 +20,7 @@ export const useLogin = () => {
     onSuccess: (response) => {
       // console.log("login success", response);
       toast.dismiss();
-      queryClient.setQueryData(['user'], response);
+      queryClient.setQueryData(['account'], response);
       tokenMethod.set({ token: response?.data?.tokenString });
       dispatch<any>(setUserProfile(tokenMethod.get()?.token));
       toast.success('Đăng nhập thành công');

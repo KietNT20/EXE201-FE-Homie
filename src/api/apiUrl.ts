@@ -30,8 +30,8 @@ export const API = {
   },
   USER_API: {
     GET_ALL: USER + '/getAllUser',
-    GET_BY_ID: USER + '/getById/',
+    GET_BY_ID: USER + '/getById',
     CREATE: USER + '/create',
-    UPDATE: USER + '/update/',
+    UPDATE: USER + '/update',
   },
 };
