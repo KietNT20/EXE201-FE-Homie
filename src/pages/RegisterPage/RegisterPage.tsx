@@ -18,6 +18,25 @@ import { Link } from 'react-router-dom';
 const RegisterPage = () => {
   const [showPwd, setShowPwd] = useState(false);
 
+  // const {
+  //   control,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<InputLoginTypes>({
+  //   resolver: yupResolver(registerSchema),
+  //   defaultValues: {
+  //     email: '',
+  //     password: '',
+  //   },
+  // });
+
+  // const { login, isPending: registerLoading } = useRegister();
+
+  // const _onSubmit = (data: InputLoginTypes) => {
+  //   const { email, password } = data;
+  //   login({ email, password });
+  // };
+
   const handleClickShowPassword = () => {
     setShowPwd(!showPwd);
   };

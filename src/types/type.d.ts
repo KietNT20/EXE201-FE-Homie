@@ -14,10 +14,6 @@ interface User {
   roleId?: RoleUser;
 }
 
-type UserProfileState = {
-  userProfile: User;
-};
-
 type ActionReduxType = {
   type: string;
   payload?: any;

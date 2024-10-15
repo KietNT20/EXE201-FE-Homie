@@ -15,7 +15,7 @@ export const useLogin = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { mutate, ...rest } = useMutation({
+  const { mutate: login, ...rest } = useMutation({
     mutationKey: ['login'],
     mutationFn: ({ email, password }: InputLoginTypes) =>
       authService.login({ email, password }),
@@ -31,16 +31,16 @@ export const useLogin = () => {
     onError: (error) => {
       toast.dismiss();
       console.log('Login failed', error);
-      toast.error('Đăng nhập thât bại');
+      toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');
     },
   });
 
-  return { mutate, ...rest };
+  return { login, ...rest };
 };
 
 export const useRegister = () => {
   const navigate = useNavigate();
-  const { mutate: register, ...rest } = useMutation({
+  const { mutate: registerUser, ...rest } = useMutation({
     mutationKey: ['register'],
     mutationFn: ({
       name,
@@ -71,5 +71,5 @@ export const useRegister = () => {
     },
   });
 
-  return { register, ...rest };
+  return { registerUser, ...rest };
 };

@@ -1,3 +1,4 @@
+import { UserProfileState } from '@/types/reduxStateType';
 import { SET_USER_PROFILE } from '../actions/userProfileAction';
 
 const initState: UserProfileState = {
