@@ -1,6 +1,17 @@
 export interface TokenResponse {
   token?: string;
 }
+
+export interface UserPayload {
+  name?: string;
+  email?: string;
+  password?: string;
+  phone?: string;
+  dateOfBirth?: string;
+  gender?: string;
+  roleId?: RoleUser;
+}
+
 export interface InputProps {
   label?: string;
   type?: string;
