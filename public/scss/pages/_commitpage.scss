@@ -1,11 +1,11 @@
 .commit {
-.commit__img {
+  .commit__img {
     width: 100%;
     max-width: 1200px;
     /* Adjust based on how wide you want the section */
     height: 250px;
     /* Adjust this based on your needs */
-    background-image: url('/src/assets/img/submarine.png');
+    background-image: url('src/assets/img/submarine.jpg');
     /* Use the path to your image here */
     background-size: cover;
     background-position: center;
@@ -52,33 +52,31 @@
     // height: 250px;
     img {
       @include midImg;
-          border-radius: 20px;
+      border-radius: 20px;
     }
-
   }
 
   .commit__content {
     h1,
-      h2 {
-        color: #2E86C1;
-      }
-    
-      h1 {
-        text-align: center;
-      }
-    
-      ul {
-        list-style-type: disc;
-        padding-left: 20px;
-      }
-    
-      .section {
-        margin-bottom: 30px;
-      }
-    
-      .condition {
-        color: #d9534f;
-      }
+    h2 {
+      color: #2e86c1;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .condition {
+      color: #d9534f;
+    }
   }
 }
-

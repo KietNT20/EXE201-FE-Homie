@@ -1,3 +1,8 @@
+enum RoleUser {
+  ADMIN = 1,
+  USER = 2,
+}
+
 interface User {
   id?: number;
   name?: string;
@@ -6,16 +11,16 @@ interface User {
   phone?: string;
   dateOfBirth?: Date;
   gender?: 'male' | 'female';
-  roleId?: number;
+  roleId?: RoleUser;
 }
 
 type UserProfileState = {
   userProfile: User;
 };
 
-type UserProfileAction = {
+type ActionReduxType = {
   type: string;
   payload?: any;
 };
 
-type DispatchUserProfileType = (args: UserProfileAction) => UserProfileAction;
+type DispatchType<T> = (args: T) => T;

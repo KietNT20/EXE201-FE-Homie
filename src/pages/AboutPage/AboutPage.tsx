@@ -1,8 +1,7 @@
 import homieLogoSrc from '@/assets/img/logo-homie.png';
 import bannerImageSrc from '@/assets/img/submarine.jpg';
-import React from 'react';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   return (
     <div className="home-page">
       <header

@@ -1,10 +1,10 @@
-import logoCommit from '@/assets/z5887437884214_65e5a423e0ea91c635acb4c1c09fa113.png';
+import logoCommit from '@/assets/img/banner_commit.png';
 import { Container } from '@mui/material';
 
 const CommitPage = () => {
   return (
     <Container>
-      <section className="commit">
+      <section className="commit --pd-y">
         <div className="commit__img">
           <div className="commit-overlay">
             <h1>Cam Kết Của Homie</h1>
