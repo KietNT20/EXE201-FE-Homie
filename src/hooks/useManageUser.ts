@@ -1,4 +1,5 @@
 import { userService } from '@/services/userService';
+import { UserPayload } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -26,7 +27,7 @@ export const useCreateUser = () => {
       dateOfBirth,
       gender,
       roleId,
-    }: User) =>
+    }: UserPayload) =>
       userService.createUser({
         name,
         email,
@@ -55,12 +56,26 @@ export const useCreateUser = () => {
 export const useUpdateUser = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({
-    mutationFn: ({ email, name }) => {
-      return axiosInstance.put(API.USERS, {
-        email,
+    mutationFn: ({
+      id,
+      name,
+      email,
+      password,
+      phone,
+      dateOfBirth,
+      gender,
+      roleId,
+    }: User) =>
+      userService.updateUser({
+        id,
         name,
-      });
-    },
+        email,
+        password,
+        phone,
+        dateOfBirth,
+        gender,
+        roleId,
+      }),
     onSuccess: () => {
       toast.dismiss();
       queryClient.invalidateQueries({
@@ -74,5 +89,6 @@ export const useUpdateUser = () => {
       toast.error('Update User Failed');
     },
   });
+
   return { mutate, ...rest };
 };

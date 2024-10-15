@@ -24,7 +24,7 @@ export const API = {
     GET_BY_ID: JOB_POST + '/getById',
   },
   PROFILES_API: {
-    GET_ALL: PROFILES + '/getProfiles/',
+    GET_PROFILES: PROFILES + '/getProfiles/',
     UPDATE: PROFILES + '/UpdateProfiles/',
     CREATE: PROFILES + '/CreateProfiles',
   },

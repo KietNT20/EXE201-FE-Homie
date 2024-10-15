@@ -9,14 +9,10 @@ interface User {
   email?: string;
   password?: string;
   phone?: string;
-  dateOfBirth?: Date;
+  dateOfBirth?: string;
   gender?: 'male' | 'female';
   roleId?: RoleUser;
 }
-
-type UserProfileState = {
-  userProfile: User;
-};
 
 type ActionReduxType = {
   type: string;

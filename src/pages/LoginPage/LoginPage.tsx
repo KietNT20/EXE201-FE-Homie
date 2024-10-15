@@ -23,6 +23,7 @@ import { InputLoginTypes } from './schemas/type';
 
 const LoginPage = () => {
   const [showPwd, setShowPwd] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -35,11 +36,11 @@ const LoginPage = () => {
     },
   });
 
-  const { mutate: doLoginUser, isPending: loginLoading } = useLogin();
+  const { login, isPending: loginLoading } = useLogin();
 
   const _onSubmit = (data: InputLoginTypes) => {
     const { email, password } = data;
-    doLoginUser({ email, password });
+    login({ email, password });
   };
 
   const handleClickShowPassword = () => {
