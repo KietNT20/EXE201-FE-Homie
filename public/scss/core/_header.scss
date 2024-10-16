@@ -13,9 +13,10 @@
     .header__toolbar-btn {
       height: var(--height-button);
       width: fit-content;
-      @include text(vnSemiBold, 1.6rem, normal, var(--white-cl));
+      @include text(vnSemiBold, 1.6rem, normal, var(--blue-light));
     }
     &-icon {
+      display: block;
       svg {
         height: 20px;
         width: 20px;

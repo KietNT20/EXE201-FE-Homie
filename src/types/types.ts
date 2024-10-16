@@ -7,7 +7,7 @@ export interface UserPayload {
   email?: string;
   password?: string;
   phone?: string;
-  dateOfBirth?: string;
+  dateOfBirth?: Date | null;
   gender?: string;
   roleId?: RoleUser;
 }
