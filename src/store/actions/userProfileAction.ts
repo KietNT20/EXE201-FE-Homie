@@ -3,7 +3,7 @@ import { authService } from '@/services/authService';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export const setUserProfile = (params: string) => {
-  return async (dispatch: DispatchUserProfileType) => {
+  return async (dispatch: DispatchType<ActionReduxType>) => {
     const res = await authService.getUserByToken(params);
     try {
       if (res) {

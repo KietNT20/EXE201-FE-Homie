@@ -1,4 +1,5 @@
-import { SET_USER_PROFILE } from '../actions/userProfileAction/userProfileAction';
+import { UserProfileState } from '@/types/reduxStateType';
+import { SET_USER_PROFILE } from '../actions/userProfileAction';
 
 const initState: UserProfileState = {
   userProfile: {},
@@ -6,7 +7,7 @@ const initState: UserProfileState = {
 
 const userProfileReducer = (
   state = initState,
-  { type, payload }: UserProfileAction,
+  { type, payload }: ActionReduxType,
 ) => {
   switch (type) {
     case SET_USER_PROFILE:

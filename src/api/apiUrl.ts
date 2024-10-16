@@ -24,14 +24,14 @@ export const API = {
     GET_BY_ID: JOB_POST + '/getById',
   },
   PROFILES_API: {
-    GET_ALL: PROFILES + '/getProfiles/',
+    GET_PROFILES: PROFILES + '/getProfiles/',
     UPDATE: PROFILES + '/UpdateProfiles/',
     CREATE: PROFILES + '/CreateProfiles',
   },
   USER_API: {
     GET_ALL: USER + '/getAllUser',
-    GET_BY_ID: USER + '/getById/',
+    GET_BY_ID: USER + '/getById',
     CREATE: USER + '/create',
-    UPDATE: USER + '/update/',
+    UPDATE: USER + '/update',
   },
 };

@@ -25,50 +25,54 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
     handleMenuClose();
   };
 
-  if (!userProfile) {
-    return (
-      <Button
-        component={NavLink}
-        to={PATH.LOGIN}
-        className="header__toolbar-btn"
-        variant="contained"
-        color="primary"
-      >
-        Đăng nhập
-      </Button>
-    );
-  }
-
   return (
     <>
-      <div className="flex items-center">
-        <IconButton onClick={handleMenuOpen}>
-          <AccountCircle fontSize="large" />
-        </IconButton>
-        <Typography variant="body1" sx={{ ml: 1 }}>
-          {userProfile.email}
-        </Typography>
-      </div>
-      <Menu
-        id="menu-appbar"
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-      >
-        <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>
-          Thông tin cá nhân
-        </MenuItem>
-        <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
-      </Menu>
+      {!userProfile ? (
+        <Button
+          component={NavLink}
+          to={PATH.LOGIN}
+          className="header__toolbar-btn"
+          variant="contained"
+          color="primary"
+        >
+          Đăng nhập
+        </Button>
+      ) : (
+        <>
+          <div className="flex items-center">
+            <IconButton onClick={handleMenuOpen}>
+              <AccountCircle fontSize="large" />
+            </IconButton>
+            <Typography variant="body1" sx={{ ml: 1 }}>
+              {userProfile.email}
+            </Typography>
+          </div>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem
+              component={NavLink}
+              to="/profile"
+              onClick={handleMenuClose}
+            >
+              Thông tin cá nhân
+            </MenuItem>
+            <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
+          </Menu>
+        </>
+      )}
     </>
   );
 };
