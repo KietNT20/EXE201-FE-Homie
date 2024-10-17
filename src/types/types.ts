@@ -1,6 +1,4 @@
-export interface TokenResponse {
-  token?: string;
-}
+export type TokenResponse = string;
 
 export interface UserPayload {
   name?: string;
@@ -14,58 +12,35 @@ export interface UserPayload {
 
 export interface InputProps {
   label?: string;
-  type?: string;
+  type: string;
   disabled?: boolean;
-  placeholder?: string;
-  size?: 'small' | 'medium';
+  placeholder: string;
+  size: 'small' | 'medium';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   sx?: object;
   [key: string]: any;
 }
 
-export interface ServiceCardData {
-  name: string;
-  job: string;
-  price: string;
-  rating: number;
-  reviewCount: number;
-  avatar?: string;
-  time: string;
-  userAddress: string;
-  categories: Array<
-    | 'Dọn dẹp nhà cửa'
-    | 'Giặt giũ, ủi đồ'
-    | 'Nấu ăn'
-    | 'Chăm sóc trẻ em'
-    | 'Sửa chữa nhà cửa'
-    | 'Chăm sóc thú cưng'
-    | 'Dạy học'
-    | 'Làm vườn'
-  >;
-  serviceDescription: string;
-  joinDate: string;
+export interface CategoryService {
+  categoryId: number;
+}
+
+export interface JobPost {
+  userId: number;
+  title: string;
+  description: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  price: number;
+  status: string;
+  createDate?: string;
+  categorys: CategoryService[];
 }
 
 export interface ServiceCardProps {
-  name: string;
-  job: string;
-  price: string;
-  rating: number;
-  reviewCount: number;
-  avatar?: string;
-  time: string;
-  status: string;
-  userAddress: string;
-  categories: Array<
-    | 'Dọn dẹp nhà cửa'
-    | 'Giặt giũ, ủi đồ'
-    | 'Nấu ăn'
-    | 'Chăm sóc trẻ em'
-    | 'Sửa chữa nhà cửa'
-    | 'Chăm sóc thú cưng'
-    | 'Dạy học'
-    | 'Làm vườn'
-  >;
   onClick: () => void;
+  jobPost: JobPost;
+  [key: string]: any;
 }

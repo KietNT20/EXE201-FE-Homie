@@ -19,18 +19,19 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SxProps,
   Typography,
 } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import React, { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { registerSchema } from './schemas/schema';
 import { InputRegisterTypes } from './schemas/type';
 
-const RegisterPage: React.FC = () => {
+const RegisterPage = () => {
   const [showPwd, setShowPwd] = useState(false);
 
   const {
@@ -58,9 +59,7 @@ const RegisterPage: React.FC = () => {
     setShowPwd(!showPwd);
   };
 
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
+  const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
 
@@ -145,7 +144,7 @@ const RegisterPage: React.FC = () => {
                         justifyContent: 'space-between',
                       }}
                     >
-                      <Box sx={{ width: '48%' }}>
+                      <Box sx={{ width: '56%' }}>
                         <Controller
                           name="dateOfBirth"
                           control={control}
@@ -155,8 +154,17 @@ const RegisterPage: React.FC = () => {
                                 {...field}
                                 label="Ngày sinh"
                                 format="DD/MM/YYYY"
-                                sx={styles.inputStyles}
+                                className="date-picker w-full"
+                                sx={{
+                                  '.MuiDateCalendar-root': {
+                                    borderRadius: '8px',
+                                    fontSize: '1.6rem',
+                                  },
+                                }}
                                 slotProps={{
+                                  desktopPaper: {
+                                    sx: popperSx,
+                                  },
                                   textField: {
                                     error: !!errors.dateOfBirth,
                                     helperText: errors.dateOfBirth?.message,
@@ -167,7 +175,7 @@ const RegisterPage: React.FC = () => {
                           )}
                         />
                       </Box>
-                      <Box sx={{ width: '48%' }}>
+                      <Box sx={{ width: '40%' }}>
                         <Controller
                           name="gender"
                           control={control}
@@ -302,5 +310,11 @@ const styles = {
       marginTop: '8px',
       fontWeight: 500,
     },
+  },
+};
+
+const popperSx: SxProps = {
+  '& .MuiPopover-paper': {
+    borderRadius: '8px',
   },
 };
