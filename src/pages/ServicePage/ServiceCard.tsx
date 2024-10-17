@@ -1,29 +1,7 @@
-import React from 'react';
+import { ServiceCardProps } from '@/types/types';
 import { AccountCircle, Star } from '@mui/icons-material';
 
-interface ServiceCardProps {
-  name: string;
-  job: string;
-  price: string;
-  rating: number;
-  reviewCount: number;
-  avatar?: string;
-  time: string;
-  userAddress: string;
-  categories: Array<
-    | 'Dọn dẹp nhà cửa'
-    | 'Giặt giũ, ủi đồ'
-    | 'Nấu ăn'
-    | 'Chăm sóc trẻ em'
-    | 'Sửa chữa nhà cửa'
-    | 'Chăm sóc thú cưng'
-    | 'Dạy học'
-    | 'Làm vườn'
-  >;
-  onClick: () => void;
-}
-
-const ServiceCard: React.FC<ServiceCardProps> = ({
+const ServiceCard = ({
   name,
   job,
   price,
@@ -34,7 +12,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   userAddress,
   categories,
   onClick,
-}) => {
+}: ServiceCardProps) => {
   const status = 'Đang sẵn sàng';
   return (
     <div className="card" onClick={onClick}>
