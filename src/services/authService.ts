@@ -1,4 +1,5 @@
 import { API } from '@/api/apiUrl';
+import { TokenResponse } from '@/types/types';
 import axiosInstance from '@/util/axiosInstance';
 
 export const authService = {
@@ -6,7 +7,7 @@ export const authService = {
     console.log(payload);
     return axiosInstance.post(API.AUTH_API.LOGIN, payload);
   },
-  getUserByToken(payload: string) {
-    return axiosInstance.get(API.AUTH_API.GET_USER_BY_TOKEN + payload);
+  getUserByToken(token: TokenResponse) {
+    return axiosInstance.get(API.AUTH_API.GET_USER_BY_TOKEN + token);
   },
 };

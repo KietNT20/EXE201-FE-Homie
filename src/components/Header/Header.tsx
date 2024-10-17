@@ -59,7 +59,7 @@ const Header = () => {
           </p>
         </div>
         <Toolbar className="header__toolbar">
-          <div className="flex items-center justify-center w-[106.96px]">
+          <div className="flex items-center w-[106.96px]">
             <IconButton
               size="large"
               edge="start"

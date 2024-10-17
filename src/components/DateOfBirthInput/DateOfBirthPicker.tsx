@@ -36,18 +36,11 @@ const DateOfBirthPicker: React.FC<DateOfBirthPickerProps> = ({ onChange }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
-        sx={{ width: '100%' }}
         format="DD/MM/YYYY"
         value={value}
         onChange={handleChange}
         minDate={minDate}
         maxDate={maxDate}
-        slotProps={{
-          textField: {
-            helperText: error,
-            error: !!error,
-          },
-        }}
       />
     </LocalizationProvider>
   );
