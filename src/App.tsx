@@ -1,5 +1,6 @@
 import { QueryClient } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import './assets/scss/style.scss';
 import AppRoutes from './routes/AppRoutes';
 export const queryClient = new QueryClient();
 
