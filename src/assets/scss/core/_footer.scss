@@ -1,3 +1,5 @@
+@use "mixins";
+
 .footer {
   background-color: var(--blue-dark);
   color: var(--white-cl);
@@ -16,15 +18,15 @@
         padding: 12px;
         height: 80px;
         max-width: 120px;
-        @include mid(flex);
+        @include mixins.mid(flex);
         margin-bottom: 32px;
         &-img {
-          @include midImg;
+          @include mixins.midImg;
         }
       }
       .footer__info {
         p {
-          @include text(vnRegular, 16px, 24px, #eaecf0);
+          @include mixins.text(vnRegular, 16px, 24px, #eaecf0);
           padding: 6px 0;
         }
       }
@@ -39,7 +41,7 @@
   }
 
   .footer__bottom {
-    @include mid(flex);
+    @include mixins.mid(flex);
     flex-direction: column;
     width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -52,7 +54,7 @@
     }
 
     &-copyright {
-      @include text(vnRegular, 14px, 24px, rgba(255, 255, 255, 0.6));
+      @include mixins.text(vnRegular, 14px, 24px, rgba(255, 255, 255, 0.6));
     }
   }
 }
