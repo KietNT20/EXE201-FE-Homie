@@ -1,3 +1,5 @@
+@use "mixins";
+
 html {
   font-size: 62.5%; // 1rem = 10px
 }
@@ -9,7 +11,7 @@ body {
   font-family: vnRegular;
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  @include customScroll;
+  @include mixins.customScroll;
   &.--disable-scroll {
     height: 100vh;
     overflow: hidden;

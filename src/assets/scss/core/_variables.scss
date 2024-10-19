@@ -1,3 +1,5 @@
+@use "mixins";
+
 :root {
   /* MaxWidth Of Page, Container-Fluid, Container, Gutter*/
   --max-width-page: 2560px;
@@ -36,10 +38,10 @@
   --cubic: cubic-bezier(0.59, 0.29, 0.15, 0.93);
 
   // Responsive
-  @include xl {
+  @include mixins.xl {
     --container-max-width: 1140px;
   }
-  @include lg {
+  @include mixins.lg {
     --container-max-width: 960px;
   }
 }

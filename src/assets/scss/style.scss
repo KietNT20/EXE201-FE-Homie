@@ -1,23 +1,23 @@
 /* Core variables and mixins*/
-@import 'core/reset';
-@import 'core/mixins';
-@import 'core/variables';
-@import 'core/layouts';
-@import 'core/components';
+@use 'core/reset';
+@use 'core/mixins';
+@use 'core/variables';
+@use 'core/layouts';
+@use 'core/components';
 
 /* Navigation, header, footer*/
-@import 'core/header';
-@import 'core/nav';
-@import 'core/footer';
+@use 'core/header';
+@use 'core/nav';
+@use 'core/footer';
 
 /* Pages*/
-@import 'pages/home';
-@import 'pages/loginpage';
-@import 'pages/dashboard';
-@import 'pages/paymentpage';
-@import 'pages/servicepage';
-@import 'pages/partnerpage';
-@import 'pages/commitpage';
-@import 'pages/servicedetails';
-@import 'pages/aboutpage';
-@import 'pages/newpage';
+@use 'pages/home';
+@use 'pages/loginpage';
+@use 'pages/dashboard';
+@use 'pages/paymentpage';
+@use 'pages/servicepage';
+@use 'pages/partnerpage';
+@use 'pages/commitpage';
+@use 'pages/servicedetails';
+@use 'pages/aboutpage';
+@use 'pages/newpage';
