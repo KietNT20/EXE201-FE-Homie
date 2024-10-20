@@ -1,16 +1,6 @@
-import { InputAdornment, TextField } from "@mui/material";
-import { forwardRef, Ref } from "react";
-
-interface Props {
-  label?: string;
-  type?: string;
-  disabled?: boolean;
-  placeholder?: string;
-  size?: "small" | "medium";
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-  sx?: object;
-}
+import { InputProps } from '@/types/types';
+import { InputAdornment, TextField } from '@mui/material';
+import { forwardRef, Ref } from 'react';
 
 const InputText = (
   {
@@ -23,7 +13,7 @@ const InputText = (
     endIcon,
     sx,
     ...restProps
-  }: Props,
+  }: InputProps,
   ref: Ref<HTMLInputElement>,
 ) => (
   <TextField

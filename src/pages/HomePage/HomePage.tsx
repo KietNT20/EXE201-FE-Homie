@@ -1,8 +1,8 @@
-import homieLogoSrc from "../../assets/logo-homie.png";
-import SearchIcon from '@mui/icons-material/Search';
+import homieLogoSrc from '@/assets/img/logo-homie.png';
+import bannerImageSrc from '@/assets/img/submarine.jpg';
 import ZaloIcon from '@mui/icons-material/Chat';
+import SearchIcon from '@mui/icons-material/Search';
 import { Button } from '@mui/material';
-import bannerImageSrc from "../../assets/submarine.jpg";
 
 const HomieComponent = () => {
   const services = [
@@ -11,25 +11,27 @@ const HomieComponent = () => {
     { label: 'Nấu ăn', icon: '🍳' },
     { label: 'Chăm sóc người bệnh', icon: '❤️' },
     { label: 'Chăm sóc thú cưng', icon: '🐾' },
-    { label: 'Chăm sóc trẻ em', icon: '👶' }
+    { label: 'Chăm sóc trẻ em', icon: '👶' },
   ];
 
   return (
     <div className="homie-component">
-
       <main>
         <section className="hero">
-            <div className="hero-content">
+          <div className="hero-content">
             <img src={homieLogoSrc} alt="Homie logo" className="hero-logo" />
             <h1>Homie</h1>
             <p>Your Home's Guardian</p>
             <div className="search-container">
-              <input type="text" placeholder="Tìm kiếm Phổ Biến: Dọn nhà, Giặt Giũ, Nấu Ăn" />
+              <input
+                type="text"
+                placeholder="Tìm kiếm Phổ Biến: Dọn nhà, Giặt Giũ, Nấu Ăn"
+              />
               <Button variant="contained" className="search-button">
-              <SearchIcon /> Tìm kiếm
+                <SearchIcon /> Tìm kiếm
               </Button>
             </div>
-            </div>
+          </div>
         </section>
 
         <section className="services">
@@ -42,13 +44,11 @@ const HomieComponent = () => {
               </Button>
             ))}
           </div>
-            <div className="service-illustration">
+          <div className="service-illustration">
             <img src={bannerImageSrc} alt="Service workers" />
-            </div>
+          </div>
         </section>
       </main>
-
-
 
       <Button className="zalo-button">
         <ZaloIcon />

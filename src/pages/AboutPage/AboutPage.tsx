@@ -1,8 +1,7 @@
-import React from "react";
-import homieLogoSrc from "../../assets/logo-homie.png";
-import bannerImageSrc from "../../assets/submarine.jpg";
+import homieLogoSrc from '@/assets/img/logo-homie.png';
+import bannerImageSrc from '@/assets/img/submarine.jpg';
 
-const AboutPage: React.FC = () => {
+const AboutPage = () => {
   return (
     <div className="home-page">
       <header

@@ -1,0 +1,79 @@
+@use "mixins";
+
+// create css component
+.footer__title {
+  @include mixins.text(vnRegular, 14px, 20px, #98a2b3);
+  padding-bottom: 16px;
+}
+.footer__list {
+  li {
+    padding: 6px 0;
+    cursor: pointer;
+    a {
+      @include mixins.text(vnRegular, 16px, 24px, #eaecf0);
+      color: var(--white-cl);
+      text-decoration: none;
+      @include mixins.transition(var(--duration));
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.footer-news {
+  @include mixins.text(vnRegular, 12px, 18px, #101828);
+  padding: 2px 8px;
+  border-radius: 16px;
+  background: #f2f4f7;
+  margin-left: 8px;
+}
+
+.active {
+  width: 100%;
+  height: 100%;
+  @include mixins.mid(flex);
+  background-color: var(--blue-light) !important;
+  color: var(--white-cl) !important;
+  @include mixins.transition(var(--duration));
+}
+
+.loginForm__right-form,
+.registerForm__right-form {
+  .btn {
+    height: var(--height-button);
+    @include mixins.text(vnSemiBold, 1.6rem, 2.4rem, var(--white-cl));
+  }
+}
+
+.or-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  .line {
+    width: 100%;
+    height: 0.8px;
+    background: #98a2b3;
+  }
+  .or {
+    @include mixins.text(vnRegular, 1.4rem, 2rem, #98a2b3);
+    margin: 0 12px;
+  }
+}
+.text_normail {
+  @include mixins.text(vnRegular, 1rem, 2rem, none, none);
+}
+.item__button {
+  .item__text {
+    padding: 20px 0 20px 16px;
+    span {
+      @include mixins.text(vnRegular, 1.6rem, 2rem, none, none);
+    }
+  }
+}
+
+.MuiButtonBase-root {
+  font-size: 20px;
+}

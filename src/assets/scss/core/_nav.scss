@@ -1,0 +1,11 @@
+// custom menu mobile
+.progressbar {
+  width: 0%;
+  height: 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #001642;
+  z-index: 1200;
+  // @include visible(1);
+}
