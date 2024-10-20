@@ -19,7 +19,6 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SxProps,
   Typography,
 } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -155,6 +154,9 @@ const RegisterPage = () => {
                                 label="Ngày sinh"
                                 format="DD/MM/YYYY"
                                 className="date-picker w-full"
+                                openTo="year"
+                                views={['year', 'month', 'day']}
+                                yearsOrder="desc"
                                 sx={{
                                   '.MuiDateCalendar-root': {
                                     borderRadius: '8px',
@@ -162,9 +164,6 @@ const RegisterPage = () => {
                                   },
                                 }}
                                 slotProps={{
-                                  desktopPaper: {
-                                    sx: popperSx,
-                                  },
                                   textField: {
                                     error: !!errors.dateOfBirth,
                                     helperText: errors.dateOfBirth?.message,
@@ -180,11 +179,7 @@ const RegisterPage = () => {
                           name="gender"
                           control={control}
                           render={({ field }) => (
-                            <FormControl
-                              fullWidth
-                              error={!!errors.gender}
-                              sx={styles.inputStyles}
-                            >
+                            <FormControl fullWidth error={!!errors.gender}>
                               <InputLabel id="gender-label">
                                 Giới tính
                               </InputLabel>
@@ -310,11 +305,5 @@ const styles = {
       marginTop: '8px',
       fontWeight: 500,
     },
-  },
-};
-
-const popperSx: SxProps = {
-  '& .MuiPopover-paper': {
-    borderRadius: '8px',
   },
 };

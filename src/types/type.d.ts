@@ -1,7 +1,8 @@
 enum RoleUser {
   ADMIN = 1,
-  USER = 2,
+  CUSTOMER = 2,
   EMPLOYEE = 3,
+  STAFF = 4,
 }
 
 interface User {
