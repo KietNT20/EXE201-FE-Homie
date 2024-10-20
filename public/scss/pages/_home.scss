@@ -1,0 +1,155 @@
+.homie-component {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+
+
+  main {
+    .hero {
+      background: linear-gradient(to bottom, #e6f7ff, #fff);
+      padding: 5rem;
+      text-align: center;
+      border-radius: 30px;
+      margin: 1rem 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+      margin-top: 10rem; /* Added margin-top for spacing */
+      margin-bottom: 10rem;
+      margin-right: 10rem;
+      margin-left: 10rem; /* Added margin-bottom for spacing */
+      .hero-content {
+        max-width: 600px;
+        margin: 0 auto;
+
+        .hero-logo {
+          width: 80px;
+          height: 80px;
+          margin-bottom: 1rem;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+          color: #00a0e9;
+          margin: 0.5rem 0;
+          font-weight: bold;
+        }
+
+        p {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: #666;
+        }
+
+        .search-container {
+          display: flex;
+          margin-top: 10rem;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          border-radius: 25px;
+          overflow: hidden;
+
+          input {
+            flex-grow: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            font-size: 1.5rem;
+            &::placeholder {
+              color: #999;
+            }
+          }
+
+          .search-button {
+            background-color: #ffd700;
+            color: #333;
+            border-radius: 0 25px 25px 0;
+            padding: 0.8rem 1.5rem;
+            font-size: 1.5rem;
+            text-transform: none;
+
+          }
+        }
+      }
+    }
+
+    .services {
+      padding: 2rem;
+      text-align: center;
+      margin-top: 6rem;
+      margin-bottom: 3rem; /* Added margin-top for spacing */
+
+      h2 {
+      font-size: 3rem;
+      margin-bottom: 0rem;
+      color: #333;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem; /* Increased gap between grid items */
+        justify-content: center; /* Center the grid */
+        margin-bottom: 10rem;
+        margin-top: 10rem;
+        padding-left: 300px; /* Add left padding */
+        padding-right: 300px; /* Add right padding */
+
+        .service-button {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem;
+          background-color: #fff;
+          border: none;
+          border-radius: 16px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          width: 70%; /* Make the width shorter */
+          margin: 2rem auto; /* Increase the spacing */
+          justify-self: center; /* Center the button within the grid */
+
+          &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          }
+
+          .service-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+          }
+
+          span {
+        font-size: 0.9rem;
+        color: #333;
+          }
+        }
+      }
+
+      .service-illustration {
+        display: flex;
+        justify-content: center;
+        img {
+          max-width: 35%;
+          height: auto;
+          border-radius: 10px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      }
+  }
+
+
+
+
+  .zalo-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #0068ff;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.8rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    
+
+  }
+}
+}

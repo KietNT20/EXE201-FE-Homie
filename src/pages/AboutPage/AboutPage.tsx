@@ -2,7 +2,7 @@ import React from "react";
 import homieLogoSrc from "../../assets/logo-homie.png";
 import bannerImageSrc from "../../assets/submarine.jpg";
 
-const HomePage: React.FC = () => {
+const AboutPage: React.FC = () => {
   return (
     <div className="home-page">
       <header
@@ -76,4 +76,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default AboutPage;
