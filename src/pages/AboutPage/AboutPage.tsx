@@ -1,7 +1,7 @@
 import homieLogoSrc from '@/assets/img/logo-homie.png';
 import bannerImageSrc from '@/assets/img/submarine.jpg';
 
-const HomePage = () => {
+const AboutPage = () => {
   return (
     <div className="home-page">
       <header
@@ -75,4 +75,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default AboutPage;

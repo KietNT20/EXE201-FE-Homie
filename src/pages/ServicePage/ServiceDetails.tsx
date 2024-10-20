@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import {
-  Star,
-  AccountCircle,
-  ExpandMore,
-  ExpandLess,
-} from '@mui/icons-material';
 import { ServiceCardData } from '@/types/types';
+import {
+  AccountCircle,
+  ExpandLess,
+  ExpandMore,
+  Star,
+} from '@mui/icons-material';
+import React, { useState } from 'react';
 
 interface ServiceDetailsProps {
   service: ServiceCardData;

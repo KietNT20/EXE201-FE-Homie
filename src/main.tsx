@@ -1,3 +1,4 @@
+import { StyledEngineProvider } from '@mui/material';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { StrictMode } from 'react';
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')!).render(
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>
-            <App />
+            <StyledEngineProvider injectFirst>
+              <App />
+            </StyledEngineProvider>
           </BrowserRouter>
         </PersistGate>
       </Provider>

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import ListIcon from '@mui/icons-material/List';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ListIcon from '@mui/icons-material/List';
+import React, { useState } from 'react';
 
 interface CategoryListProps {
   onCategorySelect: (category: string | null) => void;
