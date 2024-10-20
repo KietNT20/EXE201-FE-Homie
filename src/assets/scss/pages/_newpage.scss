@@ -1,13 +1,16 @@
 .news-page {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    padding: 20px;
-  
+  font-family: 'Be Vietnam', sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
     .banner {
       position: relative;
-      height: 250px;
+      height: 200px;
       overflow: hidden;
-      border-radius: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+
   
       .banner-image {
         width: 100%;
@@ -35,7 +38,7 @@
     }
   
     main {
-      margin-top: 100px;
+      margin-top: 50px;
   
       .news-grid {
         display: grid;

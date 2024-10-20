@@ -3,3 +3,16 @@ Aboutpage.tsx
 NewsPage.tsx
 _Aboutpage.scss
 _NewPagescss
+
+update scss:
+_Aboutpage.scss
+_NewPagescss
+_ServicePage
+
+
+
+7. 
+
+_home,scss
+
+HomePage.tsx

@@ -157,12 +157,6 @@ const RegisterPage = () => {
                                 openTo="year"
                                 views={['year', 'month', 'day']}
                                 yearsOrder="desc"
-                                sx={{
-                                  '.MuiDateCalendar-root': {
-                                    borderRadius: '8px',
-                                    fontSize: '1.6rem',
-                                  },
-                                }}
                                 slotProps={{
                                   textField: {
                                     error: !!errors.dateOfBirth,
