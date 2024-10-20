@@ -43,9 +43,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
             <IconButton onClick={handleMenuOpen}>
               <AccountCircle fontSize="large" />
             </IconButton>
-            <Typography variant="body1" sx={{ ml: 1 }}>
-              {userProfile.email}
-            </Typography>
+            <Typography variant="body1">{userProfile.email}</Typography>
           </div>
           <Menu
             id="menu-appbar"

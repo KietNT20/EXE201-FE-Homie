@@ -10,6 +10,11 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './reudxHook';
 
+/*
+ * useLogin hook
+ * @description
+ * This hook is used to login user
+ */
 export const useLogin = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -38,6 +43,11 @@ export const useLogin = () => {
   return { login, ...rest };
 };
 
+/*
+ * useLogout hook
+ * @description
+ * This hook is used to register user has  role id is customer
+ */
 export const useRegister = () => {
   const navigate = useNavigate();
   const { mutate: registerUser, ...rest } = useMutation({
@@ -49,6 +59,7 @@ export const useRegister = () => {
       phone,
       dateOfBirth,
       gender,
+      roleId,
     }: UserPayload) =>
       userService.createUser({
         name,
@@ -57,7 +68,7 @@ export const useRegister = () => {
         phone,
         dateOfBirth,
         gender,
-        roleId: 2,
+        roleId,
       }),
     onSuccess: () => {
       toast.dismiss();
