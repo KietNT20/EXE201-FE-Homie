@@ -26,7 +26,6 @@ export const useCreateUser = () => {
       phone,
       dateOfBirth,
       gender,
-      roleId,
     }: UserPayload) =>
       userService.createUser({
         name,
@@ -35,7 +34,7 @@ export const useCreateUser = () => {
         phone,
         dateOfBirth,
         gender,
-        roleId,
+        roleId: 2,
       }),
     onSuccess: () => {
       toast.dismiss();
