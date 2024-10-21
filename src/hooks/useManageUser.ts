@@ -1,5 +1,4 @@
 import { userService } from '@/services/userService';
-import { UserPayload } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -19,14 +18,7 @@ export const useGetApiUsers = () => {
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({
-    mutationFn: ({
-      name,
-      email,
-      password,
-      phone,
-      dateOfBirth,
-      gender,
-    }: UserPayload) =>
+    mutationFn: ({ name, email, password, phone, dateOfBirth, gender }: User) =>
       userService.createUser({
         name,
         email,

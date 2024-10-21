@@ -3,7 +3,6 @@ import { InputLoginTypes } from '@/pages/LoginPage/schemas/type';
 import { authService } from '@/services/authService';
 import { userService } from '@/services/userService';
 import { setUserProfile } from '@/store/actions/userProfileAction';
-import { UserPayload } from '@/types/types';
 import tokenMethod from '@/util/token';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -60,7 +59,7 @@ export const useRegister = () => {
       dateOfBirth,
       gender,
       roleId,
-    }: UserPayload) =>
+    }: User) =>
       userService.createUser({
         name,
         email,

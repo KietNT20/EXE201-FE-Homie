@@ -1,21 +1,11 @@
 export type TokenResponse = string;
 
-export interface UserPayload {
-  name?: string;
-  email?: string;
-  password?: string;
-  phone?: string;
-  dateOfBirth?: Date | null;
-  gender?: string;
-  roleId?: RoleUser;
-}
-
 export interface InputProps {
   label?: string;
   type: string;
   disabled?: boolean;
   placeholder: string;
-  size: 'small' | 'medium';
+  size: 'small' | 'medium' | 'large';
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   sx?: object;
@@ -26,7 +16,13 @@ export interface CategoryService {
   categoryId: number;
 }
 
+export enum JobPostStatus {
+  DONE = 'Done',
+  CANCELLED = 'Cancelled',
+}
+
 export interface JobPost {
+  id?: number;
   userId: number;
   title: string;
   description: string;
@@ -34,7 +30,7 @@ export interface JobPost {
   startDate: string;
   endDate: string;
   price: number;
-  status: string;
+  status: JobPostStatus;
   createDate?: string;
   categorys: CategoryService[];
 }
@@ -43,4 +39,15 @@ export interface ServiceCardProps {
   onClick: () => void;
   jobPost: JobPost;
   [key: string]: any;
+}
+
+export interface ApplicationPayload {
+  jobId: number;
+  workerId: number;
+  message: string;
+}
+
+export interface ApplicationStatus extends ApplicationPayload {
+  id: number;
+  status: string;
 }

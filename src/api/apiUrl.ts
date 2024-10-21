@@ -34,4 +34,8 @@ export const API = {
     CREATE: USER + '/create',
     UPDATE: USER + '/update',
   },
+  CATEGORY_API: {
+    GET_ALL: '/Category/getAll',
+    GET_BY_ID: '/Category/getById',
+  },
 };
