@@ -11,7 +11,7 @@ interface User {
   email?: string;
   password?: string;
   phone?: string;
-  dateOfBirth?: string;
+  dateOfBirth?: Date | null;
   gender?: 'male' | 'female';
   roleId?: RoleUser;
 }
