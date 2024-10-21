@@ -2,7 +2,7 @@ import { API } from '@/api/apiUrl';
 import { JobPost } from '@/types/types';
 import axiosInstance from '@/util/axiosInstance';
 
-export const jobpostService = {
+export const jobPostService = {
   getJobPosts() {
     return axiosInstance.get(API.JOB_POST_API.GET_ALL);
   },

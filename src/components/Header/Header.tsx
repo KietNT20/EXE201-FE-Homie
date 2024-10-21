@@ -78,7 +78,7 @@ const Header = () => {
           </Box>
           {!tokenMethod.get()?.token ? (
             <Button
-              component={NavLink}
+              component={Link}
               to={PATH.LOGIN}
               className="header__toolbar-btn"
               variant="text"
