@@ -14,7 +14,7 @@
     .header__toolbar-btn {
       height: var(--height-button);
       width: fit-content;
-      @include mixins.text(vnSemiBold, 1.6rem, normal, var(--blue-light));
+      @include mixins.text(vnSemiBold, 1rem, normal, var(--blue-light));
     }
     &-icon {
       display: block;

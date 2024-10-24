@@ -16,11 +16,18 @@ export const useGetAllJobPosts = () => {
   };
 };
 
-export const useGetJobPostById = (jobPostId: number) => {
+export const useGetJobPostById = (jobPostId?: string | number | null) => {
   const { data, ...rest } = useQuery({
     queryKey: ['jobPost', jobPostId],
-    queryFn: () => jobPostService.getJobPostById(jobPostId),
-    throwOnError: true,
+    queryFn: () => {
+      if (!jobPostId) throw new Error('Job Post ID is required');
+      return jobPostService.getJobPostById(Number(jobPostId));
+    },
+    enabled: !!jobPostId,
+    throwOnError: false,
+    retry: 1,
+    refetchOnWindowFocus: false,
+    staleTime: 0, // Always fetch fresh data
   });
 
   return {
