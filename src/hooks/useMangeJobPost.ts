@@ -26,7 +26,6 @@ export const useGetJobPostById = (jobPostId?: string | number | null) => {
     enabled: !!jobPostId,
     throwOnError: false,
     retry: 1,
-    refetchOnWindowFocus: false,
     staleTime: 0, // Always fetch fresh data
   });
 

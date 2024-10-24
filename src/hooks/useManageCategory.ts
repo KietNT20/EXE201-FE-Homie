@@ -21,9 +21,7 @@ export const useGetCategoryById = (categoryId?: number | null) => {
     enabled: !!categoryId,
     throwOnError: false,
     retry: 1,
-    refetchOnWindowFocus: false,
     staleTime: 1 * 30 * 1000, // 5 minutes
-    // cacheTime: 10 * 60 * 1000, // 10 minutes
   });
 
   return {
