@@ -100,7 +100,7 @@ const ServiceDetail = () => {
   const statusConfig = getStatusConfig(jobPost.data.status);
 
   return (
-    <Container maxWidth="lg" className="py-8">
+    <Container maxWidth="lg" className="pb-8 pt-5">
       {/* Navigation */}
       <NavigationHeader
         items={breadcrumbItemsService}
@@ -141,7 +141,47 @@ const ServiceDetail = () => {
       </Paper>
 
       <Grid2 container spacing={4}>
-        {/* Left Column - Property Details */}
+        {/* Left Column - User Info */}
+        <Grid2 size={{ xs: 12, md: 4 }}>
+          <Paper elevation={0} className="p-6">
+            <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
+              Thông tin người đăng
+            </Typography>
+            {userInfo?.data ? (
+              <Stack spacing={3}>
+                <Box className="flex items-center gap-3">
+                  <Avatar
+                    src={userInfo.data.avatarUrl}
+                    alt={userInfo.data.name}
+                    className="w-16 h-16"
+                  />
+                  <Box>
+                    <Typography variant="h6" className="font-medium">
+                      {userInfo.data.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Ngày sinh: {formatDate(userInfo.data.dateOfBirth)}
+                    </Typography>
+                  </Box>
+                </Box>
+                <Divider />
+                <Box className="flex items-center gap-2">
+                  <Email color="action" />
+                  <Typography>{userInfo.data.email}</Typography>
+                </Box>
+                <Box className="flex items-center gap-2 text-blue-600">
+                  <Phone color="action" />
+                  <Typography>{userInfo.data.phone}</Typography>
+                </Box>
+              </Stack>
+            ) : (
+              <Typography color="text.secondary">
+                Đang tải thông tin người dùng...
+              </Typography>
+            )}
+          </Paper>
+        </Grid2>
+        {/* Right Column - Property Details */}
         <Grid2 size={{ xs: 12, md: 8 }}>
           <Paper elevation={0} className="p-6">
             <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
@@ -283,50 +323,6 @@ const ServiceDetail = () => {
                 </Card>
               </Grid2>
             </Grid2>
-          </Paper>
-        </Grid2>
-
-        {/* Right Column - User Info */}
-        <Grid2 size={{ xs: 12, md: 4 }}>
-          <Paper elevation={0} className="p-6">
-            <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
-              Thông tin người đăng
-            </Typography>
-            {userInfo?.data ? (
-              <Stack spacing={3}>
-                <Box className="flex items-center gap-3">
-                  <Avatar
-                    src={userInfo.data.avatarUrl}
-                    alt={userInfo.data.name}
-                    className="w-16 h-16"
-                  />
-                  <Box>
-                    <Typography variant="h6" className="font-medium">
-                      {userInfo.data.name}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      Ngày sinh: {formatDate(userInfo.data.dateOfBirth)}
-                    </Typography>
-                  </Box>
-                </Box>
-
-                <Divider />
-
-                <Box className="flex items-center gap-2">
-                  <Email color="action" />
-                  <Typography>{userInfo.data.email}</Typography>
-                </Box>
-
-                <Box className="flex items-center gap-2">
-                  <Phone color="action" />
-                  <Typography>{userInfo.data.phone}</Typography>
-                </Box>
-              </Stack>
-            ) : (
-              <Typography color="text.secondary">
-                Đang tải thông tin người dùng...
-              </Typography>
-            )}
           </Paper>
         </Grid2>
       </Grid2>

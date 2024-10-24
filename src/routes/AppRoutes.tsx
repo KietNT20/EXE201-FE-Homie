@@ -10,7 +10,7 @@ import NewPage from '@/pages/NewsPage/NewsPage';
 import PartnerPage from '@/pages/partnerPage/PartnerPage';
 import PaymentPage from '@/pages/PaymentPage/PaymentPage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
-import ServiceDetail from '@/pages/ServicePage/ServiceDetail';
+import ServiceDetail from '@/pages/ServicePage/ServiceDetail/ServiceDetail';
 import ServicePage from '@/pages/ServicePage/ServicePage';
 import { Route, Routes } from 'react-router-dom';
 

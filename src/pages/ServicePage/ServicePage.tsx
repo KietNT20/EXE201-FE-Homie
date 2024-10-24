@@ -2,45 +2,46 @@ import banner from '@/assets/img/submarine.jpg';
 import { PATH } from '@/constant/path';
 import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
 import { JobPost } from '@/types/types';
-import {
-  Box,
-  Card,
-  CardContent,
-  Container,
-  Grid2,
-  Skeleton,
-} from '@mui/material';
+import { Box, Container, Grid2, Pagination } from '@mui/material';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ServiceCard from './ServiceCard';
-
-// Skeleton component for a single card using MUI components
-const ServiceCardSkeleton = () => (
-  <Card sx={{ height: '100%' }}>
-    <Skeleton variant="rectangular" height={200} animation="wave" />
-    <CardContent>
-      <Box sx={{ pt: 0.5 }}>
-        <Skeleton animation="wave" height={32} width="60%" />
-        <Skeleton animation="wave" height={20} sx={{ my: 1 }} />
-        <Skeleton animation="wave" height={20} width="80%" />
-        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-          <Skeleton animation="wave" height={36} width={100} />
-          <Skeleton animation="wave" height={36} width={100} />
-        </Box>
-      </Box>
-    </CardContent>
-  </Card>
-);
+import ServiceCardSkeleton from './ServiceCardSkeleton';
 
 const ServicePage = () => {
   const { data: jobPostDataList, isLoading, isPending } = useGetAllJobPosts();
   const navigate = useNavigate();
 
+  // Pagination state
+  const [page, setPage] = useState(1);
+  const cardsPerPage = 4;
+
   const handleCardClick = (jobId: number | undefined) => {
     navigate(`${PATH.SERVICE}/${jobId}`);
   };
 
-  // Create an array of 6 skeleton cards for loading state
-  const skeletonCards = Array(6).fill(null);
+  const handlePageChange = (
+    _event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    setPage(value);
+    // Scroll to top when page changes
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Calculate pagination
+  const totalItems = jobPostDataList?.data?.length || 0;
+  const totalPages = Math.ceil(totalItems / cardsPerPage);
+
+  // Get current page items
+  const getCurrentPageItems = () => {
+    const startIndex = (page - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    return jobPostDataList?.data?.slice(startIndex, endIndex) || [];
+  };
+
+  // Create skeleton cards for loading state
+  const skeletonCards = Array(cardsPerPage).fill(null);
 
   return (
     <div className="service-page">
@@ -65,9 +66,12 @@ const ServicePage = () => {
               </>
             ) : (
               <>
-                {jobPostDataList?.data?.map(
+                {getCurrentPageItems().map(
                   (jobPost: JobPost, index: number) => (
-                    <Grid2 size={{ xs: 12, md: 6 }} key={jobPost.jobId || index}>
+                    <Grid2
+                      size={{ xs: 12, md: 6 }}
+                      key={jobPost.jobId || index}
+                    >
                       <ServiceCard
                         jobPost={jobPost}
                         onClick={() => handleCardClick(jobPost.jobId)}
@@ -78,6 +82,28 @@ const ServicePage = () => {
               </>
             )}
           </Grid2>
+
+          {/* Pagination component */}
+          {!isLoading && !isPending && totalItems > 0 && (
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                mt: 4,
+                mb: 2,
+              }}
+            >
+              <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePageChange}
+                color="primary"
+                size="large"
+                variant="outlined"
+                shape="rounded"
+              />
+            </Box>
+          )}
         </Box>
       </Container>
     </div>

@@ -7,10 +7,8 @@ import {
   CalendarToday,
   Category as CategoryIcon,
   Email,
-  Layers,
   LocationOn,
   Phone,
-  SquareFoot,
 } from '@mui/icons-material';
 import {
   Avatar,
@@ -148,20 +146,6 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
               <LocationOn color="action" fontSize="small" />
               <Typography variant="body2" color="text.secondary">
                 {jobPost.location}
-              </Typography>
-            </Box>
-
-            <Box className="flex items-center gap-2">
-              <SquareFoot color="action" fontSize="small" />
-              <Typography variant="body2" color="text.secondary">
-                {jobPost.squareMeters} m²
-              </Typography>
-            </Box>
-
-            <Box className="flex items-center gap-2">
-              <Layers color="action" fontSize="small" />
-              <Typography variant="body2" color="text.secondary">
-                {jobPost.numberOfFloors} tầng
               </Typography>
             </Box>
 
