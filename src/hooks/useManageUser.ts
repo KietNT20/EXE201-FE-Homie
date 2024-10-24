@@ -15,6 +15,22 @@ export const useGetApiUsers = () => {
   };
 };
 
+export const useGetUserById = (userId?: number | null) => {
+  const { data, ...rest } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => userService.getUserById(userId!),
+    enabled: !!userId,
+    throwOnError: false,
+    retry: 1,
+    refetchOnWindowFocus: false,
+    staleTime: 1 * 30 * 1000, // 1 minutes
+  });
+
+  return {
+    data,
+    ...rest,
+  };
+};
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({

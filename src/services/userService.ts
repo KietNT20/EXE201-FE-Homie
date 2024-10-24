@@ -6,7 +6,7 @@ export const userService = {
     return axiosInstance.get(API.USER_API.GET_ALL);
   },
   getUserById(userId: number) {
-    return axiosInstance.get(`${API.USER_API.GET_BY_ID}/${userId}`);
+    return axiosInstance.get(`${API.USER_API.GET_BY_ID}?id=${userId}`);
   },
   createUser(payload: User) {
     return axiosInstance.post(API.USER_API.CREATE, payload);

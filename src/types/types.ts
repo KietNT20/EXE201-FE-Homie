@@ -12,8 +12,14 @@ export interface InputProps {
   [key: string]: any;
 }
 
+export interface Category {
+  id?: number;
+  categoryName?: string;
+  price?: number;
+}
+
 export interface CategoryService {
-  categoryId: number;
+  categoriesId: number;
 }
 
 export enum JobPostStatus {
@@ -22,17 +28,20 @@ export enum JobPostStatus {
 }
 
 export interface JobPost {
-  id?: number;
-  userId: number;
+  jobId?: number;
+  employerId: number;
   title: string;
   description: string;
   location: string;
-  startDate: string;
-  endDate: string;
+  squareMeters: number;
+  numberOfFloors: number;
+  startDate: Date | string;
+  endDate: Date | string;
   price: number;
   status: JobPostStatus;
-  createDate?: string;
-  categorys: CategoryService[];
+  createDate: Date | string;
+  jobType: number;
+  categoryJobPost: CategoryService[];
 }
 
 export interface ServiceCardProps {
