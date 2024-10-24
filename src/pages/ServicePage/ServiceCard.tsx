@@ -59,7 +59,7 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
 
   return (
     <Card
-      className="max-w-[345px] hover:shadow-md transition-all duration-200 hover:scale-[1.02]"
+      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02]"
       {...restProps}
     >
       <CardActionArea onClick={onClick}>

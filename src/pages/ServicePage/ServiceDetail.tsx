@@ -1,3 +1,5 @@
+import NavigationHeader from '@/components/NavigationHeader/NavigationHeader';
+import { breadcrumbItemsService } from '@/constant/breadcrumbItems';
 import { PATH } from '@/constant/path';
 import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
@@ -100,19 +102,10 @@ const ServiceDetail = () => {
   return (
     <Container maxWidth="lg" className="py-8">
       {/* Navigation */}
-      <Box className="flex items-center mb-6">
-        <IconButton
-          onClick={() => navigate(PATH.SERVICE)}
-          className="mr-4"
-          color="primary"
-        >
-          <ArrowBack />
-        </IconButton>
-        <Typography variant="body2" color="text.secondary">
-          Dịch vụ / Chi tiết
-        </Typography>
-      </Box>
-
+      <NavigationHeader
+        items={breadcrumbItemsService}
+        backPath={PATH.SERVICE}
+      />
       {/* Header Section */}
       <Paper elevation={0} className="p-6 mb-6">
         <Box className="flex justify-between items-start mb-4">
@@ -132,13 +125,17 @@ const ServiceDetail = () => {
             }}
           />
         </Box>
-        <Typography variant="body1" color="text.secondary" className="mb-4">
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          className="mb-4 text-lg"
+        >
           {jobPost.data.description}
         </Typography>
         <Chip
           label={formatPrice(jobPost.data.price)}
           color="primary"
-          className="font-medium"
+          className="font-medium text-lg"
           icon={<AttachMoney />}
         />
       </Paper>
@@ -147,7 +144,7 @@ const ServiceDetail = () => {
         {/* Left Column - Property Details */}
         <Grid2 size={{ xs: 12, md: 8 }}>
           <Paper elevation={0} className="p-6">
-            <Typography variant="h6" className="font-bold mb-4">
+            <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
               Thông tin chi tiết
             </Typography>
             <Grid2 container spacing={3}>
@@ -155,14 +152,14 @@ const ServiceDetail = () => {
                 <Card variant="outlined" className="h-full">
                   <CardContent>
                     <Stack spacing={3}>
-                      <Box className="flex items-center gap-2">
+                      <Box className="flex items-center gap-3">
                         <LocationOn color="action" />
                         <Box>
                           <Typography
                             variant="subtitle2"
                             className="font-medium"
                           >
-                            Địa điểm
+                            Địa điểm:
                           </Typography>
                           <Typography color="text.secondary">
                             {jobPost.data.location}
@@ -170,9 +167,12 @@ const ServiceDetail = () => {
                         </Box>
                       </Box>
 
-                      <Box className="flex items-center gap-2">
+                      <Box className="flex items-center gap-3">
                         <SquareFoot color="action" />
-                        <Box>
+                        <Box
+                          component={'div'}
+                          className="flex items-center gap-2"
+                        >
                           <Typography
                             variant="subtitle2"
                             className="font-medium"
@@ -185,9 +185,12 @@ const ServiceDetail = () => {
                         </Box>
                       </Box>
 
-                      <Box className="flex items-center gap-2">
+                      <Box className="flex items-center gap-3">
                         <Layers color="action" />
-                        <Box>
+                        <Box
+                          component={'div'}
+                          className="flex items-center gap-2"
+                        >
                           <Typography
                             variant="subtitle2"
                             className="font-medium"
@@ -208,7 +211,7 @@ const ServiceDetail = () => {
                 <Card variant="outlined" className="h-full">
                   <CardContent>
                     <Stack spacing={3}>
-                      <Box className="flex items-center gap-2">
+                      <Box className="flex items-center gap-3">
                         <CalendarToday color="action" />
                         <Box>
                           <Typography
@@ -224,9 +227,12 @@ const ServiceDetail = () => {
                         </Box>
                       </Box>
 
-                      <Box className="flex items-center gap-2">
+                      <Box className="flex items-center gap-3">
                         <CategoryIcon color="action" />
-                        <Box>
+                        <Box
+                          component={'div'}
+                          className="flex items-center gap-4"
+                        >
                           <Typography
                             variant="subtitle2"
                             className="font-medium"
@@ -246,19 +252,21 @@ const ServiceDetail = () => {
                                   categoryDetail.data.categoryName ||
                                   'Chưa xác định'
                                 }
-                                size="small"
+                                size="medium"
                                 color="primary"
                                 variant="outlined"
-                                className="mt-1"
                               />
                             </Tooltip>
                           )}
                         </Box>
                       </Box>
 
-                      <Box className="flex items-center gap-2">
+                      <Box className="flex items-center gap-3">
                         <AttachMoney color="action" />
-                        <Box>
+                        <Box
+                          component={'div'}
+                          className="flex items-center gap-2"
+                        >
                           <Typography
                             variant="subtitle2"
                             className="font-medium"
@@ -281,7 +289,7 @@ const ServiceDetail = () => {
         {/* Right Column - User Info */}
         <Grid2 size={{ xs: 12, md: 4 }}>
           <Paper elevation={0} className="p-6">
-            <Typography variant="h6" className="font-bold mb-4">
+            <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
               Thông tin người đăng
             </Typography>
             {userInfo?.data ? (

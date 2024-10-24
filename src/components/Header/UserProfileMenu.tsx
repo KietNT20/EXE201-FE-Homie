@@ -28,9 +28,9 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
     <>
       <div className="flex items-center">
         <IconButton onClick={handleMenuOpen}>
-          <AccountCircle fontSize="large" />
+          <AccountCircle fontSize="medium" />
         </IconButton>
-        <Typography variant="body1">{userProfile.email}</Typography>
+        <Typography variant="body1" className='text-sm'>{userProfile.email}</Typography>
       </div>
       <Menu
         id="menu-appbar"

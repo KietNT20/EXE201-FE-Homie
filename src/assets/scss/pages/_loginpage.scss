@@ -1,4 +1,4 @@
-@use "../core/mixins";
+@use '../core/mixins';
 
 .loginForm {
   width: 100%;
@@ -33,7 +33,7 @@
       .btn-google {
         height: var(--height-button);
         background: var(--white-cl);
-        @include mixins.text(vnSemiBold, 1.6rem, 2.4rem, var(--black-cl));
+        @include mixins.text(vnSemiBold, 1rem, 2.4rem, var(--black-cl));
 
         &:hover {
           background: var(--body-cl);
