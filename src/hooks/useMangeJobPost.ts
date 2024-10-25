@@ -1,5 +1,5 @@
 import { jobPostService } from '@/services/jobPostService';
-import { JobPost } from '@/types/types';
+import { JobPost, JobPostResponse } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -7,7 +7,7 @@ export const useGetAllJobPosts = (params: {
   pageNumber: number;
   pageSize: number;
 }) => {
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQuery<JobPostResponse>({
     queryKey: ['jobPosts', params.pageNumber, params.pageSize],
     queryFn: () =>
       jobPostService.getJobPosts(

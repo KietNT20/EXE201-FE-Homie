@@ -57,7 +57,7 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
 
   return (
     <Card
-      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02]"
+      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg"
       {...restProps}
     >
       <CardActionArea onClick={onClick}>
@@ -89,7 +89,7 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
           {/* User Info Section */}
           {userInfo && (
             <>
-              <Box className="flex items-center gap-3 mb-4">
+              <Box className="flex items-center gap-6 mb-4">
                 <Avatar
                   src={userInfo.data.avatarUrl}
                   alt={userInfo.data.name}
@@ -99,8 +99,11 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
                   <Typography variant="subtitle2" className="font-medium">
                     {userInfo.data.name}
                   </Typography>
-                  <Stack direction="row" spacing={2} className="mt-1">
-                    <Tooltip title={userInfo.data.email}>
+                  <Stack className="mt-1">
+                    <Box
+                      className="flex items-center gap-2 mb-3"
+                      title={userInfo.data.email}
+                    >
                       <>
                         <Email
                           color="action"
@@ -111,8 +114,11 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
                           {userInfo.data.email}
                         </Typography>
                       </>
-                    </Tooltip>
-                    <Tooltip title={userInfo.data.phone}>
+                    </Box>
+                    <Box
+                      className="flex items-center gap-2"
+                      title={userInfo.data.phone}
+                    >
                       <>
                         <Phone
                           color="action"
@@ -123,7 +129,7 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
                           {userInfo.data.phone}
                         </Typography>
                       </>
-                    </Tooltip>
+                    </Box>
                   </Stack>
                 </Box>
               </Box>

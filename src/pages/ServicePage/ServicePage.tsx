@@ -1,4 +1,3 @@
-import banner from '@/assets/img/submarine.jpg';
 import { PATH } from '@/constant/path';
 import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
 import { JobPost } from '@/types/types';
@@ -13,7 +12,7 @@ const ServicePage = () => {
 
   // Pagination state
   const [page, setPage] = useState(1);
-  const pageSize = 4;
+  const pageSize = 6;
 
   // Update the query to include pagination params
   const {
@@ -25,7 +24,7 @@ const ServicePage = () => {
     pageSize,
   });
 
-  console.log('jobPostResponse', jobPostResponse);
+  // console.log('jobPostResponse', jobPostResponse);
 
   const handleCardClick = (jobId: number | undefined) => {
     navigate(`${PATH.SERVICE}/${jobId}`);
@@ -50,13 +49,6 @@ const ServicePage = () => {
   return (
     <div className="service-page">
       <Container>
-        <div className="banner">
-          <img src={banner} alt="Service Banner" className="banner-image" />
-          <div className="banner-text">
-            <h1>Chi Tiết Dịch Vụ</h1>
-            <p>Home / Services</p>
-          </div>
-        </div>
         <Box sx={{ py: 4, px: { xs: 2, md: 3 } }}>
           <h2 className="text-2xl font-bold mb-6">Danh sách dịch vụ</h2>
           <Grid2 container spacing={4}>

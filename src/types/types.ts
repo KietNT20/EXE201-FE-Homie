@@ -11,7 +11,9 @@ export interface InputProps {
   sx?: object;
   [key: string]: any;
 }
-
+/*
+ * Category Type
+ */
 export interface Category {
   id?: number;
   categoryName?: string;
@@ -22,6 +24,9 @@ export interface CategoryService {
   categoriesId: number;
 }
 
+/*
+ * JobPost Type
+ */
 export enum JobPostStatus {
   DONE = 'Done',
   CANCELLED = 'Cancelled',
@@ -42,6 +47,15 @@ export interface JobPost {
   createDate: Date | string;
   jobType: number;
   categoryJobPost: CategoryService[];
+}
+/*
+  ! This is the type of the data that the API returns
+*/
+export interface JobPostResponse {
+  data: JobPost[];
+  message?: string;
+  tolalItems?: number;
+  totalPage?: number;
 }
 
 export interface ServiceCardProps {

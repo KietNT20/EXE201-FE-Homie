@@ -53,7 +53,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className="py-36 m-auto">
+    <Container className="py-20 m-auto">
       <div className="loginForm border-2 border-sky-50">
         <div className="login-wrap">
           <div className="loginForm__left">

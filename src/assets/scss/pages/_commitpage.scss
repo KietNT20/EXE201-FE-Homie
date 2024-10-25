@@ -1,4 +1,4 @@
-@use "../core/mixins";
+@use '../core/mixins';
 
 .commit {
   .commit__img {
@@ -31,13 +31,11 @@
   }
 
   .commit-overlay h1 {
-    font-size: 36px;
     font-weight: bold;
     margin: 0;
   }
 
   .breadcrumb {
-    font-size: 18px;
     margin-top: 10px;
     opacity: 0.8;
   }
@@ -62,6 +60,7 @@
     h1,
     h2 {
       color: #2e86c1;
+      font-size: 1rem;
     }
 
     h1 {
@@ -75,6 +74,7 @@
 
     .section {
       margin-bottom: 30px;
+      font-size: 1rem;
     }
 
     .condition {

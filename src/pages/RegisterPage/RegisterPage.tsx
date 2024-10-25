@@ -62,7 +62,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container className="py-36 m-auto">
+    <Container className="py-20 m-auto">
       <div className="loginForm border-2 border-sky-50">
         <div className="login-wrap">
           <div className="loginForm__left">
@@ -70,10 +70,10 @@ const RegisterPage = () => {
               <img src={imgLogo} alt="Logo" />
             </figure>
           </div>
-          <Card className="loginForm__right px-32 py-4">
+          <Card className="loginForm__right p-4">
             <CardContent>
               <div className="loginForm__right-content mb-8">
-                <Typography variant="h3" className="text-center">
+                <Typography variant="h4" className="text-center">
                   ĐĂNG KÝ
                 </Typography>
               </div>
@@ -215,11 +215,7 @@ const RegisterPage = () => {
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
                               >
-                                {showPwd ? (
-                                  <Visibility sx={{ fontSize: '2rem' }} />
-                                ) : (
-                                  <VisibilityOff sx={{ fontSize: '2rem' }} />
-                                )}
+                                {showPwd ? <Visibility /> : <VisibilityOff />}
                               </IconButton>
                             </InputAdornment>
                           }
