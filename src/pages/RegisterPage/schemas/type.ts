@@ -1,8 +1,8 @@
 export interface InputRegisterTypes {
   name: string;
-  phone: string;
-  email: string;
-  dateOfBirth: Date;
-  gender: string;
-  password: string;
+  phone?: string;
+  email?: string;
+  gender?: string | undefined;
+  dateOfBirth?: Date | string | null;
+  password?: string;
 }

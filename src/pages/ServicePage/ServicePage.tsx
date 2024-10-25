@@ -9,39 +9,43 @@ import ServiceCard from './ServiceCard';
 import ServiceCardSkeleton from './ServiceCardSkeleton';
 
 const ServicePage = () => {
-  const { data: jobPostDataList, isLoading, isPending } = useGetAllJobPosts();
   const navigate = useNavigate();
 
   // Pagination state
   const [page, setPage] = useState(1);
-  const cardsPerPage = 4;
+  const pageSize = 4;
+
+  // Update the query to include pagination params
+  const {
+    data: jobPostResponse,
+    isLoading,
+    isPending,
+  } = useGetAllJobPosts({
+    pageNumber: page,
+    pageSize,
+  });
+
+  console.log('jobPostResponse', jobPostResponse);
 
   const handleCardClick = (jobId: number | undefined) => {
     navigate(`${PATH.SERVICE}/${jobId}`);
   };
 
   const handlePageChange = (
-    _event: React.ChangeEvent<unknown>,
+    event: React.ChangeEvent<unknown>,
     value: number,
   ) => {
+    event.preventDefault();
+    event.stopPropagation();
     setPage(value);
-    // Scroll to top when page changes
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Calculate pagination
-  const totalItems = jobPostDataList?.data?.length || 0;
-  const totalPages = Math.ceil(totalItems / cardsPerPage);
-
-  // Get current page items
-  const getCurrentPageItems = () => {
-    const startIndex = (page - 1) * cardsPerPage;
-    const endIndex = startIndex + cardsPerPage;
-    return jobPostDataList?.data?.slice(startIndex, endIndex) || [];
-  };
+  // Get total pages from API response
+  const totalPages = jobPostResponse?.totalPage || 1;
 
   // Create skeleton cards for loading state
-  const skeletonCards = Array(cardsPerPage).fill(null);
+  const skeletonCards = Array(pageSize).fill(null);
 
   return (
     <div className="service-page">
@@ -66,7 +70,7 @@ const ServicePage = () => {
               </>
             ) : (
               <>
-                {getCurrentPageItems().map(
+                {jobPostResponse?.data?.map(
                   (jobPost: JobPost, index: number) => (
                     <Grid2
                       size={{ xs: 12, md: 6 }}
@@ -84,7 +88,7 @@ const ServicePage = () => {
           </Grid2>
 
           {/* Pagination component */}
-          {!isLoading && !isPending && totalItems > 0 && (
+          {!isLoading && !isPending && jobPostResponse?.data?.length > 0 && (
             <Box
               sx={{
                 display: 'flex',

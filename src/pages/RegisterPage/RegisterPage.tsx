@@ -28,7 +28,6 @@ import { MouseEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { registerSchema } from './schemas/schema';
-import { InputRegisterTypes } from './schemas/type';
 
 const RegisterPage = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -37,20 +36,20 @@ const RegisterPage = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<InputRegisterTypes>({
+  } = useForm<any>({
     resolver: yupResolver(registerSchema),
     defaultValues: {
       name: '',
       phone: '',
       email: '',
       gender: '',
-      password: '',
+      dateOfBirth: null,
     },
   });
 
   const { registerUser, isPending: registerLoading } = useRegister();
 
-  const _onSubmit = (data: InputRegisterTypes) => {
+  const _onSubmit = (data: any) => {
     registerUser(data);
   };
 
@@ -94,7 +93,6 @@ const RegisterPage = () => {
                           type="text"
                           placeholder="Họ và tên"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.name}
                           helperText={errors.name?.message}
                         />
@@ -111,7 +109,6 @@ const RegisterPage = () => {
                           type="text"
                           placeholder="Số điện thoại"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.phone}
                           helperText={errors.phone?.message}
                         />
@@ -128,7 +125,6 @@ const RegisterPage = () => {
                           type="text"
                           placeholder="Email cá nhân"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.email}
                           helperText={errors.email?.message}
                         />
@@ -160,7 +156,8 @@ const RegisterPage = () => {
                                 slotProps={{
                                   textField: {
                                     error: !!errors.dateOfBirth,
-                                    helperText: errors.dateOfBirth?.message,
+                                    helperText:
+                                      errors.dateOfBirth?.message?.toString(),
                                   },
                                 }}
                               />
@@ -190,7 +187,7 @@ const RegisterPage = () => {
                               </Select>
                               {errors.gender && (
                                 <FormHelperText>
-                                  {errors.gender.message}
+                                  {errors.gender.message?.toString()}
                                 </FormHelperText>
                               )}
                             </FormControl>
@@ -209,7 +206,6 @@ const RegisterPage = () => {
                           type={showPwd ? 'text' : 'password'}
                           placeholder="Mật khẩu"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.password}
                           helperText={errors.password?.message}
                           endIcon={
@@ -285,19 +281,3 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
-
-const styles = {
-  inputStyles: {
-    '& .MuiInputBase-input': {
-      fontSize: '1.4rem',
-    },
-    '& .MuiInputLabel-root': {
-      fontSize: '1.4rem',
-    },
-    '& .MuiFormHelperText-root': {
-      fontSize: '1.2rem',
-      marginTop: '8px',
-      fontWeight: 500,
-    },
-  },
-};

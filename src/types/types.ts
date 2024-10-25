@@ -60,3 +60,12 @@ export interface ApplicationStatus extends ApplicationPayload {
   id: number;
   status: string;
 }
+
+export interface Profiles {
+  userId: number;
+  bio: string;
+  skills: string;
+  experience: string;
+  availability: string;
+  ratingAvg: number;
+}

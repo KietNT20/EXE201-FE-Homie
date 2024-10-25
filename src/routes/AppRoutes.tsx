@@ -7,7 +7,7 @@ import CommitPage from '@/pages/CommitPage/CommitPage';
 import HomePage from '@/pages/HomePage/HomePage';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import NewPage from '@/pages/NewsPage/NewsPage';
-import PartnerPage from '@/pages/partnerPage/PartnerPage';
+import PartnerPage from '@/pages/PartnerPage/PartnerPage';
 import PaymentPage from '@/pages/PaymentPage/PaymentPage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ServiceDetail from '@/pages/ServicePage/ServiceDetail/ServiceDetail';
