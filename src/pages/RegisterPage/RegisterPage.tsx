@@ -28,7 +28,6 @@ import { MouseEvent, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { registerSchema } from './schemas/schema';
-import { InputRegisterTypes } from './schemas/type';
 
 const RegisterPage = () => {
   const [showPwd, setShowPwd] = useState(false);
@@ -37,20 +36,20 @@ const RegisterPage = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<InputRegisterTypes>({
+  } = useForm<any>({
     resolver: yupResolver(registerSchema),
     defaultValues: {
       name: '',
       phone: '',
       email: '',
       gender: '',
-      password: '',
+      dateOfBirth: null,
     },
   });
 
   const { registerUser, isPending: registerLoading } = useRegister();
 
-  const _onSubmit = (data: InputRegisterTypes) => {
+  const _onSubmit = (data: any) => {
     registerUser(data);
   };
 
@@ -63,7 +62,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container className="py-36 m-auto">
+    <Container className="py-20 m-auto">
       <div className="loginForm border-2 border-sky-50">
         <div className="login-wrap">
           <div className="loginForm__left">
@@ -71,10 +70,10 @@ const RegisterPage = () => {
               <img src={imgLogo} alt="Logo" />
             </figure>
           </div>
-          <Card className="loginForm__right px-32 py-4">
+          <Card className="loginForm__right p-4">
             <CardContent>
               <div className="loginForm__right-content mb-8">
-                <Typography variant="h3" className="text-center">
+                <Typography variant="h5" className="text-center">
                   ĐĂNG KÝ
                 </Typography>
               </div>
@@ -92,9 +91,8 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Họ và tên"
+                          label="Họ và tên"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.name}
                           helperText={errors.name?.message}
                         />
@@ -109,9 +107,8 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Số điện thoại"
+                          label="Số điện thoại"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.phone}
                           helperText={errors.phone?.message}
                         />
@@ -126,9 +123,8 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Email cá nhân"
+                          label="Email cá nhân"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.email}
                           helperText={errors.email?.message}
                         />
@@ -160,7 +156,8 @@ const RegisterPage = () => {
                                 slotProps={{
                                   textField: {
                                     error: !!errors.dateOfBirth,
-                                    helperText: errors.dateOfBirth?.message,
+                                    helperText:
+                                      errors.dateOfBirth?.message?.toString(),
                                   },
                                 }}
                               />
@@ -190,7 +187,7 @@ const RegisterPage = () => {
                               </Select>
                               {errors.gender && (
                                 <FormHelperText>
-                                  {errors.gender.message}
+                                  {errors.gender.message?.toString()}
                                 </FormHelperText>
                               )}
                             </FormControl>
@@ -207,9 +204,8 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type={showPwd ? 'text' : 'password'}
-                          placeholder="Mật khẩu"
+                          label="Mật khẩu"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={!!errors.password}
                           helperText={errors.password?.message}
                           endIcon={
@@ -219,11 +215,7 @@ const RegisterPage = () => {
                                 onClick={handleClickShowPassword}
                                 onMouseDown={handleMouseDownPassword}
                               >
-                                {showPwd ? (
-                                  <Visibility sx={{ fontSize: '2rem' }} />
-                                ) : (
-                                  <VisibilityOff sx={{ fontSize: '2rem' }} />
-                                )}
+                                {showPwd ? <Visibility /> : <VisibilityOff />}
                               </IconButton>
                             </InputAdornment>
                           }
@@ -285,19 +277,3 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
-
-const styles = {
-  inputStyles: {
-    '& .MuiInputBase-input': {
-      fontSize: '1.4rem',
-    },
-    '& .MuiInputLabel-root': {
-      fontSize: '1.4rem',
-    },
-    '& .MuiFormHelperText-root': {
-      fontSize: '1.2rem',
-      marginTop: '8px',
-      fontWeight: 500,
-    },
-  },
-};

@@ -3,8 +3,8 @@ import { JobPost } from '@/types/types';
 import axiosInstance from '@/util/axiosInstance';
 
 export const jobPostService = {
-  getJobPosts() {
-    return axiosInstance.get(API.JOB_POST_API.GET_ALL);
+  getJobPosts: (query = '') => {
+    return axiosInstance.get(`${API.JOB_POST_API.GET_ALL}${query}`);
   },
   getJobPostById(jobPostId: number) {
     return axiosInstance.get(API.JOB_POST_API.GET_BY_ID + jobPostId);

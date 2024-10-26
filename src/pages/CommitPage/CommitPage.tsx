@@ -6,7 +6,7 @@ const CommitPage = () => {
     <Container>
       <section className="commit --pd-y">
         <div className="commit__img">
-          <div className="commit-overlay">
+          <div className="commit-overlay text-xl">
             <h1>Cam Kết Của Homie</h1>
             <p className="breadcrumb">Trang chủ / Cam kết</p>
           </div>

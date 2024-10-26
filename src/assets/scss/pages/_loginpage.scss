@@ -50,7 +50,7 @@
       }
     }
     .text-bottom {
-      @include mixins.text(null, 1.4rem, 2rem, var(--dark-cl));
+      @include mixins.text(null, 1rem, 2rem, var(--dark-cl));
       a {
         color: var(--login-blue);
         @include mixins.transition(var(--duration));
@@ -61,7 +61,7 @@
       }
     }
     .policy-content {
-      @include mixins.text(null, 1.3rem, 2rem, var(--dark-cl));
+      @include mixins.text(null, 01rem, 2rem, var(--dark-cl));
       a {
         color: var(--login-blue);
         @include mixins.transition(var(--duration));

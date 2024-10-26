@@ -1,16 +1,15 @@
 import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
-import { JobPostStatus, ServiceCardProps } from '@/types/types';
+import { ServiceCardProps } from '@/types/types';
 import { formatDate, formatPrice } from '@/util/format';
+import { getStatusConfig } from '@/util/getStatusConfig';
 import {
   AttachMoney,
   CalendarToday,
   Category as CategoryIcon,
   Email,
-  Layers,
   LocationOn,
   Phone,
-  SquareFoot,
 } from '@mui/icons-material';
 import {
   Avatar,
@@ -29,37 +28,12 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
   const { data: categoryDetail } = useGetCategoryById(
     jobPost.categoryJobPost[0]?.categoriesId,
   );
-
   const { data: userInfo } = useGetUserById(jobPost.employerId);
-
-  const getStatusConfig = (status: JobPostStatus) => {
-    switch (status) {
-      case 'Done':
-        return {
-          color: 'success' as 'success',
-          icon: '✓',
-          label: 'Hoàn thành',
-        };
-      case 'Cancelled':
-        return {
-          color: 'error' as 'error',
-          icon: '✕',
-          label: 'Đã hủy',
-        };
-      default:
-        return {
-          color: 'default' as 'default',
-          icon: '',
-          label: 'Đang chờ',
-        };
-    }
-  };
-
   const statusConfig = getStatusConfig(jobPost.status);
 
   return (
     <Card
-      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02]"
+      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
       {...restProps}
     >
       <CardActionArea onClick={onClick}>
@@ -91,7 +65,7 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
           {/* User Info Section */}
           {userInfo && (
             <>
-              <Box className="flex items-center gap-3 mb-4">
+              <Box className="flex items-center gap-6 mb-4">
                 <Avatar
                   src={userInfo.data.avatarUrl}
                   alt={userInfo.data.name}
@@ -101,8 +75,11 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
                   <Typography variant="subtitle2" className="font-medium">
                     {userInfo.data.name}
                   </Typography>
-                  <Stack direction="row" spacing={2} className="mt-1">
-                    <Tooltip title={userInfo.data.email}>
+                  <Stack className="mt-1">
+                    <Box
+                      className="flex items-center gap-2 mb-3"
+                      title={userInfo.data.email}
+                    >
                       <>
                         <Email
                           color="action"
@@ -113,8 +90,11 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
                           {userInfo.data.email}
                         </Typography>
                       </>
-                    </Tooltip>
-                    <Tooltip title={userInfo.data.phone}>
+                    </Box>
+                    <Box
+                      className="flex items-center gap-2"
+                      title={userInfo.data.phone}
+                    >
                       <>
                         <Phone
                           color="action"
@@ -125,7 +105,7 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
                           {userInfo.data.phone}
                         </Typography>
                       </>
-                    </Tooltip>
+                    </Box>
                   </Stack>
                 </Box>
               </Box>
@@ -148,20 +128,6 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
               <LocationOn color="action" fontSize="small" />
               <Typography variant="body2" color="text.secondary">
                 {jobPost.location}
-              </Typography>
-            </Box>
-
-            <Box className="flex items-center gap-2">
-              <SquareFoot color="action" fontSize="small" />
-              <Typography variant="body2" color="text.secondary">
-                {jobPost.squareMeters} m²
-              </Typography>
-            </Box>
-
-            <Box className="flex items-center gap-2">
-              <Layers color="action" fontSize="small" />
-              <Typography variant="body2" color="text.secondary">
-                {jobPost.numberOfFloors} tầng
               </Typography>
             </Box>
 

@@ -17,7 +17,6 @@
       @include mixins.text(vnSemiBold, 1rem, normal, var(--blue-light));
     }
     &-icon {
-      display: block;
       svg {
         height: 20px;
         width: 20px;

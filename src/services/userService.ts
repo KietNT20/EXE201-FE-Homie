@@ -2,8 +2,8 @@ import { API } from '@/api/apiUrl';
 import axiosInstance from '@/util/axiosInstance';
 
 export const userService = {
-  getUserList() {
-    return axiosInstance.get(API.USER_API.GET_ALL);
+  getUserList(query = '') {
+    return axiosInstance.get(`${API.USER_API.GET_ALL}${query}`);
   },
   getUserById(userId: number) {
     return axiosInstance.get(`${API.USER_API.GET_BY_ID}?id=${userId}`);

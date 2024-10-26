@@ -16,18 +16,12 @@ function App() {
           duration: 2000,
           success: {
             style: {
-              // padding: "25px",
-              // color: "#fff",
-              // fontSize: "1.4rem",
-              // backgroundColor: "#4caf50",
+              fontSize: '1rem',
             },
           },
           error: {
             style: {
-              // padding: "25px",
-              // color: "#fff",
-              // fontSize: "1.4rem",
-              // backgroundColor: "#e25454",
+              fontSize: '1rem',
             },
           },
         }}
