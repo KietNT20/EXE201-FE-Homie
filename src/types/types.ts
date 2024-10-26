@@ -44,7 +44,6 @@ export interface JobPostDetail {
 
 export interface JobPostResponse {
   data: JobPost[];
-  message?: string;
   tolalItems?: number;
   totalPage?: number;
 }
