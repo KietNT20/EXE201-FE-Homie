@@ -9,12 +9,12 @@ export const registerSchema = yup.object().shape({
     .required('Số điện thoại là bắt buộc')
     .matches(REGEX.PHONE_NUMBER, 'Số điện thoại không hợp lệ'),
   email: yup.string().required('Email là bắt buộc').email('Email không hợp lệ'),
+  gender: yup.string().required('Giới tính là bắt buộc'),
   dateOfBirth: yup
     .date()
     .nullable()
     .required('Ngày sinh là bắt buộc')
     .max(dayjs().subtract(15, 'year').toDate(), 'Bạn phải trên 15 tuổi'),
-  gender: yup.string().required('Giới tính là bắt buộc'),
   password: yup
     .string()
     .required('Mật khẩu là bắt buộc')

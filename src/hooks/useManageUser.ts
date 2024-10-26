@@ -22,7 +22,6 @@ export const useGetUserById = (userId?: number | null) => {
     enabled: !!userId,
     throwOnError: false,
     retry: 1,
-    refetchOnWindowFocus: false,
     staleTime: 1 * 30 * 1000, // 1 minutes
   });
 

@@ -1,12 +1,18 @@
 import { jobPostService } from '@/services/jobPostService';
-import { JobPost } from '@/types/types';
+import { JobPost, JobPostDetail, JobPostResponse } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-export const useGetAllJobPosts = () => {
-  const { data, ...rest } = useQuery({
-    queryKey: ['jobPosts'],
-    queryFn: () => jobPostService.getJobPosts(),
+export const useGetAllJobPosts = (params: {
+  pageNumber: number;
+  pageSize: number;
+}) => {
+  const { data, ...rest } = useQuery<JobPostResponse>({
+    queryKey: ['jobPosts', params.pageNumber, params.pageSize],
+    queryFn: () =>
+      jobPostService.getJobPosts(
+        `?pageNumber=${params.pageNumber}&pageSize=${params.pageSize}`,
+      ),
     throwOnError: true,
   });
 
@@ -17,7 +23,7 @@ export const useGetAllJobPosts = () => {
 };
 
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQuery<JobPostDetail>({
     queryKey: ['jobPost', jobPostId],
     queryFn: () => {
       if (!jobPostId) throw new Error('Job Post ID is required');
@@ -26,7 +32,6 @@ export const useGetJobPostById = (jobPostId?: string | number | null) => {
     enabled: !!jobPostId,
     throwOnError: false,
     retry: 1,
-    refetchOnWindowFocus: false,
     staleTime: 0, // Always fetch fresh data
   });
 

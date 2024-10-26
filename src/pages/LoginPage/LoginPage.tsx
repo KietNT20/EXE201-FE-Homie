@@ -53,7 +53,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className="py-36 m-auto">
+    <Container className="py-20 m-auto">
       <div className="loginForm border-2 border-sky-50">
         <div className="login-wrap">
           <div className="loginForm__left">
@@ -61,10 +61,10 @@ const LoginPage = () => {
               <img src={imgLogo} alt="" />
             </figure>
           </div>
-          <Card className="loginForm__right px-32 py-4">
+          <Card className="loginForm__right p-4">
             <CardContent>
               <div className="loginForm__right-content mb-8">
-                <Typography variant="h3" className="text-center">
+                <Typography variant="h5" className="text-center">
                   ĐĂNG NHẬP
                 </Typography>
               </div>
@@ -82,9 +82,8 @@ const LoginPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Email đăng nhập"
+                          label="Email đăng nhập"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={errors.email}
                           helperText={errors.email?.message}
                           disabled={loginLoading}
@@ -100,9 +99,8 @@ const LoginPage = () => {
                         <InputText
                           {...field}
                           type={showPwd ? 'text' : 'password'}
-                          placeholder="Mật khẩu"
+                          label="Mật khẩu"
                           size="medium"
-                          sx={styles.inputStyles}
                           error={errors.password}
                           helperText={errors.password?.message}
                           disabled={loginLoading}
@@ -115,11 +113,7 @@ const LoginPage = () => {
                                   handleMouseDownPassword(event)
                                 }
                               >
-                                {showPwd ? (
-                                  <Visibility sx={{ fontSize: '2rem' }} />
-                                ) : (
-                                  <VisibilityOff sx={{ fontSize: '2rem' }} />
-                                )}
+                                {showPwd ? <Visibility /> : <VisibilityOff />}
                               </IconButton>
                             </InputAdornment>
                           }
@@ -174,19 +168,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-export const styles = {
-  inputStyles: {
-    '& .MuiInputBase-input': {
-      fontSize: '1.4rem',
-    },
-    '& .MuiInputLabel-root': {
-      fontSize: '1.4rem',
-    },
-    '& .MuiFormHelperText-root': {
-      fontSize: '1.2rem',
-      marginTop: '8px',
-      fontWeight: 500,
-    },
-  },
-};

@@ -2,7 +2,7 @@
 
 // create css component
 .footer__title {
-  @include mixins.text(vnRegular, 14px, 20px, #98a2b3);
+  @include mixins.text(vnRegular, 0.8rem, 1.25rem, #98a2b3);
   padding-bottom: 16px;
 }
 .footer__list {
@@ -10,7 +10,7 @@
     padding: 6px 0;
     cursor: pointer;
     a {
-      @include mixins.text(vnRegular, 16px, 24px, #eaecf0);
+      @include mixins.text(vnRegular, 1rem, 1.5rem, #eaecf0);
       color: var(--white-cl);
       text-decoration: none;
       @include mixins.transition(var(--duration));
@@ -23,7 +23,7 @@
 }
 
 .footer-news {
-  @include mixins.text(vnRegular, 12px, 18px, #101828);
+  @include mixins.text(vnRegular, 0.75rem, 1rem, #101828);
   padding: 2px 8px;
   border-radius: 16px;
   background: #f2f4f7;
@@ -58,7 +58,7 @@
     background: #98a2b3;
   }
   .or {
-    @include mixins.text(vnRegular, 1.4rem, 2rem, #98a2b3);
+    @include mixins.text(vnRegular, 1rem, 2rem, #98a2b3);
     margin: 0 12px;
   }
 }
