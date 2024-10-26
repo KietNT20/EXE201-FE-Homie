@@ -8,10 +8,10 @@ import {
   Divider,
   FormControlLabel,
   FormGroup,
-  Slider,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
+import PriceRangeSlider from './PriceRangeSlider';
 
 const ServiceFilter = ({
   categories,
@@ -40,8 +40,6 @@ const ServiceFilter = ({
     event: Event,
     newValue: number | number[],
   ): void => {
-    event.preventDefault();
-    event.stopPropagation();
     setPriceRange(newValue as [number, number]);
   };
 
@@ -116,33 +114,12 @@ const ServiceFilter = ({
           <Typography variant="subtitle1" gutterBottom fontWeight="medium">
             Khoảng giá
           </Typography>
-          <Box sx={{ px: 2 }}>
-            <Slider
-              value={priceRange}
-              onChange={handlePriceChange}
-              valueLabelDisplay="auto"
-              min={minPrice}
-              max={maxPrice}
-              step={50000}
-              valueLabelFormat={(value: number) =>
-                `${value.toLocaleString('vi-VN')}đ`
-              }
-            />
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                mt: 1,
-              }}
-            >
-              <Typography variant="body2" color="text.secondary">
-                {priceRange[0].toLocaleString('vi-VN')}đ
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {priceRange[1].toLocaleString('vi-VN')}đ
-              </Typography>
-            </Box>
-          </Box>
+          <PriceRangeSlider
+            value={priceRange}
+            onChange={handlePriceChange}
+            min={minPrice}
+            max={maxPrice}
+          />
         </Box>
 
         {/* Action Buttons */}

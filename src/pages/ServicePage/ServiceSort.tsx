@@ -6,7 +6,6 @@ import {
   Select,
   SelectChangeEvent,
 } from '@mui/material';
-import React from 'react';
 
 export type SortOption = {
   value: string;
@@ -38,7 +37,7 @@ interface ServiceSortProps {
   onChange: (option: SortOption) => void;
 }
 
-const ServiceSort: React.FC<ServiceSortProps> = ({ value, onChange }) => {
+const ServiceSort = ({ value, onChange }: ServiceSortProps) => {
   const handleChange = (event: SelectChangeEvent) => {
     const selectedOption = sortOptions.find(
       (option) => option.value === event.target.value,

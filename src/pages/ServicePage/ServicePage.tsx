@@ -11,16 +11,19 @@ import {
   Typography,
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import React, { useState } from 'react';
+import React, { Suspense, useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FilterLoadingFallback from './FilterLoadingFallback';
 import ServiceCard from './ServiceCard';
 import ServiceCardSkeleton from './ServiceCardSkeleton';
-import ServiceFilter from './ServiceFilter';
 import ServiceSort, { SortOption } from './ServiceSort';
 
+const ServiceFilter = React.lazy(() => import('./ServiceFilter'));
 const pageSize = 6;
+// Move skeletonCards array outside component to prevent recreation
+const skeletonCards = Array(pageSize).fill(null);
 
-const ServicePage: React.FC = () => {
+const ServicePage = () => {
   const [page, setPage] = useState<number>(1);
   const [sortOption, setSortOption] = useState<SortOption>({
     value: 'newest',
@@ -45,48 +48,72 @@ const ServicePage: React.FC = () => {
 
   const { data: categoriesData } = useGetAllCategories();
 
-  const handleFilterChange = (newFilters: FilterState): void => {
+  // Memoize handlers to prevent unnecessary re-renders
+  const handleFilterChange = useCallback((newFilters: FilterState): void => {
     setFilters(newFilters);
     setPage(1);
-  };
+  }, []);
 
-  const handleSortChange = (newSortOption: SortOption): void => {
+  const handleSortChange = useCallback((newSortOption: SortOption): void => {
     setSortOption(newSortOption);
-  };
+  }, []);
 
-  const handleCardClick = (jobId: number | undefined): void => {
-    if (jobId) {
-      navigate(`${PATH.SERVICE}/${jobId}`);
-    }
-  };
+  const handleCardClick = useCallback(
+    (jobId: number | undefined): void => {
+      if (jobId) {
+        navigate(`${PATH.SERVICE}/${jobId}`);
+      }
+    },
+    [navigate],
+  );
 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number,
-  ): void => {
-    event.preventDefault();
-    setPage(value);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const handlePageChange = useCallback(
+    (event: React.ChangeEvent<unknown>, value: number): void => {
+      event.preventDefault();
+      setPage(value);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    [],
+  );
 
-  const totalPages = jobPostResponse?.totalPage || 1;
-  const skeletonCards = Array(pageSize).fill(null);
+  // Memoize filtered and sorted job posts
+  const filteredJobPosts = useMemo(() => {
+    if (!jobPostResponse?.data) return [];
 
-  // Filter the job posts based on selected categories and price range
-  const filteredJobPosts = jobPostResponse?.data
-    ?.filter((jobPost: JobPost) => {
-      const matchesCategory =
-        filters.categories.length === 0 ||
-        jobPost.categoryJobPost.some((category) =>
-          filters.categories.includes(category.categoriesId),
-        );
-      const matchesPrice =
-        jobPost.price >= filters.priceRange[0] &&
-        jobPost.price <= filters.priceRange[1];
-      return matchesCategory && matchesPrice;
-    })
-    ?.slice()
-    .sort(sortOption.compareFn);
+    return jobPostResponse.data
+      .filter((jobPost: JobPost) => {
+        // Early return for no filters
+        if (
+          filters.categories.length === 0 &&
+          filters.priceRange[0] === 0 &&
+          filters.priceRange[1] === 10000000
+        ) {
+          return true;
+        }
+
+        const matchesCategory =
+          filters.categories.length === 0 ||
+          jobPost.categoryJobPost.some((category) =>
+            filters.categories.includes(category.categoriesId),
+          );
+
+        const matchesPrice =
+          jobPost.price >= filters.priceRange[0] &&
+          jobPost.price <= filters.priceRange[1];
+
+        return matchesCategory && matchesPrice;
+      })
+      .sort(sortOption.compareFn);
+  }, [jobPostResponse?.data, filters, sortOption.compareFn]);
+
+  // Memoize loading state
+  const isLoadingState = isLoading || isPending;
+
+  // Memoize total pages calculation
+  const totalPages = useMemo(
+    () => jobPostResponse?.totalPage || 1,
+    [jobPostResponse?.totalPage],
+  );
 
   return (
     <Box sx={{ backgroundColor: 'background.default' }}>
@@ -103,16 +130,18 @@ const ServicePage: React.FC = () => {
                 onChange={handleSortChange}
               />
               <Divider sx={{ my: 2 }} />
-              <ServiceFilter
-                categories={categoriesData?.data ?? []}
-                onFilterChange={handleFilterChange}
-              />
+              <Suspense fallback={<FilterLoadingFallback />}>
+                <ServiceFilter
+                  categories={categoriesData?.data ?? []}
+                  onFilterChange={handleFilterChange}
+                />
+              </Suspense>
             </Grid>
 
             {/* Content Column */}
             <Grid size={{ xs: 12, lg: 9 }}>
               <Grid container spacing={2}>
-                {isLoading || isPending ? (
+                {isLoadingState ? (
                   <>
                     {skeletonCards.map((_, index) => (
                       <Grid size={{ xs: 12, md: 6 }} key={`skeleton-${index}`}>
@@ -122,7 +151,7 @@ const ServicePage: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    {filteredJobPosts?.map((jobPost: JobPost) => (
+                    {filteredJobPosts.map((jobPost: JobPost) => (
                       <Grid
                         size={{ xs: 12, md: 6 }}
                         key={jobPost.jobId}
@@ -143,19 +172,18 @@ const ServicePage: React.FC = () => {
               </Grid>
 
               {/* No Results Message */}
-              {!isLoading &&
-                !isPending &&
-                (filteredJobPosts?.length ?? 0) === 0 && (
-                  <Box sx={{ mt: 4 }}>
-                    <Alert severity="info">
-                      Không tìm thấy dịch vụ nào phù hợp với bộ lọc đã chọn
-                    </Alert>
-                  </Box>
-                )}
+              {!isLoadingState && filteredJobPosts.length === 0 && (
+                <Box sx={{ mt: 4 }}>
+                  <Alert severity="info">
+                    Không tìm thấy dịch vụ nào phù hợp với bộ lọc đã chọn
+                  </Alert>
+                </Box>
+              )}
             </Grid>
           </Grid>
+
           {/* Pagination */}
-          {!isLoading && !isPending && (
+          {!isLoadingState && (
             <Box
               sx={{
                 display: 'flex',
@@ -180,4 +208,4 @@ const ServicePage: React.FC = () => {
   );
 };
 
-export default ServicePage;
+export default React.memo(ServicePage);
