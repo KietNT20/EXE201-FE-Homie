@@ -2,13 +2,13 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs, { Dayjs } from 'dayjs';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface DateOfBirthPickerProps {
   onChange?: (date: Date | null) => void;
 }
 
-const DateOfBirthPicker: React.FC<DateOfBirthPickerProps> = ({ onChange }) => {
+const DateOfBirthPicker = ({ onChange }: DateOfBirthPickerProps) => {
   const [value, setValue] = useState<Dayjs | null>(null);
   const [error, setError] = useState<string | null>(null);
 

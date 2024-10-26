@@ -6,7 +6,6 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import React from 'react';
 
 interface LoadingProps {
   /**
@@ -45,14 +44,14 @@ interface LoadingProps {
   color?: 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
 }
 
-const Loading: React.FC<LoadingProps> = ({
+const Loading = ({
   size = 40,
   fullPage = false,
   text = 'Đang tải...',
   className = '',
   showText = true,
   color = 'primary',
-}) => {
+}: LoadingProps) => {
   const theme = useTheme();
 
   // Base styles
