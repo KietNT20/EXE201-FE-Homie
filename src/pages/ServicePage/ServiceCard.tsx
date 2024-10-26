@@ -1,7 +1,8 @@
 import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
-import { JobPostStatus, ServiceCardProps } from '@/types/types';
+import { ServiceCardProps } from '@/types/types';
 import { formatDate, formatPrice } from '@/util/format';
+import { getStatusConfig } from '@/util/getStatusConfig';
 import {
   AttachMoney,
   CalendarToday,
@@ -27,37 +28,12 @@ const ServiceCard = ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
   const { data: categoryDetail } = useGetCategoryById(
     jobPost.categoryJobPost[0]?.categoriesId,
   );
-
   const { data: userInfo } = useGetUserById(jobPost.employerId);
-
-  const getStatusConfig = (status: JobPostStatus) => {
-    switch (status) {
-      case 'Done':
-        return {
-          color: 'success' as 'success',
-          icon: '✓',
-          label: 'Hoàn thành',
-        };
-      case 'Cancelled':
-        return {
-          color: 'error' as 'error',
-          icon: '✕',
-          label: 'Đã hủy',
-        };
-      default:
-        return {
-          color: 'default' as 'default',
-          icon: '',
-          label: 'Đang chờ',
-        };
-    }
-  };
-
   const statusConfig = getStatusConfig(jobPost.status);
 
   return (
     <Card
-      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg"
+      className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
       {...restProps}
     >
       <CardActionArea onClick={onClick}>

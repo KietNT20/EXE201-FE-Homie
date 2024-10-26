@@ -1,11 +1,13 @@
 import NavigationHeader from '@/components/NavigationHeader/NavigationHeader';
 import { breadcrumbItemsService } from '@/constant/breadcrumbItems';
 import { PATH } from '@/constant/path';
+import { useAppSelector } from '@/hooks/reudxHook';
+import { useCreateApplication } from '@/hooks/useManageApplication';
 import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { useGetJobPostById } from '@/hooks/useMangeJobPost';
-import { JobPostStatus } from '@/types/types';
 import { formatDate, formatPrice } from '@/util/format';
+import { getStatusConfig } from '@/util/getStatusConfig';
 import {
   ArrowBack,
   AttachMoney,
@@ -16,10 +18,13 @@ import {
   LocationOn,
   Phone,
   SquareFoot,
+  Work,
 } from '@mui/icons-material';
 import {
+  Alert,
   Avatar,
   Box,
+  Button,
   Card,
   CardContent,
   Chip,
@@ -33,11 +38,20 @@ import {
   Tooltip,
   Typography,
 } from '@mui/material';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import ApplicationModal from './ApplicationModal';
 
 const ServiceDetail = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const { userProfile } = useAppSelector((state) => state.profile);
+
+  const { mutate: createApplication } = useCreateApplication();
 
   const {
     data: jobPost,
@@ -51,27 +65,31 @@ const ServiceDetail = () => {
 
   const { data: userInfo } = useGetUserById(jobPost?.data?.employerId);
 
-  const getStatusConfig = (status: JobPostStatus) => {
-    switch (status) {
-      case 'Done':
-        return {
-          color: 'success' as 'success',
-          icon: '✓',
-          label: 'Hoàn thành',
-        };
-      case 'Cancelled':
-        return {
-          color: 'error' as 'error',
-          icon: '✕',
-          label: 'Đã hủy',
-        };
-      default:
-        return {
-          color: 'default' as 'default',
-          icon: '',
-          label: 'Đang chờ',
-        };
-    }
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    setMessage('');
+  };
+
+  const handleSubmitApplication = () => {
+    if (!id || !userProfile?.id || !jobPost?.data?.jobId) return;
+    setIsSubmitting(true);
+    createApplication(
+      {
+        jobId: jobPost.data.jobId,
+        workerId: userProfile.id,
+        message: message.trim() || 'Không có tin nhắn',
+      },
+      {
+        onSettled: () => {
+          setIsSubmitting(false);
+          handleCloseModal();
+        },
+      },
+    );
   };
 
   if (isLoadingJob) {
@@ -86,9 +104,9 @@ const ServiceDetail = () => {
     return (
       <Container maxWidth="lg" className="py-8">
         <Paper elevation={0} className="p-6 text-center">
-          <Typography variant="h6" color="error" className="mb-4">
+          <Alert severity="error" className="mb-4">
             Không thể tải thông tin dịch vụ
-          </Typography>
+          </Alert>
           <IconButton onClick={() => navigate(PATH.SERVICE)} color="primary">
             <ArrowBack /> <span className="ml-2">Quay lại danh sách</span>
           </IconButton>
@@ -98,6 +116,8 @@ const ServiceDetail = () => {
   }
 
   const statusConfig = getStatusConfig(jobPost.data.status);
+  const canApply =
+    jobPost.data.status !== 'Done' && jobPost.data.status !== 'Cancel';
 
   return (
     <Container maxWidth="lg" className="pb-8 pt-5">
@@ -112,18 +132,33 @@ const ServiceDetail = () => {
           <Typography variant="h4" component="h1" className="font-bold">
             {jobPost.data.title}
           </Typography>
-          <Chip
-            label={statusConfig.label}
-            color={statusConfig.color}
-            icon={<span className="text-sm">{statusConfig.icon}</span>}
-            className="ml-2 font-medium"
-            sx={{
-              '& .MuiChip-icon': {
-                marginLeft: '8px',
-                order: -1,
-              },
-            }}
-          />
+          <Box className="flex items-center gap-2">
+            {canApply &&
+              userProfile?.id &&
+              userProfile.id !== jobPost.data.employerId && (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  startIcon={<Work />}
+                  onClick={handleOpenModal}
+                  className="mr-2"
+                >
+                  Nhận việc
+                </Button>
+              )}
+            <Chip
+              label={statusConfig.label}
+              color={statusConfig.color}
+              icon={<span className="text-sm">{statusConfig.icon}</span>}
+              className="font-medium"
+              sx={{
+                '& .MuiChip-icon': {
+                  marginLeft: '8px',
+                  order: -1,
+                },
+              }}
+            />
+          </Box>
         </Box>
         <Typography
           variant="body1"
@@ -326,6 +361,16 @@ const ServiceDetail = () => {
           </Paper>
         </Grid2>
       </Grid2>
+
+      {/* Application Modal */}
+      <ApplicationModal
+        open={openModal}
+        isSubmitting={isSubmitting}
+        message={message}
+        onClose={handleCloseModal}
+        onSubmit={handleSubmitApplication}
+        onMessageChange={setMessage}
+      />
     </Container>
   );
 };

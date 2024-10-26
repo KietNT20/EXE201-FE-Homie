@@ -1,92 +1,166 @@
 import { PATH } from '@/constant/path';
+import { useGetAllCategories } from '@/hooks/useManageCategory';
 import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
-import { JobPost } from '@/types/types';
-import { Box, Container, Grid2, Pagination } from '@mui/material';
-import { useState } from 'react';
+import { FilterState, JobPost } from '@/types/types';
+import {
+  Alert,
+  Box,
+  Container,
+  Divider,
+  Pagination,
+  Typography,
+} from '@mui/material';
+import Grid from '@mui/material/Grid2';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ServiceCard from './ServiceCard';
 import ServiceCardSkeleton from './ServiceCardSkeleton';
+import ServiceFilter from './ServiceFilter';
+import ServiceSort, { SortOption } from './ServiceSort';
 
-const ServicePage = () => {
+const pageSize = 6;
+
+const ServicePage: React.FC = () => {
+  const [page, setPage] = useState<number>(1);
+  const [sortOption, setSortOption] = useState<SortOption>({
+    value: 'newest',
+    label: 'Mới nhất',
+    compareFn: (a, b) =>
+      new Date(b.createDate).getTime() - new Date(a.createDate).getTime(),
+  });
+  const [filters, setFilters] = useState<FilterState>({
+    categories: [],
+    priceRange: [0, 10000000],
+  });
   const navigate = useNavigate();
 
-  // Pagination state
-  const [page, setPage] = useState(1);
-  const pageSize = 6;
-
-  // Update the query to include pagination params
   const {
     data: jobPostResponse,
     isLoading,
     isPending,
   } = useGetAllJobPosts({
     pageNumber: page,
-    pageSize,
+    pageSize: pageSize,
   });
 
-  // console.log('jobPostResponse', jobPostResponse);
+  const { data: categoriesData } = useGetAllCategories();
 
-  const handleCardClick = (jobId: number | undefined) => {
-    navigate(`${PATH.SERVICE}/${jobId}`);
+  const handleFilterChange = (newFilters: FilterState): void => {
+    setFilters(newFilters);
+    setPage(1);
+  };
+
+  const handleSortChange = (newSortOption: SortOption): void => {
+    setSortOption(newSortOption);
+  };
+
+  const handleCardClick = (jobId: number | undefined): void => {
+    if (jobId) {
+      navigate(`${PATH.SERVICE}/${jobId}`);
+    }
   };
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number,
-  ) => {
+  ): void => {
     event.preventDefault();
-    event.stopPropagation();
     setPage(value);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Get total pages from API response
   const totalPages = jobPostResponse?.totalPage || 1;
-
-  // Create skeleton cards for loading state
   const skeletonCards = Array(pageSize).fill(null);
 
-  return (
-    <div className="service-page">
-      <Container>
-        <Box sx={{ py: 4, px: { xs: 2, md: 3 } }}>
-          <h2 className="text-2xl font-bold mb-6">Danh sách dịch vụ</h2>
-          <Grid2 container spacing={4}>
-            {isLoading || isPending ? (
-              <>
-                {skeletonCards.map((_, index) => (
-                  <Grid2 size={{ xs: 12, md: 6 }} key={`skeleton-${index}`}>
-                    <ServiceCardSkeleton />
-                  </Grid2>
-                ))}
-              </>
-            ) : (
-              <>
-                {jobPostResponse?.data?.map(
-                  (jobPost: JobPost, index: number) => (
-                    <Grid2
-                      size={{ xs: 12, md: 6 }}
-                      key={jobPost.jobId || index}
-                    >
-                      <ServiceCard
-                        jobPost={jobPost}
-                        onClick={() => handleCardClick(jobPost.jobId)}
-                      />
-                    </Grid2>
-                  ),
-                )}
-              </>
-            )}
-          </Grid2>
+  // Filter the job posts based on selected categories and price range
+  const filteredJobPosts = jobPostResponse?.data
+    ?.filter((jobPost: JobPost) => {
+      const matchesCategory =
+        filters.categories.length === 0 ||
+        jobPost.categoryJobPost.some((category) =>
+          filters.categories.includes(category.categoriesId),
+        );
+      const matchesPrice =
+        jobPost.price >= filters.priceRange[0] &&
+        jobPost.price <= filters.priceRange[1];
+      return matchesCategory && matchesPrice;
+    })
+    ?.slice()
+    .sort(sortOption.compareFn);
 
-          {/* Pagination component */}
-          {!isLoading && !isPending && jobPostResponse?.data?.length > 0 && (
+  return (
+    <Box sx={{ backgroundColor: 'background.default' }}>
+      <Container>
+        <Box sx={{ py: 4 }}>
+          <Typography variant="h4" fontWeight="bold" className="mb-4">
+            Danh sách dịch vụ
+          </Typography>
+          <Grid container spacing={3}>
+            {/* Filter Column */}
+            <Grid size={{ xs: 12, lg: 3 }}>
+              <ServiceSort
+                value={sortOption.value}
+                onChange={handleSortChange}
+              />
+              <Divider sx={{ my: 2 }} />
+              <ServiceFilter
+                categories={categoriesData?.data ?? []}
+                onFilterChange={handleFilterChange}
+              />
+            </Grid>
+
+            {/* Content Column */}
+            <Grid size={{ xs: 12, lg: 9 }}>
+              <Grid container spacing={2}>
+                {isLoading || isPending ? (
+                  <>
+                    {skeletonCards.map((_, index) => (
+                      <Grid size={{ xs: 12, md: 6 }} key={`skeleton-${index}`}>
+                        <ServiceCardSkeleton />
+                      </Grid>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    {filteredJobPosts?.map((jobPost: JobPost) => (
+                      <Grid
+                        size={{ xs: 12, md: 6 }}
+                        key={jobPost.jobId}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <ServiceCard
+                          jobPost={jobPost}
+                          onClick={() => handleCardClick(jobPost.jobId)}
+                        />
+                      </Grid>
+                    ))}
+                  </>
+                )}
+              </Grid>
+
+              {/* No Results Message */}
+              {!isLoading &&
+                !isPending &&
+                (filteredJobPosts?.length ?? 0) === 0 && (
+                  <Box sx={{ mt: 4 }}>
+                    <Alert severity="info">
+                      Không tìm thấy dịch vụ nào phù hợp với bộ lọc đã chọn
+                    </Alert>
+                  </Box>
+                )}
+            </Grid>
+          </Grid>
+          {/* Pagination */}
+          {!isLoading && !isPending && (
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
                 mt: 4,
-                mb: 2,
               }}
             >
               <Pagination
@@ -102,7 +176,7 @@ const ServicePage = () => {
           )}
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 

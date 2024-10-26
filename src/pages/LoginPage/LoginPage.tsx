@@ -64,7 +64,7 @@ const LoginPage = () => {
           <Card className="loginForm__right p-4">
             <CardContent>
               <div className="loginForm__right-content mb-8">
-                <Typography variant="h4" className="text-center">
+                <Typography variant="h5" className="text-center">
                   ĐĂNG NHẬP
                 </Typography>
               </div>

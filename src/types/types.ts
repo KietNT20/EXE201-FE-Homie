@@ -1,16 +1,4 @@
 export type TokenResponse = string;
-
-export interface InputProps {
-  label?: string;
-  type: string;
-  disabled?: boolean;
-  placeholder: string;
-  size: 'small' | 'medium' | 'large';
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
-  sx?: object;
-  [key: string]: any;
-}
 /*
  * Category Type
  */
@@ -29,7 +17,7 @@ export interface CategoryService {
  */
 export enum JobPostStatus {
   DONE = 'Done',
-  CANCELLED = 'Cancelled',
+  CANCEL = 'Cancel',
 }
 
 export interface JobPost {
@@ -48,9 +36,12 @@ export interface JobPost {
   jobType: number;
   categoryJobPost: CategoryService[];
 }
-/*
-  ! This is the type of the data that the API returns
-*/
+
+export interface JobPostDetail {
+  data: JobPost;
+  message?: string;
+}
+
 export interface JobPostResponse {
   data: JobPost[];
   message?: string;
@@ -58,16 +49,10 @@ export interface JobPostResponse {
   totalPage?: number;
 }
 
-export interface ServiceCardProps {
-  onClick: () => void;
-  jobPost: JobPost;
-  [key: string]: any;
-}
-
 export interface ApplicationPayload {
   jobId: number;
   workerId: number;
-  message: string;
+  message?: string;
 }
 
 export interface ApplicationStatus extends ApplicationPayload {
@@ -82,4 +67,44 @@ export interface Profiles {
   experience: string;
   availability: string;
   ratingAvg: number;
+}
+
+export interface FilterState {
+  categories: number[];
+  priceRange: [number, number];
+}
+
+/*
+ * Props Type
+ */
+export interface ServiceFilterProps {
+  categories?: Category[];
+  onFilterChange: (filters: FilterState) => void;
+  minPrice?: number;
+  maxPrice?: number;
+}
+
+export interface ServiceCardProps {
+  onClick: () => void;
+  jobPost: JobPost;
+  [key: string]: any;
+}
+export interface InputProps {
+  label?: string;
+  type: string;
+  disabled?: boolean;
+  placeholder: string;
+  size: 'small' | 'medium' | 'large';
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+  sx?: object;
+  [key: string]: any;
+}
+export interface ApplicationModalProps {
+  open: boolean;
+  isSubmitting: boolean;
+  message: string;
+  onClose: () => void;
+  onSubmit: () => void;
+  onMessageChange: (message: string) => void;
 }

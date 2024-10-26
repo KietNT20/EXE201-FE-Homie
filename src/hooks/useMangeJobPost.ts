@@ -1,5 +1,5 @@
 import { jobPostService } from '@/services/jobPostService';
-import { JobPost, JobPostResponse } from '@/types/types';
+import { JobPost, JobPostDetail, JobPostResponse } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -23,7 +23,7 @@ export const useGetAllJobPosts = (params: {
 };
 
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
-  const { data, ...rest } = useQuery({
+  const { data, ...rest } = useQuery<JobPostDetail>({
     queryKey: ['jobPost', jobPostId],
     queryFn: () => {
       if (!jobPostId) throw new Error('Job Post ID is required');

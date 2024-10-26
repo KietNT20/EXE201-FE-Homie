@@ -73,7 +73,7 @@ const RegisterPage = () => {
           <Card className="loginForm__right p-4">
             <CardContent>
               <div className="loginForm__right-content mb-8">
-                <Typography variant="h4" className="text-center">
+                <Typography variant="h5" className="text-center">
                   ĐĂNG KÝ
                 </Typography>
               </div>
@@ -91,7 +91,7 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Họ và tên"
+                          label="Họ và tên"
                           size="medium"
                           error={!!errors.name}
                           helperText={errors.name?.message}
@@ -107,7 +107,7 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Số điện thoại"
+                          label="Số điện thoại"
                           size="medium"
                           error={!!errors.phone}
                           helperText={errors.phone?.message}
@@ -123,7 +123,7 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type="text"
-                          placeholder="Email cá nhân"
+                          label="Email cá nhân"
                           size="medium"
                           error={!!errors.email}
                           helperText={errors.email?.message}
@@ -204,7 +204,7 @@ const RegisterPage = () => {
                         <InputText
                           {...field}
                           type={showPwd ? 'text' : 'password'}
-                          placeholder="Mật khẩu"
+                          label="Mật khẩu"
                           size="medium"
                           error={!!errors.password}
                           helperText={errors.password?.message}
