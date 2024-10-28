@@ -42,7 +42,6 @@
 .loginForm__right-form,
 .registerForm__right-form {
   .btn {
-    height: var(--height-button);
     @include mixins.text(vnSemiBold, 1rem, 2.4rem, var(--white-cl));
   }
 }
@@ -63,7 +62,7 @@
   }
 }
 .text_normal {
-  @include mixins.text(vnRegular, 1rem, 2rem, none, none);
+  @include mixins.text(vnRegular, 1rem, 1rem, none, none);
 }
 .item__button {
   .item__text {

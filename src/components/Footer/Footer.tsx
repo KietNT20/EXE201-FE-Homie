@@ -1,5 +1,5 @@
+import { logoFooter } from '@/constant/image';
 import { SocialIcon } from 'react-social-icons';
-import logoFooter from '@/assets/img/logo-footer.png';
 
 const Footer = () => {
   return (

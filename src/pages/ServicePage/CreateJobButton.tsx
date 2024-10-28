@@ -23,7 +23,11 @@ const CreateJobButton = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Create job post mutation
-  const { mutate: createJobPost, isPending: isCreating, error } = useCreateJobPost();
+  const {
+    mutate: createJobPost,
+    isPending: isCreating,
+    error,
+  } = useCreateJobPost();
 
   const handleOpenModal = useCallback(() => {
     setIsModalOpen(true);

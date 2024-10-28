@@ -1,7 +1,6 @@
-import imgLogo from '@/assets/img/submarine.jpg';
 import ButtonComp from '@/components/ButtonComp/ButtonComp';
-import IconGoogle from '@/components/IconGoogle/IconGoogle';
 import InputText from '@/components/InputText/InputText';
+import { submarine } from '@/constant/image';
 import { PATH } from '@/constant/path';
 import { useLogin } from '@/hooks/useAuth';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -53,16 +52,20 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className="py-20 m-auto">
+    <Container className="py-12 m-auto px-40">
       <div className="loginForm border-2 border-sky-50">
         <div className="login-wrap">
           <div className="loginForm__left">
-            <figure className="loginForm__left-img">
-              <img src={imgLogo} alt="" />
+            <figure className="loginForm__left-img w-full h-full aspect-video">
+              <img
+                className="w-full h-full object-cover"
+                src={submarine}
+                alt="Ảnh máy hút bụi"
+              />
             </figure>
           </div>
-          <Card className="loginForm__right p-4">
-            <CardContent>
+          <Card className="loginForm__right">
+            <CardContent className="p-8">
               <div className="loginForm__right-content mb-8">
                 <Typography variant="h5" className="text-center">
                   ĐĂNG NHẬP
@@ -125,31 +128,18 @@ const LoginPage = () => {
                     <ButtonComp
                       type="submit"
                       variant="contained"
+                      size="small"
                       className="btn"
                       fullWidth
+                      disabled={loginLoading}
                     >
                       Đăng nhập
                     </ButtonComp>
                   </Grid2>
-                  <div className="or-wrap">
-                    <div className="line"></div>
-                    <span className="or">Hoặc</span>
-                    <div className="line"></div>
-                  </div>
-                  <Grid2 size={12}>
-                    <ButtonComp
-                      variant="contained"
-                      className={'btn-google'}
-                      fullWidth
-                    >
-                      <span className="text">Đăng nhập bằng Google</span>{' '}
-                      <IconGoogle />
-                    </ButtonComp>
-                  </Grid2>
                 </Grid2>
               </Box>
-              <div className="text-bottom mt-8 text-center">
-                <div className="text-signup mb-4">
+              <div className="text-bottom mt-4 text-center">
+                <div className="text-signup mb-2">
                   <span className="text">Chưa đăng ký tài khoản?</span>{' '}
                   <Link to={PATH.REGISTER} className="link-regis">
                     Đăng ký
