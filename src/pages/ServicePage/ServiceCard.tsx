@@ -147,7 +147,7 @@ const ServiceCard = React.memo(
                   variant="body2"
                   className="font-medium text-primary"
                 >
-                  {formatPrice(jobPost.price)}
+                  {formatPrice(categoryDetail?.data.price || 0)}
                 </Typography>
               </Box>
 
