@@ -1,9 +1,10 @@
-export const formatDate = (date: Date | string) => {
+export const formatDate = (date: Date | null | undefined | string) => {
   const options: Intl.DateTimeFormatOptions = {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
   };
+  if (!date) return '';
   return new Date(date).toLocaleDateString('vi-VN', options);
 };
 

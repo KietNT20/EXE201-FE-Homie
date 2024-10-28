@@ -16,6 +16,12 @@ interface User {
   roleId?: RoleUser;
 }
 
+interface Category {
+  id?: number;
+  categoryName?: string;
+  price?: number;
+}
+
 type ActionReduxType = {
   type: string;
   payload?: any;

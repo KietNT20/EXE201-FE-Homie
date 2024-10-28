@@ -2,22 +2,16 @@ export type TokenResponse = string;
 /*
  * Category Type
  */
-export interface Category {
-  id?: number;
-  categoryName?: string;
-  price?: number;
-}
-
 export interface CategoryService {
   categoriesId: number;
 }
-
 /*
  * JobPost Type
  */
 export enum JobPostStatus {
   DONE = 'Done',
   CANCEL = 'Cancel',
+  PENDING = 'Pending',
 }
 
 export interface JobPost {
@@ -28,13 +22,30 @@ export interface JobPost {
   location: string;
   squareMeters: number;
   numberOfFloors: number;
-  startDate: Date | string;
-  endDate: Date | string;
-  price: number;
+  startDate: Date | null | undefined | string;
+  endDate: Date | null | undefined | string;
   status: JobPostStatus;
-  createDate: Date | string;
+  createDate: Date | null | undefined | string;
   jobType: number;
   categoryJobPost: CategoryService[];
+}
+
+export interface CategoryPayload {
+  categoryId: number;
+}
+
+export interface JobPostPayload {
+  userId: number;
+  title: string;
+  description: string;
+  location: string;
+  squareMeters: number;
+  numberOfFloors: number;
+  startDate: string;
+  endDate: string;
+  status: string;
+  createDate: string;
+  categorys: CategoryPayload[];
 }
 
 export interface JobPostDetail {
@@ -44,7 +55,6 @@ export interface JobPostDetail {
 
 export interface JobPostResponse {
   data: JobPost[];
-  message?: string;
   tolalItems?: number;
   totalPage?: number;
 }
@@ -72,6 +82,11 @@ export interface Profiles {
 export interface FilterState {
   categories: number[];
   priceRange: [number, number];
+  searchTerm: string;
+}
+
+export interface ExtendedFilterState extends FilterState {
+  searchTerm: string;
 }
 
 /*
@@ -79,14 +94,16 @@ export interface FilterState {
  */
 export interface ServiceFilterProps {
   categories?: Category[];
-  onFilterChange: (filters: FilterState) => void;
+  onFilterChange: (filters: ExtendedFilterState) => void;
   minPrice?: number;
   maxPrice?: number;
 }
 
 export interface ServiceCardProps {
-  onClick: () => void;
   jobPost: JobPost;
+  onClick: () => void;
+  categoryPrices: Record<number, number>;
+  categories?: Category[];
   [key: string]: any;
 }
 export interface InputProps {
@@ -107,4 +124,13 @@ export interface ApplicationModalProps {
   onClose: () => void;
   onSubmit: () => void;
   onMessageChange: (message: string) => void;
+}
+
+export interface JobPostModalProps {
+  open: boolean;
+  onClose: () => void;
+  onSubmit: (data: JobPostPayload) => void;
+  categories: Category[];
+  initialData?: Partial<JobPostPayload>;
+  error: Error | null;
 }

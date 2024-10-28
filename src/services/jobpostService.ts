@@ -1,5 +1,5 @@
 import { API } from '@/api/apiUrl';
-import { JobPost } from '@/types/types';
+import { JobPostPayload } from '@/types/types';
 import axiosInstance from '@/util/axiosInstance';
 
 export const jobPostService = {
@@ -9,7 +9,7 @@ export const jobPostService = {
   getJobPostById(jobPostId: number) {
     return axiosInstance.get(API.JOB_POST_API.GET_BY_ID + jobPostId);
   },
-  createJobPost(payload: JobPost) {
+  createJobPost(payload: JobPostPayload) {
     return axiosInstance.post(API.JOB_POST_API.CREATE, payload);
   },
 };

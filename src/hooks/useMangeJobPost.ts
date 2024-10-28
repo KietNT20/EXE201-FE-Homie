@@ -1,5 +1,5 @@
 import { jobPostService } from '@/services/jobPostService';
-import { JobPost, JobPostDetail, JobPostResponse } from '@/types/types';
+import { JobPostDetail, JobPostPayload, JobPostResponse } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -32,7 +32,6 @@ export const useGetJobPostById = (jobPostId?: string | number | null) => {
     enabled: !!jobPostId,
     throwOnError: false,
     retry: 1,
-    staleTime: 0, // Always fetch fresh data
   });
 
   return {
@@ -44,18 +43,19 @@ export const useGetJobPostById = (jobPostId?: string | number | null) => {
 export const useCreateJobPost = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({
-    mutationFn: (jobPost: JobPost) => jobPostService.createJobPost(jobPost),
+    mutationFn: (JobPostPayload: JobPostPayload) =>
+      jobPostService.createJobPost(JobPostPayload),
     onSuccess: () => {
       toast.dismiss();
       queryClient.invalidateQueries({
         queryKey: ['jobPosts'],
       });
-      toast.success('Create Job Post Successfully!!');
+      toast.success('Tạo công việc thành công');
     },
     onError: (err) => {
       toast.dismiss();
       console.error('Error:', err);
-      toast.error('Create Job Post Failed');
+      toast.error('Tạo công việc thất bại');
     },
   });
   return { mutate, ...rest };
