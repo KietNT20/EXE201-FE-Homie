@@ -21,7 +21,6 @@ export const useGetCategoryById = (categoryId?: number | null) => {
     enabled: !!categoryId,
     throwOnError: false,
     retry: 1,
-    staleTime: 1 * 30 * 1000, // 5 minutes
   });
 
   return {

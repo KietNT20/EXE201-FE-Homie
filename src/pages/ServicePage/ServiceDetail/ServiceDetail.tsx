@@ -57,6 +57,7 @@ const ServiceDetail = () => {
     data: jobPost,
     isLoading: isLoadingJob,
     error: jobError,
+    isError,
   } = useGetJobPostById(id);
 
   const { data: categoryDetail } = useGetCategoryById(
@@ -100,7 +101,7 @@ const ServiceDetail = () => {
     );
   }
 
-  if (jobError || !jobPost?.data) {
+  if (isError || jobError || !jobPost?.data) {
     return (
       <Container maxWidth="lg" className="py-8">
         <Paper elevation={0} className="p-6 text-center">
@@ -168,7 +169,7 @@ const ServiceDetail = () => {
           {jobPost.data.description}
         </Typography>
         <Chip
-          label={formatPrice(jobPost.data.price)}
+          label={formatPrice(categoryDetail?.data.price)}
           color="primary"
           className="font-medium text-lg"
           icon={<AttachMoney />}
@@ -333,24 +334,6 @@ const ServiceDetail = () => {
                               />
                             </Tooltip>
                           )}
-                        </Box>
-                      </Box>
-
-                      <Box className="flex items-center gap-3">
-                        <AttachMoney color="action" />
-                        <Box
-                          component={'div'}
-                          className="flex items-center gap-2"
-                        >
-                          <Typography
-                            variant="subtitle2"
-                            className="font-medium"
-                          >
-                            Tổng chi phí
-                          </Typography>
-                          <Typography color="primary" className="font-medium">
-                            {formatPrice(jobPost.data.price)}
-                          </Typography>
                         </Box>
                       </Box>
                     </Stack>

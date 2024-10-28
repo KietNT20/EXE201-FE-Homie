@@ -11,7 +11,6 @@ export const useGetProfiles = (profilesId: number) => {
     enabled: !!profilesId,
     throwOnError: false,
     retry: 1,
-    staleTime: 1 * 30 * 1000, // 1 minutes
   });
 
   return {

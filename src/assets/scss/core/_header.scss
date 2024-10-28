@@ -11,7 +11,7 @@
     height: 100%;
     @include mixins.mid(flex);
     justify-content: space-between;
-    .header__toolbar-btn {
+    &-btn {
       height: var(--height-button);
       width: fit-content;
       @include mixins.text(vnSemiBold, 1rem, normal, var(--blue-light));
