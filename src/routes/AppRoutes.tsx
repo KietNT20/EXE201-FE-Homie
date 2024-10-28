@@ -12,7 +12,7 @@ const AboutPage = lazy(() => import('@/pages/AboutPage/AboutPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/RegisterPage/RegisterPage'));
 const PaymentPage = lazy(() => import('@/pages/PaymentPage/PaymentPage'));
-const PartnerPage = lazy(() => import('@/pages/PartnerPage/PartnerPage'));
+const PartnerPage = lazy(() => import('@/pages/partnerPage/PartnerPage'));
 const CommitPage = lazy(() => import('@/pages/CommitPage/CommitPage'));
 const NewPage = lazy(() => import('@/pages/NewsPage/NewsPage'));
 const ServicePage = lazy(() => import('@/pages/ServicePage/ServicePage'));
