@@ -1,4 +1,4 @@
-import logo from '@/assets/img/logo-homie.png';
+import { logo } from '@/constant/image';
 import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import { RootState } from '@/store/store';
@@ -51,29 +51,32 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      <AppBar className="header" position="fixed" color="default">
+      <AppBar className="" position="fixed" color="default">
         <div className="flex items-center justify-center bg-[#268bc7] w-full">
-          <p className="text_normal text-white w-full h-full text-center py-3">
+          <p className="text_normal text-white w-full text-center py-4">
             Chào mừng đến với Homie - Dịch vụ giúp bạn kiếm người giúp việc tại
             nhà
           </p>
         </div>
-        <Toolbar className="header__toolbar">
-          <div className="flex items-center w-[106.96px]">
+        <Toolbar className="flex items-center justify-between w-full">
+          <div className="flex items-center justify-center">
             <IconButton
               size="large"
               edge="start"
               color="inherit"
               aria-label="menu"
               onClick={toggleMenu}
-              className="header__toolbar-icon"
             >
               <MenuIcon />
             </IconButton>
           </div>
           <Box>
-            <Link to={PATH.HOME} className="toolbar__img">
-              <img src={logo} alt="Homie Logo" />
+            <Link to={PATH.HOME} className="">
+              <img
+                src={logo}
+                alt="Homie Logo"
+                className="w-full h-12 sm:h-20"
+              />
             </Link>
           </Box>
           {!tokenMethod.get()?.token ? (

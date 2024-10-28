@@ -30,7 +30,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         <IconButton onClick={handleMenuOpen}>
           <AccountCircle fontSize="medium" />
         </IconButton>
-        <Typography variant="body1" className="text-sm">
+        <Typography variant="body1" className="sm:text-base sm:block hidden">
           {userProfile.email}
         </Typography>
       </div>
