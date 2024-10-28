@@ -1,3 +1,4 @@
+import ChatButton from '@/components/ButtonComp/ChatButton';
 import { clean_hero } from '@/constant/image';
 import { PATH } from '@/constant/path';
 import SavingsIcon from '@mui/icons-material/Savings';
@@ -142,6 +143,8 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
       </Container>
+      {/* Chat */}
+      <ChatButton />
     </main>
   );
 };
