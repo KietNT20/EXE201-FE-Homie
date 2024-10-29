@@ -12,4 +12,10 @@ export const applicationService = {
       payload,
     );
   },
+  getAllApplications() {
+    return axiosInstance.get(API.APPLICATION_API.GET_ALL);
+  },
+  getApplicationById(id: number) {
+    return axiosInstance.get(API.APPLICATION_API.GET_BY_ID + id);
+  },
 };

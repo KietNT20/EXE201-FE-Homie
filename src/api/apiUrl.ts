@@ -9,6 +9,8 @@ export const API = {
   APPLICATION_API: {
     CREATE: APPLICATION + '/CreateApplication',
     UPDATE_STATUS: APPLICATION + '/UpdateStatus/',
+    GET_ALL: APPLICATION + '/getAll',
+    GET_BY_ID: APPLICATION + '/getById/',
   },
   AUTH_API: {
     LOGIN: AUTH + '/login',
