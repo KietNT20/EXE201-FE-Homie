@@ -46,6 +46,7 @@ const ServiceDetail = () => {
   const [openModal, setOpenModal] = useState(false);
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -58,6 +59,7 @@ const ServiceDetail = () => {
     isLoading: isLoadingJob,
     error: jobError,
     isError,
+    refetch: refetchJobPost, // Add refetch function
   } = useGetJobPostById(id);
 
   const { data: categoryDetail } = useGetCategoryById(
@@ -88,6 +90,7 @@ const ServiceDetail = () => {
         onSettled: () => {
           setIsSubmitting(false);
           handleCloseModal();
+          refetchJobPost();
         },
       },
     );
@@ -120,6 +123,8 @@ const ServiceDetail = () => {
   const canApply =
     jobPost.data.status !== 'Done' && jobPost.data.status !== 'Cancel';
 
+  const hadApply = jobPost.data.status === 'Application';
+
   return (
     <Container maxWidth="lg" className="pb-8 pt-5">
       {/* Navigation */}
@@ -143,8 +148,9 @@ const ServiceDetail = () => {
                   startIcon={<Work />}
                   onClick={handleOpenModal}
                   className="mr-2"
+                  disabled={hadApply}
                 >
-                  Nhận việc
+                  {!hadApply ? 'Nhận việc' : 'Đã được nhận'}
                 </Button>
               )}
             <Chip

@@ -25,10 +25,7 @@ export const useGetAllJobPosts = (params: {
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
   const { data, ...rest } = useQuery<JobPostDetail>({
     queryKey: ['jobPost', jobPostId],
-    queryFn: () => {
-      if (!jobPostId) throw new Error('Job Post ID is required');
-      return jobPostService.getJobPostById(Number(jobPostId));
-    },
+    queryFn: () => jobPostService.getJobPostById(Number(jobPostId!)),
     enabled: !!jobPostId,
     throwOnError: false,
     retry: 1,

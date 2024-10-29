@@ -14,6 +14,12 @@ export const getStatusConfig = (status: JobPostStatus) => {
         icon: '✕',
         label: 'Đã hủy',
       };
+    case 'Application':
+      return {
+        color: 'info' as 'info',
+        icon: '⧗',
+        label: 'Đã nhận',
+      };
     default:
       return {
         color: 'default' as 'default',
