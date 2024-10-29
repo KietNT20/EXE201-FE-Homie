@@ -1,18 +1,12 @@
-import logoCommit from '@/assets/img/banner_commit.png';
+import { banner } from '@/constant/image';
 import { Container } from '@mui/material';
 
 const CommitPage = () => {
   return (
     <Container>
-      <section className="commit --pd-y">
-        <div className="commit__img">
-          <div className="commit-overlay text-xl">
-            <h1>Cam Kết Của Homie</h1>
-            <p className="breadcrumb">Trang chủ / Cam kết</p>
-          </div>
-        </div>
+      <section className="commit py-1">
         <div className="commit__banner">
-          <img src={logoCommit} alt="" />
+          <img src={banner} alt="" />
         </div>
         <div className="commit__content">
           <h1>Chính Sách Bảo Hành và Hoàn Tiền - Homie</h1>

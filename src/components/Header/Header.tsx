@@ -43,10 +43,10 @@ const Header = () => {
     { path: PATH.HOME, label: 'Trang chủ' },
     { path: PATH.ABOUT, label: 'Về Homie' },
     { path: PATH.SERVICE, label: 'Dịch vụ' },
-    { path: PATH.NEWS, label: 'Tin tức' },
-    { path: PATH.COMMITMENT, label: 'Cam kết' },
+    // { path: PATH.NEWS, label: 'Tin tức' },
     { path: PATH.PAYMENT, label: 'Thanh toán' },
     { path: PATH.PARTNER, label: 'Trở thành đối tác' },
+    { path: PATH.COMMITMENT, label: 'Cam kết' },
   ];
 
   return (
