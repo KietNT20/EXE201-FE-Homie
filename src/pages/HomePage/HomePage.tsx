@@ -28,11 +28,10 @@ const HomieComponent = () => {
                 Homie
               </h1>
             </div>
-
             <p className="text-xl md:text-2xl text-gray-600 mb-8">
               Your Home's Guardian
             </p>
-
+            {/* 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <input
                 type="text"
@@ -55,7 +54,7 @@ const HomieComponent = () => {
                 </svg>
                 <span className="font-medium text-nowrap">Tìm kiếm</span>
               </button>
-            </div>
+            </div> */}
           </div>
         </section>
 
