@@ -134,11 +134,27 @@ const ServiceDetail = () => {
       />
       {/* Header Section */}
       <Paper elevation={0} className="p-6 mb-6">
-        <Box className="flex justify-between items-start mb-4">
-          <Typography variant="h4" component="h1" className="font-bold">
+        <Box className="flex flex-col md:items-center mb-3 sm:mb-4 sm:justify-between sm:flex-row">
+          <Typography
+            variant="h4"
+            component="h1"
+            className="font-bold mb-3 sm:mb-0"
+          >
             {jobPost.data.title}
           </Typography>
-          <Box className="flex items-center gap-2">
+          <Box className="grid gap-3 sm:flex sm:items-center sm:gap-4">
+            <Chip
+              label={statusConfig.label}
+              color={statusConfig.color}
+              icon={<span className="text-sm">{statusConfig.icon}</span>}
+              className="font-medium sm:mb-0"
+              sx={{
+                '& .MuiChip-icon': {
+                  marginLeft: '8px',
+                  order: -1,
+                },
+              }}
+            />
             {canApply &&
               userProfile?.id &&
               userProfile.id !== jobPost.data.employerId && (
@@ -153,18 +169,6 @@ const ServiceDetail = () => {
                   {!hadApply ? 'Nhận việc' : 'Đã được nhận'}
                 </Button>
               )}
-            <Chip
-              label={statusConfig.label}
-              color={statusConfig.color}
-              icon={<span className="text-sm">{statusConfig.icon}</span>}
-              className="font-medium"
-              sx={{
-                '& .MuiChip-icon': {
-                  marginLeft: '8px',
-                  order: -1,
-                },
-              }}
-            />
           </Box>
         </Box>
         <Typography
