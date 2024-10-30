@@ -2,11 +2,16 @@
 import dayjs, { Dayjs } from 'dayjs';
 import * as yup from 'yup';
 
+export interface District {
+  id: number;
+  district: string;
+}
+
 export interface JobPostFormData {
   userId: number;
   title: string;
   description: string;
-  location: string;
+  location?: string;
   squareMeters: number;
   numberOfFloors: number;
   startDate: Dayjs;
@@ -16,6 +21,12 @@ export interface JobPostFormData {
   categorys: {
     categoryId: number;
   }[];
+}
+
+export interface ExtendedJobPostFormData
+  extends Omit<JobPostFormData, 'location'> {
+  district: District;
+  streetAddress: string;
 }
 
 export const jobPostSchema = yup.object().shape({
@@ -28,17 +39,13 @@ export const jobPostSchema = yup.object().shape({
     .string()
     .required('Vui lòng nhập mô tả')
     .min(10, 'Mô tả phải có ít nhất 10 ký tự'),
-  location: yup.string().required('Vui lòng nhập địa điểm'),
+  // location: yup.string().required('Vui lòng nhập địa chỉ chi tiết'),
   squareMeters: yup
     .number()
     .required('Vui lòng nhập diện tích')
     .positive('Diện tích phải lớn hơn 0')
     .typeError('Diện tích phải là số'),
-  numberOfFloors: yup
-    .number()
-    .required('Vui lòng nhập số tầng')
-    .min(1, 'Số tầng phải ít nhất là 1')
-    .typeError('Số tầng phải là số'),
+  numberOfFloors: yup.number().typeError('Số tầng phải là số'),
   startDate: yup
     .mixed<Dayjs>()
     .required('Vui lòng chọn ngày bắt đầu')
@@ -67,4 +74,6 @@ export const jobPostSchema = yup.object().shape({
     )
     .min(1, 'Vui lòng chọn ít nhất một danh mục')
     .required('Vui lòng chọn danh mục'),
+  district: yup.object().nullable().required('Vui lòng chọn quận/huyện'),
+  streetAddress: yup.string().required('Vui lòng nhập địa chỉ chi tiết'),
 });

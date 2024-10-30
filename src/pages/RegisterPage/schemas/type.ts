@@ -5,4 +5,5 @@ export interface InputRegisterTypes {
   gender?: string | undefined;
   dateOfBirth?: Date | string | null;
   password?: string;
+  roleId?: number | string;
 }

@@ -19,4 +19,5 @@ export const registerSchema = yup.object().shape({
     .string()
     .required('Mật khẩu là bắt buộc')
     .min(6, 'Mật khẩu phải có ít nhất 6 ký tự'),
+  roleId: yup.string().required('Vui lòng chọn vai trò'),
 });

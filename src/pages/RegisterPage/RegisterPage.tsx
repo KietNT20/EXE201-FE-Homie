@@ -43,6 +43,7 @@ const RegisterPage = () => {
       email: '',
       gender: '',
       dateOfBirth: null,
+      roleId: '',
     },
   });
 
@@ -201,6 +202,35 @@ const RegisterPage = () => {
                   </Grid2>
                   <Grid2 size={12}>
                     <Controller
+                      name="roleId"
+                      control={control}
+                      render={({ field }) => (
+                        <FormControl fullWidth error={!!errors.roleId}>
+                          <InputLabel id="role-label">
+                            Đăng ký vai trò
+                          </InputLabel>
+                          <Select
+                            {...field}
+                            labelId="role-label"
+                            label="Đăng ký vai trò"
+                          >
+                            <MenuItem value="">
+                              <em>--- Chọn vai trò ---</em>
+                            </MenuItem>
+                            <MenuItem value="2">Người dùng</MenuItem>
+                            <MenuItem value="3">Người giúp việc</MenuItem>
+                          </Select>
+                          {errors.roleId && (
+                            <FormHelperText>
+                              {errors.roleId.message?.toString()}
+                            </FormHelperText>
+                          )}
+                        </FormControl>
+                      )}
+                    />
+                  </Grid2>
+                  <Grid2 size={12}>
+                    <Controller
                       name="password"
                       control={control}
                       render={({ field }) => (
@@ -226,6 +256,7 @@ const RegisterPage = () => {
                       )}
                     />
                   </Grid2>
+
                   <Grid2 size={12}>
                     <ButtonComp
                       type="submit"

@@ -96,12 +96,6 @@ const ServicePage = () => {
 
   const isLoadingState = isLoading || isPending;
 
-  // Memoize total pages calculation
-  const totalPages = useMemo(
-    () => jobPostResponse?.totalPage || 1,
-    [jobPostResponse?.totalPage],
-  );
-
   return (
     <Box sx={{ backgroundColor: 'background.default' }}>
       <Container>
@@ -130,7 +124,7 @@ const ServicePage = () => {
 
           <ServicePagination
             isLoading={isLoadingState}
-            totalPages={totalPages}
+            totalPages={jobPostResponse?.totalPage!}
             currentPage={page}
             onPageChange={handlePageChange}
           />
