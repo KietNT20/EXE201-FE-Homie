@@ -1,0 +1,176 @@
+.news-page {
+  font-family: 'Be Vietnam', sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    .banner {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+
+  
+      .banner-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+  
+      .banner-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+  
+        h1 {
+          font-size: 3rem;
+          margin-bottom: 1rem;
+        }
+  
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  
+    main {
+      margin-top: 50px;
+  
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+  
+        .news-card {
+          background-color: white;
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+          img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+  
+          .date {
+            background-color: #ffd700;
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 5px;
+            margin: 10px;
+            color: #666;
+          }
+  
+          h3 {
+            padding: 0 10px;
+            margin: 10px 0;
+            font-size: 1.1rem;
+          }
+  
+          button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-align: left;
+            text-decoration: none;
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+  
+      .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+  
+        button, span {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 5px;
+          border: none;
+          background-color: #fff;
+          color: #333;
+          font-size: 0.9rem;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+  
+        .active {
+          background-color: #3498db;
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+  
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+  
+        .modal-content {
+          background-color: white;
+          padding: 20px;
+          border-radius: 5px;
+          max-width: 500px;
+          width: 90%;
+          max-height: 80%;
+          overflow-y: auto;
+          position: relative;
+  
+          h2 {
+            margin-top: 0;
+          }
+  
+          img {
+            max-width: 100%;
+            height: auto;
+          }
+  
+          .date {
+            font-style: italic;
+            color: #666;
+          }
+  
+          .content {
+            margin-top: 20px;
+          }
+        }
+  
+        .close-button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          font-size: 24px;
+          background: none;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }

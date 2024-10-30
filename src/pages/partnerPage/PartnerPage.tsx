@@ -2,8 +2,15 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Button, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const PartnerPage = () => {
+  const navigate = useNavigate();
+
+  const onRegister = () => {
+    // Navigate to ProfileEmployee on registration
+    navigate('/profile');
+  };
   return (
     <section className="Partner">
       <div className="partner-container">
@@ -65,8 +72,9 @@ const PartnerPage = () => {
             variant="contained"
             color="primary"
             className="payment-button"
+            onClick={onRegister}
           >
-            Thanh Toán
+            Đăng kí
           </Button>
         </div>
 

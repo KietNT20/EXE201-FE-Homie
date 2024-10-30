@@ -1,0 +1,24 @@
+/* Core variables and mixins*/
+@use 'core/reset';
+@use 'core/mixins';
+@use 'core/variables';
+@use 'core/layouts';
+@use 'core/components';
+
+/* Navigation, header, footer*/
+@use 'core/header';
+@use 'core/nav';
+@use 'core/footer';
+
+/* Pages*/
+@use 'pages/home';
+@use 'pages/loginpage';
+@use 'pages/dashboard';
+@use 'pages/paymentpage';
+@use 'pages/servicepage';
+@use 'pages/partnerpage';
+@use 'pages/commitpage';
+@use 'pages/servicedetails';
+@use 'pages/aboutpage';
+@use 'pages/newpage';
+@use 'pages/profilepage'

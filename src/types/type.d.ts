@@ -1,6 +1,8 @@
 enum RoleUser {
   ADMIN = 1,
-  USER = 2,
+  CUSTOMER = 2,
+  EMPLOYEE = 3,
+  STAFF = 4,
 }
 
 interface User {
@@ -9,9 +11,15 @@ interface User {
   email?: string;
   password?: string;
   phone?: string;
-  dateOfBirth?: string;
+  dateOfBirth?: Date | null;
   gender?: 'male' | 'female';
   roleId?: RoleUser;
+}
+
+interface Category {
+  id?: number;
+  categoryName?: string;
+  price?: number;
 }
 
 type ActionReduxType = {

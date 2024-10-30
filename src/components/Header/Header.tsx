@@ -59,16 +59,18 @@ const Header = () => {
           </p>
         </div>
         <Toolbar className="header__toolbar">
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={toggleMenu}
-            className="header__toolbar-icon"
-          >
-            <MenuIcon />
-          </IconButton>
+          <div className="flex items-center w-[106.96px]">
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleMenu}
+              className="header__toolbar-icon"
+            >
+              <MenuIcon />
+            </IconButton>
+          </div>
           <Box>
             <Link to={PATH.HOME} className="toolbar__img">
               <img src={logo} alt="Homie Logo" />
@@ -76,10 +78,10 @@ const Header = () => {
           </Box>
           {!tokenMethod.get()?.token ? (
             <Button
-              component={NavLink}
-              to="/login"
+              component={Link}
+              to={PATH.LOGIN}
               className="header__toolbar-btn"
-              variant="contained"
+              variant="text"
               color="primary"
             >
               Đăng nhập

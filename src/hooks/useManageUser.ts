@@ -1,5 +1,4 @@
 import { userService } from '@/services/userService';
-import { UserPayload } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -16,18 +15,24 @@ export const useGetApiUsers = () => {
   };
 };
 
+export const useGetUserById = (userId?: number | null) => {
+  const { data, ...rest } = useQuery({
+    queryKey: ['user', userId],
+    queryFn: () => userService.getUserById(userId!),
+    enabled: !!userId,
+    throwOnError: false,
+    retry: 1,
+  });
+
+  return {
+    data,
+    ...rest,
+  };
+};
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({
-    mutationFn: ({
-      name,
-      email,
-      password,
-      phone,
-      dateOfBirth,
-      gender,
-      roleId,
-    }: UserPayload) =>
+    mutationFn: ({ name, email, password, phone, dateOfBirth, gender }: User) =>
       userService.createUser({
         name,
         email,
@@ -35,7 +40,7 @@ export const useCreateUser = () => {
         phone,
         dateOfBirth,
         gender,
-        roleId,
+        roleId: 2,
       }),
     onSuccess: () => {
       toast.dismiss();
@@ -92,3 +97,5 @@ export const useUpdateUser = () => {
 
   return { mutate, ...rest };
 };
+
+

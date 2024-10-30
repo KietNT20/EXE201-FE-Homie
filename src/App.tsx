@@ -1,7 +1,15 @@
 import { QueryClient } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
+import './assets/scss/style.scss';
 import AppRoutes from './routes/AppRoutes';
-export const queryClient = new QueryClient();
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60,
+    },
+  },
+});
 
 function App() {
   return (
@@ -14,18 +22,12 @@ function App() {
           duration: 2000,
           success: {
             style: {
-              // padding: "25px",
-              // color: "#fff",
-              // fontSize: "1.4rem",
-              // backgroundColor: "#4caf50",
+              fontSize: '1rem',
             },
           },
           error: {
             style: {
-              // padding: "25px",
-              // color: "#fff",
-              // fontSize: "1.4rem",
-              // backgroundColor: "#e25454",
+              fontSize: '1rem',
             },
           },
         }}

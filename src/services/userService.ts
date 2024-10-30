@@ -1,15 +1,14 @@
 import { API } from '@/api/apiUrl';
-import { UserPayload } from '@/types/types';
 import axiosInstance from '@/util/axiosInstance';
 
 export const userService = {
-  getUserList() {
-    return axiosInstance.get(API.USER_API.GET_ALL);
+  getUserList(query = '') {
+    return axiosInstance.get(`${API.USER_API.GET_ALL}${query}`);
   },
-  getUserById(id: number) {
-    return axiosInstance.get(`${API.USER_API.GET_BY_ID}/${id}`);
+  getUserById(userId: number) {
+    return axiosInstance.get(`${API.USER_API.GET_BY_ID}?id=${userId}`);
   },
-  createUser(payload: UserPayload) {
+  createUser(payload: User) {
     return axiosInstance.post(API.USER_API.CREATE, payload);
   },
   updateUser(payload: User) {

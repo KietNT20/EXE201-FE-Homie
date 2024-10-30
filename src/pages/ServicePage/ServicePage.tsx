@@ -1,278 +1,143 @@
+import { priceFilter } from '@/constant/priceFilter';
+import { useGetAllCategories } from '@/hooks/useManageCategory';
+import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
+import { JobPost } from '@/types/types';
+import { Box, Container } from '@mui/material';
+import Grid from '@mui/material/Grid2';
+import React, { useMemo } from 'react';
+import ServiceContent from './ServiceContent';
+import ServiceFilterColumn from './ServiceFilterColumn';
+import ServiceHeader from './ServiceHeader';
+import ServicePagination from './ServicePagination';
+import { useServiceLogic } from './useServiceLogic';
+
+const pageSize = 6;
+const skeletonCards = Array(pageSize).fill(null);
+
 const ServicePage = () => {
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [priceFilter, setPriceFilter] = useState(50);
-  // const [timeFilter, setTimeFilter] = useState(6);
-  // const [userAddresses, setUserAddresses] = useState<string[]>([]);
-  // const [selectedAddresses, setSelectedAddresses] = useState<string[]>([]);
-  // const [selectedAddress, setSelectedAddress] = useState<string>("");
-  // const [ratingFilter, setRatingFilter] = useState(0);
-  // const [selectedService, setSelectedService] =
-  //   useState<ServiceCardData | null>(null);
-  // const [selectedCategory, setSelectedCategory] = useState<
-  //   ServiceCardData["categories"][number] | null
-  // >(null);
+  // Get current state from custom hook first
+  const {
+    page,
+    sortOption,
+    filters,
+    handleFilterChange,
+    handleSortChange,
+    handleCardClick,
+    handlePageChange,
+  } = useServiceLogic();
 
-  // const cardsPerPage = 9;
+  // Then use the page state in data fetching
+  const {
+    data: jobPostResponse,
+    isLoading,
+    isPending,
+  } = useGetAllJobPosts({
+    pageNumber: page,
+    pageSize,
+  });
 
-  // const filteredCards = useMemo(() => {
-  //   return serviceCards.filter((card) => {
-  //     const cardPrice = parseInt(card.price.replace(/[^0-9]/g, ""));
-  //     const cardTime = parseInt(card.time);
-  //     const addressMatch =
-  //       selectedAddresses.length === 0 ||
-  //       selectedAddresses.includes(card.userAddress);
-  //     const categoryMatch = selectedCategory
-  //       ? card.categories.includes(selectedCategory)
-  //       : true;
+  const { data: categoriesData } = useGetAllCategories();
 
-  //     return (
-  //       card.rating >= ratingFilter &&
-  //       cardPrice <= priceFilter * 900 &&
-  //       cardTime <= timeFilter &&
-  //       addressMatch &&
-  //       categoryMatch
-  //     );
-  //   });
-  // }, [
-  //   ratingFilter,
-  //   priceFilter,
-  //   timeFilter,
-  //   selectedAddresses,
-  //   selectedCategory,
-  // ]);
+  // Memoize category prices
+  const categoryPrices = useMemo(() => {
+    if (!categoriesData?.data) return {};
+    return categoriesData.data.reduce(
+      (acc: any, category: Category) => {
+        if (category.id !== undefined) {
+          acc[category.id] = category.price || 0;
+        }
+        return acc;
+      },
+      {} as Record<number, number>,
+    );
+  }, [categoriesData?.data]);
 
-  // const totalCards = filteredCards.length;
-  // const totalPages = Math.ceil(totalCards / cardsPerPage);
+  // Memoize filtered job posts
+  const filteredJobPosts = useMemo(() => {
+    if (!jobPostResponse?.data) return [];
 
-  // const currentCards = useMemo(() => {
-  //   const indexOfLastCard = currentPage * cardsPerPage;
-  //   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  //   return filteredCards.slice(indexOfFirstCard, indexOfLastCard);
-  // }, [currentPage, filteredCards, cardsPerPage]);
+    return jobPostResponse.data
+      .filter((jobPost: JobPost) => {
+        const matchesCategory =
+          filters.categories.length === 0 ||
+          jobPost.categoryJobPost.some((category) =>
+            filters.categories.includes(category.categoriesId),
+          );
 
-  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+        const totalPrice = jobPost.categoryJobPost.reduce(
+          (sum, category) => sum + (categoryPrices[category.categoriesId] || 0),
+          0,
+        );
+        const matchesPrice =
+          totalPrice >= filters.priceRange[0] &&
+          totalPrice <= filters.priceRange[1];
 
-  // const maxVisiblePages = 5;
+        const matchesSearch =
+          !filters.searchTerm ||
+          jobPost.categoryJobPost.some((category) => {
+            const categoryData = categoriesData?.data?.find(
+              (cat: Category) => cat.id === category.categoriesId,
+            );
+            return categoryData?.categoryName
+              ?.toLowerCase()
+              .includes(filters.searchTerm.toLowerCase());
+          });
 
-  // const getPageNumbers = () => {
-  //   const pageNumbers = [];
-  //   let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-  //   let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        return matchesCategory && matchesPrice && matchesSearch;
+      })
+      .sort((a, b) => sortOption.compareFn(a, b, categoryPrices));
+  }, [
+    jobPostResponse?.data,
+    filters,
+    sortOption.compareFn,
+    categoryPrices,
+    categoriesData?.data,
+  ]);
 
-  //   if (endPage - startPage + 1 < maxVisiblePages) {
-  //     startPage = Math.max(1, endPage - maxVisiblePages + 1);
-  //   }
+  const isLoadingState = isLoading || isPending;
 
-  //   for (let i = startPage; i <= endPage; i++) {
-  //     pageNumbers.push(i);
-  //   }
-
-  //   return pageNumbers;
-  // };
-
-  // const handleCardClick = (card: ServiceCardData) => {
-  //   setSelectedService(card);
-  // };
+  // Memoize total pages calculation
+  const totalPages = useMemo(
+    () => jobPostResponse?.totalPage || 1,
+    [jobPostResponse?.totalPage],
+  );
 
   return (
-    // <div className="service-page">
-    //   <div className="banner">
-    //     <img src={bannerImage} alt="Service Banner" className="banner-image" />
-    //     <div className="banner-text">
-    //       <h1>Chi Tiết Dịch Vụ</h1>
-    //       <p>Home / Services</p>
-    //     </div>
-    //   </div>
+    <Box sx={{ backgroundColor: 'background.default' }}>
+      <Container>
+        <Box sx={{ py: 4 }}>
+          <ServiceHeader />
 
-    //   <div className="main-container">
-    //     {selectedService ? (
-    //       <ServiceDetails
-    //         service={selectedService}
-    //         onClose={() => setSelectedService(null)}
-    //       />
-    //     ) : (
-    //       <>
-    //         <aside className="filter-section">
-    //           <div className="filter-header">
-    //             <FilterList className="filter-icon" />
-    //             <h3>Bộ lọc</h3>
-    //           </div>
-    //           <div className="filter">
-    //             <span>
-    //               <AttachMoney className="filter-icon" />
-    //               LỌC THEO GIÁ
-    //             </span>
-    //             <input
-    //               type="range"
-    //               min="0"
-    //               max="100"
-    //               value={priceFilter}
-    //               onChange={(e) => setPriceFilter(Number(e.target.value))}
-    //             />
-    //             <span>{priceFilter} Giá: 0đ - 90.000đ</span>
-    //           </div>
-    //           <div className="filter">
-    //             <div className="filter-icon-container">
-    //               <span>
-    //                 <AccessTime className="filter-icon" />
-    //                 LỌC THEO THỜI GIAN
-    //               </span>
-    //               <input
-    //                 type="range"
-    //                 min="0"
-    //                 max="12"
-    //                 value={timeFilter}
-    //                 onChange={(e) => setTimeFilter(Number(e.target.value))}
-    //               />
-    //               <span>{timeFilter} Thời gian: 1h - 12h</span>
-    //             </div>
-    //           </div>
-    //           <CategoryList
-    //             onCategorySelect={(category) =>
-    //               setSelectedCategory(
-    //                 category as ServiceCardData["categories"][number] | null,
-    //               )
-    //             }
-    //           />
+          <Grid container spacing={3}>
+            <ServiceFilterColumn
+              sortOption={sortOption}
+              onSortChange={handleSortChange}
+              categories={categoriesData?.data ?? []}
+              onFilterChange={handleFilterChange}
+              minPrice={priceFilter.min}
+              maxPrice={priceFilter.max}
+            />
 
-    //           <div className="filter">
-    //             <h3>
-    //               <LocationOn className="filter-icon" />
-    //               Vị trí
-    //             </h3>
-    //           </div>
-    //           {selectedAddresses.map((address, index) => (
-    //             <div key={index}>
-    //               <input
-    //                 type="checkbox"
-    //                 id={`address-${index}`}
-    //                 checked={true}
-    //                 onChange={() => {
-    //                   setSelectedAddresses(
-    //                     selectedAddresses.filter((a) => a !== address),
-    //                   );
-    //                 }}
-    //               />
-    //               <label htmlFor={`address-${index}`}>{address}</label>
-    //             </div>
-    //           ))}
-    //           <div>
-    //             <select
-    //               className="address-select"
-    //               value={selectedAddress}
-    //               onChange={(e) => setSelectedAddress(e.target.value)}
-    //             >
-    //               <option value="">Chọn địa chỉ</option>
-    //               {userAddresses
-    //                 .filter((address) => !selectedAddresses.includes(address))
-    //                 .map((address, index) => (
-    //                   <option key={index} value={address}>
-    //                     {address}
-    //                   </option>
-    //                 ))}
-    //             </select>
-    //             <button
-    //               onClick={() => {
-    //                 if (
-    //                   selectedAddress &&
-    //                   !selectedAddresses.includes(selectedAddress)
-    //                 ) {
-    //                   setSelectedAddresses([
-    //                     ...selectedAddresses,
-    //                     selectedAddress,
-    //                   ]);
-    //                   setSelectedAddress("");
-    //                 }
-    //               }}
-    //             >
-    //               Thêm
-    //             </button>
-    //           </div>
+            <ServiceContent
+              isLoading={isLoadingState}
+              jobPosts={filteredJobPosts}
+              onCardClick={handleCardClick}
+              categoryPrices={categoryPrices}
+              categories={categoriesData?.data ?? []}
+              skeletonCards={skeletonCards}
+            />
+          </Grid>
 
-    //           <div className="filter">
-    //             <h3>
-    //               <Star className="filter-icon" /> Đánh giá
-    //             </h3>
-    //             <div
-    //               className="star-rating"
-    //               style={{ display: "flex", alignItems: "center" }}
-    //             >
-    //               {[...Array(5)].map((_, index) => {
-    //                 const star = index + 1;
-    //                 return (
-    //                   <Star
-    //                     key={star}
-    //                     sx={{
-    //                       color: star <= ratingFilter ? "gold" : "gray",
-    //                       cursor: "pointer",
-    //                       marginRight: "5px",
-    //                     }}
-    //                     onClick={() => setRatingFilter(star)}
-    //                   />
-    //                 );
-    //               })}
-    //               <span style={{ marginLeft: "10px" }}>
-    //                 {ratingFilter === 0
-    //                   ? "Tất cả sao"
-    //                   : `${ratingFilter} sao trở lên`}
-    //               </span>
-    //             </div>
-    //           </div>
-    //         </aside>
-
-    //         <div className="service-cards">
-    //           {currentCards.map((card, index) => (
-    //           ))}
-    //         </div>
-    //       </>
-    //     )}
-    //   </div>
-
-    //   {!selectedService && (
-    //     <div className="pagination">
-    //       <button
-    //         onClick={() => paginate(Math.max(1, currentPage - 1))}
-    //         disabled={currentPage === 1}
-    //       >
-    //         &lt; Prev
-    //       </button>
-    //       {currentPage > Math.floor(maxVisiblePages / 2) + 1 && (
-    //         <>
-    //           <span onClick={() => paginate(1)}>1</span>
-    //           {currentPage > Math.floor(maxVisiblePages / 2) + 2 && (
-    //             <span className="ellipsis">...</span>
-    //           )}
-    //         </>
-    //       )}
-    //       {getPageNumbers().map((number) => (
-    //         <span
-    //           key={number}
-    //           onClick={() => paginate(number)}
-    //           className={number === currentPage ? "active" : ""}
-    //         >
-    //           {number}
-    //         </span>
-    //       ))}
-    //       {currentPage < totalPages - Math.floor(maxVisiblePages / 2) && (
-    //         <>
-    //           {currentPage <
-    //             totalPages - Math.floor(maxVisiblePages / 2) - 1 && (
-    //             <span className="ellipsis">...</span>
-    //           )}
-    //           <span onClick={() => paginate(totalPages)}>{totalPages}</span>
-    //         </>
-    //       )}
-    //       <button
-    //         onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
-    //         disabled={currentPage === totalPages}
-    //       >
-    //         Next &gt;
-    //       </button>
-    //     </div>
-    //   )}
-    // </div>
-    <div></div>
+          <ServicePagination
+            isLoading={isLoadingState}
+            totalPages={totalPages}
+            currentPage={page}
+            onPageChange={handlePageChange}
+          />
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
-export default ServicePage;
+export default React.memo(ServicePage);

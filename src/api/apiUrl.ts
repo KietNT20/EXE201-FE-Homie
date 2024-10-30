@@ -21,7 +21,7 @@ export const API = {
   JOB_POST_API: {
     CREATE: JOB_POST + '/Create',
     GET_ALL: JOB_POST + '/GetAll',
-    GET_BY_ID: JOB_POST + '/getById',
+    GET_BY_ID: JOB_POST + '/getById/',
   },
   PROFILES_API: {
     GET_PROFILES: PROFILES + '/getProfiles/',
@@ -33,5 +33,10 @@ export const API = {
     GET_BY_ID: USER + '/getById',
     CREATE: USER + '/create',
     UPDATE: USER + '/update',
+    GET_USER_BY_TOKEN: USER + '/get-user-by-token/',
+  },
+  CATEGORY_API: {
+    GET_ALL: '/Category/getAll',
+    GET_BY_ID: '/Category/getById',
   },
 };
