@@ -4,7 +4,6 @@ import axiosInstance from '@/util/axiosInstance';
 
 export const authService = {
   login(payload: { email: string; password: string }) {
-    console.log(payload);
     return axiosInstance.post(API.AUTH_API.LOGIN, payload);
   },
   getUserByToken(token: TokenResponse) {

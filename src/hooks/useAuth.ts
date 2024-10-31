@@ -26,7 +26,7 @@ export const useLogin = () => {
     onSuccess: (response) => {
       toast.dismiss();
       queryClient.setQueryData(['account'], response);
-      console.log('Login success', response);
+      // console.log('Login success', response);
       tokenMethod.set({ token: response.data.tokenString });
       dispatch<any>(setUserProfile(tokenMethod.get()?.token));
       toast.success('Đăng nhập thành công');

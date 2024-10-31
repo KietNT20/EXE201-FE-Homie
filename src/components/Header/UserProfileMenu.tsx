@@ -62,7 +62,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
           to={PATH.APPLIED}
           onClick={handleMenuClose}
         >
-          Các đơn việc của bạn
+          Các nhiệm vụ đã ứng tuyển
         </MenuItem>
         <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
       </Menu>

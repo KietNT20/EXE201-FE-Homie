@@ -15,18 +15,18 @@ const pageSize = 6;
 const skeletonCards = Array(pageSize).fill(null);
 
 const ServicePage = () => {
-  // Get current state from custom hook first
   const {
     page,
     sortOption,
     filters,
+    filter,
+    OrderBy,
     handleFilterChange,
     handleSortChange,
     handleCardClick,
     handlePageChange,
   } = useServiceLogic();
 
-  // Then use the page state in data fetching
   const {
     data: jobPostResponse,
     isLoading,
@@ -34,6 +34,8 @@ const ServicePage = () => {
   } = useGetAllJobPosts({
     pageNumber: page,
     pageSize,
+    filter,
+    OrderBy,
   });
 
   const { data: categoriesData } = useGetAllCategories();
@@ -52,47 +54,42 @@ const ServicePage = () => {
     );
   }, [categoriesData?.data]);
 
-  // Memoize filtered job posts
+  // Apply client-side filtering after API sorting
   const filteredJobPosts = useMemo(() => {
     if (!jobPostResponse?.data) return [];
 
-    return jobPostResponse.data
-      .filter((jobPost: JobPost) => {
-        const matchesCategory =
-          filters.categories.length === 0 ||
-          jobPost.categoryJobPost.some((category) =>
-            filters.categories.includes(category.categoriesId),
-          );
-
-        const totalPrice = jobPost.categoryJobPost.reduce(
-          (sum, category) => sum + (categoryPrices[category.categoriesId] || 0),
-          0,
+    return jobPostResponse.data.filter((jobPost: JobPost) => {
+      // Category filter
+      const matchesCategory =
+        filters.categories.length === 0 ||
+        jobPost.categoryJobPost.some((category) =>
+          filters.categories.includes(category.categoriesId),
         );
-        const matchesPrice =
-          totalPrice >= filters.priceRange[0] &&
-          totalPrice <= filters.priceRange[1];
 
-        const matchesSearch =
-          !filters.searchTerm ||
-          jobPost.categoryJobPost.some((category) => {
-            const categoryData = categoriesData?.data?.find(
-              (cat: Category) => cat.id === category.categoriesId,
-            );
-            return categoryData?.categoryName
-              ?.toLowerCase()
-              .includes(filters.searchTerm.toLowerCase());
-          });
+      // Price range filter
+      const totalPrice = jobPost.categoryJobPost.reduce(
+        (sum, category) => sum + (categoryPrices[category.categoriesId] || 0),
+        0,
+      );
+      const matchesPrice =
+        totalPrice >= filters.priceRange[0] &&
+        totalPrice <= filters.priceRange[1];
 
-        return matchesCategory && matchesPrice && matchesSearch;
-      })
-      .sort((a, b) => sortOption.compareFn(a, b, categoryPrices));
-  }, [
-    jobPostResponse?.data,
-    filters,
-    sortOption.compareFn,
-    categoryPrices,
-    categoriesData?.data,
-  ]);
+      // Search term filter
+      const matchesSearch =
+        !filters.searchTerm ||
+        jobPost.categoryJobPost.some((category) => {
+          const categoryData = categoriesData?.data?.find(
+            (cat: Category) => cat.id === category.categoriesId,
+          );
+          return categoryData?.categoryName
+            ?.toLowerCase()
+            .includes(filters.searchTerm.toLowerCase());
+        });
+
+      return matchesCategory && matchesPrice && matchesSearch;
+    });
+  }, [jobPostResponse?.data, filters, categoryPrices, categoriesData?.data]);
 
   const isLoadingState = isLoading || isPending;
 
@@ -101,7 +98,6 @@ const ServicePage = () => {
       <Container>
         <Box sx={{ py: 4 }}>
           <ServiceHeader />
-
           <Grid container spacing={3}>
             <ServiceFilterColumn
               sortOption={sortOption}
