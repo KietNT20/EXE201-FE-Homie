@@ -97,5 +97,3 @@ export const useUpdateUser = () => {
 
   return { mutate, ...rest };
 };
-
-

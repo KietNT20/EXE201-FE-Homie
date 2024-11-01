@@ -11,5 +11,4 @@ export const profileService = {
   createProfiles(payload: any) {
     return axiosInstance.post(API.PROFILES_API.CREATE, payload);
   },
-  
 };
