@@ -14,7 +14,7 @@ const ServiceHeader = ({ onJobCreated }: ServiceHeaderProps) => {
   return (
     <Grid container alignItems="center" justifyContent="space-between" mb={3}>
       <Grid size={{ xs: 'auto' }}>
-        <Typography variant="h4" fontWeight="bold">
+        <Typography variant="h4" fontWeight="bold" className="mb-3 sm:mb-0">
           Danh sách dịch vụ
         </Typography>
       </Grid>

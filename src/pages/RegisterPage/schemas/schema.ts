@@ -2,21 +2,27 @@ import { REGEX } from '@/constant/regex';
 import dayjs from 'dayjs';
 import * as yup from 'yup';
 
-export const registerSchema = yup.object().shape({
-  name: yup.string().required('Họ và tên là bắt buộc'),
-  phone: yup
-    .string()
-    .required('Số điện thoại là bắt buộc')
-    .matches(REGEX.PHONE_NUMBER, 'Số điện thoại không hợp lệ'),
-  email: yup.string().required('Email là bắt buộc').email('Email không hợp lệ'),
-  gender: yup.string().required('Giới tính là bắt buộc'),
-  dateOfBirth: yup
-    .date()
-    .nullable()
-    .required('Ngày sinh là bắt buộc')
-    .max(dayjs().subtract(15, 'year').toDate(), 'Bạn phải trên 15 tuổi'),
-  password: yup
-    .string()
-    .required('Mật khẩu là bắt buộc')
-    .min(6, 'Mật khẩu phải có ít nhất 6 ký tự'),
-});
+export const registerSchema = yup
+  .object()
+  .shape({
+    email: yup
+      .string()
+      .email('Yêu cầu nhập email hợp lệ')
+      .required('Yêu cầu nhập email'),
+    name: yup.string().required('Username is required'),
+    password: yup
+      .string()
+      .min(5, 'Mật khaẩu phải có ít nhất 5 ký tự')
+      .matches(
+        REGEX.PASSWORD,
+        'Mật khẩu phải chứa ít nhất 1 ký tự hoa, 1 ký tự thường và 1 ký tự số',
+      )
+      .required('Password is required'),
+    phone: yup
+      .string()
+      .matches(REGEX.PHONE_NUMBER, 'Số điện thoại không hợp lệ')
+      .required('Yêu cầu nhập số điện thoại'),
+    dateOfBirth: yup.string().required('Yêu cầu chọn ngày sinh'),
+    gender: yup.string().required('Yêu cầu chọn giới tính'),
+  })
+  .required();

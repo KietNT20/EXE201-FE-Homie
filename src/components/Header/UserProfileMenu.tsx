@@ -1,3 +1,4 @@
+import { PATH } from '@/constant/path';
 import { AccountCircle } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import React, { useState } from 'react';
@@ -30,7 +31,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         <IconButton onClick={handleMenuOpen}>
           <AccountCircle fontSize="medium" />
         </IconButton>
-        <Typography variant="body1" className="text-sm">
+        <Typography variant="body1" className="sm:text-base sm:block hidden">
           {userProfile.email}
         </Typography>
       </div>
@@ -49,8 +50,19 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
-        <MenuItem component={NavLink} to="/profile" onClick={handleMenuClose}>
+        <MenuItem
+          component={NavLink}
+          to={PATH.PROFILE}
+          onClick={handleMenuClose}
+        >
           Thông tin cá nhân
+        </MenuItem>
+        <MenuItem
+          component={NavLink}
+          to={PATH.APPLIED}
+          onClick={handleMenuClose}
+        >
+          Các nhiệm vụ đã ứng tuyển
         </MenuItem>
         <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
       </Menu>

@@ -20,10 +20,12 @@
         max-width: 120px;
         @include mixins.mid(flex);
         margin-bottom: 32px;
+
         &-img {
           @include mixins.midImg;
         }
       }
+
       .footer__info {
         p {
           @include mixins.text(vnRegular, 16px, 24px, #eaecf0);

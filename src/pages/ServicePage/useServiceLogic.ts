@@ -3,17 +3,11 @@ import { priceFilter } from '@/constant/priceFilter';
 import { ExtendedFilterState } from '@/types/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SortOption } from './ServiceSort';
+import { SortOption, sortOptions } from './ServiceSort';
 
 export const useServiceLogic = () => {
   const [page, setPage] = useState<number>(1);
-  const [sortOption, setSortOption] = useState<SortOption>({
-    value: 'newest',
-    label: 'Mới nhất',
-    compareFn: (a, b) =>
-      new Date(b.createDate ?? '').getTime() -
-      new Date(a.createDate ?? '').getTime(),
-  });
+  const [sortOption, setSortOption] = useState<SortOption>(sortOptions[0]);
   const [filters, setFilters] = useState<ExtendedFilterState>({
     categories: [],
     priceRange: [priceFilter.min, priceFilter.max],
@@ -22,7 +16,6 @@ export const useServiceLogic = () => {
 
   const navigate = useNavigate();
 
-  // Reset page when filters change
   useEffect(() => {
     if (page !== 1) {
       setPage(1);
@@ -58,10 +51,40 @@ export const useServiceLogic = () => {
     [],
   );
 
+  // Get API filter and OrderBy based on sort option
+  const getApiParams = useCallback(() => {
+    switch (sortOption.value) {
+      case 'newest':
+        return {
+          filter: 'createDate',
+          OrderBy: 'desc',
+        };
+      case 'priceDesc':
+        return {
+          filter: 'price',
+          OrderBy: 'desc',
+        };
+      case 'priceAsc':
+        return {
+          filter: 'price',
+          OrderBy: 'asc',
+        };
+      default:
+        return {
+          filter: 'createDate',
+          OrderBy: 'desc',
+        };
+    }
+  }, [sortOption]);
+
+  const { filter, OrderBy } = getApiParams();
+
   return {
     page,
     sortOption,
     filters,
+    filter,
+    OrderBy,
     handleFilterChange,
     handleSortChange,
     handleCardClick,

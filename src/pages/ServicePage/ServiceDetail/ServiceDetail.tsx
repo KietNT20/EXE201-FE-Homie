@@ -46,6 +46,7 @@ const ServiceDetail = () => {
   const [openModal, setOpenModal] = useState(false);
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -58,6 +59,7 @@ const ServiceDetail = () => {
     isLoading: isLoadingJob,
     error: jobError,
     isError,
+    refetch: refetchJobPost, // Add refetch function
   } = useGetJobPostById(id);
 
   const { data: categoryDetail } = useGetCategoryById(
@@ -88,6 +90,7 @@ const ServiceDetail = () => {
         onSettled: () => {
           setIsSubmitting(false);
           handleCloseModal();
+          refetchJobPost();
         },
       },
     );
@@ -120,6 +123,8 @@ const ServiceDetail = () => {
   const canApply =
     jobPost.data.status !== 'Done' && jobPost.data.status !== 'Cancel';
 
+  const hadApply = jobPost.data.status === 'Application';
+
   return (
     <Container maxWidth="lg" className="pb-8 pt-5">
       {/* Navigation */}
@@ -129,11 +134,27 @@ const ServiceDetail = () => {
       />
       {/* Header Section */}
       <Paper elevation={0} className="p-6 mb-6">
-        <Box className="flex justify-between items-start mb-4">
-          <Typography variant="h4" component="h1" className="font-bold">
+        <Box className="flex flex-col md:items-center mb-3 sm:mb-4 sm:justify-between sm:flex-row">
+          <Typography
+            variant="h4"
+            component="h1"
+            className="font-bold mb-3 sm:mb-0"
+          >
             {jobPost.data.title}
           </Typography>
-          <Box className="flex items-center gap-2">
+          <Box className="grid gap-3 sm:flex sm:items-center sm:gap-4">
+            <Chip
+              label={statusConfig.label}
+              color={statusConfig.color}
+              icon={<span className="text-sm">{statusConfig.icon}</span>}
+              className="font-medium sm:mb-0"
+              sx={{
+                '& .MuiChip-icon': {
+                  marginLeft: '8px',
+                  order: -1,
+                },
+              }}
+            />
             {canApply &&
               userProfile?.id &&
               userProfile.id !== jobPost.data.employerId && (
@@ -143,22 +164,11 @@ const ServiceDetail = () => {
                   startIcon={<Work />}
                   onClick={handleOpenModal}
                   className="mr-2"
+                  disabled={hadApply}
                 >
-                  Nhận việc
+                  {!hadApply ? 'Nhận việc' : 'Đã được nhận'}
                 </Button>
               )}
-            <Chip
-              label={statusConfig.label}
-              color={statusConfig.color}
-              icon={<span className="text-sm">{statusConfig.icon}</span>}
-              className="font-medium"
-              sx={{
-                '& .MuiChip-icon': {
-                  marginLeft: '8px',
-                  order: -1,
-                },
-              }}
-            />
           </Box>
         </Box>
         <Typography

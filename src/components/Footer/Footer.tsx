@@ -1,13 +1,13 @@
+import { logoFooter } from '@/constant/image';
 import { SocialIcon } from 'react-social-icons';
-import logoFooter from '@/assets/img/logo-footer.png';
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer pt-16 pb-12">
       <div className="container">
-        <div className="footer__top">
+        <div className="footer__top grid gap-4 mb-2 md:grid-cols-2 md:gap-6 md:mb-4 lg:flex lg:justify-around h-full">
           <div className="footer__top-content">
-            <figure className="footer__thumb">
+            <figure className="footer__thumb rounded-xl py-3 h-20 w-36 mb-8">
               <img
                 src={logoFooter}
                 alt="Homie logo"
@@ -15,8 +15,10 @@ const Footer = () => {
               />
             </figure>
             <div className="footer__info">
-              <p className="footer__info-company">Công Ty TNHH Homie</p>
-              <p className="footer__info-email">email: support@homie.com</p>
+              <p className="footer__info-company mb-3">Công Ty TNHH Homie</p>
+              <p className="footer__info-email mb-3">
+                email: support@homie.com
+              </p>
               <p className="footer__info-hotline">Hotline: 1900 0933</p>
             </div>
           </div>
@@ -87,8 +89,8 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="footer__bottom">
-          <div className="footer__bottom-linksocials">
+        <div className="footer__bottom md:flex md:items-center md:justify-center md:flex-col">
+          <div className="footer__bottom-linksocials my-4 flex flex-col sm:flex-row md:items-center gap-3">
             <SocialIcon url="https://www.instagram.com/homie.vn" />
             <SocialIcon url="https://www.tiktok.com/homie.vn" />
             <SocialIcon url="https://www.youtube.com/homie.vn" />

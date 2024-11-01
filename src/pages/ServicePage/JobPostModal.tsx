@@ -3,6 +3,7 @@ import { JobPostModalProps } from '@/types/types';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Alert,
+  Autocomplete,
   Box,
   Button,
   FormControl,
@@ -22,7 +23,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { JobPostFormData, jobPostSchema } from './schemas/schema';
+import {
+  District,
+  ExtendedJobPostFormData,
+  jobPostSchema,
+} from './schemas/schema';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -33,7 +38,7 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
-  maxHeight: '90vh',
+  maxHeight: '95vh',
   overflow: 'auto',
 };
 
@@ -44,7 +49,8 @@ const JobPostModal = ({
   categories = [],
   initialData = {},
   error,
-}: JobPostModalProps) => {
+  districts = [],
+}: JobPostModalProps & { districts: District[] }) => {
   const { userProfile } = useAppSelector((state) => state.profile);
 
   const {
@@ -52,13 +58,12 @@ const JobPostModal = ({
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<JobPostFormData>({
+  } = useForm<any>({
     resolver: yupResolver(jobPostSchema),
     defaultValues: {
       userId: userProfile?.id || 0,
       title: initialData.title || '',
       description: initialData.description || '',
-      location: initialData.location || '',
       squareMeters: initialData.squareMeters || 0,
       numberOfFloors: initialData.numberOfFloors || 0,
       startDate: initialData.startDate ? dayjs(initialData.startDate) : dayjs(),
@@ -68,12 +73,17 @@ const JobPostModal = ({
         ? dayjs(initialData.createDate)
         : dayjs(),
       categorys: initialData.categorys || [],
+      streetAddress: '',
+      district: initialData.district || { id: 0, district: '' },
     },
   });
 
-  const onSubmitHandler = (data: JobPostFormData) => {
+  const onSubmitHandler = (data: ExtendedJobPostFormData) => {
+    // Tạo địa chỉ đầy đủ
+    const fullAddress = `${data.streetAddress}, ${data.district?.district || ''}, TP. HCM`;
     const formattedData = {
       ...data,
+      location: fullAddress,
       startDate: data.startDate.toISOString(),
       endDate: data.endDate.toISOString(),
       createDate: data.createDate.toISOString(),
@@ -124,7 +134,7 @@ const JobPostModal = ({
                     fullWidth
                     label="Tiêu đề"
                     error={!!errors.title}
-                    helperText={errors.title?.message}
+                    helperText={errors.title?.message?.toString()}
                   />
                 )}
               />
@@ -142,7 +152,7 @@ const JobPostModal = ({
                     multiline
                     rows={4}
                     error={!!errors.description}
-                    helperText={errors.description?.message}
+                    helperText={errors?.description?.message?.toString()}
                   />
                 )}
               />
@@ -150,15 +160,51 @@ const JobPostModal = ({
 
             <Grid size={{ xs: 12 }}>
               <Controller
-                name="location"
+                name="streetAddress"
                 control={control}
                 render={({ field }) => (
                   <TextField
                     {...field}
                     fullWidth
-                    label="Địa điểm"
-                    error={!!errors.location}
-                    helperText={errors.location?.message}
+                    label="Địa chỉ chi tiết"
+                    error={!!errors.streetAddress}
+                    helperText={errors.streetAddress?.message?.toString()}
+                    placeholder="Nhập số nhà, tên đường, Phường/xã..."
+                  />
+                )}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <Controller
+                name="district"
+                control={control}
+                render={({ field: { onChange, value, ...field } }) => (
+                  <Autocomplete
+                    {...field}
+                    options={districts}
+                    getOptionLabel={(option) => option.district}
+                    value={value}
+                    onChange={(_, newValue) => {
+                      onChange(newValue);
+                    }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Quận/Huyện"
+                        error={!!errors.district}
+                        helperText={errors.district?.message?.toString()}
+                        placeholder="Nhập tên quận/huyện..."
+                      />
+                    )}
+                    isOptionEqualToValue={(option, value) =>
+                      option.id === value?.id
+                    }
+                    renderOption={(props, option) => (
+                      <li {...props} key={option.id}>
+                        {option.district}
+                      </li>
+                    )}
                   />
                 )}
               />
@@ -175,7 +221,7 @@ const JobPostModal = ({
                     type="number"
                     label="Diện tích (m²)"
                     error={!!errors.squareMeters}
-                    helperText={errors.squareMeters?.message}
+                    helperText={errors.squareMeters?.message?.toString()}
                   />
                 )}
               />
@@ -192,7 +238,7 @@ const JobPostModal = ({
                     type="number"
                     label="Số tầng"
                     error={!!errors.numberOfFloors}
-                    helperText={errors.numberOfFloors?.message}
+                    helperText={errors.numberOfFloors?.message?.toString()}
                   />
                 )}
               />
@@ -212,7 +258,7 @@ const JobPostModal = ({
                         textField: {
                           fullWidth: true,
                           error: !!errors.startDate,
-                          helperText: errors.startDate?.message,
+                          helperText: errors.startDate?.message?.toString(),
                         },
                       }}
                     />
@@ -235,7 +281,7 @@ const JobPostModal = ({
                         textField: {
                           fullWidth: true,
                           error: !!errors.endDate,
-                          helperText: errors.endDate?.message,
+                          helperText: errors.endDate?.message?.toString(),
                         },
                       }}
                     />
@@ -254,7 +300,9 @@ const JobPostModal = ({
                     <Select
                       {...field}
                       multiple
-                      value={field.value?.map((cat) => cat.categoryId)}
+                      value={field.value?.map(
+                        (cat: { categoryId: number }) => cat.categoryId,
+                      )}
                       onChange={(e) => {
                         const selectedIds = e.target.value as number[];
                         field.onChange(
@@ -273,7 +321,7 @@ const JobPostModal = ({
                     </Select>
                     {errors.categorys && (
                       <FormHelperText>
-                        {errors.categorys.message}
+                        {errors.categorys.message?.toString()}
                       </FormHelperText>
                     )}
                   </FormControl>

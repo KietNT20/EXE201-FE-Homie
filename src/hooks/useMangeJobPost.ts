@@ -6,12 +6,20 @@ import toast from 'react-hot-toast';
 export const useGetAllJobPosts = (params: {
   pageNumber: number;
   pageSize: number;
+  filter: string;
+  OrderBy: string;
 }) => {
   const { data, ...rest } = useQuery<JobPostResponse>({
-    queryKey: ['jobPosts', params.pageNumber, params.pageSize],
+    queryKey: [
+      'jobPosts',
+      params.pageNumber,
+      params.pageSize,
+      params.filter,
+      params.OrderBy,
+    ],
     queryFn: () =>
       jobPostService.getJobPosts(
-        `?pageNumber=${params.pageNumber}&pageSize=${params.pageSize}`,
+        `?pageNumber=${params.pageNumber}&pageSize=${params.pageSize}&filter=${params.filter}&OrderBy=${params.OrderBy}`,
       ),
     throwOnError: true,
   });
@@ -25,10 +33,7 @@ export const useGetAllJobPosts = (params: {
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
   const { data, ...rest } = useQuery<JobPostDetail>({
     queryKey: ['jobPost', jobPostId],
-    queryFn: () => {
-      if (!jobPostId) throw new Error('Job Post ID is required');
-      return jobPostService.getJobPostById(Number(jobPostId));
-    },
+    queryFn: () => jobPostService.getJobPostById(Number(jobPostId!)),
     enabled: !!jobPostId,
     throwOnError: false,
     retry: 1,

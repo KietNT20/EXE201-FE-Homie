@@ -1,3 +1,8 @@
+import {
+  District,
+  ExtendedJobPostFormData,
+} from '@/pages/ServicePage/schemas/schema';
+
 export type TokenResponse = string;
 /*
  * Category Type
@@ -12,6 +17,7 @@ export enum JobPostStatus {
   DONE = 'Done',
   CANCEL = 'Cancel',
   PENDING = 'Pending',
+  RECEIVED = 'Application',
 }
 
 export interface JobPost {
@@ -68,6 +74,23 @@ export interface ApplicationPayload {
 export interface ApplicationStatus extends ApplicationPayload {
   id: number;
   status: string;
+}
+
+export interface Application {
+  id: number;
+  jobId?: number;
+  workerId?: number;
+  message: string;
+  status: JobPostStatus;
+  appliedAt: string;
+  typeJobPost?: number;
+  jobPost?: any;
+  worker?: any;
+}
+
+export interface ApplicationResponse {
+  data: Application[];
+  message?: string;
 }
 
 export interface Profiles {
@@ -131,6 +154,7 @@ export interface JobPostModalProps {
   onClose: () => void;
   onSubmit: (data: JobPostPayload) => void;
   categories: Category[];
-  initialData?: Partial<JobPostPayload>;
+  initialData?: Partial<ExtendedJobPostFormData>;
   error: Error | null;
+  districts: District[];
 }
