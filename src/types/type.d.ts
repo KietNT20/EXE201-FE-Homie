@@ -1,3 +1,4 @@
+import { Profiles } from '@/types/types';
 enum RoleUser {
   ADMIN = 1,
   CUSTOMER = 2,
@@ -14,6 +15,15 @@ interface User {
   dateOfBirth?: Date | null;
   gender?: 'male' | 'female';
   roleId?: RoleUser;
+}
+
+interface Profile {
+  userID?: number;
+  bio?: string;
+  skill?: string;
+  experience?: string;
+  availability?: string;
+  ratingAvg?: number;
 }
 
 interface Category {

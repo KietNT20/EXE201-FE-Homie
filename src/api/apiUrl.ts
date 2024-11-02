@@ -42,8 +42,4 @@ export const API = {
     GET_ALL: '/Category/getAll',
     GET_BY_ID: '/Category/getById',
   },
-  CATEGORY_API: {
-    GET_ALL: '/Category/getAll',
-    GET_BY_ID: '/Category/getById',
-  },
 };

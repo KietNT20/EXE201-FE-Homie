@@ -45,7 +45,7 @@ const Header = () => {
     { path: PATH.SERVICE, label: 'Dịch vụ' },
     // { path: PATH.NEWS, label: 'Tin tức' },
     { path: PATH.PAYMENT, label: 'Thanh toán' },
-    { path: PATH.PARTNER, label: 'Trở thành đối tác' },
+    // { path: PATH.PARTNER, label: 'Trở thành đối tác' },
     { path: PATH.COMMITMENT, label: 'Cam kết' },
   ];
 

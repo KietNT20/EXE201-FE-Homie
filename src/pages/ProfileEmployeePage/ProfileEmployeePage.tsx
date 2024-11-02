@@ -6,9 +6,9 @@ import ProfileDetails from './ProfileDetails';
 
 const ProfileEmployee = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
-  const profileID = userProfile.id;
+  const userID = userProfile.id;
   const [open, setOpen] = useState(false);
-
+  const roleID = userProfile.roleId;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -19,11 +19,7 @@ const ProfileEmployee = () => {
       <Button variant="contained" color="primary" onClick={handleOpen}>
         Cập nhật thông tin
       </Button>
-      <CreateProfileModal
-        open={open}
-        onClose={handleClose}
-        userId={profileID}
-      />
+      <CreateProfileModal open={open} onClose={handleClose} userId={userID} />
     </section>
   );
 };

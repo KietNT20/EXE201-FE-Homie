@@ -41,3 +41,26 @@ export const useCreateProfiles = () => {
 
   return { mutate, ...rest };
 };
+
+export const useUpdateProfiles = (profileID: number) => {
+  const { mutate, ...rest } = useMutation({
+    mutationFn: (payload: Profiles) => {
+      console.log(payload, 'profiles');
+      return profileService.updateProfiles(payload, profileID);
+    },
+    onSuccess: () => {
+      toast.dismiss();
+      queryClient.invalidateQueries({
+        queryKey: ['profiles'],
+      });
+      toast.success('Update Profiles Successfully!!');
+    },
+    onError: (err) => {
+      toast.dismiss();
+      console.error('Error:', err);
+      toast.error('Update Profiles Failed');
+    },
+  });
+
+  return { mutate, ...rest };
+};

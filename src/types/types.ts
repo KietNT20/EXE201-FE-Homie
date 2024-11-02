@@ -2,6 +2,7 @@ import {
   District,
   ExtendedJobPostFormData,
 } from '@/pages/ServicePage/schemas/schema';
+import { Category } from './type';
 
 export type TokenResponse = string;
 /*
