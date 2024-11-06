@@ -11,4 +11,5 @@ export const PATH = {
   SERVICE_DETAIL: '/services/:id',
   PROFILE: '/profile',
   APPLIED: '/applied',
+  TRANSACTION: '/transaction',
 };

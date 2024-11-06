@@ -1,4 +1,4 @@
-@use 'mixins';
+@use "mixins";
 
 :root {
   /* MaxWidth Of Page, Container-Fluid, Container, Gutter*/
@@ -20,10 +20,17 @@
   --login-primary: hsl(94, 55%, 56%);
   --login-blue: hsl(200, 81%, 63%);
   // Fontsize - Lineheight Variable
-  --fs-body: 1em;
+  --fs-h1: 9rem;
+  --lh1-h1: 10rem;
+
+  --fs-h2: 8.5rem;
+  --lh1-h2: 9rem;
+
+  --fs-body: 1rem;
   --lh-body: 1.5rem;
 
-  --height-header: 128px;
+  --height-header: 140px;
+  --height-button: 48px;
   --pd-section: 80px;
 
   // Timing Transition Variable Demo
@@ -34,6 +41,7 @@
   @include mixins.xl {
     --container-max-width: 1140px;
   }
+
   @include mixins.lg {
     --container-max-width: 960px;
   }

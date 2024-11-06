@@ -11,6 +11,7 @@
 @use 'core/footer';
 
 /* Pages*/
+@use 'pages/home';
 @use 'pages/loginpage';
 @use 'pages/dashboard';
 @use 'pages/paymentpage';
@@ -20,3 +21,5 @@
 @use 'pages/servicedetails';
 @use 'pages/aboutpage';
 @use 'pages/newpage';
+@use 'pages/transactionpage';
+@use 'pages/profilepage'

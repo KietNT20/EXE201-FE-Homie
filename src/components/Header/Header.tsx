@@ -45,7 +45,7 @@ const Header = () => {
     { path: PATH.SERVICE, label: 'Dịch vụ' },
     // { path: PATH.NEWS, label: 'Tin tức' },
     { path: PATH.PAYMENT, label: 'Thanh toán' },
-    { path: PATH.PARTNER, label: 'Trở thành đối tác' },
+    // { path: PATH.PARTNER, label: 'Trở thành đối tác' },
     { path: PATH.COMMITMENT, label: 'Cam kết' },
   ];
 
@@ -58,8 +58,8 @@ const Header = () => {
             nhà
           </p>
         </div>
-        <Toolbar className="flex items-center justify-between w-full">
-          <div className="flex items-center justify-center">
+        <Toolbar className="grid grid-cols-3 gap-14">
+          <div className="text-left">
             <IconButton
               size="large"
               edge="start"
@@ -67,31 +67,33 @@ const Header = () => {
               aria-label="menu"
               onClick={toggleMenu}
             >
-              <MenuIcon />
+              <MenuIcon className="text-2xl" />
             </IconButton>
           </div>
-          <Box>
+          <Box className="flex items-center justify-center">
             <Link to={PATH.HOME} className="">
               <img
                 src={logo}
                 alt="Homie Logo"
-                className="w-full h-12 sm:h-20"
+                className="h-12 sm:h-20 w-auto"
               />
             </Link>
           </Box>
-          {!tokenMethod.get()?.token ? (
-            <Button
-              component={Link}
-              to={PATH.LOGIN}
-              className="header__toolbar-btn"
-              variant="text"
-              color="primary"
-            >
-              Đăng nhập
-            </Button>
-          ) : (
-            <UserProfileMenu userProfile={userProfile} onLogout={_onLogout} />
-          )}
+          <div className="text-right">
+            {!tokenMethod.get()?.token ? (
+              <Button
+                component={Link}
+                to={PATH.LOGIN}
+                className="header__toolbar-btn flex-none"
+                variant="text"
+                color="primary"
+              >
+                Đăng nhập
+              </Button>
+            ) : (
+              <UserProfileMenu userProfile={userProfile} onLogout={_onLogout} />
+            )}
+          </div>
         </Toolbar>
         <Drawer anchor="left" open={isMenuOpen} onClose={toggleMenu}>
           <Box sx={{ width: 250 }} role="presentation">
@@ -109,7 +111,7 @@ const Header = () => {
                 <ListItem key={index} disablePadding>
                   <ListItemButton
                     sx={styles.item__button}
-                    className="item__button"
+                    className="item__button duration-200"
                     component={NavLink}
                     to={item.path}
                     onClick={toggleMenu}

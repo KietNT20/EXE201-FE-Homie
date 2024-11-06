@@ -3,7 +3,7 @@ import { SocialIcon } from 'react-social-icons';
 
 const Footer = () => {
   return (
-    <footer className="footer pt-16 pb-12">
+    <footer className="footer pt-5 pb-6 sm:pt-16 sm:pb-12">
       <div className="container">
         <div className="footer__top grid gap-4 mb-2 md:grid-cols-2 md:gap-6 md:mb-4 lg:flex lg:justify-around h-full">
           <div className="footer__top-content">
@@ -89,8 +89,8 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="footer__bottom md:flex md:items-center md:justify-center md:flex-col">
-          <div className="footer__bottom-linksocials my-4 flex flex-col sm:flex-row md:items-center gap-3">
+        <div className="footer__bottom md:flex md:items-center md:justify-center">
+          <div className="footer__bottom-linksocials my-4 flex sm:flex-row md:items-center gap-3">
             <SocialIcon url="https://www.instagram.com/homie.vn" />
             <SocialIcon url="https://www.tiktok.com/homie.vn" />
             <SocialIcon url="https://www.youtube.com/homie.vn" />

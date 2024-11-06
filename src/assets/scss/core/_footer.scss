@@ -3,18 +3,28 @@
 .footer {
   background-color: var(--blue-dark);
   color: var(--white-cl);
+
   .footer__top {
     &-content {
       .footer__thumb {
         background-color: var(--white-cl);
+
         &-img {
           @include mixins.midImg;
         }
       }
+
+      .footer__info {
+        p {
+          @include mixins.text(vnRegular, 16px, 24px, #eaecf0);
+        }
+      }
     }
   }
+
   .footer__bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+
     &-copyright {
       @include mixins.text(vnRegular, 14px, 24px, rgba(255, 255, 255, 0.6));
     }

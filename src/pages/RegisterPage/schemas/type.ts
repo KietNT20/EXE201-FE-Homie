@@ -1,4 +1,4 @@
-export interface InputRegisterTypes {
+export type InputRegisterTypes = {
   name: string;
   phone?: string;
   email?: string;
@@ -6,4 +6,4 @@ export interface InputRegisterTypes {
   dateOfBirth?: Date | string | null;
   password?: string;
   roleId?: number | string;
-}
+};

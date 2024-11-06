@@ -18,7 +18,7 @@ const HomieComponent = () => {
     <main className="bg-gray-50">
       <Container>
         {/* Hero Section */}
-        <section className="hero relative py-16 md:py-24">
+        <section className="hero relative pt-3 md:pt-10">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex justify-center items-center mb-6">
               <img
@@ -30,7 +30,7 @@ const HomieComponent = () => {
                 Homie
               </h1>
             </div>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">
+            <p className="text-xl md:text-2xl text-gray-600">
               Your Home's Guardian
             </p>
             {/* 
@@ -61,11 +61,10 @@ const HomieComponent = () => {
         </section>
 
         {/* Services Section */}
-        <section className="services py-16 md:py-24">
+        <section className="services py-6 md:py-12">
           <h2 className="text-xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Dịch Vụ Của Homie
           </h2>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12">
             {services.map((service, index) => (
               <Link
