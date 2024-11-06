@@ -1,4 +1,5 @@
 import { authService } from '@/services/authService';
+import { ActionReduxType, DispatchType } from '@/types/types.common';
 
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
 

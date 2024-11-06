@@ -1,5 +1,6 @@
 import { priceFilter } from '@/constant/priceFilter';
 import { FilterState, ServiceFilterProps } from '@/types/types';
+import { Category } from '@/types/types.common';
 import {
   Box,
   Button,
