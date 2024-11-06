@@ -8,9 +8,10 @@ const USER = '/User';
 export const API = {
   APPLICATION_API: {
     CREATE: APPLICATION + '/CreateApplication',
-    UPDATE_STATUS: APPLICATION + '/UpdateStatus/',
+    UPDATE_STATUS: APPLICATION + '/UpdateStatus',
     GET_ALL: APPLICATION + '/getAll',
     GET_BY_ID: APPLICATION + '/getById/',
+    GET_BY_USER_ID: APPLICATION + '/getByUserId/',
   },
   AUTH_API: {
     LOGIN: AUTH + '/login',

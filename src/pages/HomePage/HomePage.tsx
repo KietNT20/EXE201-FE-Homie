@@ -1,6 +1,8 @@
 import ChatButton from '@/components/ButtonComp/ChatButton';
 import { cleaner, logo } from '@/constant/image';
+import { PATH } from '@/constant/path';
 import { Container } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const HomieComponent = () => {
   const services = [
@@ -66,13 +68,14 @@ const HomieComponent = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-12">
             {services.map((service, index) => (
-              <button
+              <Link
+                to={PATH.SERVICE}
                 key={index}
                 className="flex items-center justify-center gap-3 text-base px-4 py-3 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors text-gray-700 hover:text-blue-600"
               >
                 <span className="text-2xl">{service.icon}</span>
                 <span className="font-medium">{service.label}</span>
-              </button>
+              </Link>
             ))}
           </div>
 

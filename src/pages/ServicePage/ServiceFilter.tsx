@@ -9,7 +9,6 @@ import {
   Divider,
   FormControlLabel,
   FormGroup,
-  TextField,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
@@ -52,14 +51,14 @@ const ServiceFilter = ({
   };
 
   // Handle search input change
-  const handleSearchChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    setFilterValues((prev) => ({
-      ...prev,
-      searchTerm: event.target.value,
-    }));
-  };
+  // const handleSearchChange = (
+  //   event: React.ChangeEvent<HTMLInputElement>,
+  // ): void => {
+  //   setFilterValues((prev) => ({
+  //     ...prev,
+  //     searchTerm: event.target.value,
+  //   }));
+  // };
 
   // Handle price range change
   const handlePriceChange = (
@@ -78,7 +77,7 @@ const ServiceFilter = ({
     const filters: FilterState = {
       categories: filterValues.selectedCategories,
       priceRange: filterValues.priceRange,
-      searchTerm: filterValues.searchTerm,
+      searchTerm: filterValues.searchTerm.trim(),
     };
     onFilterChange(filters);
   };
@@ -126,7 +125,7 @@ const ServiceFilter = ({
         <Divider sx={{ mb: 3 }} />
 
         {/* Search Section */}
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <TextField
             fullWidth
             size="small"
@@ -136,7 +135,7 @@ const ServiceFilter = ({
             onChange={handleSearchChange}
             placeholder="Nhập tên danh mục..."
           />
-        </Box>
+        </Box> */}
 
         {/* Categories Section */}
         <Box sx={{ mb: 4 }}>

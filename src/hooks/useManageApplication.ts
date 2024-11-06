@@ -48,3 +48,39 @@ export const useGetApplicationById = (applicationId?: number | null) => {
   });
   return { data, ...rest };
 };
+
+export const useGetApplicationByUserId = (userId?: number | null) => {
+  const { data, ...rest } = useQuery({
+    queryKey: ['application', userId],
+    queryFn: () => applicationService.getApplicationByUserId(userId!),
+    enabled: !!userId,
+    throwOnError: false,
+    retry: 1,
+  });
+  return { data, ...rest };
+};
+
+export const useUpdateApplicationStatus = () => {
+  const queryClient = useQueryClient();
+  const { mutate, ...rest } = useMutation({
+    mutationFn: ({
+      applicationId,
+      status,
+    }: {
+      applicationId: number;
+      status: string;
+    }) => applicationService.updateStatus(applicationId, status),
+    onSuccess: (response) => {
+      toast.dismiss();
+      console.log('Update Application Status Successfully:', response);
+      queryClient.invalidateQueries({ queryKey: ['applications'] });
+      toast.success('Cập nhật trạng thái thành công');
+    },
+    onError: (err) => {
+      toast.dismiss();
+      console.error('Error:', err);
+      toast.error('Cập nhật trạng thái thất bại');
+    },
+  });
+  return { mutate, ...rest };
+};

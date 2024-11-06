@@ -10,7 +10,6 @@ import {
 export type SortOption = {
   value: string;
   label: string;
-  // Updated type to be specific to JobPost
   compareFn: (
     a: JobPost,
     b: JobPost,
@@ -32,7 +31,6 @@ export const sortOptions: SortOption[] = [
     value: 'priceDesc',
     label: 'Giá cao đến thấp',
     compareFn: (a, b, categoryPrices) => {
-      // Calculate total price for each job post based on its categories
       const priceA = a.categoryJobPost.reduce(
         (sum, cat) => sum + (categoryPrices[cat.categoriesId] || 0),
         0,

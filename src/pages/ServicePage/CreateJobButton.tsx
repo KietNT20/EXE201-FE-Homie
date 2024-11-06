@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
 import React, { useCallback, useState } from 'react';
 import JobPostModal from './JobPostModal';
+import { dataDistrict } from './dataDistrict';
 
 interface CreateJobButtonProps {
   variant?: 'text' | 'outlined' | 'contained';
@@ -65,6 +66,7 @@ const CreateJobButton = ({
       {isModalOpen && (
         <JobPostModal
           open={isModalOpen}
+          districts={dataDistrict}
           onClose={handleCloseModal}
           onSubmit={handleSubmit}
           categories={categories}
