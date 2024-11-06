@@ -64,6 +64,13 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         >
           Các nhiệm vụ đã ứng tuyển
         </MenuItem>
+        <MenuItem
+          component={NavLink}
+          to={PATH.TRANSACTION}
+          onClick={handleMenuClose}
+        >
+          Lịch sử giao dịch
+        </MenuItem>
         <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
       </Menu>
     </>

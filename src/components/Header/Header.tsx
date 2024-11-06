@@ -45,7 +45,7 @@ const Header = () => {
     { path: PATH.SERVICE, label: 'Dịch vụ' },
     // { path: PATH.NEWS, label: 'Tin tức' },
     { path: PATH.PAYMENT, label: 'Thanh toán' },
-    { path: PATH.PARTNER, label: 'Trở thành đối tác' },
+    // { path: PATH.PARTNER, label: 'Trở thành đối tác' },
     { path: PATH.COMMITMENT, label: 'Cam kết' },
   ];
 
@@ -58,18 +58,17 @@ const Header = () => {
             nhà
           </p>
         </div>
-        <Toolbar className="flex items-center justify-between w-full">
-          <div className="flex items-center justify-center">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={toggleMenu}
-            >
-              <MenuIcon />
-            </IconButton>
-          </div>
+        <Toolbar className="header__toolbar">
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={toggleMenu}
+            className="header__toolbar-icon"
+          >
+            <MenuIcon />
+          </IconButton>
           <Box>
             <Link to={PATH.HOME} className="">
               <img

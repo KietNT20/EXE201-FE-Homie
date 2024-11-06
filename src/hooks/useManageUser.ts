@@ -1,4 +1,5 @@
 import { userService } from '@/services/userService';
+import { User } from '@/types/type';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 

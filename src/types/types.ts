@@ -2,6 +2,7 @@ import {
   District,
   ExtendedJobPostFormData,
 } from '@/pages/ServicePage/schemas/schema';
+import { Category } from './type';
 
 export type TokenResponse = string;
 /*
@@ -100,6 +101,17 @@ export interface Profiles {
   experience: string;
   availability: string;
   ratingAvg: number;
+}
+
+export interface Transaction {
+  transactionId: number;
+  walletId: number;
+  userId: number;
+  transactionType: string;
+  amount: number;
+  transactionDate: number;
+  description: string;
+  eWallet: string;
 }
 
 export interface FilterState {

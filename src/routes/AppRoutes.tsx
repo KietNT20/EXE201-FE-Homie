@@ -19,6 +19,12 @@ const ServicePage = lazy(() => import('@/pages/ServicePage/ServicePage'));
 const ServiceDetail = lazy(
   () => import('@/pages/ServicePage/ServiceDetail/ServiceDetail'),
 );
+const ProfileEmployeePage = lazy(
+  () => import('@/pages/ProfileEmployeePage/ProfileEmployeePage'),
+);
+const TransactionPage = lazy(
+  () => import('@/pages/TransactionPage/TransactionPage'),
+);
 const AppliedPage = lazy(() => import('@/pages/AppliedPage/AppliedPage'));
 
 // Loading fallback component
@@ -125,6 +131,22 @@ const AppRoutes = () => {
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
                     <ServiceDetail />
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.PROFILE}
+                element={
+                  <Suspense fallback={<PageLoadingFallback />}>
+                    <ProfileEmployeePage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.TRANSACTION}
+                element={
+                  <Suspense fallback={<PageLoadingFallback />}>
+                    <TransactionPage />
                   </Suspense>
                 }
               />

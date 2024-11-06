@@ -1,3 +1,4 @@
+import { Profiles } from '@/types/types';
 enum RoleUser {
   ADMIN = 1,
   CUSTOMER = 2,
@@ -16,6 +17,25 @@ interface User {
   roleId?: RoleUser;
 }
 
+interface Profile {
+  userID?: number;
+  bio?: string;
+  skill?: string;
+  experience?: string;
+  availability?: string;
+  ratingAvg?: number;
+}
+
+interface Transaction {
+  transactionId?: number;
+  walletId?: number;
+  userId?: number;
+  transactionType?: string;
+  amount?: number;
+  transactionDate?: number;
+  description?: string;
+  eWallet?: string;
+}
 interface Category {
   id?: number;
   categoryName?: string;

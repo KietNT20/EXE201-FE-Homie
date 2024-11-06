@@ -1,80 +1,49 @@
-import logoMB from '@/assets/img/mbbank.png';
-import logo from '@/assets/img/momo.png';
-import logoCash from '@/assets/img/money-cash-wealth-payment-line-icon-illustration-logo-template-suitable-for-many-purposes-free-vector.jpg';
-import Button from '@mui/material/Button'; // MUI Button component for better styling
-import TextField from '@mui/material/TextField';
+import React from 'react';
+import { Box, Typography, Divider, TextField } from '@mui/material';
+import imgQR from '@/assets/img/QR.jpg';
 
-const PaymentPage = () => {
+const PaymentPage: React.FC = () => {
   return (
-    <section className="paymentPage">
-      <div className="payment-container">
-        {/* Payment Info Section */}
-        <div className="payment-info">
-          <h2>Thông tin thanh toán</h2>
-          <div className="input-group">
-            <h3>Họ và tên</h3>
-            <div className="text-1">
-              <TextField
-                className={'inputNamePay'}
-                fullWidth
-                variant="outlined"
-                placeholder="Nhập tên"
-              />
-            </div>
-          </div>
+    <Box className="recharge-page">
+      <Box className="recharge-container">
+        <Box className="account-info">
+          <Typography variant="h5" fontWeight="bold" className="title">
+            Tài khoản tiếp nhận
+          </Typography>
+          <Typography className="info">
+            <strong>CHỦ TÀI KHOẢN:</strong> NGUYỄN VIỆT THỨC
+          </Typography>
+          <Typography className="info">
+            <strong>SỐ TK:</strong> <span className="highlight">386275234</span>
+          </Typography>
+          <Typography className="info">
+            <strong>NGÂN HÀNG:</strong> VIB
+          </Typography>
+          <Typography className="info">
+            <strong>NỘI DUNG CHUYỂN:</strong>{' '}
+            <span className="highlight">Điền Email của bạn</span>
+          </Typography>
 
-          <div className="input-group">
-            <h3>Email</h3>
-            <TextField
-              className={'inputNamePay'}
-              fullWidth
-              variant="outlined"
-              placeholder="Nhập email của bạn"
-            />
-          </div>
+          <Divider sx={{ my: 2 }} />
 
-          <div className="input-group">
-            <h3>Số điện thoại</h3>
-            <TextField
-              className={'inputNamePay'}
-              fullWidth
-              variant="outlined"
-              placeholder="Nhập số điện thoại"
-            />
-          </div>
+          <Typography className="instructions">
+            Vui lòng chuyển đúng nội dung chuyển tiền để tránh trường hợp không
+            nhận được nếu chuyển sai nội dung vui lòng liên hệ với{' '}
+            <strong>NGUYỄN VIỆT THỨC (0386275234)</strong>
+          </Typography>
+          <Typography className="instructions">
+            Sau khi chuyển tiền thành công, vui lòng chờ ít nhất 5-10 phút để hệ
+            thống xử lý.
+          </Typography>
+        </Box>
 
-          <div className="input-group">
-            <h3>Dịch vụ</h3>
-            <TextField
-              className={'inputNamePay'}
-              fullWidth
-              variant="outlined"
-              placeholder="Dịch vụ bạn muốn"
-            />
-          </div>
-
-          <div className="payment-button1">
-            <Button
-              variant="contained"
-              color="primary"
-              className="payment-button"
-            >
-              Thanh Toán
-            </Button>
-          </div>
-        </div>
-
-        {/* Payment Methods Section */}
-        <div className="payment-methods">
-          <h3>Phương thức thanh toán</h3>
-          <div className="logos">
-            <img src={logo} alt="logo" />
-            <img src={logoMB} alt="logoMB" />
-            <img src={logoCash} alt="logoCash" />
-          </div>
-        </div>
-      </div>
-    </section>
+        <Box className="qr-code-section">
+          <Box className="qr-image">
+            <img src={imgQR} alt="QR Code" />
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

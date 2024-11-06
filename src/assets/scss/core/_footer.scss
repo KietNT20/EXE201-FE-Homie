@@ -1,20 +1,60 @@
-@use 'mixins';
+@use "mixins";
 
 .footer {
   background-color: var(--blue-dark);
   color: var(--white-cl);
+  padding-top: 64px;
+
   .footer__top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 32px;
+
     &-content {
       .footer__thumb {
         background-color: var(--white-cl);
+        border-radius: 13px;
+        padding: 12px;
+        height: 80px;
+        max-width: 120px;
+        @include mixins.mid(flex);
+        margin-bottom: 32px;
+
         &-img {
           @include mixins.midImg;
         }
       }
+
+      .footer__info {
+        p {
+          @include mixins.text(vnRegular, 16px, 24px, #eaecf0);
+          padding: 6px 0;
+        }
+      }
+    }
+
+    .footer__top-company,
+    .footer__top-socials,
+    .footer__top-services {
+      display: flex;
+      flex-direction: column;
     }
   }
+
   .footer__bottom {
+    @include mixins.mid(flex);
+    flex-direction: column;
+    width: 100%;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 48px 0;
+
+    &-linksocials {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 16px;
+    }
+
     &-copyright {
       @include mixins.text(vnRegular, 14px, 24px, rgba(255, 255, 255, 0.6));
     }
