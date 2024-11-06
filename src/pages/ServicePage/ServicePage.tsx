@@ -96,7 +96,7 @@ const ServicePage = () => {
 
   return (
     <Box sx={{ backgroundColor: 'background.default' }}>
-      <Container>
+      <Container maxWidth="lg">
         <Box sx={{ py: 4 }}>
           <ServiceHeader />
           <Grid container spacing={3}>

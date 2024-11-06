@@ -1,8 +1,8 @@
-import React from 'react';
-import { useGetTransactionByUserId } from '@/hooks/useManageTransaction';
 import { useAppSelector } from '@/hooks/reudxHook';
+import { useGetTransactionByUserId } from '@/hooks/useManageTransaction';
 import { Transaction } from '@/types/types';
 import { formatPrice } from '@/util/format';
+import React from 'react';
 
 const TransactionPage: React.FC = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
@@ -11,7 +11,7 @@ const TransactionPage: React.FC = () => {
   console.log('data', transactions?.data);
 
   return (
-    <div className="p-6 bg-gray-100">
+    <div className="p-6 bg-gray-100 container">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
         Lịch Sử Giao Dịch
       </h1>
