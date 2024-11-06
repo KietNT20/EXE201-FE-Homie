@@ -103,6 +103,17 @@ export interface Profiles {
   ratingAvg: number;
 }
 
+export interface Transaction {
+  transactionId: number;
+  walletId: number;
+  userId: number;
+  transactionType: string;
+  amount: number;
+  transactionDate: number;
+  description: string;
+  eWallet: string;
+}
+
 export interface FilterState {
   categories: number[];
   priceRange: [number, number];

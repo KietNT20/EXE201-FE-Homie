@@ -3,6 +3,7 @@ const AUTH = '/Auth';
 const E_WALLET = '/EWallet';
 const JOB_POST = '/JobPost';
 const PROFILES = '/Profiles';
+const TRANSACTION = '/TransactionHistory';
 const USER = '/User';
 
 export const API = {
@@ -20,6 +21,10 @@ export const API = {
   E_WALLET_API: {
     GET_BY_USER_ID: E_WALLET + '/GetWalletByUserID/',
     ADD_MONEY: E_WALLET + '/AddMoney',
+  },
+  TRANSACTION_API: {
+    GET_BY_ID: TRANSACTION + '/getbyId',
+    GET_BY_USER_ID: TRANSACTION + '/getbyUserId',
   },
   JOB_POST_API: {
     CREATE: JOB_POST + '/Create',

@@ -1,5 +1,6 @@
 import { UserProfileState } from '@/types/reduxStateType';
 import { SET_USER_PROFILE } from '../actions/userProfileAction';
+import { ActionReduxType } from '@/types/type';
 
 const initState: UserProfileState = {
   userProfile: {},

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@mui/material';
 import { useAppSelector } from '@/hooks/reudxHook';
 import CreateProfileModal from './CreateProfileModal';
@@ -14,7 +14,6 @@ const ProfileEmployee = () => {
 
   return (
     <section className="ProfileEmployee">
-      <h1>Hồ Sơ Nhân Viên</h1>
       <ProfileDetails />
       <Button variant="contained" color="primary" onClick={handleOpen}>
         Cập nhật thông tin
