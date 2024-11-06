@@ -98,20 +98,21 @@ const ServiceFilter = ({
   };
 
   // Group categories by price ranges for better organization
-  const groupedCategories = filteredCategories.reduce(
-    (acc, category) => {
-      if (category.price === undefined) return acc;
+  const groupedCategories: Record<number, Category[]> =
+    filteredCategories.reduce(
+      (acc, category) => {
+        if (category.price === undefined) return acc;
 
-      // Create price range groups
-      const priceRange = Math.floor(category.price / 1000000) * 1000000;
-      if (!acc[priceRange]) {
-        acc[priceRange] = [];
-      }
-      acc[priceRange].push(category);
-      return acc;
-    },
-    {} as Record<number, Category[]>,
-  );
+        // Create price range groups
+        const priceRange = Math.floor(category.price / 1000000) * 1000000;
+        if (!acc[priceRange]) {
+          acc[priceRange] = [];
+        }
+        acc[priceRange].push(category);
+        return acc;
+      },
+      {} as Record<number, Category[]>,
+    );
 
   return (
     <Card elevation={2}>
@@ -123,19 +124,6 @@ const ServiceFilter = ({
         </Box>
 
         <Divider sx={{ mb: 3 }} />
-
-        {/* Search Section */}
-        {/* <Box sx={{ mb: 3 }}>
-          <TextField
-            fullWidth
-            size="small"
-            label="Tìm kiếm danh mục"
-            variant="outlined"
-            value={filterValues.searchTerm}
-            onChange={handleSearchChange}
-            placeholder="Nhập tên danh mục..."
-          />
-        </Box> */}
 
         {/* Categories Section */}
         <Box sx={{ mb: 4 }}>
@@ -156,7 +144,7 @@ const ServiceFilter = ({
                     {Number(priceRange).toLocaleString('vi-VN')}đ -{' '}
                     {(Number(priceRange) + 999999).toLocaleString('vi-VN')}đ
                   </Typography>
-                  {categoriesInRange.map((category) => (
+                  {categoriesInRange?.map((category: Category) => (
                     <FormControlLabel
                       key={category.id}
                       control={
