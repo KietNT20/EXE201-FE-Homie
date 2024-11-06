@@ -2,6 +2,7 @@ import { priceFilter } from '@/constant/priceFilter';
 import { useGetAllCategories } from '@/hooks/useManageCategory';
 import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
 import { JobPost } from '@/types/types';
+import { Category } from '@/types/types.common';
 import { Box, Container } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React, { useMemo } from 'react';

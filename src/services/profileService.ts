@@ -1,5 +1,5 @@
 import { API } from '@/api/apiUrl';
-import { Profile } from '@/types/type';
+import { Profile } from '@/types/types.common';
 import axiosInstance from '@/util/axiosInstance';
 
 export const profileService = {

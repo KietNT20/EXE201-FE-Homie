@@ -3,6 +3,7 @@ import { Alert, Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ServiceCard from './ServiceCard';
 import ServiceCardSkeleton from './ServiceCardSkeleton';
+import { Category } from '@/types/types.common';
 
 interface ServiceContentProps {
   isLoading: boolean;
