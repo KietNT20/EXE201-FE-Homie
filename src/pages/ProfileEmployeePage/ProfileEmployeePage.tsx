@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { Button } from '@mui/material';
 import { useAppSelector } from '@/hooks/reudxHook';
+import { Button } from '@mui/material';
+import { useState } from 'react';
 import CreateProfileModal from './CreateProfileModal';
 import ProfileDetails from './ProfileDetails';
 
@@ -8,7 +8,6 @@ const ProfileEmployee = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
   const userID = userProfile.id;
   const [open, setOpen] = useState(false);
-  const roleID = userProfile.roleId;
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
