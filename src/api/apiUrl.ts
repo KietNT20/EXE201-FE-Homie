@@ -19,7 +19,7 @@ export const API = {
     GET_USER_BY_TOKEN: AUTH + '/login/get-user-by-token/',
   },
   E_WALLET_API: {
-    GET_BY_USER_ID: E_WALLET + '/GetWalletByUserID/',
+    GET_BY_USER_ID: E_WALLET + '/GetEwalletByUserID/',
     ADD_MONEY: E_WALLET + '/AddMoney',
   },
   TRANSACTION_API: {

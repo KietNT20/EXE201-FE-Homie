@@ -1,6 +1,8 @@
 import { PATH } from '@/constant/path';
+import { useGetEWalletByUserId } from '@/hooks/useManageWallet';
+import { formatPrice } from '@/util/format';
 import { AccountCircle } from '@mui/icons-material';
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -11,6 +13,8 @@ interface UserProfileMenuProps {
 
 const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+  const { data: EWalletUser } = useGetEWalletByUserId(userProfile?.id);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -27,14 +31,9 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
 
   return (
     <>
-      <div className="flex items-center">
-        <IconButton onClick={handleMenuOpen}>
-          <AccountCircle fontSize="medium" />
-        </IconButton>
-        <Typography variant="body1" className="sm:text-base sm:block hidden">
-          {userProfile.email}
-        </Typography>
-      </div>
+      <IconButton onClick={handleMenuOpen}>
+        <AccountCircle fontSize="medium" />
+      </IconButton>
       <Menu
         id="menu-appbar"
         anchorEl={anchorEl}
@@ -50,6 +49,8 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
       >
+        <MenuItem>{userProfile?.email}</MenuItem>
+        <MenuItem>{formatPrice(EWalletUser?.data.balance)}</MenuItem>
         <MenuItem
           component={NavLink}
           to={PATH.PROFILE}

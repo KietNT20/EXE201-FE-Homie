@@ -20,7 +20,7 @@ const PaymentPage: React.FC = () => {
             <strong>NGÂN HÀNG:</strong> VIB
           </Typography>
           <Typography className="info">
-            <strong>NỘI DUNG CHUYỂN:</strong>{' '}
+            <strong>NỘI DUNG CHUYỂN KHOẢN:</strong>{' '}
             <span className="highlight">Điền Email của bạn</span>
           </Typography>
 

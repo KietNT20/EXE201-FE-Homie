@@ -1,5 +1,4 @@
 import { API } from '@/api/apiUrl';
-import { User } from '@/types/type';
 import axiosInstance from '@/util/axiosInstance';
 
 export const userService = {

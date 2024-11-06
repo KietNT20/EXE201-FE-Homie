@@ -1,4 +1,3 @@
-import { Profiles } from '@/types/types';
 enum RoleUser {
   ADMIN = 1,
   CUSTOMER = 2,
