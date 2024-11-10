@@ -32,8 +32,8 @@ const PaymentPage: React.FC = () => {
             <strong>NGUYỄN VIỆT THỨC (0386275234)</strong>
           </Typography>
           <Typography className="instructions">
-            Sau khi chuyển tiền thành công, vui lòng chờ ít nhất 5-10 phút để hệ
-            thống xử lý.
+            Sau khi chuyển tiền thành công, vui lòng chờ ít nhất 5 đến 10 phút
+            để hệ thống xử lý.
           </Typography>
         </Box>
 

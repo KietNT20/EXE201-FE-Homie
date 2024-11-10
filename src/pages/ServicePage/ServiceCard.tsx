@@ -35,7 +35,7 @@ const ServiceCard = React.memo(
 
     return (
       <Card
-        className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
+        className="max-w-[450px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
         {...restProps}
       >
         <CardActionArea onClick={onClick}>
@@ -178,7 +178,7 @@ const ServiceCard = React.memo(
                           categoryDetail.data.categoryName || 'Chưa xác định'
                         }
                         size="small"
-                        color="primary"
+                        color="info"
                         variant="outlined"
                         className="hover:bg-primary/10"
                       />

@@ -15,9 +15,9 @@ export const useCreateApplication = () => {
       toast.dismiss();
       console.log('Create Application Successfully:', response);
       // Invalidate both the specific job post and the job posts list queries
-      queryClient.invalidateQueries({ queryKey: ['jobPost', id] }); // Invalidate specific job
-      queryClient.invalidateQueries({ queryKey: ['jobPosts'] }); // Invalidate job list
-      queryClient.invalidateQueries({ queryKey: ['applications'] });
+      queryClient.invalidateQueries({
+        queryKey: ['jobPosts', 'applications', id],
+      }); // Invalidate job list
       toast.success('Yêu cầu của bạn đã được nhận');
     },
     onError: (err) => {

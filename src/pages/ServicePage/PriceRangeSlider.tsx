@@ -29,6 +29,7 @@ const PriceRangeSlider = ({
           step={step}
           getAriaValueText={formatPrice}
           valueLabelFormat={formatPrice}
+          color="info"
         />
         <Box
           sx={{

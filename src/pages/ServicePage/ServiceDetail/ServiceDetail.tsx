@@ -33,6 +33,7 @@ import {
   Divider,
   Grid2,
   IconButton,
+  Link,
   Paper,
   Stack,
   Tooltip,
@@ -160,7 +161,7 @@ const ServiceDetail = () => {
               userProfile.id !== jobPost.data.employerId && (
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="info"
                   startIcon={<Work />}
                   onClick={handleOpenModal}
                   className="mr-2"
@@ -180,7 +181,7 @@ const ServiceDetail = () => {
         </Typography>
         <Chip
           label={formatPrice(categoryDetail?.data.price)}
-          color="primary"
+          color="info"
           className="font-medium text-lg"
           icon={<AttachMoney />}
         />
@@ -211,14 +212,20 @@ const ServiceDetail = () => {
                   </Box>
                 </Box>
                 <Divider />
-                <Box className="flex items-center gap-2">
+                <Link
+                  href={`mailto:${userInfo?.data.email}`}
+                  className="flex items-center gap-2"
+                >
                   <Email color="action" />
                   <Typography>{userInfo.data.email}</Typography>
-                </Box>
-                <Box className="flex items-center gap-2 text-blue-600">
+                </Link>
+                <Link
+                  href={`tel:${userInfo.data.phone}`}
+                  className="flex items-center gap-2 text-blue-600"
+                >
                   <Phone color="action" />
                   <Typography>{userInfo.data.phone}</Typography>
-                </Box>
+                </Link>
               </Stack>
             ) : (
               <Typography color="text.secondary">
@@ -339,7 +346,7 @@ const ServiceDetail = () => {
                                   'Chưa xác định'
                                 }
                                 size="medium"
-                                color="primary"
+                                color="info"
                                 variant="outlined"
                               />
                             </Tooltip>

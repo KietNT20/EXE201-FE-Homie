@@ -1,16 +1,16 @@
-import React from 'react';
-import { Typography, Avatar, CircularProgress } from '@mui/material';
 import { useAppSelector } from '@/hooks/reudxHook';
+import { useGetProfiles } from '@/hooks/useManageProfiles';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { formatDate } from '@/util/format';
-import { useGetProfiles } from '@/hooks/useManageProfiles';
 import {
+  AccessTime,
   CalendarToday,
   Person,
   Star,
-  AccessTime,
   Work,
 } from '@mui/icons-material';
+import { Avatar, CircularProgress, Typography } from '@mui/material';
+import React from 'react';
 
 const ProfileDetails: React.FC = () => {
   const { userProfile } = useAppSelector((state) => state.profile);

@@ -86,7 +86,7 @@ const Header = () => {
                 to={PATH.LOGIN}
                 className="header__toolbar-btn flex-none"
                 variant="text"
-                color="primary"
+                color="info"
               >
                 Đăng nhập
               </Button>

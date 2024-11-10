@@ -74,6 +74,6 @@ export const jobPostSchema = yup.object().shape({
     )
     .min(1, 'Vui lòng chọn ít nhất một danh mục')
     .required('Vui lòng chọn danh mục'),
-  district: yup.object().nullable().required('Vui lòng chọn quận/huyện'),
+  district: yup.object().required('Vui lòng chọn quận/huyện'),
   streetAddress: yup.string().required('Vui lòng nhập địa chỉ chi tiết'),
 });

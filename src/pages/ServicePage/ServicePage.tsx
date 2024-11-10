@@ -99,7 +99,7 @@ const ServicePage = () => {
       <Container maxWidth="lg">
         <Box sx={{ py: 4 }}>
           <ServiceHeader />
-          <Grid container spacing={3}>
+          <Grid container spacing={4}>
             <ServiceFilterColumn
               sortOption={sortOption}
               onSortChange={handleSortChange}

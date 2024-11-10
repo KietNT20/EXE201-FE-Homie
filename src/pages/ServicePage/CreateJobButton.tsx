@@ -60,6 +60,7 @@ const CreateJobButton = ({
         onClick={handleOpenModal}
         className={className}
         disabled={isCreating}
+        color="info"
       >
         Tạo công việc mới
       </Button>

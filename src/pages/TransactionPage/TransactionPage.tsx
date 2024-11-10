@@ -50,8 +50,14 @@ const TransactionPage: React.FC = () => {
                 <td className="px-6 py-4 text-gray-800 border border-slate-700">
                   {transaction.transactionId}
                 </td>
-                <td className="px-6 py-4  text-green-600 font-medium border border-slate-700">
-                  {formatPrice(transaction.amount)} đ
+                <td
+                  className={`px-6 py-4 font-medium border border-slate-700 ${
+                    transaction.transactionType === 'Deposit'
+                      ? 'text-green-600'
+                      : 'text-red-600'
+                  }`}
+                >
+                  {formatPrice(transaction.amount)}
                 </td>
                 <td className="px-6 py-4 text-gray-700 border border-slate-700">
                   {transaction.transactionType}

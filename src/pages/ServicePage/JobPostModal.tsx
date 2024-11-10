@@ -34,7 +34,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 800,
+  width: '80vw',
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
@@ -119,7 +119,15 @@ const JobPostModal = ({
             <Alert severity="error">{errorMessage}</Alert>
           </Box>
         )}
-        <Typography id="job-post-modal" variant="h6" component="h2" mb={3}>
+        <Typography
+          id="job-post-modal"
+          variant="h4"
+          component="h3"
+          sx={{
+            mb: 2,
+            textAlign: 'center',
+          }}
+        >
           Tạo công việc mới
         </Typography>
         <form onSubmit={handleSubmit(onSubmitHandler)}>
@@ -140,25 +148,7 @@ const JobPostModal = ({
               />
             </Grid>
 
-            <Grid size={{ xs: 12 }}>
-              <Controller
-                name="description"
-                control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    fullWidth
-                    label="Mô tả"
-                    multiline
-                    rows={4}
-                    error={!!errors.description}
-                    helperText={errors?.description?.message?.toString()}
-                  />
-                )}
-              />
-            </Grid>
-
-            <Grid size={{ xs: 12 }}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="streetAddress"
                 control={control}
@@ -175,7 +165,7 @@ const JobPostModal = ({
               />
             </Grid>
 
-            <Grid size={{ xs: 12 }}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="district"
                 control={control}
@@ -210,7 +200,7 @@ const JobPostModal = ({
               />
             </Grid>
 
-            <Grid size={{ xs: 6 }}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="squareMeters"
                 control={control}
@@ -227,7 +217,7 @@ const JobPostModal = ({
               />
             </Grid>
 
-            <Grid size={{ xs: 6 }}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <Controller
                 name="numberOfFloors"
                 control={control}
@@ -244,7 +234,7 @@ const JobPostModal = ({
               />
             </Grid>
 
-            <Grid size={{ xs: 6 }}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Controller
                   name="startDate"
@@ -267,7 +257,7 @@ const JobPostModal = ({
               </LocalizationProvider>
             </Grid>
 
-            <Grid size={{ xs: 6 }}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <Controller
                   name="endDate"
@@ -325,6 +315,24 @@ const JobPostModal = ({
                       </FormHelperText>
                     )}
                   </FormControl>
+                )}
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12 }}>
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    fullWidth
+                    label="Mô tả"
+                    multiline
+                    rows={4}
+                    error={!!errors.description}
+                    helperText={errors?.description?.message?.toString()}
+                  />
                 )}
               />
             </Grid>
