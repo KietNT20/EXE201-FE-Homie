@@ -6,8 +6,8 @@ import React from 'react';
 
 const TransactionPage: React.FC = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
-  const profileId = userProfile.id;
-  const { data: transactions } = useGetTransactionByUserId(profileId);
+  const profileId = userProfile?.id;
+  const { data: transactions } = useGetTransactionByUserId(profileId!);
   console.log('data', transactions?.data);
 
   return (
