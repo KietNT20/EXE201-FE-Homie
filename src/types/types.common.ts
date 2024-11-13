@@ -40,10 +40,3 @@ export interface Category {
   categoryName?: string;
   price?: number;
 }
-
-export type ActionReduxType = {
-  type: string;
-  payload?: any;
-};
-
-export type DispatchType<T> = (args: T) => T;

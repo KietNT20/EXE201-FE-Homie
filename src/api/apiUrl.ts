@@ -30,6 +30,7 @@ export const API = {
     CREATE: JOB_POST + '/Create',
     GET_ALL: JOB_POST + '/GetAll',
     GET_BY_ID: JOB_POST + '/getById/',
+    GET_BY_USER_ID: JOB_POST + '/getByUserId/',
   },
   PROFILES_API: {
     GET_PROFILES: PROFILES + '/getProfiles/',

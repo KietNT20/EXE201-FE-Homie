@@ -1,6 +1,6 @@
 import { UserProfileState } from '@/types/reduxStateType';
-import { ActionReduxType } from '../../types/types.common';
-import { SET_USER_PROFILE } from '../actions/userProfileAction';
+import { ProfileAction } from '../actions/profile/profile.action';
+import { UserActionType } from '../actions/types.action';
 
 const initState: UserProfileState = {
   userProfile: {},
@@ -8,13 +8,19 @@ const initState: UserProfileState = {
 
 const userProfileReducer = (
   state = initState,
-  { type, payload }: ActionReduxType,
+  { type, payload }: ProfileAction,
 ) => {
   switch (type) {
-    case SET_USER_PROFILE:
+    case UserActionType.SET_USER_PROFILE:
       return {
         ...state,
         userProfile: payload,
+      };
+
+    case UserActionType.CLEAR_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: {},
       };
 
     default:

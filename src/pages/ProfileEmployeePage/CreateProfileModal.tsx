@@ -32,7 +32,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
 
   const handleClose = () => {
     setProfileData({
-      userId: userId,
+      userId: userId!,
       bio: '',
       skills: '',
       experience: '',
@@ -45,7 +45,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
   return (
     <Modal
       className="flex items-center justify-center"
-      open={open}
+      open={open!}
       onClose={handleClose}
     >
       <Box
