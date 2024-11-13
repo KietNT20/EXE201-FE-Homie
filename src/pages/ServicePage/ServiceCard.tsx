@@ -27,9 +27,14 @@ import React from 'react';
 
 const ServiceCard = React.memo(
   ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
-    const { data: categoryDetail } = useGetCategoryById(
-      jobPost.categoryJobPost[0]?.categoriesId,
-    );
+    // use multiple queries to get category details
+    const categoryDetails = jobPost?.categoryJobPost?.map((category) => {
+      const { data: categoryDetail } = useGetCategoryById(
+        category.categoriesId,
+      );
+      return categoryDetail;
+    });
+
     const { data: userInfo } = useGetUserById(jobPost.employerId);
     const statusConfig = getStatusConfig(jobPost.status);
 
@@ -164,26 +169,25 @@ const ServiceCard = React.memo(
                   spacing={1}
                   className="flex-wrap gap-2 pl-6"
                 >
-                  {categoryDetail && (
+                  {categoryDetails?.map((category) => (
                     <Tooltip
+                      key={category?.data.id}
                       title={
-                        categoryDetail.data.price
-                          ? `Giá: ${formatPrice(categoryDetail.data.price)}`
+                        category?.data.price
+                          ? `Giá: ${formatPrice(category?.data.price)}`
                           : ''
                       }
                       placement="top"
                     >
                       <Chip
-                        label={
-                          categoryDetail.data.categoryName || 'Chưa xác định'
-                        }
+                        label={category?.data.categoryName || 'Chưa xác định'}
                         size="small"
                         color="info"
                         variant="outlined"
                         className="hover:bg-primary/10"
                       />
                     </Tooltip>
-                  )}
+                  ))}
                 </Stack>
               </Box>
               {/* Create Date Post */}

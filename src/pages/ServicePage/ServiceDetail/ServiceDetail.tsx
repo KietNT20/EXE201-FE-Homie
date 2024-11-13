@@ -12,7 +12,7 @@ import {
   ArrowBack,
   AttachMoney,
   CalendarToday,
-  Category as CategoryIcon,
+  Category,
   Email,
   Layers,
   LocationOn,
@@ -63,9 +63,11 @@ const ServiceDetail = () => {
     refetch: refetchJobPost, // Add refetch function
   } = useGetJobPostById(id);
 
-  const { data: categoryDetail } = useGetCategoryById(
-    jobPost?.data?.categoryJobPost[0]?.categoriesId,
-  );
+  // use multiple queries to get category details
+  const categoryDetails = jobPost?.data?.categoryJobPost?.map((category) => {
+    const { data: categoryDetail } = useGetCategoryById(category.categoriesId);
+    return categoryDetail;
+  });
 
   const { data: userInfo } = useGetUserById(jobPost?.data?.employerId);
 
@@ -321,7 +323,7 @@ const ServiceDetail = () => {
                       </Box>
 
                       <Box className="flex items-center gap-3">
-                        <CategoryIcon color="action" />
+                        <Category color="action" />
                         <Box
                           component={'div'}
                           className="flex items-center gap-4"
@@ -332,25 +334,28 @@ const ServiceDetail = () => {
                           >
                             Dịch vụ
                           </Typography>
-                          {categoryDetail?.data && (
-                            <Tooltip
-                              title={
-                                categoryDetail.data.price
-                                  ? `Giá: ${formatPrice(categoryDetail.data.price)}`
-                                  : ''
-                              }
-                            >
-                              <Chip
-                                label={
-                                  categoryDetail.data.categoryName ||
-                                  'Chưa xác định'
+                          <Box className="flex gap-2">
+                            {categoryDetails?.map((category) => (
+                              <Tooltip
+                                key={category?.data.id}
+                                title={
+                                  category?.data?.price
+                                    ? `Giá: ${formatPrice(category?.data.price)}`
+                                    : ''
                                 }
-                                size="medium"
-                                color="info"
-                                variant="outlined"
-                              />
-                            </Tooltip>
-                          )}
+                              >
+                                <Chip
+                                  label={
+                                    category?.data.categoryName ||
+                                    'Chưa xác định'
+                                  }
+                                  size="medium"
+                                  color="info"
+                                  variant="outlined"
+                                />
+                              </Tooltip>
+                            ))}
+                          </Box>
                         </Box>
                       </Box>
                     </Stack>
