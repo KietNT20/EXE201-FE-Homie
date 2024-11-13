@@ -113,7 +113,6 @@ const ServicePage = () => {
               isLoading={isLoadingState}
               jobPosts={filteredJobPosts}
               onCardClick={handleCardClick}
-              categoryPrices={categoryPrices}
               categories={categoriesData?.data ?? []}
               skeletonCards={skeletonCards}
             />

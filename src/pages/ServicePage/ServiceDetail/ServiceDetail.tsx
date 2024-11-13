@@ -180,7 +180,7 @@ const ServiceDetail = () => {
           {jobPost.data.description}
         </Typography>
         <Chip
-          label={formatPrice(categoryDetail?.data.price)}
+          label={formatPrice(jobPost?.data.price || 0)}
           color="info"
           className="font-medium text-lg"
           icon={<AttachMoney />}

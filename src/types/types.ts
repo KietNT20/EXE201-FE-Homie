@@ -29,6 +29,7 @@ export interface JobPost {
   location: string;
   squareMeters: number;
   numberOfFloors: number;
+  price?: number;
   startDate: Date | null | undefined | string;
   endDate: Date | null | undefined | string;
   status: JobPostStatus;
@@ -137,7 +138,6 @@ export interface ServiceFilterProps {
 export interface ServiceCardProps {
   jobPost: JobPost;
   onClick: () => void;
-  categoryPrices: Record<number, number>;
   categories?: Category[];
   [key: string]: any;
 }

@@ -9,7 +9,6 @@ interface ServiceContentProps {
   isLoading: boolean;
   jobPosts: JobPost[];
   onCardClick: (jobId: number | undefined) => void;
-  categoryPrices: Record<number, number>;
   categories: Category[];
   skeletonCards: null[];
 }
@@ -18,7 +17,6 @@ const ServiceContent = ({
   isLoading,
   jobPosts,
   onCardClick,
-  categoryPrices,
   categories,
   skeletonCards,
 }: ServiceContentProps) => (
@@ -46,7 +44,6 @@ const ServiceContent = ({
               <ServiceCard
                 jobPost={jobPost}
                 onClick={() => onCardClick(jobPost.jobId)}
-                categoryPrices={categoryPrices}
                 categories={categories}
               />
             </Grid>
