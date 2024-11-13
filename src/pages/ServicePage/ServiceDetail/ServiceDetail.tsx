@@ -3,7 +3,6 @@ import { breadcrumbItemsService } from '@/constant/breadcrumbItems';
 import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import { useCreateApplication } from '@/hooks/useManageApplication';
-import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { useGetJobPostById } from '@/hooks/useMangeJobPost';
 import { formatDate, formatPrice } from '@/util/format';
@@ -36,11 +35,11 @@ import {
   Link,
   Paper,
   Stack,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import CategoryChip from '../CategoryChip';
 import ApplicationModal from './ApplicationModal';
 
 const ServiceDetail = () => {
@@ -64,10 +63,6 @@ const ServiceDetail = () => {
   } = useGetJobPostById(id);
 
   // use multiple queries to get category details
-  const categoryDetails = jobPost?.data?.categoryJobPost?.map((category) => {
-    const { data: categoryDetail } = useGetCategoryById(category.categoriesId);
-    return categoryDetail;
-  });
 
   const { data: userInfo } = useGetUserById(jobPost?.data?.employerId);
 
@@ -335,25 +330,11 @@ const ServiceDetail = () => {
                             Dịch vụ
                           </Typography>
                           <Box className="flex gap-2">
-                            {categoryDetails?.map((category) => (
-                              <Tooltip
-                                key={category?.data.id}
-                                title={
-                                  category?.data?.price
-                                    ? `Giá: ${formatPrice(category?.data.price)}`
-                                    : ''
-                                }
-                              >
-                                <Chip
-                                  label={
-                                    category?.data.categoryName ||
-                                    'Chưa xác định'
-                                  }
-                                  size="medium"
-                                  color="info"
-                                  variant="outlined"
-                                />
-                              </Tooltip>
+                            {jobPost?.data?.categoryJobPost?.map((category) => (
+                              <CategoryChip
+                                key={category.categoriesId}
+                                categoryId={category.categoriesId}
+                              />
                             ))}
                           </Box>
                         </Box>

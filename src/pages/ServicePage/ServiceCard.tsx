@@ -1,4 +1,3 @@
-import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { ServiceCardProps } from '@/types/types';
 import { formatDate, formatPrice } from '@/util/format';
@@ -20,21 +19,13 @@ import {
   Chip,
   Divider,
   Stack,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import React from 'react';
+import CategoryChip from './CategoryChip';
 
 const ServiceCard = React.memo(
   ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
-    // use multiple queries to get category details
-    const categoryDetails = jobPost?.categoryJobPost?.map((category) => {
-      const { data: categoryDetail } = useGetCategoryById(
-        category.categoriesId,
-      );
-      return categoryDetail;
-    });
-
     const { data: userInfo } = useGetUserById(jobPost.employerId);
     const statusConfig = getStatusConfig(jobPost.status);
 
@@ -169,24 +160,11 @@ const ServiceCard = React.memo(
                   spacing={1}
                   className="flex-wrap gap-2 pl-6"
                 >
-                  {categoryDetails?.map((category) => (
-                    <Tooltip
-                      key={category?.data.id}
-                      title={
-                        category?.data.price
-                          ? `Giá: ${formatPrice(category?.data.price)}`
-                          : ''
-                      }
-                      placement="top"
-                    >
-                      <Chip
-                        label={category?.data.categoryName || 'Chưa xác định'}
-                        size="small"
-                        color="info"
-                        variant="outlined"
-                        className="hover:bg-primary/10"
-                      />
-                    </Tooltip>
+                  {jobPost?.categoryJobPost?.map((category) => (
+                    <CategoryChip
+                      key={category.categoriesId}
+                      categoryId={category.categoriesId}
+                    />
                   ))}
                 </Stack>
               </Box>

@@ -5,12 +5,7 @@ import {
 import { Category } from './types.common';
 
 export type TokenResponse = string;
-/*
- * Category Type
- */
-export interface CategoryService {
-  categoriesId: number;
-}
+
 /*
  * JobPost Type
  */
@@ -35,7 +30,14 @@ export interface JobPost {
   status: JobPostStatus;
   createDate: Date | null | undefined | string;
   jobType: number;
-  categoryJobPost: CategoryService[];
+  categoryJobPost: CategoriesId[];
+}
+
+/*
+ * Category Type
+ */
+export interface CategoriesId {
+  categoriesId: number;
 }
 
 export interface CategoryPayload {
