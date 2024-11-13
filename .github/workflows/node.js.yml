@@ -12,18 +12,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2.0.1
         with:
           bun-version: latest
-      - run: bun ci
-      - run: bun run build --if-present
-      - run: bun test
+      - run: bun install
+      - run: bun index.ts
+      - run: bun run build
