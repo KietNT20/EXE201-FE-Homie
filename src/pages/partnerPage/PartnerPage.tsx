@@ -70,7 +70,7 @@ const PartnerPage = () => {
           </form>
           <Button
             variant="contained"
-            color="primary"
+            color="info"
             className="payment-button"
             onClick={onRegister}
           >

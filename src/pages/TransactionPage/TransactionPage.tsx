@@ -1,17 +1,17 @@
-import React from 'react';
-import { useGetTransactionByUserId } from '@/hooks/useManageTransaction';
 import { useAppSelector } from '@/hooks/reudxHook';
+import { useGetTransactionByUserId } from '@/hooks/useManageTransaction';
 import { Transaction } from '@/types/types';
 import { formatPrice } from '@/util/format';
+import React from 'react';
 
 const TransactionPage: React.FC = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
-  const profileId = userProfile.id;
-  const { data: transactions } = useGetTransactionByUserId(profileId);
+  const profileId = userProfile?.id;
+  const { data: transactions } = useGetTransactionByUserId(profileId!);
   console.log('data', transactions?.data);
 
   return (
-    <div className="p-6 bg-gray-100">
+    <div className="p-6 bg-gray-100 container">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
         Lịch Sử Giao Dịch
       </h1>
@@ -50,8 +50,14 @@ const TransactionPage: React.FC = () => {
                 <td className="px-6 py-4 text-gray-800 border border-slate-700">
                   {transaction.transactionId}
                 </td>
-                <td className="px-6 py-4  text-green-600 font-medium border border-slate-700">
-                  {formatPrice(transaction.amount)} đ
+                <td
+                  className={`px-6 py-4 font-medium border border-slate-700 ${
+                    transaction.transactionType === 'Deposit'
+                      ? 'text-green-600'
+                      : 'text-red-600'
+                  }`}
+                >
+                  {formatPrice(transaction.amount)}
                 </td>
                 <td className="px-6 py-4 text-gray-700 border border-slate-700">
                   {transaction.transactionType}

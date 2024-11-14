@@ -22,7 +22,6 @@ export const useGetProfiles = (profilesId: number) => {
 export const useCreateProfiles = () => {
   const { mutate, ...rest } = useMutation({
     mutationFn: (payload: Profiles) => {
-      console.log(payload, 'profiles');
       return profileService.createProfiles(payload);
     },
     onSuccess: () => {

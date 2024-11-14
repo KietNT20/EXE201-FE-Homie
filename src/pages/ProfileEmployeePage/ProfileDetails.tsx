@@ -1,22 +1,27 @@
-import React from 'react';
-import { Typography, Avatar, CircularProgress } from '@mui/material';
 import { useAppSelector } from '@/hooks/reudxHook';
+import { useGetProfiles } from '@/hooks/useManageProfiles';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { formatDate } from '@/util/format';
-import { useGetProfiles } from '@/hooks/useManageProfiles';
 import {
+  AccessTime,
   CalendarToday,
   Person,
   Star,
-  AccessTime,
   Work,
 } from '@mui/icons-material';
+import { Avatar, CircularProgress, Typography } from '@mui/material';
+import React from 'react';
 
 const ProfileDetails: React.FC = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
-  const profileId = userProfile.id;
-  const { data: profileUSerId, isLoading, isError } = useGetProfiles(profileId);
-  const { data: userDetails } = useGetUserById(profileId);
+
+  const {
+    data: profileUSerId,
+    isLoading,
+    isError,
+  } = useGetProfiles(userProfile?.id!);
+
+  const { data: userDetails } = useGetUserById(userProfile?.id);
 
   if (isLoading) {
     return (
@@ -37,15 +42,15 @@ const ProfileDetails: React.FC = () => {
   const profileInfo = profileUSerId.data;
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white rounded-xl shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1">
+    <div className="profile-detail">
       <Typography
         variant="h4"
-        className="text-3xl font-bold text-center text-blue-600 mb-8"
+        className="text-3xl font-bold text-center text-blue-600 mb-6"
       >
         Thông Tin Chi Tiết Hồ Sơ
       </Typography>
 
-      <div className="flex items-center mb-8 space-x-4">
+      <div className="flex items-center mb-4 space-x-4">
         <Avatar
           src={userDetails?.data.avatarUrl}
           alt={userDetails?.data.name}

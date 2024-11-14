@@ -1,4 +1,5 @@
 import { JobPost } from '@/types/types';
+import { Category } from '@/types/types.common';
 import { Alert, Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ServiceCard from './ServiceCard';
@@ -8,7 +9,6 @@ interface ServiceContentProps {
   isLoading: boolean;
   jobPosts: JobPost[];
   onCardClick: (jobId: number | undefined) => void;
-  categoryPrices: Record<number, number>;
   categories: Category[];
   skeletonCards: null[];
 }
@@ -17,12 +17,11 @@ const ServiceContent = ({
   isLoading,
   jobPosts,
   onCardClick,
-  categoryPrices,
   categories,
   skeletonCards,
 }: ServiceContentProps) => (
   <Grid size={{ xs: 12, lg: 9 }}>
-    <Grid container spacing={2}>
+    <Grid container spacing={8}>
       {isLoading ? (
         <>
           {skeletonCards.map((_, index) => (
@@ -39,14 +38,12 @@ const ServiceContent = ({
               key={jobPost.jobId}
               sx={{
                 display: 'flex',
-                alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
               <ServiceCard
                 jobPost={jobPost}
                 onClick={() => onCardClick(jobPost.jobId)}
-                categoryPrices={categoryPrices}
                 categories={categories}
               />
             </Grid>

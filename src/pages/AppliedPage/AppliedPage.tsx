@@ -55,7 +55,7 @@ const modalStyle = {
 const AppliedPage = () => {
   const navigate = useNavigate();
   const { userProfile } = useAppSelector((state) => state.profile);
-  const { data: appliedUserData } = useGetApplicationByUserId(userProfile.id);
+  const { data: appliedUserData } = useGetApplicationByUserId(userProfile?.id!);
   const { mutate: updateStatusApplied } = useUpdateApplicationStatus();
 
   // State for menu

@@ -5,6 +5,7 @@ import { Suspense } from 'react';
 import FilterLoadingFallback from './FilterLoadingFallback';
 import ServiceFilter from './ServiceFilter';
 import ServiceSort, { SortOption } from './ServiceSort';
+import { Category } from '@/types/types.common';
 
 interface ServiceFilterColumnProps {
   sortOption: SortOption;

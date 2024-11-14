@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Button, TextField, Modal, Box } from '@mui/material';
-import { Profiles } from '@/types/types';
 import { useCreateProfiles } from '@/hooks/useManageProfiles';
+import { Profiles } from '@/types/types';
+import { Box, Button, Modal, TextField } from '@mui/material';
+import React, { useState } from 'react';
 
 interface CreateProfileModalProps {
   open: boolean;
@@ -32,7 +32,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
 
   const handleClose = () => {
     setProfileData({
-      userId: userId,
+      userId: userId!,
       bio: '',
       skills: '',
       experience: '',
@@ -45,7 +45,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
   return (
     <Modal
       className="flex items-center justify-center"
-      open={open}
+      open={open!}
       onClose={handleClose}
     >
       <Box
@@ -120,7 +120,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             className=" px-8"
             size="medium"
             variant="contained"
-            color="primary"
+            color="info"
             onClick={handleCreateProfile}
           >
             Tạo

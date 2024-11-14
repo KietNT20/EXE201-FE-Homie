@@ -3,7 +3,6 @@ import { breadcrumbItemsService } from '@/constant/breadcrumbItems';
 import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import { useCreateApplication } from '@/hooks/useManageApplication';
-import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { useGetJobPostById } from '@/hooks/useMangeJobPost';
 import { formatDate, formatPrice } from '@/util/format';
@@ -12,7 +11,7 @@ import {
   ArrowBack,
   AttachMoney,
   CalendarToday,
-  Category as CategoryIcon,
+  Category,
   Email,
   Layers,
   LocationOn,
@@ -33,13 +32,14 @@ import {
   Divider,
   Grid2,
   IconButton,
+  Link,
   Paper,
   Stack,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import CategoryChip from '../CategoryChip';
 import ApplicationModal from './ApplicationModal';
 
 const ServiceDetail = () => {
@@ -62,9 +62,7 @@ const ServiceDetail = () => {
     refetch: refetchJobPost, // Add refetch function
   } = useGetJobPostById(id);
 
-  const { data: categoryDetail } = useGetCategoryById(
-    jobPost?.data?.categoryJobPost[0]?.categoriesId,
-  );
+  // use multiple queries to get category details
 
   const { data: userInfo } = useGetUserById(jobPost?.data?.employerId);
 
@@ -160,7 +158,7 @@ const ServiceDetail = () => {
               userProfile.id !== jobPost.data.employerId && (
                 <Button
                   variant="contained"
-                  color="primary"
+                  color="info"
                   startIcon={<Work />}
                   onClick={handleOpenModal}
                   className="mr-2"
@@ -179,8 +177,8 @@ const ServiceDetail = () => {
           {jobPost.data.description}
         </Typography>
         <Chip
-          label={formatPrice(categoryDetail?.data.price)}
-          color="primary"
+          label={formatPrice(jobPost?.data.price || 0)}
+          color="info"
           className="font-medium text-lg"
           icon={<AttachMoney />}
         />
@@ -211,14 +209,20 @@ const ServiceDetail = () => {
                   </Box>
                 </Box>
                 <Divider />
-                <Box className="flex items-center gap-2">
+                <Link
+                  href={`mailto:${userInfo?.data.email}`}
+                  className="flex items-center gap-2"
+                >
                   <Email color="action" />
                   <Typography>{userInfo.data.email}</Typography>
-                </Box>
-                <Box className="flex items-center gap-2 text-blue-600">
+                </Link>
+                <Link
+                  href={`tel:${userInfo.data.phone}`}
+                  className="flex items-center gap-2 text-blue-600"
+                >
                   <Phone color="action" />
                   <Typography>{userInfo.data.phone}</Typography>
-                </Box>
+                </Link>
               </Stack>
             ) : (
               <Typography color="text.secondary">
@@ -314,7 +318,7 @@ const ServiceDetail = () => {
                       </Box>
 
                       <Box className="flex items-center gap-3">
-                        <CategoryIcon color="action" />
+                        <Category color="action" />
                         <Box
                           component={'div'}
                           className="flex items-center gap-4"
@@ -325,25 +329,14 @@ const ServiceDetail = () => {
                           >
                             Dịch vụ
                           </Typography>
-                          {categoryDetail?.data && (
-                            <Tooltip
-                              title={
-                                categoryDetail.data.price
-                                  ? `Giá: ${formatPrice(categoryDetail.data.price)}`
-                                  : ''
-                              }
-                            >
-                              <Chip
-                                label={
-                                  categoryDetail.data.categoryName ||
-                                  'Chưa xác định'
-                                }
-                                size="medium"
-                                color="primary"
-                                variant="outlined"
+                          <Box className="flex gap-2">
+                            {jobPost?.data?.categoryJobPost?.map((category) => (
+                              <CategoryChip
+                                key={category.categoriesId}
+                                categoryId={category.categoriesId}
                               />
-                            </Tooltip>
-                          )}
+                            ))}
+                          </Box>
                         </Box>
                       </Box>
                     </Stack>

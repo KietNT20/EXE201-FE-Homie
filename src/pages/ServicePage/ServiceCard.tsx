@@ -1,4 +1,3 @@
-import { useGetCategoryById } from '@/hooks/useManageCategory';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { ServiceCardProps } from '@/types/types';
 import { formatDate, formatPrice } from '@/util/format';
@@ -20,22 +19,19 @@ import {
   Chip,
   Divider,
   Stack,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import React from 'react';
+import CategoryChip from './CategoryChip';
 
 const ServiceCard = React.memo(
   ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
-    const { data: categoryDetail } = useGetCategoryById(
-      jobPost.categoryJobPost[0]?.categoriesId,
-    );
     const { data: userInfo } = useGetUserById(jobPost.employerId);
     const statusConfig = getStatusConfig(jobPost.status);
 
     return (
       <Card
-        className="max-w-[350px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
+        className="max-w-[450px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
         {...restProps}
       >
         <CardActionArea onClick={onClick}>
@@ -147,7 +143,7 @@ const ServiceCard = React.memo(
                   variant="body2"
                   className="font-medium text-primary"
                 >
-                  {formatPrice(categoryDetail?.data.price || 0)}
+                  {formatPrice(jobPost?.price || 0)}
                 </Typography>
               </Box>
 
@@ -164,26 +160,12 @@ const ServiceCard = React.memo(
                   spacing={1}
                   className="flex-wrap gap-2 pl-6"
                 >
-                  {categoryDetail && (
-                    <Tooltip
-                      title={
-                        categoryDetail.data.price
-                          ? `Giá: ${formatPrice(categoryDetail.data.price)}`
-                          : ''
-                      }
-                      placement="top"
-                    >
-                      <Chip
-                        label={
-                          categoryDetail.data.categoryName || 'Chưa xác định'
-                        }
-                        size="small"
-                        color="primary"
-                        variant="outlined"
-                        className="hover:bg-primary/10"
-                      />
-                    </Tooltip>
-                  )}
+                  {jobPost?.categoryJobPost?.map((category) => (
+                    <CategoryChip
+                      key={category.categoriesId}
+                      categoryId={category.categoriesId}
+                    />
+                  ))}
                 </Stack>
               </Box>
               {/* Create Date Post */}

@@ -89,7 +89,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="footer__bottom md:flex md:items-center md:justify-center">
+        <div className="footer__bottom md:flex md:items-center md:justify-center md:flex-col">
           <div className="footer__bottom-linksocials my-4 flex sm:flex-row md:items-center gap-3">
             <SocialIcon url="https://www.instagram.com/homie.vn" />
             <SocialIcon url="https://www.tiktok.com/homie.vn" />

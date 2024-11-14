@@ -2,6 +2,7 @@ import { priceFilter } from '@/constant/priceFilter';
 import { useGetAllCategories } from '@/hooks/useManageCategory';
 import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
 import { JobPost } from '@/types/types';
+import { Category } from '@/types/types.common';
 import { Box, Container } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React, { useMemo } from 'react';
@@ -95,10 +96,10 @@ const ServicePage = () => {
 
   return (
     <Box sx={{ backgroundColor: 'background.default' }}>
-      <Container>
+      <Container maxWidth="lg">
         <Box sx={{ py: 4 }}>
           <ServiceHeader />
-          <Grid container spacing={3}>
+          <Grid container spacing={4}>
             <ServiceFilterColumn
               sortOption={sortOption}
               onSortChange={handleSortChange}
@@ -112,7 +113,6 @@ const ServicePage = () => {
               isLoading={isLoadingState}
               jobPosts={filteredJobPosts}
               onCardClick={handleCardClick}
-              categoryPrices={categoryPrices}
               categories={categoriesData?.data ?? []}
               skeletonCards={skeletonCards}
             />

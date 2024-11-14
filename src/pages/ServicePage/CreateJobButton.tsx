@@ -1,5 +1,6 @@
 import { useCreateJobPost } from '@/hooks/useMangeJobPost';
 import { JobPostPayload } from '@/types/types';
+import { Category } from '@/types/types.common';
 import AddIcon from '@mui/icons-material/Add';
 import { Button } from '@mui/material';
 import React, { useCallback, useState } from 'react';
@@ -59,6 +60,7 @@ const CreateJobButton = ({
         onClick={handleOpenModal}
         className={className}
         disabled={isCreating}
+        color="info"
       >
         Tạo công việc mới
       </Button>

@@ -1,5 +1,6 @@
 import { priceFilter } from '@/constant/priceFilter';
 import { FilterState, ServiceFilterProps } from '@/types/types';
+import { Category } from '@/types/types.common';
 import {
   Box,
   Button,
@@ -212,7 +213,7 @@ const ServiceFilter = ({
             variant="contained"
             fullWidth
             onClick={handleApplyFilter}
-            color="primary"
+            color="info"
           >
             Áp dụng
           </Button>
@@ -220,7 +221,7 @@ const ServiceFilter = ({
             variant="outlined"
             fullWidth
             onClick={handleResetFilter}
-            color="primary"
+            color="info"
           >
             Đặt lại
           </Button>

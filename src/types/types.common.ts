@@ -1,11 +1,11 @@
-enum RoleUser {
+export enum RoleUser {
   ADMIN = 1,
   CUSTOMER = 2,
   EMPLOYEE = 3,
   STAFF = 4,
 }
 
-interface User {
+export interface User {
   id?: number;
   name?: string;
   email?: string;
@@ -16,7 +16,7 @@ interface User {
   roleId?: RoleUser;
 }
 
-interface Profile {
+export interface Profile {
   userID?: number;
   bio?: string;
   skill?: string;
@@ -25,7 +25,7 @@ interface Profile {
   ratingAvg?: number;
 }
 
-interface Transaction {
+export interface Transaction {
   transactionId?: number;
   walletId?: number;
   userId?: number;
@@ -35,15 +35,8 @@ interface Transaction {
   description?: string;
   eWallet?: string;
 }
-interface Category {
+export interface Category {
   id?: number;
   categoryName?: string;
   price?: number;
 }
-
-type ActionReduxType = {
-  type: string;
-  payload?: any;
-};
-
-type DispatchType<T> = (args: T) => T;

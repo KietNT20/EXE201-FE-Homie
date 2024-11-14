@@ -65,3 +65,16 @@ export const useCreateJobPost = () => {
   });
   return { mutate, ...rest };
 };
+
+export const useGetJobPostByUserId = (userId: number) => {
+  const { data: jobPostUserData, ...rest } = useQuery({
+    queryKey: ['jobPosts', userId],
+    queryFn: () => jobPostService.getJobPostByUserId(userId),
+    throwOnError: true,
+  });
+
+  return {
+    jobPostUserData,
+    ...rest,
+  };
+};

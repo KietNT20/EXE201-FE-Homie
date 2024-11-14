@@ -12,4 +12,7 @@ export const jobPostService = {
   createJobPost(payload: JobPostPayload) {
     return axiosInstance.post(API.JOB_POST_API.CREATE, payload);
   },
+  getJobPostByUserId(userId: number) {
+    return axiosInstance.get(API.JOB_POST_API.GET_BY_USER_ID + userId);
+  },
 };

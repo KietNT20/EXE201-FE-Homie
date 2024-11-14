@@ -2,15 +2,10 @@ import {
   District,
   ExtendedJobPostFormData,
 } from '@/pages/ServicePage/schemas/schema';
-import { Category } from './type';
+import { Category } from './types.common';
 
 export type TokenResponse = string;
-/*
- * Category Type
- */
-export interface CategoryService {
-  categoriesId: number;
-}
+
 /*
  * JobPost Type
  */
@@ -29,12 +24,20 @@ export interface JobPost {
   location: string;
   squareMeters: number;
   numberOfFloors: number;
+  price?: number;
   startDate: Date | null | undefined | string;
   endDate: Date | null | undefined | string;
   status: JobPostStatus;
   createDate: Date | null | undefined | string;
   jobType: number;
-  categoryJobPost: CategoryService[];
+  categoryJobPost: CategoriesId[];
+}
+
+/*
+ * Category Type
+ */
+export interface CategoriesId {
+  categoriesId: number;
 }
 
 export interface CategoryPayload {
@@ -137,7 +140,6 @@ export interface ServiceFilterProps {
 export interface ServiceCardProps {
   jobPost: JobPost;
   onClick: () => void;
-  categoryPrices: Record<number, number>;
   categories?: Category[];
   [key: string]: any;
 }
