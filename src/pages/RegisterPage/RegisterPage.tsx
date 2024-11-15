@@ -1,6 +1,6 @@
 import ButtonComp from '@/components/ButtonComp/ButtonComp';
 import InputText from '@/components/InputText/InputText';
-import { submarine } from '@/constant/image';
+import { cleaner, logo } from '@/constant/image';
 import { PATH } from '@/constant/path';
 import { useRegister } from '@/hooks/useAuth';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -62,28 +62,25 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container className="py-12 px-32 m-auto">
-      <div className="loginForm border-2 border-sky-50">
-        <div className="login-wrap">
-          <div className="loginForm__left">
-            <figure className="loginForm__left-img w-full h-full aspect-video">
-              <img
-                className="w-full h-full object-cover"
-                src={submarine}
-                alt="Ảnh máy hút bụi"
-              />
-            </figure>
-          </div>
-          <Card className="loginForm__right">
+    <Container maxWidth="lg" className="py-8 md:py-12 md:px-32">
+      <div className="flex flex-col md:flex-row border border-sky-500 rounded-xl overflow-hidden">
+        <div className="hidden lg:block lg:w-1/2">
+          <figure className="">
+            <img className="" src={logo} alt="Logo Homie" />
+            <img className="" src={cleaner} alt="Banner" />
+          </figure>
+        </div>
+        <div className="w-full lg:w-1/2">
+          <Card className="w-full h-full shadow-none">
             <CardContent className="p-6">
-              <div className="loginForm__right-content mb-8">
+              <div className="mb-6 md:mb-8">
                 <Typography variant="h5" className="text-center">
                   ĐĂNG KÝ
                 </Typography>
               </div>
               <Box
                 component="form"
-                className="loginForm__right-form"
+                className=""
                 onSubmit={handleSubmit(_onSubmit)}
               >
                 <Grid2 container spacing={1} gap={4}>
@@ -256,13 +253,12 @@ const RegisterPage = () => {
                       )}
                     />
                   </Grid2>
-
                   <Grid2 size={12}>
                     <ButtonComp
                       type="submit"
                       variant="contained"
-                      className="btn"
-                      size="small"
+                      className="w-full bg-blue-500 hover:bg-blue-600"
+                      size="medium"
                       fullWidth
                       disabled={registerLoading}
                     >
@@ -273,19 +269,32 @@ const RegisterPage = () => {
               </Box>
               <div className="text-bottom mt-4 text-center">
                 <div className="policy-content mb-2">
-                  <p className="text">
+                  <p className="text-sm text-gray-600">
                     Bằng việc đăng kí, bạn đã đồng ý với Homie về{' '}
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-600 hover:underline duration-200"
+                    >
                       Điều khoản dịch vụ
                     </a>{' '}
                     &{' '}
-                    <a href="#" target="_blank" rel="noopener noreferrer">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-600 hover:underline duration-200"
+                    >
                       Chính sách bảo mật
                     </a>
                   </p>
                 </div>
-                <span className="text">Đã có tài khoản?</span>{' '}
-                <Link to={PATH.LOGIN} className="link-regis">
+                <span className="text-sm text-gray-600">Đã có tài khoản?</span>{' '}
+                <Link
+                  to={PATH.LOGIN}
+                  className="text-sm md:text-base text-blue-400 hover:text-blue-600 hover:underline duration-200"
+                >
                   Đăng nhập
                 </Link>
               </div>

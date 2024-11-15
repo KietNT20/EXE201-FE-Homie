@@ -3,7 +3,7 @@ import { useGetAllCategories } from '@/hooks/useManageCategory';
 import { useGetAllJobPosts } from '@/hooks/useMangeJobPost';
 import { JobPost } from '@/types/types';
 import { Category } from '@/types/types.common';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React, { useMemo } from 'react';
 import ServiceContent from './ServiceContent';
@@ -96,7 +96,7 @@ const ServicePage = () => {
 
   return (
     <Box sx={{ backgroundColor: 'background.default' }}>
-      <Container maxWidth="lg">
+      <div className="container">
         <Box sx={{ py: 4 }}>
           <ServiceHeader />
           <Grid container spacing={4}>
@@ -125,7 +125,7 @@ const ServicePage = () => {
             onPageChange={handlePageChange}
           />
         </Box>
-      </Container>
+      </div>
     </Box>
   );
 };

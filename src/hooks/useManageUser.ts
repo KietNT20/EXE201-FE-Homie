@@ -30,6 +30,7 @@ export const useGetUserById = (userId?: number | null) => {
     ...rest,
   };
 };
+
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({

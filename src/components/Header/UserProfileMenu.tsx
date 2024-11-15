@@ -53,7 +53,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         <MenuItem>{formatPrice(EWalletUser?.data.balance)}</MenuItem>
         <MenuItem
           component={NavLink}
-          to={PATH.PROFILE}
+          to={PATH.PROFILE_EMPLOYEE}
           onClick={handleMenuClose}
         >
           Thông tin cá nhân

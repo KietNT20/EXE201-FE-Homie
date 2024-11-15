@@ -9,7 +9,8 @@ export const PATH = {
   LOGIN: '/login',
   REGISTER: '/register',
   SERVICE_DETAIL: '/services/:id',
-  PROFILE: '/profile',
+  PROFILE_EMPLOYEE: '/profile-employee',
+  JOB_USER: '/job-user',
   APPLIED: '/applied',
   TRANSACTION: '/transaction',
 };

@@ -15,7 +15,11 @@
     &-btn {
       height: var(--height-button);
       width: fit-content;
-      @include mixins.text(vnSemiBold, 1rem, normal, var(--blue-light));
+      @include mixins.text(vnSemiBold, 0.55rem, normal, var(--blue-light));
+      @include mixins.transition(var(--duration));
+      @include mixins.md {
+        @include mixins.text(vnSemiBold, 1rem, normal, var(--blue-light));
+      }
     }
   }
 

@@ -55,7 +55,7 @@ const AboutPage: React.FC = () => {
 
   return (
     <main className="bg-gray-50 to-white py-3 md:py-10">
-      <Container>
+      <Container maxWidth="lg">
         {/* Hero Section */}
         <div className="relative h-72 w-full bg-blue-100 mb-8 flex-shrink-0 rounded-3xl overflow-hidden sm:block hidden">
           <img

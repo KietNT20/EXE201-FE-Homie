@@ -137,9 +137,6 @@ const AppliedPage = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell align="center" width="10%">
-                  ID
-                </TableCell>
                 <TableCell align="center" width="15%">
                   Mã công việc
                 </TableCell>
@@ -167,7 +164,6 @@ const AppliedPage = () => {
                       },
                     }}
                   >
-                    <TableCell align="center">{application.id}</TableCell>
                     <TableCell align="center">{application.jobId}</TableCell>
                     <TableCell>{application.message}</TableCell>
                     <TableCell align="center">

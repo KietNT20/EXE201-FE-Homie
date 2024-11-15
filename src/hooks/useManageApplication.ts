@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 export const useCreateApplication = () => {
   const queryClient = useQueryClient();
   const { id } = useParams();
-
   const { mutate, ...rest } = useMutation({
     mutationFn: ({ jobId, workerId, message }: ApplicationPayload) =>
       applicationService.createApplication({ jobId, workerId, message }),
@@ -40,22 +39,20 @@ export const useGetAllApplication = () => {
 
 export const useGetApplicationById = (applicationId?: number | null) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['application', applicationId],
+    queryKey: ['applicationDetails', applicationId],
     queryFn: () => applicationService.getApplicationById(applicationId!),
     enabled: !!applicationId,
     throwOnError: false,
-    retry: 1,
   });
   return { data, ...rest };
 };
 
 export const useGetApplicationByUserId = (userId?: number | null) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['application', userId],
+    queryKey: ['applicationByUser', userId],
     queryFn: () => applicationService.getApplicationByUserId(userId!),
     enabled: !!userId,
     throwOnError: false,
-    retry: 1,
   });
   return { data, ...rest };
 };

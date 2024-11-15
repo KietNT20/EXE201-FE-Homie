@@ -32,7 +32,7 @@ export const useGetAllJobPosts = (params: {
 
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
   const { data, ...rest } = useQuery<JobPostDetail>({
-    queryKey: ['jobPost', jobPostId],
+    queryKey: ['jobPostDetail', jobPostId],
     queryFn: () => jobPostService.getJobPostById(Number(jobPostId!)),
     enabled: !!jobPostId,
     throwOnError: false,
@@ -68,7 +68,7 @@ export const useCreateJobPost = () => {
 
 export const useGetJobPostByUserId = (userId: number) => {
   const { data: jobPostUserData, ...rest } = useQuery({
-    queryKey: ['jobPosts', userId],
+    queryKey: ['jobPostByUserId', userId],
     queryFn: () => jobPostService.getJobPostByUserId(userId),
     throwOnError: true,
   });

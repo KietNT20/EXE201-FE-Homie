@@ -3,6 +3,7 @@ import PrivateRoute from '@/components/PrivateRoute/PrivateRoute';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import { PATH } from '@/constant/path';
 import MainLayout from '@/layout/MainLayout';
+import PageNotFound from '@/pages/PageNotFound/PageNotFound';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -135,7 +136,7 @@ const AppRoutes = () => {
                 }
               />
               <Route
-                path={PATH.PROFILE}
+                path={PATH.PROFILE_EMPLOYEE}
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
                     <ProfileEmployeePage />
@@ -152,6 +153,14 @@ const AppRoutes = () => {
               />
             </Route>
           </Route>
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<PageLoadingFallback />}>
+                <PageNotFound />
+              </Suspense>
+            }
+          />
         </Routes>
       </Suspense>
     </>

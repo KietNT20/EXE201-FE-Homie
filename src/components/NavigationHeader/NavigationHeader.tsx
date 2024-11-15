@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-export const styles = {
+const styles = {
   link: 'flex items-center text-gray-600 hover:text-primary cursor-pointer transition-colors duration-300',
   activeText: 'font-medium text-gray-900',
   iconButton: 'hover:bg-gray-100 transition-all duration-200',
