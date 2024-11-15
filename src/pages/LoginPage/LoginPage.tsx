@@ -52,28 +52,31 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className="py-12 m-auto px-40">
-      <div className="loginForm border-2 border-sky-50">
-        <div className="login-wrap">
-          <div className="loginForm__left">
-            <figure className="loginForm__left-img w-full h-full aspect-video">
-              <img
-                className="w-full h-full object-cover"
-                src={submarine}
-                alt="Ảnh máy hút bụi"
-              />
-            </figure>
-          </div>
-          <Card className="loginForm__right">
-            <CardContent className="p-8">
-              <div className="loginForm__right-content mb-8">
-                <Typography variant="h5" className="text-center">
+    <Container maxWidth="lg" className="py-8 px-4 md:py-12 md:px-40">
+      <div className="flex flex-col md:flex-row bg-white rounded-lg overflow-hidden shadow-lg border border-sky-500">
+        {/* Image section - hidden on mobile/tablet */}
+        <div className="hidden lg:block lg:w-1/2">
+          <figure className="w-full h-full aspect-square">
+            <img
+              className="w-full h-full object-cover"
+              src={submarine}
+              alt="Ảnh máy hút bụi"
+            />
+          </figure>
+        </div>
+
+        {/* Login form section - full width on mobile/tablet */}
+        <div className="w-full lg:w-1/2">
+          <Card className="w-full h-full shadow-none">
+            <CardContent className="p-6 md:p-8">
+              <div className="mb-6 md:mb-8">
+                <Typography variant="h5" className="text-center font-medium">
                   ĐĂNG NHẬP
                 </Typography>
               </div>
               <Box
-                component={'form'}
-                className="loginForm__right-form"
+                component="form"
+                className="w-full"
                 onSubmit={handleSubmit(_onSubmit)}
               >
                 <Grid2 container spacing={1} gap={4}>
@@ -111,10 +114,8 @@ const LoginPage = () => {
                             <InputAdornment position="end">
                               <IconButton
                                 aria-label="toggle password visibility"
-                                onClick={() => handleClickShowPassword()}
-                                onMouseDown={(event) =>
-                                  handleMouseDownPassword(event)
-                                }
+                                onClick={handleClickShowPassword}
+                                onMouseDown={handleMouseDownPassword}
                               >
                                 {showPwd ? <Visibility /> : <VisibilityOff />}
                               </IconButton>
@@ -128,9 +129,8 @@ const LoginPage = () => {
                     <ButtonComp
                       type="submit"
                       variant="contained"
-                      size="small"
-                      className="btn"
-                      fullWidth
+                      size="medium"
+                      className="w-full bg-blue-500 hover:bg-blue-600"
                       disabled={loginLoading}
                     >
                       Đăng nhập
@@ -138,16 +138,27 @@ const LoginPage = () => {
                   </Grid2>
                 </Grid2>
               </Box>
-              <div className="text-bottom mt-4 text-center">
-                <div className="text-signup mb-2">
-                  <span className="text">Chưa đăng ký tài khoản?</span>{' '}
-                  <Link to={PATH.REGISTER} className="link-regis">
+              <div className="mt-4 text-center">
+                <p className="mb-2">
+                  <span className="text-gray-600 text-sm">
+                    Chưa đăng ký tài khoản?
+                  </span>{' '}
+                  <Link
+                    to={PATH.REGISTER}
+                    className="text-blue-400 hover:text-blue-600 hover:underline duration-200 text-sm md:text-base"
+                  >
                     Đăng ký
                   </Link>
-                </div>
-                <span className="forgotPassword">
-                  Quên mật khẩu? <a href="#">Nhấn vào đây</a>
-                </span>
+                </p>
+                <p className="text-gray-600 text-sm">
+                  Quên mật khẩu?{' '}
+                  <a
+                    href="#"
+                    className="text-blue-400 hover:text-blue-600 hover:underline duration-200"
+                  >
+                    Nhấn vào đây
+                  </a>
+                </p>
               </div>
             </CardContent>
           </Card>

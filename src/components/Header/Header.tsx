@@ -1,6 +1,7 @@
 import { logo } from '@/constant/image';
 import { PATH } from '@/constant/path';
-import { useAppSelector } from '@/hooks/reudxHook';
+import { useAppDispatch, useAppSelector } from '@/hooks/reudxHook';
+import { clearUserProfile } from '@/store/actions/userProfileAction';
 import { RootState } from '@/store/store';
 import tokenMethod from '@/util/token';
 import { Close } from '@mui/icons-material';
@@ -27,6 +28,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { userProfile } = useAppSelector((state: RootState) => state.profile);
+  const dispatch = useAppDispatch();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,7 +36,8 @@ const Header = () => {
 
   const _onLogout = () => {
     toast.dismiss();
-    localStorage.clear();
+    tokenMethod.remove();
+    dispatch(clearUserProfile());
     toast.success('Đăng xuất thành công');
     navigate(PATH.HOME);
   };
@@ -130,7 +133,7 @@ const Header = () => {
 
 export default Header;
 
-export const styles = {
+const styles = {
   item__button: {
     padding: 0,
   },

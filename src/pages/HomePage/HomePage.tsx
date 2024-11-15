@@ -16,7 +16,7 @@ const HomieComponent = () => {
 
   return (
     <main className="bg-gray-50">
-      <Container>
+      <Container maxWidth="lg">
         {/* Hero Section */}
         <section className="hero relative pt-3 md:pt-10">
           <div className="max-w-3xl mx-auto text-center">

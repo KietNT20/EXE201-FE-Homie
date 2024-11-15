@@ -21,11 +21,11 @@ const ServiceContent = ({
   skeletonCards,
 }: ServiceContentProps) => (
   <Grid size={{ xs: 12, lg: 9 }}>
-    <Grid container spacing={8}>
+    <Grid container spacing={2}>
       {isLoading ? (
         <>
           {skeletonCards.map((_, index) => (
-            <Grid size={{ xs: 12, md: 6 }} key={`skeleton-${index}`}>
+            <Grid size={{ xs: 12, md: 6, lg: 4 }} key={`skeleton-${index}`}>
               <ServiceCardSkeleton />
             </Grid>
           ))}
@@ -34,7 +34,7 @@ const ServiceContent = ({
         <>
           {jobPosts.map((jobPost) => (
             <Grid
-              size={{ xs: 12, md: 6 }}
+              size={{ xs: 12, md: 6, lg: 4 }}
               key={jobPost.jobId}
               sx={{
                 display: 'flex',

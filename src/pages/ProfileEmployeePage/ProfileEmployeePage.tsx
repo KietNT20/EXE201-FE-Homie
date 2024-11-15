@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/reudxHook';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import { useState } from 'react';
 import CreateProfileModal from './CreateProfileModal';
 import ProfileDetails from './ProfileDetails';
@@ -12,7 +12,7 @@ const ProfileEmployee = () => {
 
   return (
     <section className="ProfileEmployee">
-      <div className="container py-6">
+      <Container maxWidth="lg" className="py-6">
         <ProfileDetails />
         <div className="mt-3 flex flex-row-reverse">
           <Button variant="contained" color="primary" onClick={handleOpen}>
@@ -24,7 +24,7 @@ const ProfileEmployee = () => {
           onClose={handleClose}
           userId={userProfile?.id!}
         />
-      </div>
+      </Container>
     </section>
   );
 };

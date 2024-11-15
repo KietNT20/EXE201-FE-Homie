@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 
 const CommitPage = () => {
   return (
-    <Container>
+    <Container maxWidth="lg">
       <section className="commit py-1">
         <div className="commit__banner">
           <img src={banner} alt="" />
