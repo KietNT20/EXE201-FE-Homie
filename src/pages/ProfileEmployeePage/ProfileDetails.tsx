@@ -5,7 +5,9 @@ import { formatDate } from '@/util/format';
 import {
   AccessTime,
   CalendarToday,
+  EmailOutlined,
   Person,
+  Phone,
   Star,
   Work,
 } from '@mui/icons-material';
@@ -14,16 +16,18 @@ import React from 'react';
 
 const ProfileDetails: React.FC = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
+  // Check if user is employee
+  const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
+  // Get Profiles by User Id
+  const { data: profileUSerId, isLoading: profileIsLoading } = useGetProfiles(
+    userId ?? 0,
+  );
+  // Get User by Id
+  const { data: userDetails, isLoading: userDetailLoading } = useGetUserById(
+    userProfile?.id,
+  );
 
-  const {
-    data: profileUSerId,
-    isLoading,
-    isError,
-  } = useGetProfiles(userProfile?.id!);
-
-  const { data: userDetails } = useGetUserById(userProfile?.id);
-
-  if (isLoading) {
+  if (userDetailLoading || profileIsLoading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <CircularProgress />
@@ -31,7 +35,7 @@ const ProfileDetails: React.FC = () => {
     );
   }
 
-  if (isError || !profileUSerId) {
+  if (!userDetails) {
     return (
       <div className="text-center text-red-600">
         Không thể tải thông tin hồ sơ.
@@ -39,7 +43,7 @@ const ProfileDetails: React.FC = () => {
     );
   }
 
-  const profileInfo = profileUSerId.data;
+  const profileInfo = profileUSerId?.data;
 
   return (
     <div className="profile-detail">
@@ -54,7 +58,7 @@ const ProfileDetails: React.FC = () => {
         <Avatar
           src={userDetails?.data.avatarUrl}
           alt={userDetails?.data.name}
-          className="w-24 h-24 rounded-full shadow-lg border-4 border-blue-300"
+          className="w-24 h-24 rounded shadow-lg border-4 border-blue-300"
         />
         <div>
           <Typography
@@ -62,12 +66,6 @@ const ProfileDetails: React.FC = () => {
             className="text-xl font-semibold text-gray-700"
           >
             {userDetails?.data.name}
-          </Typography>
-          <Typography variant="body1" className="text-gray-500">
-            {userDetails?.data.email}
-          </Typography>
-          <Typography variant="body1" className="text-gray-500">
-            {userDetails?.data.phone}
           </Typography>
         </div>
       </div>
@@ -78,9 +76,22 @@ const ProfileDetails: React.FC = () => {
           variant="h6"
           className="text-lg font-semibold text-gray-700 mb-4"
         >
-          Thông Tin Khác
+          Thông Tin Cá Nhân
         </Typography>
-
+        {/* Email */}
+        <div className="flex items-center space-x-2">
+          <EmailOutlined className="text-blue-500" />
+          <Typography variant="body1" className="text-gray-600">
+            Email: {userDetails?.data.email}
+          </Typography>
+        </div>
+        {/* Phone */}
+        <div className="flex items-center space-x-2">
+          <Phone className="text-blue-500" />
+          <Typography variant="body1" className="text-gray-600">
+            Số điện thoại: {userDetails?.data.phone}
+          </Typography>
+        </div>
         {/* Date of Birth */}
         <div className="flex items-center space-x-2">
           <CalendarToday className="text-blue-500" />
@@ -88,7 +99,6 @@ const ProfileDetails: React.FC = () => {
             Ngày sinh: {formatDate(userDetails?.data.dateOfBirth)}
           </Typography>
         </div>
-
         {/* Gender */}
         <div className="flex items-center space-x-2">
           <Person className="text-blue-500" />
@@ -96,30 +106,33 @@ const ProfileDetails: React.FC = () => {
             Giới tính: {userDetails?.data.gender === 'male' ? 'Nam' : 'Nữ'}
           </Typography>
         </div>
-
         {/* Bio/Experience */}
-        <div className="flex items-center space-x-2">
-          <Work className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Kinh nghiệm: {profileInfo?.bio || 'Không có thông tin'}
-          </Typography>
-        </div>
-
+        {profileInfo && (
+          <div className="flex items-center space-x-2">
+            <Work className="text-blue-500" />
+            <Typography variant="body1" className="text-gray-600">
+              Kinh nghiệm: {profileInfo?.bio || 'Không có thông tin'}
+            </Typography>
+          </div>
+        )}
         {/* Availability */}
-        <div className="flex items-center space-x-2">
-          <AccessTime className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Thời gian: {profileInfo?.availability || 'Không có thông tin'}
-          </Typography>
-        </div>
-
+        {profileInfo && (
+          <div className="flex items-center space-x-2">
+            <AccessTime className="text-blue-500" />
+            <Typography variant="body1" className="text-gray-600">
+              Thời gian: {profileInfo?.availability || 'Không có thông tin'}
+            </Typography>
+          </div>
+        )}
         {/* Rating */}
-        <div className="flex items-center space-x-2">
-          <Star className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Đánh giá: {profileInfo?.ratingAvg || 'Không có thông tin'}
-          </Typography>
-        </div>
+        {profileInfo && (
+          <div className="flex items-center space-x-2">
+            <Star className="text-blue-500" />
+            <Typography variant="body1" className="text-gray-600">
+              Đánh giá: {profileInfo?.ratingAvg || 'Không có thông tin'}
+            </Typography>
+          </div>
+        )}
       </div>
     </div>
   );
