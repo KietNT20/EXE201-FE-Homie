@@ -11,11 +11,11 @@ const ProfileEmployee = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <section className="ProfileEmployee">
+    <section className="min-h-screen bg-gray-50">
       <Container maxWidth="lg" className="py-6">
         <ProfileDetails />
         <div className="mt-3 flex flex-row-reverse">
-          <Button variant="contained" color="primary" onClick={handleOpen}>
+          <Button variant="contained" color="info" onClick={handleOpen}>
             Cập nhật thông tin
           </Button>
         </div>

@@ -24,20 +24,20 @@
         text-decoration: underline;
       }
       @include mixins.md {
-        @include mixins.text(vnRegular, 1rem, 1.5rem, #98a2b3);
+        @include mixins.text(vnRegular, 1rem, 1.5rem, #eaecf0);
       }
     }
   }
 }
 
 .footer-news {
-  @include mixins.text(vnRegular, 0.8rem, 1rem, #101828);
+  @include mixins.text(vnRegular, 0.5rem, 1rem, #101828);
   padding: 0.25rem 0.5rem;
   border-radius: 1rem;
   background: #f2f4f7;
   margin-left: 0.5rem;
   @include mixins.md {
-    @include mixins.text(vnRegular, 1rem, 1.5rem, #98a2b3);
+    @include mixins.text(vnRegular, 0.75rem, 1.2rem, #101828);
   }
 }
 

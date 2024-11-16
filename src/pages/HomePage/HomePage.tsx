@@ -77,9 +77,8 @@ const HomieComponent = () => {
               </Link>
             ))}
           </div>
-
           <div className="flex items-center justify-center">
-            <img src={cleaner} alt="Service workers" className="object-cover" />
+            <img src={cleaner} alt="Service workers" className="" />
           </div>
         </section>
       </Container>

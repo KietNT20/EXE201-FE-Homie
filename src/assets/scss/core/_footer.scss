@@ -18,7 +18,7 @@
         p {
           @include mixins.text(vnRegular, 0.8rem, 1rem, #eaecf0);
           @include mixins.md {
-            @include mixins.text(vnRegular, 1rem, 1.5rem, #98a2b3);
+            @include mixins.text(vnRegular, 1rem, 1.5rem, #eaecf0);
           }
         }
       }
