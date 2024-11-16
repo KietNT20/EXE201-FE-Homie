@@ -55,7 +55,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <AppBar className="" position="fixed" color="default">
-        <div className="flex items-center justify-center bg-[#268bc7] w-full">
+        <div className="flex items-center justify-center bg-blue-500 w-full">
           <p className="text_normal text-white w-full text-center py-4">
             Chào mừng đến với Homie - Dịch vụ giúp bạn kiếm người giúp việc tại
             nhà

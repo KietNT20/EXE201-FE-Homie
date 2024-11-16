@@ -4,137 +4,168 @@ import { useGetUserById } from '@/hooks/useManageUser';
 import { formatDate } from '@/util/format';
 import {
   AccessTime,
+  AccountBox,
   CalendarToday,
+  Description,
   EmailOutlined,
   Person,
   Phone,
   Star,
   Work,
 } from '@mui/icons-material';
-import { Avatar, CircularProgress, Typography } from '@mui/material';
-import React from 'react';
+import { Avatar, CircularProgress } from '@mui/material';
 
-const ProfileDetails: React.FC = () => {
+const ProfileDetails = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
-  // Check if user is employee
   const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
-  // Get Profiles by User Id
   const { data: profileUSerId, isLoading: profileIsLoading } = useGetProfiles(
     userId ?? 0,
   );
-  // Get User by Id
   const { data: userDetails, isLoading: userDetailLoading } = useGetUserById(
     userProfile?.id,
   );
 
   if (userDetailLoading || profileIsLoading) {
     return (
-      <div className="flex items-center justify-center h-screen">
-        <CircularProgress />
+      <div className="flex h-screen items-center justify-center">
+        <div className="text-center">
+          <CircularProgress className="mb-4" />
+          <p className="text-gray-600">Đang tải thông tin...</p>
+        </div>
       </div>
     );
   }
 
   if (!userDetails) {
     return (
-      <div className="text-center text-red-600">
-        Không thể tải thông tin hồ sơ.
+      <div className="flex h-screen items-center justify-center">
+        <div className="rounded-lg bg-red-50 p-6 text-center">
+          <p className="text-red-600">Không thể tải thông tin hồ sơ.</p>
+          <button className="mt-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700">
+            Thử lại
+          </button>
+        </div>
       </div>
     );
   }
 
-  const profileInfo = profileUSerId?.data;
-
-  return (
-    <div className="profile-detail">
-      <Typography
-        variant="h4"
-        className="text-3xl font-bold text-center text-blue-600 mb-6"
-      >
-        Thông Tin Chi Tiết Hồ Sơ
-      </Typography>
-
-      <div className="flex items-center mb-4 space-x-4">
-        <Avatar
-          src={userDetails?.data.avatarUrl}
-          alt={userDetails?.data.name}
-          className="w-24 h-24 rounded shadow-lg border-4 border-blue-300"
-        />
-        <div>
-          <Typography
-            variant="h6"
-            className="text-xl font-semibold text-gray-700"
-          >
-            {userDetails?.data.name}
-          </Typography>
+  const InfoItem = ({
+    icon: Icon,
+    label,
+    value,
+  }: {
+    icon: React.ElementType;
+    label: string;
+    value: string | undefined;
+  }) => (
+    <div className="transform rounded-lg bg-white p-4 shadow-md border-2 border-sky-500">
+      <div className="flex items-start space-x-3">
+        <div className="rounded-full bg-blue-50 p-2">
+          <Icon className="text-blue-600" />
         </div>
-      </div>
-
-      {/* Information Card */}
-      <div className="bg-gray-100 p-6 rounded-lg shadow-md space-y-4">
-        <Typography
-          variant="h6"
-          className="text-lg font-semibold text-gray-700 mb-4"
-        >
-          Thông Tin Cá Nhân
-        </Typography>
-        {/* Email */}
-        <div className="flex items-center space-x-2">
-          <EmailOutlined className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Email: {userDetails?.data.email}
-          </Typography>
+        <div className="flex-1">
+          <p className="text-sm font-medium text-gray-500">{label}</p>
+          <p className="mt-1 text-gray-800">{value || 'Không có thông tin'}</p>
         </div>
-        {/* Phone */}
-        <div className="flex items-center space-x-2">
-          <Phone className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Số điện thoại: {userDetails?.data.phone}
-          </Typography>
-        </div>
-        {/* Date of Birth */}
-        <div className="flex items-center space-x-2">
-          <CalendarToday className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Ngày sinh: {formatDate(userDetails?.data.dateOfBirth)}
-          </Typography>
-        </div>
-        {/* Gender */}
-        <div className="flex items-center space-x-2">
-          <Person className="text-blue-500" />
-          <Typography variant="body1" className="text-gray-600">
-            Giới tính: {userDetails?.data.gender === 'male' ? 'Nam' : 'Nữ'}
-          </Typography>
-        </div>
-        {/* Bio/Experience */}
-        {profileInfo && (
-          <div className="flex items-center space-x-2">
-            <Work className="text-blue-500" />
-            <Typography variant="body1" className="text-gray-600">
-              Kinh nghiệm: {profileInfo?.bio || 'Không có thông tin'}
-            </Typography>
-          </div>
-        )}
-        {/* Availability */}
-        {profileInfo && (
-          <div className="flex items-center space-x-2">
-            <AccessTime className="text-blue-500" />
-            <Typography variant="body1" className="text-gray-600">
-              Thời gian: {profileInfo?.availability || 'Không có thông tin'}
-            </Typography>
-          </div>
-        )}
-        {/* Rating */}
-        {profileInfo && (
-          <div className="flex items-center space-x-2">
-            <Star className="text-blue-500" />
-            <Typography variant="body1" className="text-gray-600">
-              Đánh giá: {profileInfo?.ratingAvg || 'Không có thông tin'}
-            </Typography>
-          </div>
-        )}
       </div>
     </div>
+  );
+
+  return (
+    <figure>
+      <div className="mx-auto">
+        {/* Header Section */}
+        <div className="mb-8 rounded-xl bg-gradient-to-r from-blue-500 to-blue-400 p-6 text-white shadow-lg">
+          <div className="flex flex-col items-center space-y-4 md:flex-row md:space-x-6 md:space-y-0">
+            <Avatar
+              src={userDetails?.data.avatarUrl}
+              alt={userDetails?.data.name}
+              className="h-32 w-32 border-4 border-white shadow-xl"
+            />
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl font-bold">{userDetails?.data.name}</h2>
+              <p className="mt-2 text-blue-100">Thông Tin Chi Tiết Hồ Sơ</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="space-y-6">
+          {/* Personal Information Section */}
+          <div className="rounded-xl bg-white p-6 shadow-md">
+            <h2 className="mb-6 text-xl font-semibold text-gray-800">
+              Thông Tin Cá Nhân
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              <InfoItem
+                icon={EmailOutlined}
+                label="Email"
+                value={userDetails?.data.email}
+              />
+              <InfoItem
+                icon={Phone}
+                label="Số điện thoại"
+                value={userDetails?.data.phone}
+              />
+              <InfoItem
+                icon={CalendarToday}
+                label="Ngày sinh"
+                value={formatDate(userDetails?.data.dateOfBirth)}
+              />
+              <InfoItem
+                icon={Person}
+                label="Giới tính"
+                value={userDetails?.data.gender === 'male' ? 'Nam' : 'Nữ'}
+              />
+            </div>
+          </div>
+
+          {/* Professional Information Section */}
+          {profileUSerId && (
+            <div className="rounded-xl bg-white p-6 shadow-md">
+              <h2 className="mb-6 text-xl font-semibold text-gray-800">
+                Thông Tin Chuyên Môn
+              </h2>
+              <div className="grid gap-4 md:grid-cols-2">
+                <InfoItem
+                  icon={AccountBox}
+                  label="Kinh nghiệm làm việc"
+                  value={profileUSerId?.experience}
+                />
+                <InfoItem
+                  icon={Work}
+                  label="Kỹ năng"
+                  value={profileUSerId?.skills}
+                />
+                <InfoItem
+                  icon={AccessTime}
+                  label="Thời gian"
+                  value={profileUSerId?.availability}
+                />
+                <InfoItem
+                  icon={Star}
+                  label="Đánh giá"
+                  value={profileUSerId?.ratingAvg}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Bio Section */}
+          {profileUSerId?.bio && (
+            <div className="rounded-xl bg-white p-6 shadow-md">
+              <h2 className="mb-4 text-xl font-semibold text-gray-800">
+                Giới thiệu
+              </h2>
+              <div className="flex space-x-3">
+                <Description className="text-blue-600" />
+                <p className="text-gray-600">{profileUSerId.bio}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </figure>
   );
 };
 

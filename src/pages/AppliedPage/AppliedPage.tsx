@@ -22,6 +22,7 @@ import {
   Modal,
   Paper,
   Select,
+  SelectChangeEvent,
   Table,
   TableBody,
   TableCell,
@@ -34,12 +35,12 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Đảm bảo các giá trị status nhất quán
 const STATUS_OPTIONS = [
   { value: JobPostStatus.DONE, label: 'Hoàn thành' },
   { value: JobPostStatus.CANCEL, label: 'Hủy bỏ' },
 ];
 
-// Modal style
 const modalStyle = {
   position: 'absolute',
   top: '50%',
@@ -53,19 +54,16 @@ const modalStyle = {
 };
 
 const AppliedPage = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [selectedApplication, setSelectedApplication] =
+    useState<Application | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newStatus, setNewStatus] = useState<JobPostStatus | ''>('');
+
   const navigate = useNavigate();
   const { userProfile } = useAppSelector((state) => state.profile);
   const { data: appliedUserData } = useGetApplicationByUserId(userProfile?.id!);
   const { mutate: updateStatusApplied } = useUpdateApplicationStatus();
-
-  // State for menu
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedApplication, setSelectedApplication] =
-    useState<Application | null>(null);
-
-  // State for modal
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newStatus, setNewStatus] = useState('');
 
   const handleMenuOpen = (
     event: React.MouseEvent<HTMLButtonElement>,
@@ -77,7 +75,6 @@ const AppliedPage = () => {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    setSelectedApplication(null);
   };
 
   const handleViewDetails = () => {
@@ -90,7 +87,7 @@ const AppliedPage = () => {
   const handleUpdateStatus = () => {
     setIsModalOpen(true);
     if (selectedApplication) {
-      setNewStatus(selectedApplication.status);
+      setNewStatus(selectedApplication.status as JobPostStatus);
     }
     handleMenuClose();
   };
@@ -98,6 +95,10 @@ const AppliedPage = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setNewStatus('');
+  };
+
+  const handleStatusChange = (event: SelectChangeEvent<JobPostStatus>) => {
+    setNewStatus(event.target.value as JobPostStatus);
   };
 
   const handleStatusSubmit = () => {
@@ -154,7 +155,9 @@ const AppliedPage = () => {
             </TableHead>
             <TableBody>
               {appliedUserData.data.map((application: Application) => {
-                const statusConfig = getStatusConfig(application.status);
+                const statusConfig = getStatusConfig(
+                  application.status as JobPostStatus,
+                );
                 return (
                   <TableRow
                     key={application.id}
@@ -258,11 +261,12 @@ const AppliedPage = () => {
             Cập nhật trạng thái
           </Typography>
           <FormControl fullWidth sx={{ mt: 2 }}>
-            <InputLabel>Trạng thái</InputLabel>
+            <InputLabel id="status-select-label">Trạng thái</InputLabel>
             <Select
+              labelId="status-select-label"
               value={newStatus}
               label="Trạng thái"
-              onChange={(e) => setNewStatus(e.target.value)}
+              onChange={handleStatusChange}
             >
               {STATUS_OPTIONS.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -277,7 +281,11 @@ const AppliedPage = () => {
             <Button onClick={handleModalClose} color="inherit">
               Hủy
             </Button>
-            <Button onClick={handleStatusSubmit} variant="contained">
+            <Button
+              onClick={handleStatusSubmit}
+              variant="contained"
+              disabled={!newStatus}
+            >
               Cập nhật
             </Button>
           </Box>

@@ -27,6 +27,9 @@ const TransactionPage = lazy(
   () => import('@/pages/TransactionPage/TransactionPage'),
 );
 const AppliedPage = lazy(() => import('@/pages/AppliedPage/AppliedPage'));
+const JobListCreated = lazy(
+  () => import('@/pages/ServicePage/JobPostList/JobListCreated'),
+);
 
 // Loading fallback component
 const PageLoadingFallback = () => (
@@ -108,6 +111,14 @@ const AppRoutes = () => {
                 element={
                   <Suspense fallback={<PageLoadingFallback />}>
                     <AppliedPage />
+                  </Suspense>
+                }
+              />
+              <Route
+                path={PATH.JOB_USER}
+                element={
+                  <Suspense fallback={<PageLoadingFallback />}>
+                    <JobListCreated />
                   </Suspense>
                 }
               />

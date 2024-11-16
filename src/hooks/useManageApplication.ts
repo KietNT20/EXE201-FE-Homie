@@ -67,17 +67,39 @@ export const useUpdateApplicationStatus = () => {
       applicationId: number;
       status: string;
     }) => applicationService.updateStatus(applicationId, status),
-    onSuccess: (response) => {
+
+    onSuccess: async (response, variables) => {
       toast.dismiss();
       console.log('Update Application Status Successfully:', response);
-      queryClient.invalidateQueries({ queryKey: ['applications'] });
+
+      // Invalidate chính xác queryKey
+      await queryClient.invalidateQueries({
+        queryKey: ['applicationByUser'],
+      });
+
+      // Hoặc nếu bạn muốn cập nhật ngay lập tức mà không cần đợi refetch
+      queryClient.setQueryData(['applicationByUser'], (oldData: any) => {
+        if (!oldData?.data) return oldData;
+
+        return {
+          ...oldData,
+          data: oldData.data.map((item: any) =>
+            item.id === variables.applicationId
+              ? { ...item, status: variables.status }
+              : item,
+          ),
+        };
+      });
+
       toast.success('Cập nhật trạng thái thành công');
     },
+
     onError: (err) => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Cập nhật trạng thái thất bại');
     },
   });
+
   return { mutate, ...rest };
 };
