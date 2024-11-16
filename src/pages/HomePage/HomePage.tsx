@@ -24,7 +24,7 @@ const HomieComponent = () => {
               <img
                 src={logo}
                 alt="Homie logo"
-                className="h-16 w-16 object-contain"
+                className="h-16 w-16 object-contain outline-none border-none"
               />
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 ml-4">
                 Homie

@@ -4,7 +4,7 @@ import tokenMethod from './token';
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
-  timeout: 1000,
+  timeout: 500,
 });
 // Add a request interceptor
 axiosInstance.interceptors.request.use(

@@ -71,9 +71,9 @@
       @include mixins.text(vnRegular, 0.8rem, 2rem, none, none);
     }
     @include mixins.md {
-      padding: 2rem 0 2rem 1rem;
+      padding: 1.5rem 0 1.5rem 1rem;
       span {
-        @include mixins.text(vnRegular, 1rem, 2rem, none, none);
+        @include mixins.text(vnRegular, 1.1rem, 2rem, none, none);
       }
     }
   }

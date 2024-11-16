@@ -7,10 +7,12 @@ import toast from 'react-hot-toast';
 export const useGetProfiles = (profilesId: number) => {
   const { data, ...rest } = useQuery({
     queryKey: ['profiles', profilesId],
-    queryFn: () => profileService.getProfiles(profilesId),
+    queryFn: async () => {
+      const response = await profileService.getProfiles(profilesId);
+      return response.data;
+    },
     enabled: !!profilesId,
     throwOnError: false,
-    retry: 1,
   });
 
   return {

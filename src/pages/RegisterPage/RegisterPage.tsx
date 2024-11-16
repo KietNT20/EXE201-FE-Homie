@@ -65,9 +65,21 @@ const RegisterPage = () => {
     <Container maxWidth="lg" className="py-8 md:py-12 md:px-32">
       <div className="flex flex-col md:flex-row border border-sky-500 rounded-xl overflow-hidden">
         <div className="hidden lg:block lg:w-1/2">
-          <figure className="">
-            <img className="" src={logo} alt="Logo Homie" />
-            <img className="" src={cleaner} alt="Banner" />
+          <figure className="w-full h-full overflow-hidden relative flex flex-col items-center justify-evenly">
+            <div className="flex items-center justify-center">
+              <img
+                className="outline-none border-none"
+                src={logo}
+                alt="Logo Homie"
+              />
+            </div>
+            <div>
+              <img
+                className="outline-none border-none"
+                src={cleaner}
+                alt="Banner"
+              />
+            </div>
           </figure>
         </div>
         <div className="w-full lg:w-1/2">
