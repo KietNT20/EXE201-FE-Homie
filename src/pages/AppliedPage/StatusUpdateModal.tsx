@@ -59,7 +59,11 @@ export const StatusUpdateModal = ({
             onChange={onStatusChange}
           >
             {STATUS_OPTIONS.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem
+                key={option.value}
+                value={option.value}
+                disabled={option.value === JobPostStatus.PENDING}
+              >
                 {option.label}
               </MenuItem>
             ))}
