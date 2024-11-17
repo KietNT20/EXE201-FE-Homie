@@ -73,6 +73,7 @@ const CreateJobButton = ({
           onSubmit={handleSubmit}
           categories={categories}
           error={error}
+          isPending={isCreating}
         />
       )}
     </>

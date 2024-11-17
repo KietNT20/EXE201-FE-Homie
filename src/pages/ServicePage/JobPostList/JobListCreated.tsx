@@ -3,6 +3,7 @@ import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import { useGetJobPostByUserId } from '@/hooks/useMangeJobPost';
 import { CategoriesId, JobPostStatus } from '@/types/types';
+import { CleaningServices } from '@mui/icons-material';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -20,7 +21,6 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import CategoryChip from '../CategoryChip';
-import { CleaningServices } from '@mui/icons-material';
 
 interface JobPostUserResponse {
   jobId: string;
@@ -125,9 +125,11 @@ const JobListCreated = () => {
                     <AttachMoneyIcon fontSize="small" color="action" />
                     <Typography variant="body2">Giá: ${job.price}</Typography>
                   </Box>
-                  <Box className="flex items-center gap-2">
-                    <CleaningServices fontSize="small" color="action" />
-                    <Typography variant="body2">Dịch vụ:</Typography>
+                  <Box className="">
+                    <div className="flex items-center gap-2 mb-4">
+                      <CleaningServices fontSize="small" color="action" />
+                      <Typography variant="body2">Dịch vụ:</Typography>
+                    </div>
                     {job.categoryJobPost?.map((category) => (
                       <CategoryChip
                         key={category.categoriesId}

@@ -51,6 +51,7 @@ const JobPostModal = ({
   initialData = {},
   error,
   districts = [],
+  isPending,
 }: JobPostModalProps & { districts: District[] }) => {
   const { userProfile } = useAppSelector((state) => state.profile);
 
@@ -342,7 +343,7 @@ const JobPostModal = ({
             <Grid size={{ xs: 12 }}>
               <Box display="flex" justifyContent="flex-end" gap={2}>
                 <Button onClick={onClose}>Hủy</Button>
-                <Button type="submit" variant="contained">
+                <Button type="submit" variant="contained" disabled={isPending}>
                   Tạo mới
                 </Button>
               </Box>
