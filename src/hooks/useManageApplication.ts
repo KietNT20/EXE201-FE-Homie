@@ -2,20 +2,18 @@ import { applicationService } from '@/services/applicationService';
 import { ApplicationPayload } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
 
 export const useCreateApplication = () => {
   const queryClient = useQueryClient();
-  const { id } = useParams();
   const { mutate, ...rest } = useMutation({
     mutationFn: ({ jobId, workerId, message }: ApplicationPayload) =>
       applicationService.createApplication({ jobId, workerId, message }),
-    onSuccess: (response) => {
+    onSuccess: () => {
       toast.dismiss();
-      console.log('Create Application Successfully:', response);
+      // console.log('Create Application Successfully:', response);
       // Invalidate both the specific job post and the job posts list queries
       queryClient.invalidateQueries({
-        queryKey: ['jobPosts', 'applications', id],
+        queryKey: ['jobPosts', 'applications'],
       }); // Invalidate job list
       toast.success('Yêu cầu của bạn đã được nhận');
     },
@@ -59,6 +57,7 @@ export const useGetApplicationByUserId = (userId?: number | null) => {
 
 export const useUpdateApplicationStatus = () => {
   const queryClient = useQueryClient();
+
   const { mutate, ...rest } = useMutation({
     mutationFn: ({
       applicationId,
@@ -66,40 +65,52 @@ export const useUpdateApplicationStatus = () => {
     }: {
       applicationId: number;
       status: string;
-    }) => applicationService.updateStatus(applicationId, status),
+    }) => {
+      return applicationService.updateStatus(applicationId, status);
+    },
 
-    onSuccess: async (response, variables) => {
-      toast.dismiss();
-      console.log('Update Application Status Successfully:', response);
-
-      // Invalidate chính xác queryKey
-      await queryClient.invalidateQueries({
+    onMutate: async ({ applicationId, status }) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({
         queryKey: ['applicationByUser'],
       });
 
-      // Hoặc nếu bạn muốn cập nhật ngay lập tức mà không cần đợi refetch
-      queryClient.setQueryData(['applicationByUser'], (oldData: any) => {
-        if (!oldData?.data) return oldData;
-
+      // Snapshot previous value
+      const previousData = queryClient.getQueryData(['applicationByUser']);
+      // Optimistically update
+      queryClient.setQueryData(['applicationByUser'], (old: any) => {
+        if (!old?.data) return old;
         return {
-          ...oldData,
-          data: oldData.data.map((item: any) =>
-            item.id === variables.applicationId
-              ? { ...item, status: variables.status }
-              : item,
+          ...old,
+          data: old.data.map((item: any) =>
+            item.id === applicationId ? { ...item, status } : item,
           ),
         };
       });
 
-      toast.success('Cập nhật trạng thái thành công');
+      return { previousData };
     },
 
-    onError: (err) => {
+    onError: (err, _, context) => {
       toast.dismiss();
       console.error('Error:', err);
+      // Rollback to previous value
+      if (context?.previousData) {
+        queryClient.setQueryData(['applicationByUser'], context.previousData);
+      }
       toast.error('Cập nhật trạng thái thất bại');
     },
-  });
 
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['applicationByUser'],
+      });
+    },
+
+    onSuccess: () => {
+      toast.dismiss();
+      toast.success('Cập nhật trạng thái thành công');
+    },
+  });
   return { mutate, ...rest };
 };

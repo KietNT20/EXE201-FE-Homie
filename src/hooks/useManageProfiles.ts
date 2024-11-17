@@ -4,14 +4,14 @@ import { Profiles } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
-export const useGetProfiles = (profilesId: number) => {
+export const useGetProfiles = (userId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['profiles', profilesId],
+    queryKey: ['profiles', userId],
     queryFn: async () => {
-      const response = await profileService.getProfiles(profilesId);
+      const response = await profileService.getProfiles(userId);
       return response.data;
     },
-    enabled: !!profilesId,
+    enabled: !!userId,
     throwOnError: false,
   });
 
@@ -43,17 +43,15 @@ export const useCreateProfiles = () => {
   return { mutate, ...rest };
 };
 
-export const useUpdateProfiles = (profileID: number) => {
+export const useUpdateProfiles = (profileId: number) => {
   const { mutate, ...rest } = useMutation({
     mutationFn: (payload: Profiles) => {
       console.log(payload, 'profiles');
-      return profileService.updateProfiles(payload, profileID);
+      return profileService.updateProfiles(payload, profileId);
     },
-    onSuccess: () => {
+    onSuccess: (payload) => {
       toast.dismiss();
-      queryClient.invalidateQueries({
-        queryKey: ['profiles'],
-      });
+      queryClient.setQueryData(['profiles', profileId], payload);
       toast.success('Update Profiles Successfully!!');
     },
     onError: (err) => {

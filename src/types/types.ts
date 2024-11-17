@@ -81,6 +81,7 @@ export interface ApplicationResponse {
 }
 
 export interface Profiles {
+  profileId?: number;
   userId: number;
   bio: string;
   skills: string;
@@ -154,4 +155,5 @@ export interface JobPostModalProps {
   initialData?: Partial<ExtendedJobPostFormData>;
   error: Error | null;
   districts: District[];
+  isPending?: boolean;
 }

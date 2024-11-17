@@ -36,6 +36,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Đảm bảo các giá trị status nhất quán
 const STATUS_OPTIONS = [
+  { value: JobPostStatus.PENDING, label: 'Đang chờ' },
   { value: JobPostStatus.DONE, label: 'Hoàn thành' },
   { value: JobPostStatus.CANCEL, label: 'Hủy bỏ' },
 ];
@@ -247,9 +248,6 @@ const AppliedPage = () => {
               label="Trạng thái"
               onChange={handleStatusChange}
             >
-              <MenuItem value="">
-                <em>Không</em>
-              </MenuItem>
               {STATUS_OPTIONS.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}

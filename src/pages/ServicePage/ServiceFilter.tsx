@@ -118,13 +118,13 @@ const ServiceFilter = ({
   return (
     <Card elevation={2}>
       <CardContent>
-        <Box sx={{ mb: 3 }}>
+        <Box sx={{ mb: 2 }}>
           <Typography variant="h6" gutterBottom>
             Bộ lọc tìm kiếm
           </Typography>
         </Box>
 
-        <Divider sx={{ mb: 3 }} />
+        <Divider sx={{ mb: 2 }} />
 
         {/* Categories Section */}
         <Box sx={{ mb: 4 }}>
@@ -148,7 +148,7 @@ const ServiceFilter = ({
                   {categoriesInRange?.map((category: Category) => (
                     <FormControlLabel
                       key={category.id}
-                      className="m-4 lg:ml-0"
+                      className="m-2 lg:ml-0"
                       control={
                         <Checkbox
                           checked={filterValues.selectedCategories.includes(
@@ -193,10 +193,10 @@ const ServiceFilter = ({
           )}
         </Box>
 
-        <Divider sx={{ mb: 3 }} />
+        <Divider sx={{ mb: 2 }} />
 
         {/* Price Range Section */}
-        <Box sx={{ mb: 4 }}>
+        <Box sx={{ mb: 2 }}>
           <Typography variant="subtitle1" gutterBottom fontWeight="medium">
             Khoảng giá
           </Typography>
