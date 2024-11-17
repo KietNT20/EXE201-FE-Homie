@@ -21,6 +21,7 @@ export const useGetAllJobPosts = (params: {
       jobPostService.getJobPosts(
         `?pageNumber=${params.pageNumber}&pageSize=${params.pageSize}&filter=${params.filter}&OrderBy=${params.OrderBy}`,
       ),
+    staleTime: 10000,
     throwOnError: true,
   });
 
@@ -35,8 +36,8 @@ export const useGetJobPostById = (jobPostId?: string | number | null) => {
     queryKey: ['jobPostDetail', jobPostId],
     queryFn: () => jobPostService.getJobPostById(Number(jobPostId!)),
     enabled: !!jobPostId,
+    staleTime: 10000,
     throwOnError: false,
-    retry: 1,
   });
 
   return {
