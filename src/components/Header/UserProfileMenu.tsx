@@ -58,15 +58,13 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         >
           Thông tin cá nhân
         </MenuItem>
-        {userProfile?.roleId === 2 && (
-          <MenuItem
-            component={NavLink}
-            to={PATH.JOB_USER}
-            onClick={handleMenuClose}
-          >
-            Các nhiệm vụ đã tạo
-          </MenuItem>
-        )}
+        <MenuItem
+          component={NavLink}
+          to={PATH.JOB_USER}
+          onClick={handleMenuClose}
+        >
+          Các nhiệm vụ đã tạo
+        </MenuItem>
         {userProfile?.roleId === 3 && (
           <MenuItem
             component={NavLink}

@@ -136,18 +136,19 @@ const ServiceFilter = ({
             {Object.entries(groupedCategories)
               .sort(([a], [b]) => Number(a) - Number(b))
               .map(([priceRange, categoriesInRange]) => (
-                <Box key={priceRange} sx={{ mb: 2 }}>
+                <Box key={priceRange} sx={{}}>
                   <Typography
                     variant="subtitle2"
                     color="text.secondary"
-                    sx={{ mb: 1 }}
+                    sx={{}}
                   >
                     {Number(priceRange).toLocaleString('vi-VN')}đ -{' '}
-                    {(Number(priceRange) + 999999).toLocaleString('vi-VN')}đ
+                    {(Number(priceRange) + 500000).toLocaleString('vi-VN')}đ
                   </Typography>
                   {categoriesInRange?.map((category: Category) => (
                     <FormControlLabel
                       key={category.id}
+                      className="m-4 lg:ml-0"
                       control={
                         <Checkbox
                           checked={filterValues.selectedCategories.includes(
@@ -160,7 +161,7 @@ const ServiceFilter = ({
                         />
                       }
                       label={
-                        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{}}>
                           <Typography variant="body2">
                             {category.categoryName}
                           </Typography>
@@ -168,7 +169,7 @@ const ServiceFilter = ({
                             <Typography
                               variant="body2"
                               color="text.secondary"
-                              sx={{ ml: 1 }}
+                              sx={{}}
                             >
                               ({category.price.toLocaleString('vi-VN')}đ)
                             </Typography>

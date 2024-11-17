@@ -16,3 +16,8 @@ export const formatPrice = (price: number) => {
     maximumFractionDigits: 0,
   }).format(price);
 };
+
+export const formatHoursToVietnamese = (hours: string): string => {
+  if (!hours) return 'Không có thông tin';
+  return hours.replace('h', ' tiếng').replace('-', ' - ').trim();
+};

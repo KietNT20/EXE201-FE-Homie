@@ -1,11 +1,11 @@
+import ChipComp from '@/components/ChipComp/ChipComp';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { ServiceCardProps } from '@/types/types';
 import { formatDate, formatPrice } from '@/util/format';
-import { getStatusConfig } from '@/util/getStatusConfig';
 import {
   AttachMoney,
   CalendarToday,
-  Category as CategoryIcon,
+  CleaningServices,
   Email,
   LocationOn,
   Phone,
@@ -16,7 +16,6 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Chip,
   Divider,
   Stack,
   Typography,
@@ -27,7 +26,6 @@ import CategoryChip from './CategoryChip';
 const ServiceCard = React.memo(
   ({ onClick, jobPost, ...restProps }: ServiceCardProps) => {
     const { data: userInfo } = useGetUserById(jobPost.employerId);
-    const statusConfig = getStatusConfig(jobPost.status);
 
     return (
       <Card
@@ -45,19 +43,7 @@ const ServiceCard = React.memo(
               >
                 {jobPost.title}
               </Typography>
-              <Chip
-                label={statusConfig.label}
-                color={statusConfig.color}
-                size="small"
-                icon={<span className="text-sm">{statusConfig.icon}</span>}
-                className="ml-2 font-medium"
-                sx={{
-                  '& .MuiChip-icon': {
-                    marginLeft: '8px',
-                    order: -1,
-                  },
-                }}
-              />
+              <ChipComp status={jobPost.status} />
             </Box>
 
             {/* User Info Section */}
@@ -115,7 +101,7 @@ const ServiceCard = React.memo(
             <Typography
               variant="body2"
               color="text.secondary"
-              className="mb-4 line-clamp-2"
+              className="mb-4 truncate"
             >
               {jobPost.description}
             </Typography>
@@ -150,7 +136,7 @@ const ServiceCard = React.memo(
               {/* Category Section */}
               <Box>
                 <Box className="flex items-center gap-2 mb-2">
-                  <CategoryIcon color="action" fontSize="small" />
+                  <CleaningServices color="action" fontSize="small" />
                   <Typography variant="body2" color="text.secondary">
                     Dịch vụ:
                   </Typography>

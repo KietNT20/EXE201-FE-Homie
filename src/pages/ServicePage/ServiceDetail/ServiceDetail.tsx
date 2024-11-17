@@ -1,3 +1,4 @@
+import ChipComp from '@/components/ChipComp/ChipComp';
 import NavigationHeader from '@/components/NavigationHeader/NavigationHeader';
 import { breadcrumbItemsService } from '@/constant/breadcrumbItems';
 import { PATH } from '@/constant/path';
@@ -6,7 +7,6 @@ import { useCreateApplication } from '@/hooks/useManageApplication';
 import { useGetUserById } from '@/hooks/useManageUser';
 import { useGetJobPostById } from '@/hooks/useMangeJobPost';
 import { formatDate, formatPrice } from '@/util/format';
-import { getStatusConfig } from '@/util/getStatusConfig';
 import {
   ArrowBack,
   AttachMoney,
@@ -117,21 +117,20 @@ const ServiceDetail = () => {
     );
   }
 
-  const statusConfig = getStatusConfig(jobPost.data.status);
   const canApply =
     jobPost.data.status !== 'Done' && jobPost.data.status !== 'Cancel';
 
   const hadApply = jobPost.data.status === 'Application';
 
   return (
-    <Container maxWidth="lg" className="pb-8 pt-5">
+    <Container maxWidth="xl" className="pb-8 pt-5">
       {/* Navigation */}
       <NavigationHeader
         items={breadcrumbItemsService}
         backPath={PATH.SERVICE}
       />
       {/* Header Section */}
-      <Paper elevation={0} className="p-6 mb-6">
+      <Paper elevation={0} className="p-4 md:p-6 mb-4">
         <Box className="flex flex-col md:items-center mb-3 sm:mb-4 sm:justify-between sm:flex-row">
           <Typography
             variant="h4"
@@ -141,20 +140,10 @@ const ServiceDetail = () => {
             {jobPost.data.title}
           </Typography>
           <Box className="grid gap-3 sm:flex sm:items-center sm:gap-4">
-            <Chip
-              label={statusConfig.label}
-              color={statusConfig.color}
-              icon={<span className="text-sm">{statusConfig.icon}</span>}
-              className="font-medium sm:mb-0"
-              sx={{
-                '& .MuiChip-icon': {
-                  marginLeft: '8px',
-                  order: -1,
-                },
-              }}
-            />
+            <ChipComp status={jobPost.data.status} />
             {canApply &&
               userProfile?.id &&
+              userProfile.roleId === 3 &&
               userProfile.id !== jobPost.data.employerId && (
                 <Button
                   variant="contained"
@@ -184,15 +173,15 @@ const ServiceDetail = () => {
         />
       </Paper>
 
-      <Grid2 container spacing={4}>
+      <Grid2 container spacing={{ xs: 2, md: 4 }}>
         {/* Left Column - User Info */}
         <Grid2 size={{ xs: 12, md: 4 }}>
-          <Paper elevation={0} className="p-6">
+          <Paper elevation={0} className="p-4 md:p-6">
             <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
               Thông tin người đăng
             </Typography>
             {userInfo?.data ? (
-              <Stack spacing={3}>
+              <Stack spacing={2}>
                 <Box className="flex items-center gap-3">
                   <Avatar
                     src={userInfo.data.avatarUrl}
@@ -233,7 +222,7 @@ const ServiceDetail = () => {
         </Grid2>
         {/* Right Column - Property Details */}
         <Grid2 size={{ xs: 12, md: 8 }}>
-          <Paper elevation={0} className="p-6">
+          <Paper elevation={0} className="p-4 md:p-6">
             <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
               Thông tin chi tiết
             </Typography>
@@ -318,17 +307,16 @@ const ServiceDetail = () => {
                       </Box>
 
                       <Box className="flex items-center gap-3">
-                        <Category color="action" />
-                        <Box
-                          component={'div'}
-                          className="flex items-center gap-4"
-                        >
-                          <Typography
-                            variant="subtitle2"
-                            className="font-medium"
-                          >
-                            Dịch vụ
-                          </Typography>
+                        <Box component={'div'}>
+                          <div className="flex items-center mb-4">
+                            <Category color="action" />
+                            <Typography
+                              variant="subtitle2"
+                              className="font-medium ml-3"
+                            >
+                              Dịch vụ
+                            </Typography>
+                          </div>
                           <Box className="flex gap-2">
                             {jobPost?.data?.categoryJobPost?.map((category) => (
                               <CategoryChip

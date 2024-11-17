@@ -1,4 +1,4 @@
-import { JobPost } from '@/types/types';
+import { JobPost } from '@/types/types.common';
 import {
   FormControl,
   InputLabel,

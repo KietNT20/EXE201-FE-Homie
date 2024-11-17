@@ -1,8 +1,8 @@
+import ChipComp from '@/components/ChipComp/ChipComp';
 import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import { useGetJobPostByUserId } from '@/hooks/useMangeJobPost';
-import { JobPostStatus } from '@/types/types';
-import { getStatusConfig } from '@/util/getStatusConfig';
+import { CategoriesId, JobPostStatus } from '@/types/types';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
@@ -13,14 +13,14 @@ import {
   Button,
   Card,
   CardContent,
-  Chip,
   Container,
   Grid2,
   Pagination,
   Typography,
 } from '@mui/material';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import CategoryChip from '../CategoryChip';
+import { CleaningServices } from '@mui/icons-material';
 
 interface JobPostUserResponse {
   jobId: string;
@@ -34,6 +34,7 @@ interface JobPostUserResponse {
   price: number;
   status: JobPostStatus;
   createDate: string;
+  categoryJobPost: CategoriesId[];
 }
 
 const PAGE_SIZE = 6;
@@ -84,18 +85,8 @@ const JobListCreated = () => {
               <CardContent>
                 <Box className="flex justify-between items-start mb-4">
                   <Typography variant="h6">{job.title}</Typography>
-                  <Chip
-                    label={getStatusConfig(job.status).label}
-                    color={getStatusConfig(job.status).color}
-                    icon={
-                      <span className="text-sm">
-                        {getStatusConfig(job.status).icon}
-                      </span>
-                    }
-                    size="small"
-                  />
+                  <ChipComp status={job.status} />
                 </Box>
-
                 <Typography color="text.secondary" className="mb-4">
                   {job.description}
                 </Typography>
@@ -134,6 +125,16 @@ const JobListCreated = () => {
                     <AttachMoneyIcon fontSize="small" color="action" />
                     <Typography variant="body2">Giá: ${job.price}</Typography>
                   </Box>
+                  <Box className="flex items-center gap-2">
+                    <CleaningServices fontSize="small" color="action" />
+                    <Typography variant="body2">Dịch vụ:</Typography>
+                    {job.categoryJobPost?.map((category) => (
+                      <CategoryChip
+                        key={category.categoriesId}
+                        categoryId={category.categoriesId}
+                      />
+                    ))}
+                  </Box>
                 </Box>
 
                 <Typography
@@ -163,7 +164,6 @@ const JobListCreated = () => {
         <Box className="text-center py-12">
           <Typography color="text.secondary">Chưa tạo công việc</Typography>
           <Button
-            LinkComponent={Link}
             href={PATH.SERVICE}
             variant="contained"
             color="info"

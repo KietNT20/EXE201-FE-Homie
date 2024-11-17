@@ -1,3 +1,4 @@
+import ChipComp from '@/components/ChipComp/ChipComp';
 import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import {
@@ -5,14 +6,12 @@ import {
   useUpdateApplicationStatus,
 } from '@/hooks/useManageApplication';
 import { Application, JobPostStatus } from '@/types/types';
-import { getStatusConfig } from '@/util/getStatusConfig';
 import EditIcon from '@mui/icons-material/Edit';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import {
   Box,
   Button,
-  Chip,
   Container,
   FormControl,
   IconButton,
@@ -155,9 +154,6 @@ const AppliedPage = () => {
             </TableHead>
             <TableBody>
               {appliedUserData.data.map((application: Application) => {
-                const statusConfig = getStatusConfig(
-                  application.status as JobPostStatus,
-                );
                 return (
                   <TableRow
                     key={application.id}
@@ -170,24 +166,7 @@ const AppliedPage = () => {
                     <TableCell align="center">{application.jobId}</TableCell>
                     <TableCell>{application.message}</TableCell>
                     <TableCell align="center">
-                      <Chip
-                        label={
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 0.5,
-                              px: 1,
-                            }}
-                          >
-                            <span>{statusConfig.icon}</span>
-                            <span>{statusConfig.label}</span>
-                          </Box>
-                        }
-                        color={statusConfig.color}
-                        size="small"
-                        sx={{ minWidth: '100px' }}
-                      />
+                      <ChipComp status={application.status} />
                     </TableCell>
                     <TableCell align="center">
                       {formatDate(application.appliedAt)}
@@ -268,6 +247,9 @@ const AppliedPage = () => {
               label="Trạng thái"
               onChange={handleStatusChange}
             >
+              <MenuItem value="">
+                <em>Không</em>
+              </MenuItem>
               {STATUS_OPTIONS.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}

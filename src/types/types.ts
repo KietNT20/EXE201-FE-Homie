@@ -2,7 +2,7 @@ import {
   District,
   ExtendedJobPostFormData,
 } from '@/pages/ServicePage/schemas/schema';
-import { Category } from './types.common';
+import { Category, JobPost } from './types.common';
 
 export type TokenResponse = string;
 
@@ -14,23 +14,6 @@ export enum JobPostStatus {
   CANCEL = 'Cancel',
   PENDING = 'Pending',
   RECEIVED = 'Application',
-}
-
-export interface JobPost {
-  jobId?: number;
-  employerId: number;
-  title: string;
-  description: string;
-  location: string;
-  squareMeters: number;
-  numberOfFloors: number;
-  price?: number;
-  startDate: Date | null | undefined | string;
-  endDate: Date | null | undefined | string;
-  status: JobPostStatus;
-  createDate: Date | null | undefined | string;
-  jobType: number;
-  categoryJobPost: CategoriesId[];
 }
 
 /*
