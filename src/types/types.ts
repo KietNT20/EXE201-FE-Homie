@@ -81,7 +81,7 @@ export interface ApplicationResponse {
 }
 
 export interface Profiles {
-  profileId: number;
+  profileId?: number;
   userId: number;
   bio: string;
   skills: string;
