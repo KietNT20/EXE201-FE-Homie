@@ -5,7 +5,6 @@ import { formatDate, formatPrice } from '@/util/format';
 import {
   AttachMoney,
   CalendarToday,
-  Category as CategoryIcon,
   CleaningServices,
   Email,
   LocationOn,
