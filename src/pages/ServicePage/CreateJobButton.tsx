@@ -44,7 +44,7 @@ const CreateJobButton = ({
       createJobPost(data, {
         onSuccess: () => {
           handleCloseModal();
-          onSuccess?.();
+          // onSuccess?.();
         },
       });
     },

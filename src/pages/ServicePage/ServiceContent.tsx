@@ -1,5 +1,4 @@
-import { JobPost } from '@/types/types';
-import { Category } from '@/types/types.common';
+import { Category, JobPost } from '@/types/types.common';
 import { Alert, Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import ServiceCard from './ServiceCard';

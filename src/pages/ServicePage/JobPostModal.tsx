@@ -1,5 +1,6 @@
 import { useAppSelector } from '@/hooks/reudxHook';
 import { JobPostModalProps } from '@/types/types';
+import { formatHoursToVietnamese } from '@/util/format';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Alert,
@@ -305,7 +306,8 @@ const JobPostModal = ({
                         <MenuItem key={category.id} value={category.id}>
                           {category.categoryName}{' '}
                           {category.price &&
-                            `(${category.price.toLocaleString('vi-VN')}đ)`}
+                            `(${category.price.toLocaleString('vi-VN')}đ)`}{' '}
+                          {`(${formatHoursToVietnamese(category.hours || '0')})`}
                         </MenuItem>
                       ))}
                     </Select>
