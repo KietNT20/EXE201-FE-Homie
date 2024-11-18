@@ -33,10 +33,9 @@ export const useGetAllJobPosts = (params: {
 
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
   const { data, ...rest } = useQuery<JobPostDetail>({
-    queryKey: ['jobPostDetail', jobPostId],
+    queryKey: ['jobPosts', jobPostId],
     queryFn: () => jobPostService.getJobPostById(Number(jobPostId!)),
     enabled: !!jobPostId,
-    staleTime: 10000,
     throwOnError: false,
   });
 
@@ -51,9 +50,9 @@ export const useCreateJobPost = () => {
   const { mutate, ...rest } = useMutation({
     mutationFn: (JobPostPayload: JobPostPayload) =>
       jobPostService.createJobPost(JobPostPayload),
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.dismiss();
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['jobPosts'],
       });
       toast.success('Tạo công việc thành công');

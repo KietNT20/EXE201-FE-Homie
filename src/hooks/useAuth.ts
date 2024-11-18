@@ -24,9 +24,9 @@ export const useLogin = () => {
     mutationKey: ['login'],
     mutationFn: ({ email, password }: InputLoginTypes) =>
       authService.login({ email, password }),
-    onSuccess: (response) => {
+    onSuccess: async (response) => {
       toast.dismiss();
-      queryClient.setQueryData(['account'], response);
+      await queryClient.setQueryData(['account'], response);
       // console.log('Login success', response);
       tokenMethod.set({ token: response.data.tokenString });
       dispatch<any>(setUserProfile(tokenMethod.get()?.token));
