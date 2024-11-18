@@ -6,8 +6,7 @@ export const useGetEWalletByUserId = (userId: number) => {
     queryKey: ['eWallet', userId],
     queryFn: () => eWalletService.getWalletByUserId(userId),
     enabled: !!userId,
-    staleTime: 1000 * 60,
-    throwOnError: false,
+    staleTime: 0,
   });
   return {
     data,
