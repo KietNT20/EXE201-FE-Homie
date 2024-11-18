@@ -3,7 +3,7 @@ import { useGetEWalletByUserId } from '@/hooks/useManageWallet';
 import { formatPrice } from '@/util/format';
 import { AccountCircle } from '@mui/icons-material';
 import { IconButton, Menu, MenuItem } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface UserProfileMenuProps {
@@ -14,7 +14,9 @@ interface UserProfileMenuProps {
 const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const { data: EWalletUser } = useGetEWalletByUserId(userProfile?.id);
+  const { data: EWalletUser, refetch: refetchWallet } = useGetEWalletByUserId(
+    userProfile?.id,
+  );
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,6 +30,10 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
     onLogout();
     handleMenuClose();
   };
+
+  useEffect(() => {
+    refetchWallet();
+  }, []);
 
   return (
     <>
