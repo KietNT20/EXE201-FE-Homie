@@ -14,6 +14,7 @@ import {
   Modal,
   OutlinedInput,
   Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from '@mui/material';
@@ -81,7 +82,7 @@ const JobPostModal = ({
   });
 
   const onSubmitHandler = (data: ExtendedJobPostFormData) => {
-    // Tạo địa chỉ đầy đủ
+    // Create full address
     const fullAddress = `${data.streetAddress}, ${data.district?.district || ''}, TP. HCM`;
     const formattedData = {
       ...data,
@@ -286,39 +287,81 @@ const JobPostModal = ({
               <Controller
                 name="categorys"
                 control={control}
-                render={({ field }) => (
-                  <FormControl fullWidth error={!!errors.categorys}>
-                    <InputLabel>Danh mục</InputLabel>
-                    <Select
-                      {...field}
-                      multiple
-                      value={field.value?.map(
-                        (cat: { categoryId: number }) => cat.categoryId,
+                render={({ field }) => {
+                  const selectedIds =
+                    field.value?.map(
+                      (cat: { categoryId: number }) => cat.categoryId,
+                    ) || [];
+                  // Check if category with id 5 is selected
+                  const isId5Selected = selectedIds.includes(5);
+
+                  // Change handler for category select if id 5 is selected, id else is disabled
+                  const handleChange = (event: SelectChangeEvent<number[]>) => {
+                    const newSelectedIds = event.target.value as number[];
+
+                    if (newSelectedIds.includes(5) && !isId5Selected) {
+                      field.onChange([{ categoryId: 5 }]);
+                      return;
+                    }
+
+                    if (isId5Selected && newSelectedIds.length > 1) {
+                      const filteredIds = newSelectedIds.filter(
+                        (id) => id !== 5,
+                      );
+                      field.onChange(
+                        filteredIds.map((id) => ({ categoryId: id })),
+                      );
+                      return;
+                    }
+                    // Choose id 5 if all first 4 ids are selected
+                    if (newSelectedIds.length === 4) {
+                      const first4Ids = [1, 2, 3, 4];
+                      const hasAllFirst4 = first4Ids.every((id) =>
+                        newSelectedIds.includes(id),
+                      );
+
+                      if (hasAllFirst4) {
+                        field.onChange([{ categoryId: 5 }]);
+                        return;
+                      }
+                    }
+                    // Show selected categories
+                    field.onChange(
+                      newSelectedIds.map((id) => ({ categoryId: id })),
+                    );
+                  };
+
+                  return (
+                    <FormControl fullWidth error={!!errors.categorys}>
+                      <InputLabel>Danh mục</InputLabel>
+                      <Select
+                        {...field}
+                        multiple
+                        value={selectedIds}
+                        onChange={handleChange}
+                        input={<OutlinedInput label="Danh mục" />}
+                      >
+                        {categories.map((category) => (
+                          <MenuItem
+                            key={category.id}
+                            value={category.id}
+                            disabled={category.id !== 5 && isId5Selected}
+                          >
+                            {category.categoryName}{' '}
+                            {category.price &&
+                              `(${category.price.toLocaleString('vi-VN')}đ)`}{' '}
+                            {`(${formatHoursToVietnamese(category.hours || '0')})`}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      {errors.categorys && (
+                        <FormHelperText>
+                          {errors.categorys.message?.toString()}
+                        </FormHelperText>
                       )}
-                      onChange={(e) => {
-                        const selectedIds = e.target.value as number[];
-                        field.onChange(
-                          selectedIds.map((id) => ({ categoryId: id })),
-                        );
-                      }}
-                      input={<OutlinedInput label="Danh mục" />}
-                    >
-                      {categories.map((category) => (
-                        <MenuItem key={category.id} value={category.id}>
-                          {category.categoryName}{' '}
-                          {category.price &&
-                            `(${category.price.toLocaleString('vi-VN')}đ)`}{' '}
-                          {`(${formatHoursToVietnamese(category.hours || '0')})`}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    {errors.categorys && (
-                      <FormHelperText>
-                        {errors.categorys.message?.toString()}
-                      </FormHelperText>
-                    )}
-                  </FormControl>
-                )}
+                    </FormControl>
+                  );
+                }}
               />
             </Grid>
 

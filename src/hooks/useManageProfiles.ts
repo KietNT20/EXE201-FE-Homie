@@ -26,9 +26,9 @@ export const useCreateProfiles = () => {
     mutationFn: (payload: Profiles) => {
       return profileService.createProfiles(payload);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.dismiss();
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['profiles'],
       });
       toast.success('Create Profiles Successfully!!');

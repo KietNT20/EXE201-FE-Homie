@@ -8,11 +8,11 @@ export const useCreateApplication = () => {
   const { mutate, ...rest } = useMutation({
     mutationFn: ({ jobId, workerId, message }: ApplicationPayload) =>
       applicationService.createApplication({ jobId, workerId, message }),
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.dismiss();
       // console.log('Create Application Successfully:', response);
       // Invalidate both the specific job post and the job posts list queries
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['jobPosts', 'applications'],
       }); // Invalidate job list
       toast.success('Yêu cầu của bạn đã được nhận');
@@ -101,8 +101,8 @@ export const useUpdateApplicationStatus = () => {
       toast.error('Cập nhật trạng thái thất bại');
     },
 
-    onSettled: () => {
-      queryClient.invalidateQueries({
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
         queryKey: ['applicationByUser'],
       });
     },

@@ -20,7 +20,6 @@ export const useGetCategoryById = (categoryId?: number | null) => {
     queryFn: () => categoryService.getCategoryById(categoryId!),
     enabled: !!categoryId,
     throwOnError: false,
-    retry: 1,
   });
 
   return {

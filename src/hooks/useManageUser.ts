@@ -34,7 +34,15 @@ export const useGetUserById = (userId?: number | null) => {
 export const useCreateUser = () => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({
-    mutationFn: ({ name, email, password, phone, dateOfBirth, gender }: User) =>
+    mutationFn: ({
+      name,
+      email,
+      password,
+      phone,
+      dateOfBirth,
+      gender,
+      roleId,
+    }: User) =>
       userService.createUser({
         name,
         email,
@@ -42,11 +50,11 @@ export const useCreateUser = () => {
         phone,
         dateOfBirth,
         gender,
-        roleId: 2,
+        roleId,
       }),
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.dismiss();
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['users'],
       });
       toast.success('Create User Successfully!!');
@@ -83,9 +91,9 @@ export const useUpdateUser = () => {
         gender,
         roleId,
       }),
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.dismiss();
-      queryClient.invalidateQueries({
+      await queryClient.invalidateQueries({
         queryKey: ['users'],
       });
       toast.success('Update User Successfully!!');
