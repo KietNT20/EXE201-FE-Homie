@@ -77,7 +77,8 @@ const TransactionPage: React.FC = () => {
                   </td>
                   <td
                     className={`px-6 py-4 font-medium border border-slate-700 ${
-                      transaction.transactionType === 'Deposit'
+                      transaction.transactionType === 'Deposit' ||
+                      transaction.transactionType === 'Receive money'
                         ? 'text-green-600'
                         : 'text-red-600'
                     }`}
