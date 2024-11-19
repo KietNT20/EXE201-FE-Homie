@@ -8,7 +8,6 @@ import {
   CleaningServices,
   Email,
   LocationOn,
-  Phone,
 } from '@mui/icons-material';
 import {
   Avatar,
