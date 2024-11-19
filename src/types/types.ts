@@ -81,7 +81,7 @@ export interface ApplicationResponse {
 }
 
 export interface Profiles {
-  profileId?: number;
+  profileId: number;
   userId: number;
   bio: string;
   skills: string;
@@ -89,6 +89,8 @@ export interface Profiles {
   availability: string;
   ratingAvg: number;
 }
+
+export type ProfilesPayload = Omit<Profiles, 'profileId'>;
 
 export interface Transaction {
   transactionId: number;

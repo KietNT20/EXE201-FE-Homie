@@ -1,6 +1,6 @@
 import { queryClient } from '@/App';
 import { profileService } from '@/services/profileService';
-import { Profiles } from '@/types/types';
+import { Profiles, ProfilesPayload } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
@@ -23,8 +23,21 @@ export const useGetProfiles = (userId: number) => {
 
 export const useCreateProfiles = () => {
   const { mutate, ...rest } = useMutation({
-    mutationFn: (payload: Profiles) => {
-      return profileService.createProfiles(payload);
+    mutationFn: ({
+      userId,
+      bio,
+      skills,
+      availability,
+      experience,
+    }: ProfilesPayload) => {
+      return profileService.createProfiles({
+        userId,
+        bio,
+        skills,
+        availability,
+        experience,
+        ratingAvg: 5,
+      });
     },
     onSuccess: async () => {
       toast.dismiss();

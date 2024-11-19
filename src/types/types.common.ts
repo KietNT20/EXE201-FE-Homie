@@ -14,17 +14,8 @@ export interface User {
   password?: string;
   phone?: string;
   dateOfBirth?: Date | null;
-  gender?: 'male' | 'female';
+  gender?: 'Male' | 'Female';
   roleId?: RoleUser;
-}
-
-export interface Profile {
-  userID?: number;
-  bio?: string;
-  skill?: string;
-  experience?: string;
-  availability?: string;
-  ratingAvg?: number;
 }
 
 export interface Transaction {

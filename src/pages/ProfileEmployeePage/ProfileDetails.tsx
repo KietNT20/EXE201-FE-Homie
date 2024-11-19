@@ -115,7 +115,7 @@ const ProfileDetails = () => {
               <InfoItem
                 icon={Person}
                 label="Giới tính"
-                value={userDetails?.data.gender === 'male' ? 'Nam' : 'Nữ'}
+                value={userDetails?.data.gender === 'Male' ? 'Nam' : 'Nữ'}
               />
             </div>
           </div>

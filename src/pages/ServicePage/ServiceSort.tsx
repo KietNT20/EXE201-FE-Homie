@@ -75,7 +75,7 @@ const ServiceSort = ({ value, onChange }: ServiceSortProps) => {
   };
 
   return (
-    <FormControl fullWidth size="small" className='bg-white'>
+    <FormControl fullWidth size="small" className="bg-white">
       <InputLabel id="sort-select-label">Sắp xếp theo</InputLabel>
       <Select
         labelId="sort-select-label"

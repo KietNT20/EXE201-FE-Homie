@@ -195,8 +195,8 @@ const RegisterPage = () => {
                                 <MenuItem value="">
                                   <em>--- Chọn giới tính ---</em>
                                 </MenuItem>
-                                <MenuItem value="male">Nam</MenuItem>
-                                <MenuItem value="female">Nữ</MenuItem>
+                                <MenuItem value="Male">Nam</MenuItem>
+                                <MenuItem value="Female">Nữ</MenuItem>
                               </Select>
                               {errors.gender && (
                                 <FormHelperText>
