@@ -39,7 +39,7 @@ const ApplicationModal = ({
             variant="outlined"
             placeholder="Nhập tin nhắn của bạn..."
             value={message}
-            onChange={(e) => onMessageChange(e.target.value)}
+            onChange={e => onMessageChange(e.target.value)}
             disabled={isSubmitting}
           />
         </Box>

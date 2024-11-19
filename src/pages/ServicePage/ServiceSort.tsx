@@ -67,7 +67,7 @@ interface ServiceSortProps {
 const ServiceSort = ({ value, onChange }: ServiceSortProps) => {
   const handleChange = (event: SelectChangeEvent) => {
     const selectedOption = sortOptions.find(
-      (option) => option.value === event.target.value,
+      option => option.value === event.target.value,
     );
     if (selectedOption) {
       onChange(selectedOption);
@@ -84,7 +84,7 @@ const ServiceSort = ({ value, onChange }: ServiceSortProps) => {
         label="Sắp xếp theo"
         onChange={handleChange}
       >
-        {sortOptions.map((option) => (
+        {sortOptions.map(option => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>

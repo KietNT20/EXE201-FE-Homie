@@ -10,7 +10,7 @@ const PAGE_SIZE = 6;
 
 const TransactionPage: React.FC = () => {
   const [page, setPage] = useState(1);
-  const { userProfile } = useAppSelector((state) => state.profile);
+  const { userProfile } = useAppSelector(state => state.profile);
   const profileId = userProfile?.id;
   const { data: transactions } = useGetTransactionByUserId(profileId!);
 

@@ -24,7 +24,7 @@ export const useLogin = () => {
     mutationKey: ['login'],
     mutationFn: ({ email, password }: InputLoginTypes) =>
       authService.login({ email, password }),
-    onSuccess: async (response) => {
+    onSuccess: async response => {
       toast.dismiss();
       await queryClient.setQueryData(['account'], response);
       // console.log('Login success', response);
@@ -33,7 +33,7 @@ export const useLogin = () => {
       toast.success('Đăng nhập thành công');
       navigate(PATH.HOME, { replace: true });
     },
-    onError: (error) => {
+    onError: error => {
       toast.dismiss();
       console.log('Login failed', error);
       toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');

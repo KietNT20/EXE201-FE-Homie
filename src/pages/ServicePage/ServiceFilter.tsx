@@ -35,7 +35,7 @@ const ServiceFilter = ({
   });
 
   // Memoize filtered categories based on search term
-  const filteredCategories = categories.filter((category) =>
+  const filteredCategories = categories.filter(category =>
     category.categoryName
       ?.toLowerCase()
       .includes(filterValues.searchTerm.toLowerCase()),
@@ -43,10 +43,10 @@ const ServiceFilter = ({
 
   // Handle category selection
   const handleCategoryChange = (categoryId: number): void => {
-    setFilterValues((prev) => ({
+    setFilterValues(prev => ({
       ...prev,
       selectedCategories: prev.selectedCategories.includes(categoryId)
-        ? prev.selectedCategories.filter((id) => id !== categoryId)
+        ? prev.selectedCategories.filter(id => id !== categoryId)
         : [...prev.selectedCategories, categoryId],
     }));
   };
@@ -67,7 +67,7 @@ const ServiceFilter = ({
     newValue: number | number[],
   ): void => {
     event.preventDefault();
-    setFilterValues((prev) => ({
+    setFilterValues(prev => ({
       ...prev,
       priceRange: newValue as [number, number],
     }));

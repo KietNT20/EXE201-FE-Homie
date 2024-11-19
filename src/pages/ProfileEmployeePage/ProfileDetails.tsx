@@ -16,7 +16,7 @@ import {
 import { Avatar, CircularProgress } from '@mui/material';
 
 const ProfileDetails = () => {
-  const { userProfile } = useAppSelector((state) => state.profile);
+  const { userProfile } = useAppSelector(state => state.profile);
   const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
   const { data: profileUSerId, isLoading: profileIsLoading } = useGetProfiles(
     userId ?? 0,

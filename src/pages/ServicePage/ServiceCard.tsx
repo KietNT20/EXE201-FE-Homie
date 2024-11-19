@@ -29,138 +29,141 @@ const ServiceCard = React.memo(
 
     return (
       <Card
-        className="max-w-[450px] hover:shadow-md transition-all duration-300 hover:scale-[1.02] shadow-lg border border-gray-200 w-full"
+        className="w-full hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px] border border-sky-400 bg-white rounded-lg"
         {...restProps}
       >
         <CardActionArea onClick={onClick}>
-          <CardContent>
-            {/* Title and Status Section */}
-            <Box className="flex justify-between items-center mb-4">
+          <CardContent className="p-6">
+            {/* Title and Status Section - Fixed height */}
+            <Box className="flex justify-between items-start gap-4 h-[60px] mb-4">
               <Typography
-                variant="h5"
+                variant="h6"
                 component="div"
-                className="truncate flex-1"
+                className="text-gray-800 font-bold line-clamp-2"
               >
                 {jobPost.title}
               </Typography>
               <ChipComp status={jobPost.status} />
             </Box>
 
-            {/* User Info Section */}
+            {/* User Info Section - Fixed height */}
             {userInfo && (
               <>
-                <Box className="flex items-center gap-6 mb-4">
-                  <Avatar
-                    src={userInfo.data.avatarUrl}
-                    alt={userInfo.data.name}
-                    className="w-10 h-10"
-                  />
-                  <Box className="flex-1">
-                    <Typography variant="subtitle2" className="font-medium">
-                      {userInfo.data.name}
-                    </Typography>
-                    <Stack className="mt-1">
-                      <Box
-                        className="flex items-center gap-2 mb-3"
-                        title={userInfo.data.email}
+                <Box className="h-[100px] mb-4">
+                  <Box className="flex items-start gap-4">
+                    <Avatar
+                      src={userInfo.data.avatarUrl}
+                      alt={userInfo.data.name}
+                      className="w-10 h-10 border-2 border-white shadow-sm"
+                    />
+                    <Box className="flex-1 min-w-0">
+                      <Typography
+                        variant="subtitle1"
+                        className="font-semibold text-gray-800 mb-2 line-clamp-1"
                       >
-                        <>
-                          <Email
-                            color="action"
-                            fontSize="small"
-                            className="cursor-pointer"
-                          />
-                          <Typography variant="body2" color="text.secondary">
+                        {userInfo.data.name}
+                      </Typography>
+                      <Stack spacing={1}>
+                        <Box
+                          className="flex items-center gap-2"
+                          title={userInfo.data.email}
+                        >
+                          <Email className="text-gray-500 w-4 h-4" />
+                          <Typography
+                            variant="body2"
+                            className="text-gray-600 line-clamp-1"
+                          >
                             {userInfo.data.email}
                           </Typography>
-                        </>
-                      </Box>
-                      <Box
-                        className="flex items-center gap-2"
-                        title={userInfo.data.phone}
-                      >
-                        <>
-                          <Phone
-                            color="action"
-                            fontSize="small"
-                            className="cursor-pointer"
-                          />
-                          <Typography variant="body2" color="text.secondary">
+                        </Box>
+                        <Box
+                          className="flex items-center gap-2"
+                          title={userInfo.data.phone}
+                        >
+                          <Phone className="text-gray-500 w-4 h-4" />
+                          <Typography variant="body2" className="text-gray-600">
                             {userInfo.data.phone}
                           </Typography>
-                        </>
-                      </Box>
-                    </Stack>
+                        </Box>
+                      </Stack>
+                    </Box>
                   </Box>
                 </Box>
                 <Divider className="mb-4" />
               </>
             )}
 
-            {/* Description Section */}
+            {/* Description Section - Fixed height */}
             <Typography
               variant="body2"
-              color="text.secondary"
-              className="mb-4 truncate"
+              className="text-gray-600 mb-4 h-10 line-clamp-2"
             >
               {jobPost.description}
             </Typography>
 
-            {/* Details Section */}
-            <Stack spacing={2}>
-              <Box className="flex items-center gap-2">
-                <LocationOn color="action" fontSize="small" />
-                <Typography variant="body2" color="text.secondary">
+            {/* Details Section - Fixed height */}
+            <Stack spacing={2} className="mb-2 h-[120px]">
+              <Box className="flex items-center gap-3">
+                <LocationOn className="text-gray-500 w-5 h-5" />
+                <Typography
+                  variant="body2"
+                  className="text-gray-600 line-clamp-1"
+                >
                   {jobPost.location}
                 </Typography>
               </Box>
 
-              <Box className="flex items-center gap-2">
-                <CalendarToday color="action" fontSize="small" />
-                <Typography variant="body2" color="text.secondary">
+              <Box className="flex items-center gap-3">
+                <CalendarToday className="text-gray-500 w-5 h-5" />
+                <Typography variant="body2" className="text-gray-600">
                   {formatDate(jobPost.startDate)} -{' '}
                   {formatDate(jobPost.endDate)}
                 </Typography>
               </Box>
 
-              <Box className="flex items-center gap-2">
-                <AttachMoney color="action" fontSize="small" />
+              <Box className="flex items-center gap-3">
+                <AttachMoney className="text-gray-500 w-5 h-5" />
                 <Typography
-                  variant="body2"
-                  className="font-medium text-primary"
+                  variant="body1"
+                  className="font-semibold text-blue-600"
                 >
                   {formatPrice(jobPost?.price || 0)}
                 </Typography>
               </Box>
+              <Divider />
+            </Stack>
 
-              {/* Category Section */}
-              <Box>
-                <Box className="flex items-center gap-2 mb-2">
-                  <CleaningServices color="action" fontSize="small" />
-                  <Typography variant="body2" color="text.secondary">
-                    Dịch vụ:
-                  </Typography>
-                </Box>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  className="flex-wrap gap-2 pl-6"
+            {/* Category Section - Fixed height */}
+            <Box className="h-20 mb-4">
+              <Box className="flex items-center gap-2 mb-2">
+                <CleaningServices className="text-gray-500 w-5 h-5" />
+                <Typography
+                  variant="body2"
+                  className="text-gray-700 font-medium"
                 >
-                  {jobPost?.categoryJobPost?.map((category) => (
-                    <CategoryChip
-                      key={category.categoriesId}
-                      categoryId={category.categoriesId}
-                    />
-                  ))}
-                </Stack>
-              </Box>
-              {/* Create Date Post */}
-              <Box className="flex items-center gap-2">
-                <Typography variant="body2" color="text.secondary">
-                  Được tạo lúc: {formatDate(jobPost.createDate)}
+                  Dịch vụ:
                 </Typography>
               </Box>
-            </Stack>
+              <Stack
+                direction="row"
+                spacing={1}
+                className="flex flex-wrap gap-2 pl-8"
+              >
+                {jobPost?.categoryJobPost?.map((category) => (
+                  <CategoryChip
+                    key={category.categoriesId}
+                    categoryId={category.categoriesId}
+                  />
+                ))}
+              </Stack>
+            </Box>
+
+            {/* Create Date Section */}
+            <Box className="pt-4 border-t border-gray-100">
+              <Typography variant="body2" className="text-gray-500">
+                Được tạo lúc: {formatDate(jobPost.createDate)}
+              </Typography>
+            </Box>
           </CardContent>
         </CardActionArea>
       </Card>

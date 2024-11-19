@@ -50,7 +50,7 @@ const ServiceDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { userProfile } = useAppSelector((state) => state.profile);
+  const { userProfile } = useAppSelector(state => state.profile);
 
   const { mutate: createApplication } = useCreateApplication();
 
@@ -318,7 +318,7 @@ const ServiceDetail = () => {
                             </Typography>
                           </div>
                           <Box className="flex gap-2">
-                            {jobPost?.data?.categoryJobPost?.map((category) => (
+                            {jobPost?.data?.categoryJobPost?.map(category => (
                               <CategoryChip
                                 key={category.categoriesId}
                                 categoryId={category.categoriesId}

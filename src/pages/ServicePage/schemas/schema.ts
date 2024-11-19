@@ -49,7 +49,7 @@ export const jobPostSchema = yup.object().shape({
   startDate: yup
     .mixed<Dayjs>()
     .required('Vui lòng chọn ngày bắt đầu')
-    .test('isAfterToday', 'Ngày bắt đầu phải từ ngày hôm nay', (value) => {
+    .test('isAfterToday', 'Ngày bắt đầu phải từ ngày hôm nay', value => {
       return dayjs(value).isAfter(dayjs().subtract(1, 'day'));
     }),
   endDate: yup

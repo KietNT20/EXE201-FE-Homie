@@ -17,7 +17,7 @@ export const useCreateApplication = () => {
       }); // Invalidate job list
       toast.success('Yêu cầu của bạn đã được nhận');
     },
-    onError: (err) => {
+    onError: err => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Giao dịch thất bại');

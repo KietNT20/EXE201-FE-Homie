@@ -31,7 +31,7 @@ const ServiceContent = ({
         </>
       ) : (
         <>
-          {jobPosts.map((jobPost) => (
+          {jobPosts.map(jobPost => (
             <Grid
               size={{ xs: 12, md: 6, lg: 4 }}
               key={jobPost.jobId}

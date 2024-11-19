@@ -33,7 +33,7 @@ export const useCreateProfiles = () => {
       });
       toast.success('Create Profiles Successfully!!');
     },
-    onError: (err) => {
+    onError: err => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Create Profiles Failed');
@@ -49,12 +49,12 @@ export const useUpdateProfiles = (profileId: number) => {
       console.log(payload, 'profiles');
       return profileService.updateProfiles(payload, profileId);
     },
-    onSuccess: (payload) => {
+    onSuccess: payload => {
       toast.dismiss();
       queryClient.setQueryData(['profiles', profileId], payload);
       toast.success('Update Profiles Successfully!!');
     },
-    onError: (err) => {
+    onError: err => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Update Profiles Failed');

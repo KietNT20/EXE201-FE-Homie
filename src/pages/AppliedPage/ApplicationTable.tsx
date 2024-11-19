@@ -59,7 +59,7 @@ export const ApplicationTable = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {applications.map((application) => (
+          {applications.map(application => (
             <TableRow
               key={application.id}
               sx={{
@@ -79,7 +79,7 @@ export const ApplicationTable = ({
               <TableCell align="center">
                 <IconButton
                   size="small"
-                  onClick={(e) => onMenuOpen(e, application)}
+                  onClick={e => onMenuOpen(e, application)}
                 >
                   <MoreVertIcon />
                 </IconButton>

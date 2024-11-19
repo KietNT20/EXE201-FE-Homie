@@ -57,7 +57,7 @@ export const useCreateJobPost = () => {
       });
       toast.success('Tạo công việc thành công');
     },
-    onError: (err) => {
+    onError: err => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Tạo công việc thất bại');

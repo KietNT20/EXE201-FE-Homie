@@ -59,7 +59,7 @@ export const useCreateUser = () => {
       });
       toast.success('Create User Successfully!!');
     },
-    onError: (err) => {
+    onError: err => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Create User Failed');
@@ -98,7 +98,7 @@ export const useUpdateUser = () => {
       });
       toast.success('Update User Successfully!!');
     },
-    onError: (err) => {
+    onError: err => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Update User Failed');

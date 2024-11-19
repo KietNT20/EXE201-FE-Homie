@@ -42,7 +42,7 @@ const PAGE_SIZE = 6;
 const JobListCreated = () => {
   const [page, setPage] = useState(1);
 
-  const { userProfile } = useAppSelector((state) => state.profile);
+  const { userProfile } = useAppSelector(state => state.profile);
   const { jobPostUserData } = useGetJobPostByUserId(userProfile?.id!);
 
   const formatDate = (dateString: string) => {
@@ -130,7 +130,7 @@ const JobListCreated = () => {
                       <CleaningServices fontSize="small" color="action" />
                       <Typography variant="body2">Dịch vụ:</Typography>
                     </div>
-                    {job.categoryJobPost?.map((category) => (
+                    {job.categoryJobPost?.map(category => (
                       <CategoryChip
                         key={category.categoriesId}
                         categoryId={category.categoriesId}
