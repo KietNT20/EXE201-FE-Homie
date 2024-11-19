@@ -317,7 +317,7 @@ const ServiceDetail = () => {
                               Dịch vụ
                             </Typography>
                           </div>
-                          <Box className="flex gap-2">
+                          <Box className="flex flex-col gap-2">
                             {jobPost?.data?.categoryJobPost?.map((category) => (
                               <CategoryChip
                                 key={category.categoriesId}

@@ -57,7 +57,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
       >
         <MenuItem>{userProfile?.email}</MenuItem>
         <MenuItem className="text-yellow-500">
-          {formatPrice(EWalletUser?.data.balance || 0)}
+          Số dư: {formatPrice(EWalletUser?.data.balance || 0)}
         </MenuItem>
         <MenuItem
           className="hover:text-blue-500 duration-200"
