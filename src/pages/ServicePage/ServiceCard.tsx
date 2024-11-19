@@ -28,7 +28,7 @@ const ServiceCard = React.memo(
 
     return (
       <Card
-        className="w-full hover:shadow-xl transition-all duration-300 border-2 border-sky-200 hover:border-sky-500 bg-white rounded-lg"
+        className="w-full hover:shadow-xl hover:bg-gray-50 transition-all duration-300 bg-white rounded-lg"
         {...restProps}
       >
         <CardActionArea onClick={onClick}>
@@ -124,7 +124,7 @@ const ServiceCard = React.memo(
             </Stack>
 
             {/* Category Section - Fixed height */}
-            <Box className="h-20 mb-4">
+            <Box className="h-36 mb-2">
               <Box className="flex items-center gap-2 mb-2">
                 <CleaningServices className="text-gray-500 w-5 h-5" />
                 <Typography
@@ -134,11 +134,7 @@ const ServiceCard = React.memo(
                   Dịch vụ:
                 </Typography>
               </Box>
-              <Stack
-                direction="row"
-                spacing={1}
-                className="flex flex-wrap gap-2 pl-8"
-              >
+              <Stack className="flex flex-wrap gap-2">
                 {jobPost?.categoryJobPost?.map((category) => (
                   <CategoryChip
                     key={category.categoriesId}

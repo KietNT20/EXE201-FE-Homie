@@ -7,7 +7,7 @@ const CategoryChip = ({ categoryId }: { categoryId: string | number }) => {
 
   return (
     <Tooltip
-      className="m-1"
+      className=""
       title={
         categoryDetail?.data?.price
           ? `Giá: ${formatPrice(categoryDetail?.data.price)}`

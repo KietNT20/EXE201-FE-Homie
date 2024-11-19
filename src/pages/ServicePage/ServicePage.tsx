@@ -94,7 +94,7 @@ const ServicePage = () => {
   const isLoadingState = isLoading || isPending;
 
   return (
-    <Box sx={{ backgroundColor: 'background.default' }}>
+    <Box sx={{ backgroundColor: 'rgba(246, 247, 248, 0.5)' }}>
       <div className="container">
         <Box sx={{ py: 4 }}>
           <ServiceHeader />
