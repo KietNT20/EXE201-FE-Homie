@@ -1,5 +1,5 @@
 import { useCreateProfiles } from '@/hooks/useManageProfiles';
-import { Profiles } from '@/types/types';
+import { ProfilesPayload } from '@/types/types';
 import { Box, Button, Modal, TextField } from '@mui/material';
 import React, { useState } from 'react';
 
@@ -14,7 +14,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
   onClose,
   userId,
 }) => {
-  const [profileData, setProfileData] = useState<Profiles>({
+  const [profileData, setProfileData] = useState<ProfilesPayload>({
     userId: userId,
     bio: '',
     skills: '',
