@@ -56,8 +56,11 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         onClose={handleMenuClose}
       >
         <MenuItem>{userProfile?.email}</MenuItem>
-        <MenuItem>{formatPrice(EWalletUser?.data.balance || 0)}</MenuItem>
+        <MenuItem className="text-yellow-500">
+          {formatPrice(EWalletUser?.data.balance || 0)}
+        </MenuItem>
         <MenuItem
+          className="hover:text-blue-500 duration-200"
           component={NavLink}
           to={PATH.PROFILE_EMPLOYEE}
           onClick={handleMenuClose}
@@ -65,6 +68,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
           Thông tin cá nhân
         </MenuItem>
         <MenuItem
+          className="hover:text-blue-500 duration-200"
           component={NavLink}
           to={PATH.JOB_USER}
           onClick={handleMenuClose}
@@ -73,6 +77,7 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
         </MenuItem>
         {userProfile?.roleId === 3 && (
           <MenuItem
+            className="hover:text-blue-500 duration-200"
             component={NavLink}
             to={PATH.APPLIED}
             onClick={handleMenuClose}
@@ -81,13 +86,19 @@ const UserProfileMenu = ({ userProfile, onLogout }: UserProfileMenuProps) => {
           </MenuItem>
         )}
         <MenuItem
+          className="hover:text-blue-500 duration-200"
           component={NavLink}
           to={PATH.TRANSACTION}
           onClick={handleMenuClose}
         >
           Lịch sử giao dịch
         </MenuItem>
-        <MenuItem onClick={handleLogout}>Đăng xuất</MenuItem>
+        <MenuItem
+          className="hover:text-red-500 duration-200"
+          onClick={handleLogout}
+        >
+          Đăng xuất
+        </MenuItem>
       </Menu>
     </>
   );

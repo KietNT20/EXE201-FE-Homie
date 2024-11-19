@@ -111,7 +111,7 @@ const NewsPage = () => {
 
       <main>
         <div className="news-grid">
-          {currentItems.map(item => (
+          {currentItems.map((item) => (
             <div key={item.id} className="news-card">
               <img src={item.image} alt={item.title} />
               <div className="date">{item.date}</div>
@@ -136,7 +136,7 @@ const NewsPage = () => {
               )}
             </>
           )}
-          {getPageNumbers().map(number => (
+          {getPageNumbers().map((number) => (
             <span
               key={number}
               onClick={() => paginate(number)}

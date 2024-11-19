@@ -66,7 +66,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             fullWidth
             variant="outlined"
             value={profileData.bio}
-            onChange={e =>
+            onChange={(e) =>
               setProfileData({ ...profileData, bio: e.target.value })
             }
           />
@@ -76,7 +76,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             fullWidth
             variant="outlined"
             value={profileData.skills}
-            onChange={e =>
+            onChange={(e) =>
               setProfileData({ ...profileData, skills: e.target.value })
             }
           />
@@ -86,7 +86,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             fullWidth
             variant="outlined"
             value={profileData.experience}
-            onChange={e =>
+            onChange={(e) =>
               setProfileData({ ...profileData, experience: e.target.value })
             }
           />
@@ -96,7 +96,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             fullWidth
             variant="outlined"
             value={profileData.availability}
-            onChange={e =>
+            onChange={(e) =>
               setProfileData({ ...profileData, availability: e.target.value })
             }
           />
@@ -107,7 +107,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             variant="outlined"
             type="number"
             value={profileData.ratingAvg}
-            onChange={e =>
+            onChange={(e) =>
               setProfileData({
                 ...profileData,
                 ratingAvg: Number(e.target.value),

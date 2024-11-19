@@ -15,7 +15,7 @@ export const useApplicationTable = () => {
   const [newStatus, setNewStatus] = useState<JobPostStatus | ''>('');
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  const { userProfile } = useAppSelector(state => state.profile);
+  const { userProfile } = useAppSelector((state) => state.profile);
   const { data: appliedUserData } = useGetApplicationByUserId(userProfile?.id!);
   const { mutate: updateStatusApplied } = useUpdateApplicationStatus();
 

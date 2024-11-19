@@ -29,27 +29,27 @@ const ServiceCard = React.memo(
 
     return (
       <Card
-        className="w-full hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px] border border-sky-400 bg-white rounded-lg"
+        className="w-full hover:shadow-xl transition-all duration-300 border-2 border-sky-200 hover:border-sky-500 bg-white rounded-lg"
         {...restProps}
       >
         <CardActionArea onClick={onClick}>
           <CardContent className="p-6">
             {/* Title and Status Section - Fixed height */}
-            <Box className="flex justify-between items-start gap-4 h-[60px] mb-4">
+            <ChipComp status={jobPost.status} />
+            <Box className="my-3">
               <Typography
                 variant="h6"
                 component="div"
-                className="text-gray-800 font-bold line-clamp-2"
+                className="text-gray-800 font-bold truncate"
               >
                 {jobPost.title}
               </Typography>
-              <ChipComp status={jobPost.status} />
             </Box>
 
             {/* User Info Section - Fixed height */}
             {userInfo && (
               <>
-                <Box className="h-[100px] mb-4">
+                <Box className="mb-4">
                   <Box className="flex items-start gap-4">
                     <Avatar
                       src={userInfo.data.avatarUrl}
@@ -59,7 +59,7 @@ const ServiceCard = React.memo(
                     <Box className="flex-1 min-w-0">
                       <Typography
                         variant="subtitle1"
-                        className="font-semibold text-gray-800 mb-2 line-clamp-1"
+                        className="font-semibold text-gray-700 mb-2 truncate"
                       >
                         {userInfo.data.name}
                       </Typography>
@@ -74,15 +74,6 @@ const ServiceCard = React.memo(
                             className="text-gray-600 line-clamp-1"
                           >
                             {userInfo.data.email}
-                          </Typography>
-                        </Box>
-                        <Box
-                          className="flex items-center gap-2"
-                          title={userInfo.data.phone}
-                        >
-                          <Phone className="text-gray-500 w-4 h-4" />
-                          <Typography variant="body2" className="text-gray-600">
-                            {userInfo.data.phone}
                           </Typography>
                         </Box>
                       </Stack>

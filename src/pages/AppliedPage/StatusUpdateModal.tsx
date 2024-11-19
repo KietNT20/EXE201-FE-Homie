@@ -58,7 +58,7 @@ export const StatusUpdateModal = ({
             label="Trạng thái"
             onChange={onStatusChange}
           >
-            {STATUS_OPTIONS.map(option => (
+            {STATUS_OPTIONS.map((option) => (
               <MenuItem
                 key={option.value}
                 value={option.value}

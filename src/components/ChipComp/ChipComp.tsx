@@ -14,7 +14,8 @@ const ChipComp = ({ status }: ChipProps) => {
       color={statusConfig.color}
       size="small"
       icon={<statusConfig.icon />}
-      className="ml-2 font-medium"
+      className="font-medium"
+      variant="filled"
       sx={{
         '& .MuiChip-icon': {
           marginLeft: '8px',

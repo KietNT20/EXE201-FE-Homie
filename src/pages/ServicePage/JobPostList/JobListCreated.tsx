@@ -3,6 +3,7 @@ import { PATH } from '@/constant/path';
 import { useAppSelector } from '@/hooks/reudxHook';
 import { useGetJobPostByUserId } from '@/hooks/useMangeJobPost';
 import { CategoriesId, JobPostStatus } from '@/types/types';
+import { formatPrice } from '@/util/format';
 import { CleaningServices } from '@mui/icons-material';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -42,7 +43,7 @@ const PAGE_SIZE = 6;
 const JobListCreated = () => {
   const [page, setPage] = useState(1);
 
-  const { userProfile } = useAppSelector(state => state.profile);
+  const { userProfile } = useAppSelector((state) => state.profile);
   const { jobPostUserData } = useGetJobPostByUserId(userProfile?.id!);
 
   const formatDate = (dateString: string) => {
@@ -81,7 +82,7 @@ const JobListCreated = () => {
       <Grid2 container spacing={3}>
         {getCurrentPageData()?.map((job: JobPostUserResponse) => (
           <Grid2 size={{ xs: 12, sm: 6, lg: 4 }} key={job.jobId}>
-            <Card className="h-full">
+            <Card>
               <CardContent>
                 <Box className="flex justify-between items-start mb-4">
                   <Typography variant="h6">{job.title}</Typography>
@@ -123,14 +124,16 @@ const JobListCreated = () => {
 
                   <Box className="flex items-center gap-2">
                     <AttachMoneyIcon fontSize="small" color="action" />
-                    <Typography variant="body2">Giá: ${job.price}</Typography>
+                    <Typography variant="body2">
+                      Giá: {formatPrice(job.price)}{' '}
+                    </Typography>
                   </Box>
                   <Box className="">
                     <div className="flex items-center gap-2 mb-4">
                       <CleaningServices fontSize="small" color="action" />
                       <Typography variant="body2">Dịch vụ:</Typography>
                     </div>
-                    {job.categoryJobPost?.map(category => (
+                    {job.categoryJobPost?.map((category) => (
                       <CategoryChip
                         key={category.categoriesId}
                         categoryId={category.categoriesId}

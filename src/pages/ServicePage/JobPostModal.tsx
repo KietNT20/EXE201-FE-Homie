@@ -54,7 +54,7 @@ const JobPostModal = ({
   districts = [],
   isPending,
 }: JobPostModalProps & { districts: District[] }) => {
-  const { userProfile } = useAppSelector(state => state.profile);
+  const { userProfile } = useAppSelector((state) => state.profile);
 
   const {
     control,
@@ -90,7 +90,7 @@ const JobPostModal = ({
       startDate: data.startDate.toISOString(),
       endDate: data.endDate.toISOString(),
       createDate: data.createDate.toISOString(),
-      categorys: data.categorys.map(cat => ({
+      categorys: data.categorys.map((cat) => ({
         categoryId: cat.categoryId,
       })),
     };
@@ -176,12 +176,12 @@ const JobPostModal = ({
                   <Autocomplete
                     {...field}
                     options={districts}
-                    getOptionLabel={option => option.district}
+                    getOptionLabel={(option) => option.district}
                     value={value}
                     onChange={(_, newValue) => {
                       onChange(newValue);
                     }}
-                    renderInput={params => (
+                    renderInput={(params) => (
                       <TextField
                         {...params}
                         label="Quận/Huyện"
@@ -305,16 +305,18 @@ const JobPostModal = ({
                     }
 
                     if (isId5Selected && newSelectedIds.length > 1) {
-                      const filteredIds = newSelectedIds.filter(id => id !== 5);
+                      const filteredIds = newSelectedIds.filter(
+                        (id) => id !== 5,
+                      );
                       field.onChange(
-                        filteredIds.map(id => ({ categoryId: id })),
+                        filteredIds.map((id) => ({ categoryId: id })),
                       );
                       return;
                     }
                     // Choose id 5 if all first 4 ids are selected
                     if (newSelectedIds.length === 4) {
                       const first4Ids = [1, 2, 3, 4];
-                      const hasAllFirst4 = first4Ids.every(id =>
+                      const hasAllFirst4 = first4Ids.every((id) =>
                         newSelectedIds.includes(id),
                       );
 
@@ -325,7 +327,7 @@ const JobPostModal = ({
                     }
                     // Show selected categories
                     field.onChange(
-                      newSelectedIds.map(id => ({ categoryId: id })),
+                      newSelectedIds.map((id) => ({ categoryId: id })),
                     );
                   };
 
@@ -339,7 +341,7 @@ const JobPostModal = ({
                         onChange={handleChange}
                         input={<OutlinedInput label="Danh mục" />}
                       >
-                        {categories.map(category => (
+                        {categories.map((category) => (
                           <MenuItem
                             key={category.id}
                             value={category.id}

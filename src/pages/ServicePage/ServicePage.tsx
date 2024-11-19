@@ -62,7 +62,7 @@ const ServicePage = () => {
       // Category filter
       const matchesCategory =
         filters.categories.length === 0 ||
-        jobPost.categoryJobPost.some(category =>
+        jobPost.categoryJobPost.some((category) =>
           filters.categories.includes(category.categoriesId),
         );
 
@@ -78,7 +78,7 @@ const ServicePage = () => {
       // Search term filter
       const matchesSearch =
         !filters.searchTerm ||
-        jobPost.categoryJobPost.some(category => {
+        jobPost.categoryJobPost.some((category) => {
           const categoryData = categoriesData?.data?.find(
             (cat: Category) => cat.id === category.categoriesId,
           );

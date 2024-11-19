@@ -5,7 +5,7 @@ import CreateProfileModal from './CreateProfileModal';
 import ProfileDetails from './ProfileDetails';
 
 const ProfileEmployee = () => {
-  const { userProfile } = useAppSelector(state => state.profile);
+  const { userProfile } = useAppSelector((state) => state.profile);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
