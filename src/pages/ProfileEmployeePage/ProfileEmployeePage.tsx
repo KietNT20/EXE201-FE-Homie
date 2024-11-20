@@ -1,10 +1,11 @@
 import { useAppSelector } from '@/hooks/reudxHook';
+import { useGetProfiles } from '@/hooks/useManageProfiles';
 import { useGetUserById, useUpdateUser } from '@/hooks/useManageUser';
 import { Button, Container } from '@mui/material';
 import { useState } from 'react';
 import CreateProfileModal from './CreateProfileModal';
 import ProfileDetails from './ProfileDetails';
-import UpdateProfileModal from './UpdateProfileModal';
+import UpdateUserModal from './UpdateUserModal';
 
 const ProfileEmployee = () => {
   const [openProfiles, setOpenProfiles] = useState(false);
@@ -13,8 +14,15 @@ const ProfileEmployee = () => {
   const { data: userDetails, isLoading: userDetailLoading } = useGetUserById(
     userProfile?.id ?? 0,
   );
-  const { mutate: doUpdateUser } = useUpdateUser(userProfile?.id!);
-
+  const { mutate: doUpdateUser, isPending: updateUserPending } = useUpdateUser(
+    userProfile?.id!,
+  );
+  const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
+  const { data: profilesData, isLoading: profileIsLoading } = useGetProfiles(
+    userId ?? 0,
+  );
+  // Determine if profile exists
+  const hasProfile = profilesData?.data !== undefined;
   const handleOpenProfileModal = () => setOpenProfiles(true);
   const handleCloseProfileModal = () => setOpenProfiles(false);
   const handleOpenUpdateModal = () => setOpenUpdateModal(true);
@@ -24,8 +32,9 @@ const ProfileEmployee = () => {
     <section className="min-h-screen bg-gray-50">
       <Container maxWidth="lg" className="py-6">
         <ProfileDetails
+          profileUSerId={profilesData?.data}
           userDetails={userDetails?.data}
-          profileLoading={userDetailLoading}
+          profileLoading={userDetailLoading || profileIsLoading}
         />
         <div className="mt-3 flex flex-row-reverse gap-3">
           <Button
@@ -41,7 +50,7 @@ const ProfileEmployee = () => {
               color="info"
               onClick={handleOpenProfileModal}
             >
-              Tạo hồ sơ công việc
+              {hasProfile ? 'Cập nhật hồ sơ' : 'Tạo hồ sơ'}
             </Button>
           )}
         </div>
@@ -49,12 +58,15 @@ const ProfileEmployee = () => {
           open={openProfiles}
           onClose={handleCloseProfileModal}
           userId={userProfile?.id!}
+          isUpdate={hasProfile}
+          profilesData={profilesData?.data}
         />
-        <UpdateProfileModal
+        <UpdateUserModal
           open={openUpdateModal}
           onClose={handleCloseUpdateModal}
           userDetails={userDetails?.data}
           onUpdateUser={doUpdateUser}
+          disabled={updateUserPending}
         />
       </Container>
     </section>

@@ -1,6 +1,5 @@
-import { useAppSelector } from '@/hooks/reudxHook';
-import { useGetProfiles } from '@/hooks/useManageProfiles';
 import { UserProfile } from '@/types/reduxStateType';
+import { Profiles } from '@/types/types';
 import { formatDate } from '@/util/format';
 import {
   AccessTime,
@@ -18,19 +17,15 @@ import { Avatar, CircularProgress } from '@mui/material';
 interface ProfileDetailsProps {
   profileLoading: unknown;
   userDetails: UserProfile;
+  profileUSerId: Profiles;
 }
 
 const ProfileDetails = ({
   profileLoading,
   userDetails,
+  profileUSerId,
 }: ProfileDetailsProps) => {
-  const { userProfile } = useAppSelector((state) => state.profile);
-  const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
-  const { data: profileUSerId, isLoading: profileIsLoading } = useGetProfiles(
-    userId ?? 0,
-  );
-
-  if (profileLoading || profileIsLoading) {
+  if (profileLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
         <div className="text-center">
@@ -150,7 +145,7 @@ const ProfileDetails = ({
                 <InfoItem
                   icon={Star}
                   label="Đánh giá"
-                  value={profileUSerId?.ratingAvg}
+                  value={profileUSerId?.ratingAvg?.toLocaleString()}
                 />
               </div>
             </div>

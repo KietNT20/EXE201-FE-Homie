@@ -70,7 +70,7 @@ const LoginPage = () => {
           <Card className="w-full h-full shadow-none">
             <CardContent className="p-6 md:p-8">
               <div className="mb-6 md:mb-8">
-                <Typography variant="h5" className="text-center font-medium">
+                <Typography variant="h4" className="text-center font-semibold">
                   ĐĂNG NHẬP
                 </Typography>
               </div>

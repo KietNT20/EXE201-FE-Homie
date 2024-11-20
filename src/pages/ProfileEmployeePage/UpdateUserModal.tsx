@@ -29,13 +29,15 @@ interface UpdateProfileModalProps {
   onClose: () => void;
   userDetails: User | undefined;
   onUpdateUser: (data: any) => void;
+  disabled?: boolean;
 }
 
-const UpdateProfileModal = ({
+const UpdateUserModal = ({
   open,
   onClose,
   userDetails,
   onUpdateUser,
+  disabled,
 }: UpdateProfileModalProps) => {
   const [formData, setFormData] = useState({
     name: userDetails?.name,
@@ -110,6 +112,7 @@ const UpdateProfileModal = ({
               value={formData.name}
               onChange={handleChange}
               required
+              disabled={disabled}
             />
 
             <TextField
@@ -120,6 +123,7 @@ const UpdateProfileModal = ({
               value={formData.email}
               onChange={handleChange}
               required
+              disabled={disabled}
             />
 
             <TextField
@@ -129,6 +133,7 @@ const UpdateProfileModal = ({
               type={showPassword ? 'text' : 'password'}
               value={formData.password}
               onChange={handleChange}
+              disabled={disabled}
               placeholder="Để trống nếu không muốn thay đổi"
               slotProps={{
                 input: {
@@ -159,12 +164,14 @@ const UpdateProfileModal = ({
               value={formData.phone}
               onChange={handleChange}
               required
+              disabled={disabled}
             />
 
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 label="Ngày sinh"
                 value={formData.dateOfBirth}
+                disabled={disabled}
                 onChange={(newValue) =>
                   setFormData((prev) => ({
                     ...prev,
@@ -175,7 +182,7 @@ const UpdateProfileModal = ({
               />
             </LocalizationProvider>
 
-            <FormControl fullWidth>
+            <FormControl fullWidth disabled={disabled}>
               <InputLabel>Giới tính</InputLabel>
               <Select
                 value={formData.gender}
@@ -208,6 +215,7 @@ const UpdateProfileModal = ({
               variant="contained"
               color="primary"
               className="min-w-[100px]"
+              disabled={disabled}
             >
               Cập nhật
             </Button>
@@ -218,4 +226,4 @@ const UpdateProfileModal = ({
   );
 };
 
-export default UpdateProfileModal;
+export default UpdateUserModal;

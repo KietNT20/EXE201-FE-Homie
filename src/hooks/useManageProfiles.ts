@@ -1,6 +1,6 @@
 import { queryClient } from '@/App';
 import { profileService } from '@/services/profileService';
-import { Profiles, ProfilesPayload } from '@/types/types';
+import { ProfilesPayload } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
@@ -8,10 +8,7 @@ import toast from 'react-hot-toast';
 export const useGetProfiles = (userId: number) => {
   const { data, ...rest } = useQuery({
     queryKey: ['profiles'],
-    queryFn: async () => {
-      const response = await profileService.getProfiles(userId);
-      return response.data;
-    },
+    queryFn: () => profileService.getProfiles(userId),
     enabled: !!userId,
     throwOnError: false,
   });
@@ -63,7 +60,7 @@ export const useCreateProfiles = () => {
 
 export const useUpdateProfiles = (profileId: number) => {
   const { mutate, ...rest } = useMutation({
-    mutationFn: (payload: Profiles) => {
+    mutationFn: (payload: ProfilesPayload) => {
       // console.log(payload, 'profiles');
       return profileService.updateProfiles(profileId, payload);
     },
