@@ -35,10 +35,6 @@ const JobListCreated = () => {
   const { userProfile } = useAppSelector((state) => state.profile);
   const { jobPostUserData } = useGetJobPostByUserId(userProfile?.id!);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString();
-  };
-
   // Calculate total pages
   const totalPages = Math.ceil(
     (jobPostUserData?.data?.length || 0) / PAGE_SIZE,
