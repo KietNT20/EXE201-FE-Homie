@@ -51,3 +51,12 @@ export interface JobPost {
   jobType: number;
   categoryJobPost: CategoriesId[];
 }
+
+export interface Review {
+  reviewId?: number;
+  jobId?: number;
+  userId?: number;
+  rating?: number;
+  comment?: string;
+  createDate?: Date | null;
+}

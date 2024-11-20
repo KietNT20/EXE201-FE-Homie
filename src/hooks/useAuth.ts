@@ -6,6 +6,7 @@ import { setUserProfile } from '@/store/actions/userProfileAction';
 import { User } from '@/types/types.common';
 import tokenMethod from '@/util/token';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from './reudxHook';
@@ -26,17 +27,19 @@ export const useLogin = () => {
       authService.login({ email, password }),
     onSuccess: async (response) => {
       toast.dismiss();
-      await queryClient.setQueryData(['account'], response);
+      await queryClient.setQueryData(['loginAccount'], response);
       // console.log('Login success', response);
-      tokenMethod.set({ token: response.data.tokenString });
-      dispatch<any>(setUserProfile(tokenMethod.get()?.token));
-      toast.success('Đăng nhập thành công');
-      navigate(PATH.HOME, { replace: true });
+      if (response.data) {
+        tokenMethod.set({ token: response.data.tokenString });
+        dispatch(setUserProfile(tokenMethod.get()?.token));
+        toast.success('Đăng nhập thành công');
+        navigate(PATH.HOME, { replace: true });
+      }
     },
-    onError: (error: Error) => {
+    onError: (error: AxiosError) => {
       toast.dismiss();
-      console.log('Login failed', error.message);
-      if (error.message === 'Request failed with status code 401') {
+      console.log('Login failed', error);
+      if (error.status === 401) {
         toast.error('Tài khoản của bạn đã bị khóa, Vui lòng liên hệ admin');
       } else {
         toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');
@@ -54,6 +57,7 @@ export const useLogin = () => {
  */
 export const useRegister = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { mutate: registerUser, ...rest } = useMutation({
     mutationKey: ['register'],
     mutationFn: ({
@@ -74,14 +78,20 @@ export const useRegister = () => {
         gender,
         roleId,
       }),
-    onSuccess: () => {
+    onSuccess: async (response) => {
       toast.dismiss();
-      toast.success('Đăng ký tài khoản thành công');
-      navigate(PATH.LOGIN, { replace: true });
+      await queryClient.setQueryData(['registerAccount'], response);
+      if (response.data) {
+        toast.success('Đăng ký tài khoản thành công');
+        navigate(PATH.LOGIN, { replace: true });
+      }
     },
-    onError: (err: Error) => {
+    onError: (error: AxiosError) => {
       toast.dismiss();
-      console.error('Error:', err.message);
+      console.error('Error:', error);
+      if (error.status === 400) {
+        toast.error('Email hoặc điện thoại đã tồn tại');
+      }
       toast.error('Đăng ký tài khoản thất bại');
     },
   });

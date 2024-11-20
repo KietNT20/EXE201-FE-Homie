@@ -5,6 +5,7 @@ const JOB_POST = '/JobPost';
 const PROFILES = '/Profiles';
 const TRANSACTION = '/TransactionHistory';
 const USER = '/User';
+const REVIEW = '/Review';
 
 export const API = {
   APPLICATION_API: {
@@ -48,5 +49,10 @@ export const API = {
   CATEGORY_API: {
     GET_ALL: '/Category/getAll',
     GET_BY_ID: '/Category/getById',
+  },
+  REVIEW_API: {
+    DELETE: REVIEW + '/Deleted/',
+    GET_BY_JOB_ID: REVIEW + '/getReviewByJobPost/',
+    CREATE: REVIEW + '/Create',
   },
 };
