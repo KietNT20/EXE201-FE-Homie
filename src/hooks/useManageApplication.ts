@@ -47,7 +47,7 @@ export const useGetApplicationById = (applicationId?: number | null) => {
 
 export const useGetApplicationByUserId = (userId?: number | null) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['applicationByUser', userId],
+    queryKey: ['applicationByUser'],
     queryFn: () => applicationService.getApplicationByUserId(userId!),
     enabled: !!userId,
     throwOnError: false,

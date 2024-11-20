@@ -64,7 +64,7 @@ const ServiceDetail = () => {
 
   // use multiple queries to get category details
 
-  const { data: userInfo } = useGetUserById(jobPost?.data?.employerId);
+  const { data: userInfo } = useGetUserById(jobPost?.data?.employerId ?? 0);
 
   const handleOpenModal = () => {
     setOpenModal(true);

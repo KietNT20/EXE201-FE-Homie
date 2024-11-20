@@ -36,6 +36,7 @@ export const API = {
     GET_PROFILES: PROFILES + '/getProfiles/',
     UPDATE: PROFILES + '/UpdateProfiles/',
     CREATE: PROFILES + '/CreateProfiles',
+    CHECK_FRIST_LOGIN: PROFILES + '/checkFirstLogin/',
   },
   USER_API: {
     GET_ALL: USER + '/getAllUser',

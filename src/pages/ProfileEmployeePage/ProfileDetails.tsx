@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks/reudxHook';
 import { useGetProfiles } from '@/hooks/useManageProfiles';
-import { useGetUserById } from '@/hooks/useManageUser';
+import { UserProfile } from '@/types/reduxStateType';
 import { formatDate } from '@/util/format';
 import {
   AccessTime,
@@ -15,17 +15,22 @@ import {
 } from '@mui/icons-material';
 import { Avatar, CircularProgress } from '@mui/material';
 
-const ProfileDetails = () => {
+interface ProfileDetailsProps {
+  profileLoading: unknown;
+  userDetails: UserProfile;
+}
+
+const ProfileDetails = ({
+  profileLoading,
+  userDetails,
+}: ProfileDetailsProps) => {
   const { userProfile } = useAppSelector((state) => state.profile);
   const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
   const { data: profileUSerId, isLoading: profileIsLoading } = useGetProfiles(
     userId ?? 0,
   );
-  const { data: userDetails, isLoading: userDetailLoading } = useGetUserById(
-    userProfile?.id,
-  );
 
-  if (userDetailLoading || profileIsLoading) {
+  if (profileLoading || profileIsLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
         <div className="text-center">
@@ -78,12 +83,12 @@ const ProfileDetails = () => {
         <div className="mb-8 rounded-xl bg-gradient-to-r from-blue-500 to-blue-400 p-6 text-white shadow-lg">
           <div className="flex flex-col items-center space-y-4 md:flex-row md:space-x-6 md:space-y-0">
             <Avatar
-              src={userDetails?.data.avatarUrl}
-              alt={userDetails?.data.name}
+              src={userDetails.avatarUrl}
+              alt={userDetails.name}
               className="h-32 w-32 border-4 border-white shadow-xl"
             />
             <div className="text-center md:text-left">
-              <h2 className="text-3xl font-bold">{userDetails?.data.name}</h2>
+              <h2 className="text-3xl font-bold">{userDetails.name}</h2>
               <p className="mt-2 text-blue-100">Thông Tin Chi Tiết Hồ Sơ</p>
             </div>
           </div>
@@ -100,22 +105,22 @@ const ProfileDetails = () => {
               <InfoItem
                 icon={EmailOutlined}
                 label="Email"
-                value={userDetails?.data.email}
+                value={userDetails.email}
               />
               <InfoItem
                 icon={Phone}
                 label="Số điện thoại"
-                value={userDetails?.data.phone}
+                value={userDetails.phone}
               />
               <InfoItem
                 icon={CalendarToday}
                 label="Ngày sinh"
-                value={formatDate(userDetails?.data.dateOfBirth)}
+                value={formatDate(userDetails.dateOfBirth)}
               />
               <InfoItem
                 icon={Person}
                 label="Giới tính"
-                value={userDetails?.data.gender === 'Male' ? 'Nam' : 'Nữ'}
+                value={userDetails.gender === 'Male' ? 'Nam' : 'Nữ'}
               />
             </div>
           </div>

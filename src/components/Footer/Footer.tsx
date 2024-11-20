@@ -17,9 +17,9 @@ const Footer = () => {
             <div className="footer__info">
               <p className="footer__info-company mb-3">Công Ty TNHH Homie</p>
               <p className="footer__info-email mb-3">
-                email: support@homie.com
+                email: thucnvse140242@fpt.edu.vn
               </p>
-              <p className="footer__info-hotline">Hotline: 1900 0933</p>
+              <p className="footer__info-hotline">Hotline: 0386 275 334</p>
             </div>
           </div>
           <div className="footer__top-company">

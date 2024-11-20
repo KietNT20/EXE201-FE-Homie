@@ -1,6 +1,6 @@
 import { useCreateProfiles } from '@/hooks/useManageProfiles';
 import { ProfilesPayload } from '@/types/types';
-import { Box, Button, Modal, TextField } from '@mui/material';
+import { Box, Button, Modal, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 
 interface CreateProfileModalProps {
@@ -20,7 +20,6 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
     skills: '',
     experience: '',
     availability: '',
-    ratingAvg: 0,
   });
 
   const { mutate: createProfile } = useCreateProfiles();
@@ -37,7 +36,6 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
       skills: '',
       experience: '',
       availability: '',
-      ratingAvg: 0,
     });
     onClose();
   };
@@ -50,7 +48,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
     >
       <Box
         sx={{
-          width: 600,
+          width: 800,
           bgcolor: 'background.paper',
           p: 4,
           borderRadius: 2,
@@ -58,22 +56,13 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
           margin: 0,
         }}
       >
-        <h2>Đơn đăng kí trở thành đối tác</h2>
+        <Typography variant='h4'>Tạo hồ sơ công việc của bạn</Typography>
         <form>
-          <TextField
-            className="mt-6"
-            label="Thông tin cá nhân"
-            fullWidth
-            variant="outlined"
-            value={profileData.bio}
-            onChange={(e) =>
-              setProfileData({ ...profileData, bio: e.target.value })
-            }
-          />
           <TextField
             className="mt-4"
             label="Kỹ năng"
             fullWidth
+            multiline
             variant="outlined"
             value={profileData.skills}
             onChange={(e) =>
@@ -82,8 +71,9 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
           />
           <TextField
             className="mt-4"
-            label="Kinh nghiệm"
+            label="Kinh nghiệm làm việc"
             fullWidth
+            multiline
             variant="outlined"
             value={profileData.experience}
             onChange={(e) =>
@@ -94,6 +84,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             className="mt-4"
             label="Thời gian có sẵn"
             fullWidth
+            multiline
             variant="outlined"
             value={profileData.availability}
             onChange={(e) =>
@@ -101,38 +92,36 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
             }
           />
           <TextField
-            className="mt-4"
-            label="Đánh giá"
+            className="mt-6"
+            label="Miêu tả về bản thân"
             fullWidth
+            multiline
+            rows={4}
             variant="outlined"
-            type="number"
-            value={profileData.ratingAvg}
+            value={profileData.bio}
             onChange={(e) =>
-              setProfileData({
-                ...profileData,
-                ratingAvg: Number(e.target.value),
-              })
+              setProfileData({ ...profileData, bio: e.target.value })
             }
           />
         </form>
-        <div className="mt-4">
+        <div className="flex justify-end gap-2 mt-4">
           <Button
-            className=" px-8"
+            className="px-8"
             size="medium"
-            variant="contained"
+            variant="outlined"
+            color="error"
+            onClick={handleClose}
+          >
+            Hủy
+          </Button>
+          <Button
+            className="px-8"
+            size="medium"
+            variant="outlined"
             color="info"
             onClick={handleCreateProfile}
           >
             Tạo
-          </Button>
-          <Button
-            className="ml-4 px-8"
-            size="medium"
-            variant="contained"
-            color="secondary"
-            onClick={handleClose}
-          >
-            Hủy
           </Button>
         </div>
       </Box>

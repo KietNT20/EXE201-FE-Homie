@@ -1,4 +1,5 @@
 import { userService } from '@/services/userService';
+import { UserUpdatePayload } from '@/types/types';
 import { User } from '@/types/types.common';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -16,13 +17,12 @@ export const useGetApiUsers = () => {
   };
 };
 
-export const useGetUserById = (userId?: number | null) => {
+export const useGetUserById = (userId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['user', userId],
-    queryFn: () => userService.getUserById(userId!),
+    queryKey: ['userDetail', userId],
+    queryFn: () => userService.getUserById(userId),
     enabled: !!userId,
     throwOnError: false,
-    retry: 1,
   });
 
   return {
@@ -68,33 +68,30 @@ export const useCreateUser = () => {
   return { mutate, ...rest };
 };
 
-export const useUpdateUser = () => {
+export const useUpdateUser = (userId: number) => {
   const queryClient = useQueryClient();
   const { mutate, ...rest } = useMutation({
     mutationFn: ({
-      id,
       name,
       email,
       password,
       phone,
       dateOfBirth,
       gender,
-      roleId,
-    }: User) =>
-      userService.updateUser({
-        id,
+    }: UserUpdatePayload) =>
+      userService.updateUser(userId, {
         name,
         email,
         password,
         phone,
         dateOfBirth,
         gender,
-        roleId,
+        roleId: 4,
       }),
     onSuccess: async () => {
       toast.dismiss();
       await queryClient.invalidateQueries({
-        queryKey: ['users'],
+        queryKey: ['userDetail', userId],
       });
       toast.success('Update User Successfully!!');
     },

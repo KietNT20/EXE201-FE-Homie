@@ -2,7 +2,7 @@ import {
   District,
   ExtendedJobPostFormData,
 } from '@/pages/ServicePage/schemas/schema';
-import { Category, JobPost } from './types.common';
+import { Category, JobPost, User } from './types.common';
 
 export type TokenResponse = string;
 
@@ -87,7 +87,7 @@ export interface Profiles {
   skills: string;
   experience: string;
   availability: string;
-  ratingAvg: number;
+  ratingAvg?: number;
 }
 
 export type ProfilesPayload = Omit<Profiles, 'profileId'>;
@@ -159,3 +159,5 @@ export interface JobPostModalProps {
   districts: District[];
   isPending?: boolean;
 }
+
+export type UserUpdatePayload = Omit<User, 'id'>;

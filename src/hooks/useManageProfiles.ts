@@ -2,11 +2,12 @@ import { queryClient } from '@/App';
 import { profileService } from '@/services/profileService';
 import { Profiles, ProfilesPayload } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 
 export const useGetProfiles = (userId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['profiles', userId],
+    queryKey: ['profiles'],
     queryFn: async () => {
       const response = await profileService.getProfiles(userId);
       return response.data;
@@ -44,12 +45,16 @@ export const useCreateProfiles = () => {
       await queryClient.invalidateQueries({
         queryKey: ['profiles'],
       });
-      toast.success('Create Profiles Successfully!!');
+      toast.success('Tạo hồ sơ công việc thành công');
     },
-    onError: (err) => {
+    onError: (err: AxiosError<{ message: string }>) => {
       toast.dismiss();
-      console.error('Error:', err);
-      toast.error('Create Profiles Failed');
+      console.error('Error:', err.response?.data.message);
+      if (err.response?.data.message === 'This user has Profiles') {
+        toast.error('Người dùng đã tạo hồ sơ thì sẽ không thể tạo lại');
+      } else {
+        toast.error('Tạo hồ sơ công việc thất bại');
+      }
     },
   });
 
@@ -59,18 +64,18 @@ export const useCreateProfiles = () => {
 export const useUpdateProfiles = (profileId: number) => {
   const { mutate, ...rest } = useMutation({
     mutationFn: (payload: Profiles) => {
-      console.log(payload, 'profiles');
-      return profileService.updateProfiles(payload, profileId);
+      // console.log(payload, 'profiles');
+      return profileService.updateProfiles(profileId, payload);
     },
     onSuccess: (payload) => {
       toast.dismiss();
-      queryClient.setQueryData(['profiles', profileId], payload);
-      toast.success('Update Profiles Successfully!!');
+      queryClient.setQueryData(['profiles'], payload);
+      toast.success('Cập nhật hồ sơ công việc thành công');
     },
-    onError: (err) => {
+    onError: (err: AxiosError<{ message: string }>) => {
       toast.dismiss();
-      console.error('Error:', err);
-      toast.error('Update Profiles Failed');
+      console.error('Error:', err.response?.data.message);
+      toast.error('Cập nhật hồ sơ công việc thất bại');
     },
   });
 

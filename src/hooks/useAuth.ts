@@ -33,10 +33,14 @@ export const useLogin = () => {
       toast.success('Đăng nhập thành công');
       navigate(PATH.HOME, { replace: true });
     },
-    onError: (error) => {
+    onError: (error: Error) => {
       toast.dismiss();
-      console.log('Login failed', error);
-      toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');
+      console.log('Login failed', error.message);
+      if (error.message === 'Request failed with status code 401') {
+        toast.error('Tài khoản của bạn đã bị khóa, Vui lòng liên hệ admin');
+      } else {
+        toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');
+      }
     },
   });
 
@@ -75,9 +79,9 @@ export const useRegister = () => {
       toast.success('Đăng ký tài khoản thành công');
       navigate(PATH.LOGIN, { replace: true });
     },
-    onError: (err: any) => {
+    onError: (err: Error) => {
       toast.dismiss();
-      console.error('Error:', err.response?.data?.message);
+      console.error('Error:', err.message);
       toast.error('Đăng ký tài khoản thất bại');
     },
   });

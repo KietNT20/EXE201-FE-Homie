@@ -1,11 +1,11 @@
 import { transactionService } from '@/services/transactionService';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetTransactionById = (id: number) => {
+export const useGetTransactionById = (transactionId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['transactionDetails', id],
-    queryFn: () => transactionService.getTransactionById(id),
-    enabled: !!id,
+    queryKey: ['transactionDetails', transactionId],
+    queryFn: () => transactionService.getTransactionById(transactionId),
+    enabled: !!transactionId,
     throwOnError: false,
   });
 
@@ -17,7 +17,7 @@ export const useGetTransactionById = (id: number) => {
 
 export const useGetTransactionByUserId = (userId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['transactionByUserId', userId],
+    queryKey: ['transactionByUserId'],
     queryFn: () => transactionService.getTransactionByUserId(userId),
     enabled: !!userId,
     throwOnError: false,
