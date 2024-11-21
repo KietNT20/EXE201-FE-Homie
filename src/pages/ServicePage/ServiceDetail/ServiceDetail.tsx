@@ -221,13 +221,13 @@ const ServiceDetail = () => {
           </Paper>
         </Grid2>
         {/* Right Column - Property Details */}
-        <Grid2 size={{ xs: 12, md: 8 }}>
+        <Grid2 size={{ md: 12, lg: 8 }}>
           <Paper elevation={0} className="p-4 md:p-6">
             <Typography variant="h6" className="font-bold mb-4 text-[1.5rem]">
               Thông tin chi tiết
             </Typography>
             <Grid2 container spacing={3}>
-              <Grid2 size={{ xs: 12, sm: 6 }}>
+              <Grid2 size={{ sm: 12, md: 6 }}>
                 <Card variant="outlined" className="h-full">
                   <CardContent>
                     <Stack spacing={3}>
@@ -286,7 +286,7 @@ const ServiceDetail = () => {
                 </Card>
               </Grid2>
 
-              <Grid2 size={{ xs: 12, sm: 6 }}>
+              <Grid2 size={{ sm: 12, md: 6 }}>
                 <Card variant="outlined" className="h-full">
                   <CardContent>
                     <Stack spacing={3}>

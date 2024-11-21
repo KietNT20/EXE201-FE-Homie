@@ -1,13 +1,9 @@
-import { banner } from '@/constant/image';
 import { Container } from '@mui/material';
 
 const CommitPage = () => {
   return (
     <Container maxWidth="lg">
-      <section className="commit py-1">
-        <div className="commit__banner">
-          <img src={banner} alt="" />
-        </div>
+      <section className="commit py-10">
         <div className="commit__content">
           <h1>Chính Sách Bảo Hành và Hoàn Tiền - Homie</h1>
 

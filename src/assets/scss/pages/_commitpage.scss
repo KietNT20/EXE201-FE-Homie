@@ -7,7 +7,7 @@
     /* Adjust based on how wide you want the section */
     height: 250px;
     /* Adjust this based on your needs */
-    background-image: url('src/assets/img/submarine.jpg');
+    // background-image: url('src/assets/img/submarine.jpg');
     /* Use the path to your image here */
     background-size: cover;
     background-position: center;
@@ -47,7 +47,7 @@
   }
 
   .commit__banner {
-    margin: 30px 0;
+    margin: 1rem 0;
     // width: 100%;
     // height: 250px;
     img {
@@ -57,14 +57,20 @@
   }
 
   .commit__content {
-    h1,
+    h1 {
+      font-size: 1.75rem;
+      color: #2e86c1;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
     h2 {
       color: #2e86c1;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
 
-    h1 {
-      text-align: center;
+    h3 {
+      font-size: 1.25rem;
     }
 
     ul {

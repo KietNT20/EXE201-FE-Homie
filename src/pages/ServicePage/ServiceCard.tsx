@@ -124,7 +124,7 @@ const ServiceCard = React.memo(
             </Stack>
 
             {/* Category Section - Fixed height */}
-            <Box className="h-36 mb-2">
+            <Box className="max-h-36 mb-2">
               <Box className="flex items-center gap-2 mb-2">
                 <CleaningServices className="text-gray-500 w-5 h-5" />
                 <Typography

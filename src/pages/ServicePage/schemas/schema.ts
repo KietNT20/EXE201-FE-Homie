@@ -35,10 +35,7 @@ export const jobPostSchema = yup.object().shape({
     .string()
     .required('Vui lòng nhập tiêu đề')
     .min(3, 'Tiêu đề phải có ít nhất 3 ký tự'),
-  description: yup
-    .string()
-    .required('Vui lòng nhập mô tả')
-    .min(10, 'Mô tả phải có ít nhất 10 ký tự'),
+  description: yup.string().min(10, 'Mô tả phải có ít nhất 10 ký tự'),
   // location: yup.string().required('Vui lòng nhập địa chỉ chi tiết'),
   squareMeters: yup
     .number()
