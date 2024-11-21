@@ -43,6 +43,10 @@ export const useLogin = () => {
         error.response?.data.message === 'Thông tin đăng nhập không đúng!!!'
       ) {
         toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');
+      } else if (
+        error.response?.data.message === 'This account has been blocked!!!'
+      ) {
+        toast.error('Tài khoản của bạn đã bị khóa');
       }
     },
   });
