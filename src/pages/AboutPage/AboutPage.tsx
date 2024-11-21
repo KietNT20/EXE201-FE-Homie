@@ -62,6 +62,8 @@ const AboutPage: React.FC = () => {
             src={clean_hero}
             alt="Cleaning"
             className="w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-black/30">
             <div className="container mx-auto px-4 h-full flex items-center">

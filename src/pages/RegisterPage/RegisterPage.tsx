@@ -71,6 +71,8 @@ const RegisterPage = () => {
                 className="outline-none border-none"
                 src={logo}
                 alt="Logo Homie"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div>
@@ -78,6 +80,8 @@ const RegisterPage = () => {
                 className="outline-none border-none"
                 src={cleaner}
                 alt="Banner"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </figure>

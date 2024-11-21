@@ -102,7 +102,12 @@ const NewsPage = () => {
   return (
     <div className="news-page">
       <div className="banner">
-        <img src={bannerImage} alt="Service Banner" className="banner-image" />
+        <img
+          src={bannerImage}
+          alt="Service Banner"
+          className="banner-image"
+          loading="lazy"
+        />
         <div className="banner-text">
           <h1>Tin Tức Mới</h1>
           <p>Home / News</p>
@@ -113,7 +118,7 @@ const NewsPage = () => {
         <div className="news-grid">
           {currentItems.map((item) => (
             <div key={item.id} className="news-card">
-              <img src={item.image} alt={item.title} />
+              <img src={item.image} alt={item.title} loading="lazy" />
               <div className="date">{item.date}</div>
               <h3>{item.title}</h3>
               <button onClick={() => setSelectedItem(item)}>Đọc Thêm</button>
@@ -172,7 +177,11 @@ const NewsPage = () => {
                 ×
               </button>
               <h2>{selectedItem.title}</h2>
-              <img src={selectedItem.image} alt={selectedItem.title} />
+              <img
+                src={selectedItem.image}
+                alt={selectedItem.title}
+                loading="lazy"
+              />
               <p className="date">{selectedItem.date}</p>
               <p className="content">{selectedItem.content}</p>
             </div>

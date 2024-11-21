@@ -12,6 +12,8 @@ const Footer = () => {
                 src={logoFooter}
                 alt="Homie logo"
                 className="footer__thumb-img"
+                loading="lazy"
+                decoding="async"
               />
             </figure>
             <div className="footer__info">

@@ -24,7 +24,9 @@ const HomieComponent = () => {
               <img
                 src={logo}
                 alt="Homie logo"
-                className="h-16 w-16 object-contain outline-none border-none"
+                className="h-16 w-16 object-contain outline-none border-none select-none"
+                loading="lazy"
+                decoding="async"
               />
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 ml-4">
                 Homie
@@ -33,30 +35,6 @@ const HomieComponent = () => {
             <p className="text-xl md:text-2xl text-gray-600">
               Your Home's Guardian
             </p>
-            {/* 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <input
-                type="text"
-                placeholder="Tìm kiếm Phổ Biến: Dọn nhà, Giặt Giũ, Nấu Ăn"
-                className="text-base w-full px-4 py-3 rounded-lg border border-gray-300 outline-none shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-              <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-base">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-                <span className="font-medium text-nowrap">Tìm kiếm</span>
-              </button>
-            </div> */}
           </div>
         </section>
 
@@ -78,7 +56,15 @@ const HomieComponent = () => {
             ))}
           </div>
           <div className="flex items-center justify-center">
-            <img src={cleaner} alt="Service workers" className="" />
+            <img
+              src={cleaner}
+              alt="Service workers"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto max-w-2xl object-cover"
+              width="800"
+              height="600"
+            />
           </div>
         </section>
       </Container>

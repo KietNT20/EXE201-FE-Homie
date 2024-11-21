@@ -79,6 +79,8 @@ const Header = () => {
                 src={logo}
                 alt="Homie Logo"
                 className="h-12 sm:h-20 w-auto"
+                loading="lazy"
+                decoding="async"
               />
             </Link>
           </Box>

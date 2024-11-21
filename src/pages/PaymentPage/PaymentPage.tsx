@@ -39,7 +39,7 @@ const PaymentPage: React.FC = () => {
 
         <Box className="qr-code-section">
           <Box className="qr-image">
-            <img src={imgQR} alt="QR Code" />
+            <img src={imgQR} alt="QR Code" loading="lazy" decoding="async" />
           </Box>
         </Box>
       </Box>

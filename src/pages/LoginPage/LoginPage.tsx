@@ -61,6 +61,8 @@ const LoginPage = () => {
               className="w-full h-full object-cover"
               src={submarine}
               alt="Ảnh máy hút bụi"
+              loading="lazy"
+              decoding="async"
             />
           </figure>
         </div>
