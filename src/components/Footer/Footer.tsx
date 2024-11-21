@@ -3,7 +3,7 @@ import { SocialIcon } from 'react-social-icons';
 
 const Footer = () => {
   return (
-    <footer className="footer pt-5 pb-6 sm:pt-16 sm:pb-12">
+    <footer className="footer pt-3 pb-2 sm:pt-6 sm:pb-5">
       <div className="container">
         <div className="footer__top grid gap-4 mb-2 md:grid-cols-2 md:gap-6 md:mb-4 lg:flex lg:justify-around h-full">
           <div className="footer__top-content">

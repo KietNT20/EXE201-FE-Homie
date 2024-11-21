@@ -2,7 +2,7 @@
 
 // create css component
 .footer__title {
-  @include mixins.text(vnRegular, 0.8rem, 1.25rem, #98a2b3);
+  @include mixins.text(vnRegular, 0.75rem, 1.25rem, #98a2b3);
   padding-bottom: 1rem;
   @include mixins.md {
     @include mixins.text(vnRegular, 1rem, 1.5rem, #98a2b3);
@@ -15,7 +15,7 @@
     cursor: pointer;
 
     a {
-      @include mixins.text(vnRegular, 0.8rem, 1.5rem, #eaecf0);
+      @include mixins.text(vnRegular, 0.75rem, 1rem, #eaecf0);
       color: var(--white-cl);
       text-decoration: none;
       @include mixins.transition(var(--duration));
@@ -24,7 +24,7 @@
         text-decoration: underline;
       }
       @include mixins.md {
-        @include mixins.text(vnRegular, 1rem, 1.5rem, #eaecf0);
+        @include mixins.text(vnRegular, 0.9rem, 1.5rem, #eaecf0);
       }
     }
   }
