@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container">
         <div className="footer__top grid gap-4 mb-2 md:grid-cols-2 md:gap-6 md:mb-4 lg:flex lg:justify-around h-full">
           <div className="footer__top-content">
-            <figure className="footer__thumb rounded-xl py-3 h-14 w-20 md:h-20 md:w-36 mb-8">
+            <figure className="footer__thumb rounded-xl h-8 w-10 md:h-12 md:w-20 mb-6">
               <img
                 src={logoFooter}
                 alt="Homie logo"
