@@ -36,12 +36,12 @@ export const useLogin = () => {
         navigate(PATH.HOME, { replace: true });
       }
     },
-    onError: (error: AxiosError) => {
+    onError: (error: AxiosError<{ message: string }>) => {
       toast.dismiss();
       console.log('Login failed', error);
-      if (error.status === 401) {
-        toast.error('Tài khoản của bạn đã bị khóa, Vui lòng liên hệ admin');
-      } else {
+      if (
+        error.response?.data.message === 'Thông tin đăng nhập không đúng!!!'
+      ) {
         toast.error('Vui lòng kiểm tra lại email hoặc mật khẩu');
       }
     },

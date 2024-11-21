@@ -76,7 +76,12 @@ const JobDetailModal = ({ open, onClose, job }: JobDetailModalProps) => {
 
             <Box className="flex items-center gap-2">
               <AttachMoney color="action" />
-              <Typography>Giá: <span className='text-red-500 font-semibold'>{formatPrice(job.price ?? 0)}</span></Typography>
+              <Typography>
+                Giá:{' '}
+                <span className="text-red-500 font-semibold">
+                  {formatPrice(job.price ?? 0)}
+                </span>
+              </Typography>
             </Box>
 
             <Box className="flex items-center gap-2">
