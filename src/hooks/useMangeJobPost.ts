@@ -1,5 +1,6 @@
 import { jobPostService } from '@/services/jobPostService';
-import { JobPostDetail, JobPostPayload, JobPostResponse } from '@/types/types';
+import { JobPostDetail, JobPostPayload } from '@/types/types';
+import { JobPostResponse } from '@/types/types.response ';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 
