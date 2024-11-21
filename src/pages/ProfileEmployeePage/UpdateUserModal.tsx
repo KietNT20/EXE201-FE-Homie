@@ -203,9 +203,9 @@ const UpdateUserModal = ({
 
           <div className="flex justify-end gap-3 mt-6">
             <Button
-              variant="text"
+              variant="outlined"
               onClick={onClose}
-              className="min-w-[100px]"
+              className="md:min-w-[100px]"
               color="error"
             >
               Hủy
@@ -214,7 +214,7 @@ const UpdateUserModal = ({
               type="submit"
               variant="contained"
               color="primary"
-              className="min-w-[100px]"
+              className="md:min-w-[100px]"
               disabled={disabled}
             >
               Cập nhật

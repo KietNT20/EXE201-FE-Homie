@@ -1,4 +1,4 @@
-import { JobPostStatus } from '@/types/types';
+import { ApplicationStatus } from '@/types/types';
 import { Container, SelectChangeEvent, Typography } from '@mui/material';
 import { ActionMenu } from './ActionMenu';
 import { ApplicationTable } from './ApplicationTable';
@@ -15,6 +15,8 @@ const AppliedPage = () => {
     newStatus,
     isConfirmOpen,
     appliedUserData,
+    cancelReason,
+    setCancelReason,
     handleMenuOpen,
     handleMenuClose,
     handleModalClose,
@@ -26,8 +28,14 @@ const AppliedPage = () => {
     setNewStatus,
   } = useApplicationTable();
 
-  const handleStatusChange = (event: SelectChangeEvent<JobPostStatus>) => {
-    setNewStatus(event.target.value as JobPostStatus);
+  const handleStatusChange = (event: SelectChangeEvent<ApplicationStatus>) => {
+    setNewStatus(event.target.value as ApplicationStatus);
+    if (event.target.value !== ApplicationStatus.CANCEL) {
+      setCancelReason('');
+    }
+  };
+  const handleReasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCancelReason(event.target.value);
   };
 
   return (
@@ -54,14 +62,17 @@ const AppliedPage = () => {
       />
 
       <StatusUpdateModal
+        cancelReason={cancelReason}
         open={isModalOpen}
         status={newStatus}
         onClose={handleModalClose}
+        onReasonChange={handleReasonChange}
         onStatusChange={handleStatusChange}
         onSubmit={handleStatusSubmit}
       />
 
       <ConfirmCancelDialog
+        isCancel={newStatus === ApplicationStatus.CANCEL}
         open={isConfirmOpen}
         onClose={handleConfirmClose}
         onConfirm={handleConfirmCancel}

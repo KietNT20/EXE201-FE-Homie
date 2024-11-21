@@ -1,4 +1,4 @@
-import { JobPostStatus } from '@/types/types';
+import { ApplicationStatus, JobPostStatus } from '@/types/types';
 import {
   Check,
   Close,
@@ -6,7 +6,7 @@ import {
   HourglassFull,
 } from '@mui/icons-material';
 
-export const getStatusConfig = (status: JobPostStatus) => {
+export const getStatusConfig = (status: JobPostStatus | ApplicationStatus) => {
   switch (status) {
     case 'Done':
       return {
@@ -21,6 +21,7 @@ export const getStatusConfig = (status: JobPostStatus) => {
         label: 'Đã hủy',
       };
     case 'Application':
+    case 'Received':
       return {
         color: 'info' as 'info',
         icon: HourglassFull,

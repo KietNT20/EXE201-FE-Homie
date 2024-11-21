@@ -3,7 +3,7 @@ import {
   useGetApplicationByUserId,
   useUpdateApplicationStatus,
 } from '@/hooks/useManageApplication';
-import { Application, JobPostStatus } from '@/types/types';
+import { Application, ApplicationStatus } from '@/types/types';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 
@@ -12,8 +12,9 @@ export const useApplicationTable = () => {
   const [selectedApplication, setSelectedApplication] =
     useState<Application | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newStatus, setNewStatus] = useState<JobPostStatus | ''>('');
+  const [newStatus, setNewStatus] = useState<ApplicationStatus | ''>('');
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
+  const [cancelReason, setCancelReason] = useState('');
 
   const { userProfile } = useAppSelector((state) => state.profile);
   const { data: appliedUserData } = useGetApplicationByUserId(userProfile?.id!);
@@ -39,35 +40,40 @@ export const useApplicationTable = () => {
   const handleUpdateStatus = () => {
     setIsModalOpen(true);
     if (selectedApplication) {
-      setNewStatus(selectedApplication.status as JobPostStatus);
+      setNewStatus(selectedApplication.status as ApplicationStatus);
     }
     handleMenuClose();
   };
 
   const handleStatusSubmit = () => {
     if (selectedApplication && newStatus) {
-      if (newStatus === JobPostStatus.CANCEL) {
-        setIsConfirmOpen(true);
-        setIsModalOpen(false);
-      } else {
-        updateStatusApplied({
-          applicationId: selectedApplication.id,
-          status: newStatus,
-        });
-        handleModalClose();
+      if (newStatus === ApplicationStatus.CANCEL && !cancelReason) {
+        return;
       }
+      setIsConfirmOpen(true);
+      setIsModalOpen(false);
     }
   };
 
   const handleConfirmCancel = () => {
     if (selectedApplication) {
-      updateStatusApplied({
-        applicationId: selectedApplication.id,
-        status: JobPostStatus.CANCEL,
-      });
+      if (newStatus === ApplicationStatus.CANCEL) {
+        updateStatusApplied({
+          applicationId: selectedApplication.id,
+          status: ApplicationStatus.CANCEL,
+          reason: cancelReason,
+        });
+      } else if (newStatus === ApplicationStatus.DONE) {
+        updateStatusApplied({
+          applicationId: selectedApplication.id,
+          status: ApplicationStatus.DONE,
+          reason: null,
+        });
+      }
     }
     setIsConfirmOpen(false);
     setNewStatus('');
+    setCancelReason('');
   };
 
   const handleConfirmClose = () => {
@@ -86,6 +92,8 @@ export const useApplicationTable = () => {
     newStatus,
     isConfirmOpen,
     appliedUserData,
+    cancelReason,
+    setCancelReason,
     handleMenuOpen,
     handleMenuClose,
     handleModalClose,

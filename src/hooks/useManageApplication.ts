@@ -1,6 +1,10 @@
 import { applicationService } from '@/services/applicationService';
-import { ApplicationPayload } from '@/types/types';
+import {
+  ApplicationPayload,
+  ApplicationUpdateStatusPayload,
+} from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 
 export const useCreateApplication = () => {
@@ -30,7 +34,6 @@ export const useGetAllApplication = () => {
   const { data, ...rest } = useQuery({
     queryKey: ['applications'],
     queryFn: () => applicationService.getAllApplications(),
-    throwOnError: true,
   });
   return { data, ...rest };
 };
@@ -50,7 +53,6 @@ export const useGetApplicationByUserId = (userId?: number | null) => {
     queryKey: ['applicationByUser'],
     queryFn: () => applicationService.getApplicationByUserId(userId!),
     enabled: !!userId,
-    throwOnError: false,
   });
   return { data, ...rest };
 };
@@ -62,13 +64,9 @@ export const useUpdateApplicationStatus = () => {
     mutationFn: ({
       applicationId,
       status,
-    }: {
-      applicationId: number;
-      status: string;
-    }) => {
-      return applicationService.updateStatus(applicationId, status);
-    },
-
+      reason,
+    }: ApplicationUpdateStatusPayload) =>
+      applicationService.updateStatus({ applicationId, status, reason }),
     onMutate: async ({ applicationId, status }) => {
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({
@@ -91,14 +89,18 @@ export const useUpdateApplicationStatus = () => {
       return { previousData };
     },
 
-    onError: (err, _, context) => {
+    onError: (error: AxiosError<{ message: string }>, _, context) => {
       toast.dismiss();
-      console.error('Error:', err);
+      console.error('Error:', error);
       // Rollback to previous value
       if (context?.previousData) {
         queryClient.setQueryData(['applicationByUser'], context.previousData);
       }
-      toast.error('Cập nhật trạng thái thất bại');
+      if (error.response?.data.message === 'This Application done') {
+        toast.error('Bài đăng đã được hoàn thành');
+      } else {
+        toast.error('Cập nhật trạng thái thất bại');
+      }
     },
 
     onSettled: async () => {

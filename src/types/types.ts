@@ -12,8 +12,15 @@ export type TokenResponse = string;
 export enum JobPostStatus {
   DONE = 'Done',
   CANCEL = 'Cancel',
-  PENDING = 'Pending',
+  PENDING = 'Waiting',
   RECEIVED = 'Application',
+}
+
+export enum ApplicationStatus {
+  DONE = 'Done',
+  CANCEL = 'Cancel',
+  PENDING = 'Pending',
+  RECEIVED = 'Received',
 }
 
 /*
@@ -46,38 +53,28 @@ export interface JobPostDetail {
   message?: string;
 }
 
-export interface JobPostResponse {
-  data: JobPost[];
-  tolalItems?: number;
-  totalPage?: number;
-}
-
 export interface ApplicationPayload {
   jobId: number;
   workerId: number;
   message?: string;
 }
 
-export interface ApplicationStatus extends ApplicationPayload {
-  id: number;
+export interface ApplicationUpdateStatusPayload {
+  applicationId: number;
   status: string;
+  reason?: string | null;
 }
 
 export interface Application {
   id: number;
   jobId?: number;
   workerId?: number;
-  message: string;
-  status: JobPostStatus;
+  message: string | null;
+  status: ApplicationStatus;
   appliedAt: string;
   typeJobPost?: number;
   jobPost?: any;
   worker?: any;
-}
-
-export interface ApplicationResponse {
-  data: Application[];
-  message?: string;
 }
 
 export interface Profiles {
@@ -161,3 +158,18 @@ export interface JobPostModalProps {
 }
 
 export type UserUpdatePayload = Omit<User, 'id'>;
+
+export interface ReviewByJobId {
+  reviewId: number;
+  reviewedId: number;
+  reviewerName: string;
+  jobId: number;
+  rating: number;
+  comment: string | null;
+}
+
+export interface ReviewPayload {
+  reviewerId: number;
+  rating: number;
+  comment: string | null;
+}

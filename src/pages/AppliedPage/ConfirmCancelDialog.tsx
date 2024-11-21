@@ -9,6 +9,7 @@ import {
 
 interface ConfirmCancelDialogProps {
   open: boolean;
+  isCancel: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
@@ -17,6 +18,7 @@ export const ConfirmCancelDialog = ({
   open,
   onClose,
   onConfirm,
+  isCancel,
 }: ConfirmCancelDialogProps) => {
   return (
     <Dialog
@@ -26,12 +28,15 @@ export const ConfirmCancelDialog = ({
       aria-describedby="alert-dialog-description"
     >
       <DialogTitle id="alert-dialog-title">
-        Xác nhận hủy đơn ứng tuyển
+        {isCancel
+          ? 'Xác nhận hủy đơn ứng tuyển'
+          : 'Xác nhận hoàn thành công việc'}
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Bạn có chắc chắn muốn hủy đơn ứng tuyển này? Hành động này không thể
-          hoàn tác.
+          {isCancel
+            ? 'Bạn có chắc chắn muốn hủy đơn ứng tuyển này? Hành động này không thể hoàn tác.'
+            : 'Bạn có chắc chắn công việc đã hoàn thành? Hành động này không thể hoàn tác.'}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
@@ -39,7 +44,7 @@ export const ConfirmCancelDialog = ({
           Quay lại
         </Button>
         <Button onClick={onConfirm} color="error" variant="contained" autoFocus>
-          Xác nhận hủy
+          {isCancel ? 'Xác nhận hủy' : 'Xác nhận hoàn thành'}
         </Button>
       </DialogActions>
     </Dialog>

@@ -1,15 +1,16 @@
 import { API } from '@/api/apiUrl';
 import axiosInstance from '@/util/axiosInstance';
-import { ApplicationPayload } from './../types/types';
+import {
+  ApplicationPayload,
+  ApplicationUpdateStatusPayload,
+} from './../types/types';
 
 export const applicationService = {
   createApplication(payload: ApplicationPayload) {
     return axiosInstance.post(API.APPLICATION_API.CREATE, payload);
   },
-  updateStatus(applicationId: number, status: string) {
-    return axiosInstance.put(
-      `${API.APPLICATION_API.UPDATE_STATUS}/${applicationId}?status=${status}`,
-    );
+  updateStatus(payload: ApplicationUpdateStatusPayload) {
+    return axiosInstance.put(`${API.APPLICATION_API.UPDATE_STATUS}`, payload);
   },
   getAllApplications() {
     return axiosInstance.get(API.APPLICATION_API.GET_ALL);

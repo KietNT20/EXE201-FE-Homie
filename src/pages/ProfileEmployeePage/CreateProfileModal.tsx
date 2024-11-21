@@ -156,9 +156,10 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
           <Box className="flex justify-end gap-3 pt-4">
             <Button
               variant="outlined"
-              color="inherit"
+              color="error"
               onClick={handleClose}
               disabled={isPending}
+              className="md:min-w-[100px]"
             >
               Hủy
             </Button>
@@ -166,6 +167,7 @@ const CreateProfileModal: React.FC<CreateProfileModalProps> = ({
               type="submit"
               variant="contained"
               color="primary"
+              className="md:min-w-[100px]"
               disabled={isPending || !isFormValid()}
             >
               {isPending

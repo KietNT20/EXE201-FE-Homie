@@ -18,9 +18,7 @@ const ProfileEmployee = () => {
     userProfile?.id!,
   );
   const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
-  const { data: profilesData, isLoading: profileIsLoading } = useGetProfiles(
-    userId ?? 0,
-  );
+  const { data: profilesData } = useGetProfiles(userId ?? 0);
   // Determine if profile exists
   const hasProfile = profilesData?.data !== undefined;
   const handleOpenProfileModal = () => setOpenProfiles(true);
@@ -34,7 +32,7 @@ const ProfileEmployee = () => {
         <ProfileDetails
           profileUSerId={profilesData?.data}
           userDetails={userDetails?.data}
-          profileLoading={userDetailLoading || profileIsLoading}
+          profileLoading={userDetailLoading}
         />
         <div className="mt-3 flex flex-row-reverse gap-3">
           <Button

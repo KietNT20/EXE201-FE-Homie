@@ -49,7 +49,10 @@ const JobCard = ({ job }: JobCardProps) => {
             </Box>
             <Box className="flex items-center gap-2">
               <AttachMoney fontSize="small" color="action" />
-              <Typography variant="body2">
+              <Typography
+                variant="body2"
+                className="text-red-500 font-semibold"
+              >
                 {formatPrice(job.price ?? 0)}
               </Typography>
             </Box>

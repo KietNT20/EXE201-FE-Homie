@@ -1,9 +1,9 @@
-import { JobPostStatus } from '@/types/types';
+import { ApplicationStatus, JobPostStatus } from '@/types/types';
 import { getStatusConfig } from '@/util/getStatusConfig';
 import { Chip } from '@mui/material';
 
 type ChipProps = {
-  status: JobPostStatus;
+  status: JobPostStatus | ApplicationStatus;
 };
 
 const ChipComp = ({ status }: ChipProps) => {

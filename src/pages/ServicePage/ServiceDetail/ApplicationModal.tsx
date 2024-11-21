@@ -45,10 +45,17 @@ const ApplicationModal = ({
         </Box>
       </DialogContent>
       <DialogActions className="p-4">
-        <Button onClick={onClose} disabled={isSubmitting} color="inherit">
+        <Button
+          className="md:min-w-[100px]"
+          onClick={onClose}
+          disabled={isSubmitting}
+          color="error"
+          variant="outlined"
+        >
           Hủy
         </Button>
         <Button
+          className="md:min-w-[100px]"
           variant="contained"
           onClick={onSubmit}
           disabled={!message.trim() || isSubmitting}

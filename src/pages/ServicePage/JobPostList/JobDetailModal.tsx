@@ -10,7 +10,7 @@ import {
   LocationOn,
   SquareFoot,
 } from '@mui/icons-material';
-import { Box, IconButton, Modal, Typography } from '@mui/material';
+import { Box, Divider, IconButton, Modal, Typography } from '@mui/material';
 import CategoryChip from '../CategoryChip';
 import { JobPostUserResponse } from './JobListCreated';
 
@@ -32,25 +32,32 @@ const JobDetailModal = ({ open, onClose, job }: JobDetailModalProps) => {
       className="flex items-center justify-center"
     >
       <Box className="bg-white rounded-lg w-full max-w-2xl mx-4 p-6 relative">
-        <IconButton
-          onClick={onClose}
-          className="absolute right-4 top-4"
-          size="small"
-        >
-          <CloseIcon />
-        </IconButton>
+        <Box>
+          <Typography
+            variant="h5"
+            component={'h3'}
+            className="mb-6 font-semibold"
+          >
+            Chi tiết công việc
+          </Typography>
+          <IconButton
+            onClick={onClose}
+            className="absolute right-4 top-4"
+            size="small"
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
         <Box className="mb-4">
           <ChipComp status={job.status} />
         </Box>
         <Box className="mb-4">
-          <Typography variant="h5">{job.title}</Typography>
+          <Typography variant="h6" className="">
+            Tiêu đề: {job.title}
+          </Typography>
         </Box>
 
         <Box className="space-y-4">
-          <Typography variant="body1" className="whitespace-pre-line">
-            {job.description}
-          </Typography>
-
           <Box className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Box className="flex items-center gap-2">
               <LocationOn color="action" />
@@ -69,7 +76,7 @@ const JobDetailModal = ({ open, onClose, job }: JobDetailModalProps) => {
 
             <Box className="flex items-center gap-2">
               <AttachMoney color="action" />
-              <Typography>Giá: {formatPrice(job.price ?? 0)}</Typography>
+              <Typography>Giá: <span className='text-red-500 font-semibold'>{formatPrice(job.price ?? 0)}</span></Typography>
             </Box>
 
             <Box className="flex items-center gap-2">
@@ -97,6 +104,17 @@ const JobDetailModal = ({ open, onClose, job }: JobDetailModalProps) => {
               ))}
             </Box>
           </Box>
+
+          <Box>
+            <Typography variant="h6" className="mb-2">
+              Mô tả công việc:
+            </Typography>
+            <Typography variant="body1" className="whitespace-pre-line">
+              {job.description}
+            </Typography>
+          </Box>
+
+          <Divider />
 
           <Typography variant="body2" color="text.secondary">
             Ngày tạo: {formatDate(job.createDate)}

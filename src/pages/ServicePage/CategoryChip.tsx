@@ -17,7 +17,7 @@ const CategoryChip = ({ categoryId }: { categoryId: string | number }) => {
       <Chip
         label={categoryDetail?.data?.categoryName || 'Chưa xác định'}
         size="medium"
-        color="info"
+        color="primary"
         variant="outlined"
       />
     </Tooltip>

@@ -7,10 +7,10 @@ import toast from 'react-hot-toast';
 
 export const useGetProfiles = (userId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['profiles'],
-    queryFn: () => profileService.getProfiles(userId),
+    queryKey: ['profilesByUserId', userId],
+    queryFn: async () => await profileService.getProfiles(userId),
     enabled: !!userId,
-    throwOnError: false,
+    staleTime: 5 * 60 * 1000,
   });
 
   return {
@@ -64,9 +64,11 @@ export const useUpdateProfiles = (profileId: number) => {
       // console.log(payload, 'profiles');
       return profileService.updateProfiles(profileId, payload);
     },
-    onSuccess: (payload) => {
+    onSuccess: () => {
       toast.dismiss();
-      queryClient.setQueryData(['profiles'], payload);
+      queryClient.invalidateQueries({
+        queryKey: ['profilesByUserId'],
+      });
       toast.success('Cập nhật hồ sơ công việc thành công');
     },
     onError: (err: AxiosError<{ message: string }>) => {

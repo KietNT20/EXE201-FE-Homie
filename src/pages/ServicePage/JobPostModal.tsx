@@ -385,8 +385,21 @@ const JobPostModal = ({
 
             <Grid size={{ xs: 12 }}>
               <Box display="flex" justifyContent="flex-end" gap={2}>
-                <Button onClick={onClose}>Hủy</Button>
-                <Button type="submit" variant="contained" disabled={isPending}>
+                <Button
+                  onClick={onClose}
+                  color="error"
+                  className="md:min-w-[100px]"
+                  variant="outlined"
+                  disabled={isPending}
+                >
+                  Hủy
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disabled={isPending}
+                  className="md:min-w-[100px]"
+                >
                   Tạo mới
                 </Button>
               </Box>

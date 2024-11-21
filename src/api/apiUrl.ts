@@ -54,5 +54,6 @@ export const API = {
     DELETE: REVIEW + '/Deleted/',
     GET_BY_JOB_ID: REVIEW + '/getReviewByJobPost/',
     CREATE: REVIEW + '/Create',
+    CHECK_USER: REVIEW + '/checkUserHasReview/',
   },
 };
