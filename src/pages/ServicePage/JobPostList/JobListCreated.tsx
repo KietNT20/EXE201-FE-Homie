@@ -14,7 +14,8 @@ import { useState } from 'react';
 import JobCard from './JobCard';
 
 export interface JobPostUserResponse {
-  jobId: string;
+  jobId: number;
+  employerId: number;
   title: string;
   description: string;
   location: string;

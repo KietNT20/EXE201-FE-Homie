@@ -56,7 +56,7 @@ export const useCreateJobPost = () => {
       console.error('Error:', err);
       toast.error('Tạo công việc thất bại');
     },
-    onSuccess: async () => {
+    onSuccess: () => {
       toast.dismiss();
       toast.success('Tạo công việc thành công');
     },
@@ -71,7 +71,7 @@ export const useCreateJobPost = () => {
 
 export const useGetJobPostByUserId = (userId: number) => {
   const { data: jobPostUserData, ...rest } = useQuery({
-    queryKey: ['jobPostByUserId'],
+    queryKey: ['jobPostByUserId', { userId }],
     queryFn: () => jobPostService.getJobPostByUserId(userId),
     enabled: !!userId,
     throwOnError: true,

@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   profile: userProfileReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer as any);
+const persistedReducer = persistReducer(persistConfig, rootReducer as never);
 
 const store = configureStore({
   reducer: persistedReducer,

@@ -72,9 +72,6 @@ export interface Application {
   message: string | null;
   status: ApplicationStatus;
   appliedAt: string;
-  typeJobPost?: number;
-  jobPost?: any;
-  worker?: any;
 }
 
 export interface Profiles {

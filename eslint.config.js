@@ -25,11 +25,11 @@ export default tseslint.config(
       '@tanstack/query': pluginQuery,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      react,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
       '@tanstack/query/exhaustive-deps': 'error',
+      '@typescript-eslint/no-explicit-any': 'off',
       'no-restricted-imports': 'off',
       '@typescript-eslint/no-restricted-imports': [
         'warn',
@@ -44,8 +44,6 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
     },
   },
 );

@@ -42,7 +42,7 @@ export const useGetApplicationById = (applicationId?: number | null) => {
 
 export const useGetApplicationByUserId = (userId?: number | null) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['applicationByUser'],
+    queryKey: ['applicationByUser', { userId }],
     queryFn: () => applicationService.getApplicationByUserId(userId!),
     enabled: !!userId,
   });
@@ -68,15 +68,18 @@ export const useUpdateApplicationStatus = () => {
       // Snapshot previous value
       const previousData = queryClient.getQueryData(['applicationByUser']);
       // Optimistically update
-      queryClient.setQueryData(['applicationByUser'], (old: any) => {
-        if (!old?.data) return old;
-        return {
-          ...old,
-          data: old.data.map((item: any) =>
-            item.id === applicationId ? { ...item, status } : item,
-          ),
-        };
-      });
+      queryClient.setQueryData(
+        ['applicationByUser'],
+        (old: { data: any[] } | undefined) => {
+          if (!old) return old;
+          return {
+            ...old,
+            data: old.data.map((app: any) =>
+              app.id === applicationId ? { ...app, status } : app,
+            ),
+          };
+        },
+      );
 
       return { previousData };
     },
