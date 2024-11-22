@@ -59,7 +59,7 @@ const HomieComponent = () => {
             <img
               src={cleaner}
               alt="Service workers"
-              className="w-full h-auto max-w-2xl object-cover"
+              className="hidden md:block md:w-full md:h-auto md:max-w-2xl object-cover"
               width="800"
               height="600"
             />
