@@ -21,7 +21,7 @@ interface LoginResponse {
     tokenString: string;
   };
 }
-export const useLogin = (): { login: (data: InputLoginTypes) => void } => {
+export const useLogin = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

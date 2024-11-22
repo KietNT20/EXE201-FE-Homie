@@ -1,7 +1,7 @@
 import { STORAGE } from '@/constant/storage';
 
 interface Token {
-  tokenString?: string;
+  token?: string;
 }
 
 export const localToken = {

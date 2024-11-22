@@ -30,6 +30,7 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       '@tanstack/query/exhaustive-deps': 'error',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
       'no-restricted-imports': 'off',
       '@typescript-eslint/no-restricted-imports': [
         'warn',

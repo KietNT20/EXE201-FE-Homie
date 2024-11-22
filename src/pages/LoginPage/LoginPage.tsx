@@ -38,8 +38,8 @@ const LoginPage = () => {
 
   const { login, isPending: loginLoading } = useLogin();
 
-  const _onSubmit = (data: InputLoginTypes) => {
-    const { email, password } = data;
+  const _onSubmit = (payload: InputLoginTypes) => {
+    const { email, password } = payload;
     login({ email, password });
   };
 
