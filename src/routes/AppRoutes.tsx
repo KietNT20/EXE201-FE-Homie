@@ -1,13 +1,11 @@
 import Loading from '@/components/Loading/Loading';
-import PrivateRoute from '@/components/PrivateRoute/PrivateRoute';
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop';
 import { PATH } from '@/constant/path';
-import MainLayout from '@/layout/MainLayout';
-import PageNotFound from '@/pages/PageNotFound/PageNotFound';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 // Lazy load all pages
+const MainLayout = lazy(() => import('@/layout/MainLayout'));
 const HomePage = lazy(() => import('@/pages/HomePage/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage/AboutPage'));
 const LoginPage = lazy(() => import('@/pages/LoginPage/LoginPage'));
@@ -29,6 +27,10 @@ const TransactionPage = lazy(
 const AppliedPage = lazy(() => import('@/pages/AppliedPage/AppliedPage'));
 const JobListCreated = lazy(
   () => import('@/pages/ServicePage/JobPostList/JobListCreated'),
+);
+const PageNotFound = lazy(() => import('@/pages/PageNotFound/PageNotFound'));
+const PrivateRoute = lazy(
+  () => import('@/components/PrivateRoute/PrivateRoute'),
 );
 
 // Loading fallback component
