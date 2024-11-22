@@ -12,35 +12,27 @@ export const useCreateApplication = () => {
   const { mutate, ...rest } = useMutation({
     mutationFn: ({ jobId, workerId, message }: ApplicationPayload) =>
       applicationService.createApplication({ jobId, workerId, message }),
-    onSuccess: async () => {
-      toast.dismiss();
-      // console.log('Create Application Successfully:', response);
-      // Invalidate both the specific job post and the job posts list queries
-      await queryClient.invalidateQueries({
-        queryKey: ['jobPosts', 'applications'],
-      }); // Invalidate job list
-      toast.success('Yêu cầu của bạn đã được nhận');
-    },
     onError: (err) => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Giao dịch thất bại');
     },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['jobPosts', 'applications'],
+      });
+    },
+    onSuccess: () => {
+      toast.dismiss();
+      toast.success('Yêu cầu của bạn đã được nhận');
+    },
   });
   return { mutate, ...rest };
 };
 
-export const useGetAllApplication = () => {
-  const { data, ...rest } = useQuery({
-    queryKey: ['applications'],
-    queryFn: () => applicationService.getAllApplications(),
-  });
-  return { data, ...rest };
-};
-
 export const useGetApplicationById = (applicationId?: number | null) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['applicationDetails', applicationId],
+    queryKey: ['applicationDetails', { applicationId }],
     queryFn: () => applicationService.getApplicationById(applicationId!),
     enabled: !!applicationId,
     throwOnError: false,

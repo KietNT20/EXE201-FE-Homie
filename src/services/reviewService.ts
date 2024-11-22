@@ -6,9 +6,10 @@ export const reviewService = {
   getReviewByJobId(jobPostId: number) {
     return axiosInstance.get(API.REVIEW_API.GET_BY_JOB_ID + jobPostId);
   },
-  createReview({ reviewerId, rating, comment }: ReviewPayload) {
+  createReview({ reviewerId, jobId, rating, comment }: ReviewPayload) {
     return axiosInstance.post(API.REVIEW_API.CREATE, {
       reviewerId,
+      jobId,
       rating,
       comment,
     });

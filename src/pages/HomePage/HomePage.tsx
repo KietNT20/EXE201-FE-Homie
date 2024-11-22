@@ -59,8 +59,6 @@ const HomieComponent = () => {
             <img
               src={cleaner}
               alt="Service workers"
-              loading="lazy"
-              decoding="async"
               className="w-full h-auto max-w-2xl object-cover"
               width="800"
               height="600"

@@ -3,10 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 
 export const useGetTransactionById = (transactionId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['transactionDetails', transactionId],
+    queryKey: ['transactionDetails', { transactionId }],
     queryFn: () => transactionService.getTransactionById(transactionId),
     enabled: !!transactionId,
-    throwOnError: false,
   });
 
   return {
@@ -20,7 +19,6 @@ export const useGetTransactionByUserId = (userId: number) => {
     queryKey: ['transactionByUserId'],
     queryFn: () => transactionService.getTransactionByUserId(userId),
     enabled: !!userId,
-    throwOnError: false,
   });
 
   return {

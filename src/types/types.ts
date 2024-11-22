@@ -170,6 +170,7 @@ export interface ReviewByJobId {
 
 export interface ReviewPayload {
   reviewerId: number;
+  jobId: number;
   rating: number;
-  comment: string | null;
+  comment?: string | null;
 }

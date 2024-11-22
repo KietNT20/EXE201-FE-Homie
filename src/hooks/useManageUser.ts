@@ -86,19 +86,23 @@ export const useUpdateUser = (userId: number) => {
         phone,
         dateOfBirth,
         gender,
-        roleId: 4,
       }),
-    onSuccess: async () => {
-      toast.dismiss();
-      await queryClient.invalidateQueries({
-        queryKey: ['userDetail', userId],
-      });
-      toast.success('Update User Successfully!!');
-    },
     onError: (err) => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Update User Failed');
+    },
+    onSuccess: () => {
+      toast.dismiss();
+      toast.success('Update User Successfully!!');
+    },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['users'],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ['userDetail', { userId }],
+      });
     },
   });
 

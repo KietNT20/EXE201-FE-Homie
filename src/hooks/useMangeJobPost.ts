@@ -34,10 +34,9 @@ export const useGetAllJobPosts = (params: {
 
 export const useGetJobPostById = (jobPostId?: string | number | null) => {
   const { data, ...rest } = useQuery<JobPostDetail>({
-    queryKey: ['jobPostDetail', jobPostId],
+    queryKey: ['jobPosts', { jobPostId }],
     queryFn: () => jobPostService.getJobPostById(Number(jobPostId!)),
     enabled: !!jobPostId,
-    throwOnError: false,
   });
 
   return {
@@ -51,17 +50,20 @@ export const useCreateJobPost = () => {
   const { mutate, ...rest } = useMutation({
     mutationFn: (JobPostPayload: JobPostPayload) =>
       jobPostService.createJobPost(JobPostPayload),
-    onSuccess: async () => {
-      toast.dismiss();
-      await queryClient.invalidateQueries({
-        queryKey: ['jobPosts'],
-      });
-      toast.success('Tạo công việc thành công');
-    },
+
     onError: (err) => {
       toast.dismiss();
       console.error('Error:', err);
       toast.error('Tạo công việc thất bại');
+    },
+    onSuccess: async () => {
+      toast.dismiss();
+      toast.success('Tạo công việc thành công');
+    },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['jobPosts'],
+      });
     },
   });
   return { mutate, ...rest };
@@ -71,6 +73,7 @@ export const useGetJobPostByUserId = (userId: number) => {
   const { data: jobPostUserData, ...rest } = useQuery({
     queryKey: ['jobPostByUserId'],
     queryFn: () => jobPostService.getJobPostByUserId(userId),
+    enabled: !!userId,
     throwOnError: true,
   });
 

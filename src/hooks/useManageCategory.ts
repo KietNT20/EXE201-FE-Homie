@@ -16,7 +16,7 @@ export const useGetAllCategories = () => {
 
 export const useGetCategoryById = (categoryId?: number | null) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['category', categoryId],
+    queryKey: ['category', { categoryId }],
     queryFn: () => categoryService.getCategoryById(categoryId!),
     enabled: !!categoryId,
     throwOnError: false,

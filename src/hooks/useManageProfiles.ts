@@ -7,10 +7,9 @@ import toast from 'react-hot-toast';
 
 export const useGetProfiles = (userId: number) => {
   const { data, ...rest } = useQuery({
-    queryKey: ['profilesByUserId', userId],
+    queryKey: ['profilesByUserId', { userId }],
     queryFn: async () => await profileService.getProfiles(userId),
     enabled: !!userId,
-    staleTime: 5 * 60 * 1000,
   });
 
   return {
@@ -37,11 +36,8 @@ export const useCreateProfiles = () => {
         ratingAvg: 5,
       });
     },
-    onSuccess: async () => {
+    onSuccess: () => {
       toast.dismiss();
-      await queryClient.invalidateQueries({
-        queryKey: ['profiles'],
-      });
       toast.success('Tạo hồ sơ công việc thành công');
     },
     onError: (err: AxiosError<{ message: string }>) => {
@@ -52,6 +48,11 @@ export const useCreateProfiles = () => {
       } else {
         toast.error('Tạo hồ sơ công việc thất bại');
       }
+    },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['profilesByUserId'],
+      });
     },
   });
 
@@ -66,15 +67,17 @@ export const useUpdateProfiles = (profileId: number) => {
     },
     onSuccess: () => {
       toast.dismiss();
-      queryClient.invalidateQueries({
-        queryKey: ['profilesByUserId'],
-      });
       toast.success('Cập nhật hồ sơ công việc thành công');
     },
     onError: (err: AxiosError<{ message: string }>) => {
       toast.dismiss();
       console.error('Error:', err.response?.data.message);
       toast.error('Cập nhật hồ sơ công việc thất bại');
+    },
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: ['profilesByUserId'],
+      });
     },
   });
 

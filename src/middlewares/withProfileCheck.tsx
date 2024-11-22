@@ -10,7 +10,6 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 const WithProfileCheck = () => {
   const location = useLocation();
   const { userProfile } = useAppSelector((state) => state.profile);
-
   const userId = userProfile?.roleId === 3 ? userProfile.id : undefined;
   const { data: profilesData, isLoading, error } = useGetProfiles(userId ?? 0);
 

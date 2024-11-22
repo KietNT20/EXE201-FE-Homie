@@ -2,6 +2,7 @@ import { useAppSelector } from '@/hooks/reudxHook';
 import { useGetProfiles } from '@/hooks/useManageProfiles';
 import { useGetUserById, useUpdateUser } from '@/hooks/useManageUser';
 import { Button, Container } from '@mui/material';
+import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import CreateProfileModal from './CreateProfileModal';
 import ProfileDetails from './ProfileDetails';
@@ -11,6 +12,7 @@ const ProfileEmployee = () => {
   const [openProfiles, setOpenProfiles] = useState(false);
   const [openUpdateModal, setOpenUpdateModal] = useState(false);
   const { userProfile } = useAppSelector((state) => state.profile);
+  const queryClient = useQueryClient();
   const { data: userDetails, isLoading: userDetailLoading } = useGetUserById(
     userProfile?.id ?? 0,
   );
@@ -21,6 +23,9 @@ const ProfileEmployee = () => {
   const { data: profilesData } = useGetProfiles(userId ?? 0);
   // Determine if profile exists
   const hasProfile = profilesData?.data !== undefined;
+  if (!hasProfile) {
+    queryClient.cancelQueries({ queryKey: ['profilesByUserId'] });
+  }
   const handleOpenProfileModal = () => setOpenProfiles(true);
   const handleCloseProfileModal = () => setOpenProfiles(false);
   const handleOpenUpdateModal = () => setOpenUpdateModal(true);
