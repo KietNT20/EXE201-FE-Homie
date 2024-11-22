@@ -16,14 +16,22 @@ import { useAppDispatch } from './reudxHook';
  * @description
  * This hook is used to login user
  */
-export const useLogin = () => {
+interface LoginResponse {
+  data: {
+    tokenString: string;
+  };
+}
+export const useLogin = (): { login: (data: InputLoginTypes) => void } => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const { mutate: login, ...rest } = useMutation({
     mutationKey: ['login'],
-    mutationFn: ({ email, password }: InputLoginTypes) =>
+    mutationFn: ({
+      email,
+      password,
+    }: InputLoginTypes): Promise<LoginResponse> =>
       authService.login({ email, password }),
     onSuccess: async (response) => {
       toast.dismiss();
@@ -31,7 +39,10 @@ export const useLogin = () => {
       // console.log('Login success', response);
       if (response.data) {
         tokenMethod.set({ token: response.data.tokenString });
-        dispatch(setUserProfile(tokenMethod.get()?.token));
+        const token = tokenMethod.get();
+        if (token) {
+          await dispatch(setUserProfile(response.data.tokenString));
+        }
         toast.success('Đăng nhập thành công');
         navigate(PATH.HOME, { replace: true });
       }

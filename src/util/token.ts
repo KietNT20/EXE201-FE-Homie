@@ -1,7 +1,12 @@
 import { STORAGE } from '@/constant/storage';
 
+interface Token {
+  tokenString?: string;
+}
+
 export const localToken = {
-  get: () => JSON.parse(localStorage.getItem(STORAGE.token) || '{}'),
+  get: (): Token =>
+    JSON.parse(localStorage.getItem(STORAGE.token) || '{}') as Token,
   set: (token?: unknown) =>
     localStorage.setItem(STORAGE.token, JSON.stringify(token)),
   remove: () => localStorage.removeItem(STORAGE.token),

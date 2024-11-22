@@ -34,7 +34,9 @@ const PAGE_SIZE = 6;
 const JobListCreated = () => {
   const [page, setPage] = useState(1);
   const { userProfile } = useAppSelector((state) => state.profile);
-  const { jobPostUserData } = useGetJobPostByUserId(userProfile?.id!);
+  const { jobPostUserData } = useGetJobPostByUserId(userProfile?.id ?? 0) as {
+    jobPostUserData: { data: JobPostUserResponse[] | undefined };
+  };
 
   // Calculate total pages
   const totalPages = Math.ceil(

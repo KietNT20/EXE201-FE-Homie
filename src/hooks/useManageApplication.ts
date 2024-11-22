@@ -70,11 +70,11 @@ export const useUpdateApplicationStatus = () => {
       // Optimistically update
       queryClient.setQueryData(
         ['applicationByUser'],
-        (old: { data: any[] } | undefined) => {
+        (old: { data: Array<{ id: number; status: string }> } | undefined) => {
           if (!old) return old;
           return {
             ...old,
-            data: old.data.map((app: any) =>
+            data: old.data.map((app) =>
               app.id === applicationId ? { ...app, status } : app,
             ),
           };

@@ -24,8 +24,9 @@ const JobCard = ({ job }: JobCardProps) => {
   const { userProfile } = useAppSelector((state) => state.profile);
 
   const handleReviewSubmit = (rating: number, comment: string | null) => {
+    if (!userProfile?.id) return;
     createReview({
-      reviewerId: userProfile?.id!,
+      reviewerId: userProfile.id,
       jobId: job.jobId,
       rating,
       comment,
