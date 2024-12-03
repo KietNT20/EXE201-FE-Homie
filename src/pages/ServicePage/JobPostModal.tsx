@@ -32,7 +32,7 @@ import {
 } from './schemas/schema';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute' as const,
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -173,11 +173,11 @@ const JobPostModal = ({
                 name="district"
                 control={control}
                 render={({ field: { onChange, value, ...field } }) => (
-                  <Autocomplete
+                  <Autocomplete<District>
                     {...field}
                     options={districts}
                     getOptionLabel={(option) => option.district}
-                    value={value}
+                    value={value as District}
                     onChange={(_, newValue) => {
                       onChange(newValue);
                     }}
@@ -289,8 +289,8 @@ const JobPostModal = ({
                 control={control}
                 render={({ field }) => {
                   const selectedIds =
-                    field.value?.map(
-                      (cat: { categoryId: number }) => cat.categoryId,
+                    (field.value as { categoryId: number }[])?.map(
+                      (cat) => cat.categoryId,
                     ) || [];
                   // Check if category with id 5 is selected
                   const isId5Selected = selectedIds.includes(5);

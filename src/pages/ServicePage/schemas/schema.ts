@@ -56,7 +56,7 @@ export const jobPostSchema = yup.object().shape({
       'isAfterStartDate',
       'Ngày kết thúc phải sau ngày bắt đầu',
       function (value) {
-        const { startDate } = this.parent;
+        const { startDate } = this.parent as { startDate: Dayjs };
         return dayjs(value).isAfter(startDate);
       },
     ),
